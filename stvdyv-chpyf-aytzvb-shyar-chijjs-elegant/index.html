@@ -17,8 +17,8 @@
 <link href="https://fonts.googleapis.com/css2?family=Frank+Ruhl+Libre:wght@300;400;500;700&family=Heebo:wght@300;400;600&display=swap" rel="stylesheet">
 <style>
 :root{
-  --primary:#8a5a20;
-  --accent:#ecc84f;
+  --primary:#351e28;
+  --accent:#e3c9d4;
   --bg:#f6f6f4;
   --bg2:#ebebe8;
   --ink:#2b2723;
@@ -78,6 +78,17 @@ header.scrolled .call-btn{border-color:var(--ink);color:var(--ink)}
 @keyframes fadeUp{from{opacity:0;transform:translateY(24px)}to{opacity:1;transform:none}}
 
 section{padding:100px 0}
+#about{background:#fff}
+#faq{background:#fff}
+#services{background:var(--primary)}
+#services .label{color:rgba(255,255,255,.7)}
+#services .section-title{color:#fff}
+#services .grid{border-top:1px solid rgba(255,255,255,.25)}
+#services .card{border-bottom:1px solid rgba(255,255,255,.2)}
+#services .card:hover{background:rgba(255,255,255,.07)}
+#services .card h3{color:#fff}
+#services .card p{color:rgba(255,255,255,.68)}
+#services .card-icon{color:var(--accent)}
 .label{display:block;text-align:center;letter-spacing:6px;font-size:.75rem;text-transform:uppercase;color:var(--primary);margin-bottom:16px}
 .section-title{text-align:center;font-size:clamp(1.8rem,4.4vw,2.7rem);color:var(--ink);line-height:1.25}
 
@@ -98,10 +109,7 @@ section{padding:100px 0}
 .card h3{color:var(--ink);font-size:1.2rem;margin-bottom:10px}
 .card p{color:var(--muted);font-size:.93rem}
 
-.reviews-wrap{background:var(--primary)}
-.reviews-wrap .section-title{color:#fff}
-.reviews-wrap .label{color:rgba(255,255,255,.75)}
-.reviews-wrap .google-note{color:rgba(255,255,255,.7)}
+.reviews-wrap{background:#fff}
 .reviews-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:26px;margin-top:56px}
 .review{background:var(--bg);padding:36px 30px;position:relative;transition:transform .3s,opacity 1s ease}
 .review::before{content:"\201C";font-family:'Frank Ruhl Libre',serif;font-size:3.6rem;color:var(--accent);position:absolute;top:8px;inset-inline-start:22px;line-height:1;opacity:.8}
@@ -123,26 +131,26 @@ section{padding:100px 0}
 .faq-list details[open] summary::after{transform:rotate(45deg)}
 .faq-list .faq-a{padding:0 6px 24px;color:var(--muted)}
 
-.contact-wrap{background:var(--dark);color:#e8e4dd}
-.contact-wrap .label{color:#9b937f}
-.contact-wrap .section-title{color:#f3eee4}
-.contact-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:0;border-top:1px solid rgba(243,238,228,.15);max-width:940px;margin:56px auto 0}
+.contact-wrap{background:var(--accent);color:var(--ink)}
+.contact-wrap .label{color:var(--ink);opacity:.62}
+.contact-wrap .section-title{color:var(--ink)}
+.contact-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:0;border-top:1px solid rgba(0,0,0,.18);max-width:940px;margin:56px auto 0}
 .contact-card{padding:40px 28px;text-align:center}
-.contact-card + .contact-card{border-inline-start:1px solid rgba(243,238,228,.15)}
-.contact-card .card-icon{color:var(--accent);margin-bottom:16px}
+.contact-card + .contact-card{border-inline-start:1px solid rgba(0,0,0,.18)}
+.contact-card .card-icon{color:var(--primary);margin-bottom:16px}
 .contact-card .card-icon svg{width:26px;height:26px}
-.contact-card h3{color:#f3eee4;margin-bottom:10px;letter-spacing:2px;font-size:1.05rem}
-.contact-card a{color:var(--accent)}
-.contact-card p{color:#b5ac9c;font-size:.93rem}
-.hours{list-style:none;font-size:.87rem;color:#b5ac9c}
+.contact-card h3{color:var(--ink);margin-bottom:10px;letter-spacing:2px;font-size:1.05rem}
+.contact-card a{color:var(--primary);font-weight:600}
+.contact-card p{color:rgba(0,0,0,.62);font-size:.93rem}
+.hours{list-style:none;font-size:.87rem;color:rgba(0,0,0,.62)}
 .hours li{padding:2px 0}
 
 .floating-wa{position:fixed;bottom:24px;inset-inline-start:24px;background:#25d366;color:#fff;width:56px;height:56px;border-radius:50%;display:flex;align-items:center;justify-content:center;box-shadow:0 6px 24px rgba(0,0,0,.35);z-index:60;transition:transform .2s}
 .floating-wa:hover{transform:scale(1.08)}
 .floating-wa svg{width:26px;height:26px}
 
-footer{background:var(--dark);color:#8c8477;text-align:center;padding:0 26px 40px;font-size:.8rem;letter-spacing:2px}
-footer .brand-foot{color:#f3eee4;font-family:'Frank Ruhl Libre',serif;font-size:1.05rem;margin-bottom:8px;letter-spacing:4px;text-transform:uppercase}
+footer{background:var(--primary);color:rgba(255,255,255,.72);text-align:center;padding:0 26px 40px;font-size:.8rem;letter-spacing:2px}
+footer .brand-foot{color:#fff;font-family:'Frank Ruhl Libre',serif;font-size:1.05rem;margin-bottom:8px;letter-spacing:4px;text-transform:uppercase}
 
 body.en{direction:ltr}
 
@@ -154,7 +162,7 @@ body.en{direction:ltr}
   .brand{font-size:.85rem;max-width:44vw;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
   .call-btn{padding:7px 14px;font-size:.78rem;white-space:nowrap}
   .stat + .stat{border-inline-start:none;border-top:1px solid var(--line)}
-  .contact-card + .contact-card{border-inline-start:none;border-top:1px solid rgba(243,238,228,.15)}
+  .contact-card + .contact-card{border-inline-start:none;border-top:1px solid rgba(0,0,0,.18)}
   .gallery img{height:210px}
 }
 </style>
