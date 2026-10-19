@@ -12,6 +12,7 @@
 :root{
   --cream:#EFEBE3;
   --cream-deep:#E6E0D4;
+  --cream-alt:#E9E4D8;
   --black:#1C1A17;
   --grey:#B9B2A4;
   --sienna:#B4552D;
@@ -56,6 +57,7 @@ header{position:fixed;top:0;left:0;right:0;z-index:50;display:grid;grid-template
 .fill-sec .label{display:block;margin-bottom:5vh}
 
 /* ---------- services ---------- */
+section.alt{background:var(--cream-alt)}
 .svc{border-top:1px solid rgba(28,26,23,.25)}
 .svc-row{display:grid;grid-template-columns:72px 1fr 1.1fr;gap:clamp(16px,3vw,48px);align-items:baseline;
   padding:34px 0;border-bottom:1px solid rgba(28,26,23,.25)}
@@ -163,7 +165,7 @@ footer{background:var(--black);color:var(--cream);padding:14vh 0 0;margin-top:14
   </section>
 
   <!-- SERVICES -->
-  <section class="wrap svc">
+  <section class="wrap svc alt" style="padding:8vh 0 10vh;padding-left:clamp(20px,4.5vw,64px);padding-right:clamp(20px,4.5vw,64px)">
     <div class="svc-row rv">
       <span class="num">01</span>
       <h3>תכנון</h3>
@@ -231,7 +233,7 @@ footer{background:var(--black);color:var(--cream);padding:14vh 0 0;margin-top:14
   </section>
 
   <!-- STATS -->
-  <section class="wrap">
+  <section class="wrap alt" style="padding:8vh clamp(20px,4.5vw,64px)">
     <div class="stats">
       <div class="stat rv"><b>12<i>+</i></b><span>שנות בנייה</span></div>
       <div class="stat rv"><b>87</b><span>חללים שנמסרו</span></div>

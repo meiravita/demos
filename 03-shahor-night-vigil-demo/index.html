@@ -89,6 +89,7 @@ nav .sep{color:var(--crimson);font-family:var(--disp)}
 
 /* ---------- scenes ---------- */
 .scene{position:relative;height:240vh}
+.scene.alt .scene-sticky{background:var(--paper-dim)}
 .scene-sticky{position:sticky;top:0;height:100vh;overflow:hidden;display:flex;align-items:center;justify-content:center}
 .panel{position:relative;width:min(92vw,1240px);height:min(82vh,760px);border:3px solid var(--ink);box-shadow:8px 8px 0 var(--ink);
   overflow:hidden;background:var(--wine)}
@@ -102,8 +103,9 @@ nav .sep{color:var(--crimson);font-family:var(--disp)}
 .cap-br{bottom:8%;right:6%}
 .cap-bl{bottom:8%;left:6%}
 .scene-kicker{position:absolute;z-index:3;top:50%;left:50%;transform:translate(-50%,-50%);text-align:center;width:90%;pointer-events:none}
-.scene-kicker h2{font-family:var(--disp);font-size:clamp(40px,8vw,120px);color:var(--paper);text-transform:uppercase;line-height:.92;
-  text-shadow:4px 4px 0 var(--ink);opacity:0;transition:opacity .5s}
+.scene-kicker h2{font-family:var(--disp);font-size:clamp(32px,6vw,92px);color:var(--paper);background:var(--crimson);
+  border:3px solid var(--ink);box-shadow:7px 7px 0 var(--ink);display:inline-block;padding:.12em .4em;
+  text-transform:uppercase;line-height:1.05;opacity:0;transition:opacity .5s}
 .scene-kicker.show h2{opacity:1}
 
 /* ---------- pour (interactive) ---------- */
@@ -131,10 +133,10 @@ nav .sep{color:var(--crimson);font-family:var(--disp)}
 .collection{background:var(--crimson);min-height:100vh;display:flex;flex-direction:column;justify-content:center;padding:14vh 0;position:relative;overflow:hidden}
 .col-head{text-align:center;color:var(--paper);margin-bottom:2vh}
 .col-head .label{color:var(--ink)}
-.col-stage{position:relative;width:100%;max-width:1240px;margin:0 auto;min-height:62vh;display:flex;align-items:center;justify-content:center}
-.col-word{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;pointer-events:none}
-.col-word span{font-family:var(--disp);font-size:clamp(54px,10.5vw,160px);line-height:.9;text-align:center;text-transform:uppercase;color:var(--paper);text-shadow:5px 5px 0 var(--ink);opacity:.96}
-.col-bottle{position:relative;z-index:2;width:clamp(190px,24vw,300px);border:3px solid var(--ink);box-shadow:8px 8px 0 var(--ink);background:var(--wine)}
+.col-stage{position:relative;width:100%;max-width:1240px;margin:0 auto;min-height:62vh;display:grid;grid-template-columns:1.15fr auto;align-items:center;gap:clamp(20px,4vw,60px);padding:0 clamp(70px,9vw,140px)}
+.col-word{display:flex;align-items:center;justify-content:flex-start}
+.col-word span{font-family:var(--disp);font-size:clamp(44px,8.5vw,140px);line-height:.92;text-align:start;text-transform:uppercase;color:var(--paper);text-shadow:5px 5px 0 var(--ink)}
+.col-bottle{width:clamp(190px,24vw,300px);border:3px solid var(--ink);box-shadow:8px 8px 0 var(--ink);background:var(--wine)}
 .col-bottle img{width:100%}
 .col-arrow{position:absolute;z-index:3;top:50%;transform:translateY(-50%);background:var(--paper);border:3px solid var(--ink);box-shadow:4px 4px 0 var(--ink);
   width:54px;height:54px;cursor:pointer;font-size:20px;font-weight:700;font-family:var(--sans)}
@@ -164,6 +166,9 @@ footer .label{color:var(--crimson)}
   .scene{height:200vh}
   .caption{max-width:250px}
   .panel{height:72vh}
+  .col-stage{grid-template-columns:1fr;justify-items:center;row-gap:30px;padding:0 64px}
+  .col-word{justify-content:center}
+  .col-word span{text-align:center}
 }
 @media (prefers-reduced-motion:reduce){
   *{animation:none!important;transition:none!important}
@@ -207,7 +212,7 @@ footer .label{color:var(--crimson)}
   </section>
 
   <!-- SCENE 1: TEMPLE -->
-  <section class="scene" data-scene="temple">
+  <section class="scene alt" data-scene="temple">
     <div class="scene-sticky">
       <div class="panel">
         <img src="assets/temple.jpg" alt="Engraved cathedral of columns, a tiny altar holding three glowing bottles">
@@ -237,7 +242,7 @@ footer .label{color:var(--crimson)}
   </section>
 
   <!-- SCENE 3: KEEPER -->
-  <section class="scene" data-scene="keeper">
+  <section class="scene alt" data-scene="keeper">
     <div class="scene-sticky">
       <div class="panel">
         <img src="assets/keeper.jpg" alt="A robed keeper at a long stone counter with three glowing bottles">
