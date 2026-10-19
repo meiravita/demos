@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Kedem Desert Retreat</title>
+<meta name="description" content="A quiet luxury retreat on the rim of the Negev crater. A Website Factory demo.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400&family=Karla:wght@400;600&display=swap">
+<style>
+:root{
+  --ivory:#F1ECE3;
+  --ink:#2A2721;
+  --olive:#6A6A3F;
+  --ochre:#A9803F;
+  --serif:'Cormorant Garamond',Georgia,serif;
+  --sans:'Karla',Helvetica,Arial,sans-serif;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{background:var(--ivory);color:var(--ink);font-family:var(--sans);font-size:15px;line-height:1.7;overflow-x:hidden}
+::selection{background:var(--olive);color:var(--ivory)}
+img{max-width:100%;display:block}
+a{color:inherit}
+.label{font-size:10.5px;font-weight:600;letter-spacing:.3em;text-transform:uppercase;color:rgba(42,39,33,.55)}
+.wrap{padding-left:clamp(20px,5vw,72px);padding-right:clamp(20px,5vw,72px)}
+.serif{font-family:var(--serif);font-weight:300}
+
+/* ---------- nav ---------- */
+header{position:fixed;top:0;left:0;right:0;z-index:50;display:grid;grid-template-columns:1fr auto 1fr;align-items:center;
+  padding:22px clamp(20px,5vw,72px);mix-blend-mode:multiply}
+header.on-dark{mix-blend-mode:normal;color:var(--ivory)}
+.nav-link{justify-self:start;text-decoration:none;font-size:11px;font-weight:600;letter-spacing:.26em;text-transform:uppercase}
+.nav-link:hover{color:var(--olive)}
+.wordmark{justify-self:center;text-align:center;text-decoration:none;line-height:1.1}
+.wordmark b{font-family:var(--serif);font-weight:400;font-size:21px;letter-spacing:.34em;text-transform:uppercase;display:block}
+.wordmark span{font-size:8.5px;letter-spacing:.44em;text-transform:uppercase;opacity:.7}
+.menu-btn{justify-self:end;background:none;border:none;color:inherit;cursor:pointer;font-family:var(--sans);
+  font-size:11px;font-weight:600;letter-spacing:.26em;text-transform:uppercase}
+.menu-btn:hover{color:var(--olive)}
+a:focus-visible,button:focus-visible{outline:2px solid var(--olive);outline-offset:3px}
+
+/* ---------- hero ---------- */
+.hero{position:relative;height:100vh;min-height:560px;overflow:hidden;color:var(--ivory)}
+.hero img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.hero::after{content:'';position:absolute;inset:0;background:linear-gradient(to bottom,rgba(42,39,33,.35),transparent 35%,rgba(42,39,33,.3)),linear-gradient(to left,rgba(42,39,33,.38),transparent 48%)}
+.hero-inner{position:relative;z-index:2;height:100%}
+.hero-text{position:absolute;top:50%;right:clamp(20px,6vw,90px);transform:translateY(-50%);max-width:min(48vw,560px);display:flex;flex-direction:column;align-items:flex-end;text-align:right;gap:4.5vh}
+.hero-title{font-family:var(--serif);font-weight:300;text-transform:uppercase;font-size:clamp(40px,6.8vw,104px);line-height:1.04;letter-spacing:.02em}
+.hero-title .l2{display:block;margin-right:clamp(30px,6vw,130px)}
+.hero-sub{max-width:300px;font-size:13.5px;line-height:1.8}
+.hero-sub .btn{display:inline-flex;align-items:center;gap:10px;margin-top:18px;border:1px solid rgba(241,236,227,.7);padding:11px 20px;
+  text-decoration:none;font-size:10.5px;font-weight:600;letter-spacing:.26em;text-transform:uppercase;transition:background .4s,color .4s}
+.hero-sub .btn:hover{background:var(--ivory);color:var(--ink)}
+
+/* ---------- statement ---------- */
+.statement-sec{padding:18vh 0}
+.statement{font-family:var(--serif);font-weight:300;color:var(--olive);font-size:clamp(28px,4.4vw,58px);line-height:1.25;max-width:26ch}
+.statement-sec .label{display:block;margin-bottom:5vh}
+
+/* ---------- editorial grids ---------- */
+.ed{display:grid;grid-template-columns:1fr 1.5fr;gap:clamp(24px,6vw,110px);align-items:start;padding:8vh 0}
+.ed.flip{grid-template-columns:1.5fr 1fr}
+.ed-text{max-width:34ch;font-size:14px;color:rgba(42,39,33,.8)}
+.ed-text .label{display:block;margin-bottom:18px}
+.ed-text h3{font-family:var(--serif);font-weight:400;font-size:clamp(24px,2.6vw,36px);line-height:1.2;margin-bottom:16px;text-wrap:balance}
+.ed img{width:100%;height:auto}
+.ed .inset{width:72%;margin-top:10vh}
+.ed.flip .ed-text{padding-top:10vh}
+
+/* ---------- full quote band ---------- */
+.band{position:relative;min-height:72vh;overflow:hidden;display:flex;align-items:center;color:var(--ivory)}
+.band img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.band::after{content:'';position:absolute;inset:0;background:rgba(42,39,33,.38)}
+.band blockquote{position:relative;z-index:2;font-family:var(--serif);font-weight:300;font-size:clamp(26px,3.8vw,50px);
+  line-height:1.3;max-width:24ch;padding:0 clamp(20px,5vw,72px)}
+.band cite{display:block;font-family:var(--sans);font-style:normal;font-size:10.5px;letter-spacing:.3em;text-transform:uppercase;margin-top:3vh;opacity:.8}
+
+/* ---------- trio ---------- */
+.trio-sec{padding:14vh 0}
+.trio-head{max-width:30ch;margin-bottom:7vh}
+.trio-head h2{font-family:var(--serif);font-weight:300;font-size:clamp(30px,4vw,52px);line-height:1.15;text-wrap:balance}
+.trio{display:grid;grid-template-columns:repeat(3,1fr);gap:clamp(14px,2.5vw,32px)}
+.trio figure img{aspect-ratio:3/4;object-fit:cover;width:100%}
+.trio figcaption{margin-top:14px}
+.trio figcaption b{font-family:var(--serif);font-weight:400;font-size:21px;display:block}
+.trio figcaption span{font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:rgba(42,39,33,.55)}
+.coming{display:flex;align-items:center;justify-content:center;aspect-ratio:3/4;border:1px solid rgba(42,39,33,.3);text-align:center;padding:20px}
+.coming p{font-family:var(--serif);font-size:22px;line-height:1.4;max-width:14ch}
+
+/* ---------- footer ---------- */
+footer{background:var(--ink);color:var(--ivory);text-align:center;padding:16vh 0 0}
+footer .label{color:rgba(241,236,227,.5)}
+.foot-word{font-family:var(--serif);font-weight:300;text-transform:uppercase;letter-spacing:.3em;font-size:clamp(38px,7vw,92px);margin:4vh 0}
+.foot-cta{display:inline-block;text-decoration:none;border:1px solid rgba(241,236,227,.5);padding:14px 32px;
+  font-size:10.5px;font-weight:600;letter-spacing:.3em;text-transform:uppercase;transition:background .4s,color .4s}
+.foot-cta:hover{background:var(--ivory);color:var(--ink)}
+.foot-base{display:flex;justify-content:space-between;gap:14px;flex-wrap:wrap;margin-top:12vh;border-top:1px solid rgba(241,236,227,.15);
+  padding:20px clamp(20px,5vw,72px);font-size:10px;letter-spacing:.2em;text-transform:uppercase;color:rgba(241,236,227,.45)}
+.foot-base a{text-decoration:none;color:rgba(241,236,227,.7)}
+
+.rv{opacity:0;transform:translateY(26px);transition:opacity 1.1s ease,transform 1.1s cubic-bezier(.22,1,.36,1)}
+.rv.in{opacity:1;transform:none}
+
+@media (max-width:860px){
+  .ed,.ed.flip{grid-template-columns:1fr}
+  .ed.flip .ed-text{padding-top:0}
+  .ed .inset{width:100%;margin-top:0}
+  .trio{grid-template-columns:1fr}
+  .trio figure img,.coming{aspect-ratio:4/3}
+  .hero-text{position:static;transform:none;max-width:100%;padding:16vh clamp(20px,5vw,72px) 0;align-items:flex-start;text-align:start}
+  .hero-title .l2{margin-right:8vw}
+}
+@media (prefers-reduced-motion:reduce){
+  *{transition:none!important;animation:none!important}
+  .rv{opacity:1;transform:none}
+  html{scroll-behavior:auto}
+}
+</style>
+</head>
+<body>
+
+<header id="hdr" class="on-dark">
+  <a class="nav-link" href="#enquire">Enquire</a>
+  <a class="wordmark" href="#top"><b>Kedem</b><span>Desert Collection</span></a>
+  <div style="justify-self:end;display:flex;align-items:center;gap:20px"><a class="nav-link" style="justify-self:auto" href="he.html">עברית</a><button class="menu-btn" aria-label="Open menu">Menu</button></div>
+</header>
+
+<main id="top">
+
+  <!-- HERO -->
+  <section class="hero">
+    <img src="assets/hero.jpg" alt="Desert crater at first light, a small lodge deck on the rim">
+    <div class="hero-inner">
+      <div class="hero-text rv">
+        <h1 class="hero-title">Unbroken<span class="l2">Stillness</span></h1>
+        <div class="hero-sub">
+          <p>A rare chance to stay inside one of the oldest silences on earth: the rim of the Negev crater.</p>
+          <a class="btn" href="#retreat">Explore the retreat &rarr;</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- STATEMENT -->
+  <section class="statement-sec wrap" id="retreat">
+    <span class="label rv">The Retreat</span>
+    <p class="statement serif rv">Kedem brings together one lodge and five stone suites on the crater's northern rim. For half a billion years this land has kept its own time; we built quietly, so it still does.</p>
+  </section>
+
+  <!-- EDITORIAL 1 -->
+  <section class="ed wrap">
+    <div class="ed-text rv">
+      <span class="label">The Wilderness</span>
+      <h3>We stand for balance, where people and desert thrive together</h3>
+      <p>Rooted in partnership with the local Bedouin community, our ethos ensures that when our neighbours prosper, so does the wilderness. Ibex graze the ridge at dawn; we schedule around them, not the other way round.</p>
+    </div>
+    <div>
+      <img class="rv" src="assets/ibex.jpg" alt="A Nubian ibex with long curved horns on a rocky ledge at dawn">
+    </div>
+  </section>
+
+  <!-- EDITORIAL 2 -->
+  <section class="ed flip wrap">
+    <div>
+      <img class="rv" src="assets/suite.jpg" alt="Lodge suite with linen bed, limewashed walls and an open wall to the canyon">
+      <img class="rv inset" src="assets/walk.jpg" alt="Guests walking a ridge trail at dawn with a guide">
+    </div>
+    <div class="ed-text rv">
+      <span class="label">Suites</span>
+      <h3>Generous proportions, magnificent silence</h3>
+      <p>Each suite opens directly onto the crater rim. Private plunge pools, indoor and outdoor showers, and spacious living areas keep the experience intentionally intimate: eleven keys in total, never more.</p>
+    </div>
+  </section>
+
+  <!-- QUOTE BAND -->
+  <section class="band">
+    <img src="assets/pool.jpg" alt="Stone infinity pool on the cliff edge at dusk">
+    <blockquote class="rv">
+      &ldquo;From the moment you arrive, there is no need to leave your deck to begin your spectacular adventure.&rdquo;
+      <cite>Accommodation &middot; Kedem Rim Lodge</cite>
+    </blockquote>
+  </section>
+
+  <!-- TRIO -->
+  <section class="trio-sec wrap">
+    <div class="trio-head rv">
+      <span class="label">Experiences</span>
+      <h2 class="serif">Each day offers a distinct expression of the desert</h2>
+    </div>
+    <div class="trio">
+      <figure class="rv">
+        <img src="assets/walk.jpg" alt="Dawn ridge walk with a local guide">
+        <figcaption><b>Dawn ridge walks</b><span>With local guides</span></figcaption>
+      </figure>
+      <figure class="rv">
+        <img src="assets/ibex.jpg" alt="Nubian ibex at close range">
+        <figcaption><b>Wildlife at first light</b><span>Ibex &middot; Raptors &middot; Foxes</span></figcaption>
+      </figure>
+      <div class="coming rv">
+        <p class="serif">A new chapter, coming soon: the star observatory</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer id="enquire">
+    <span class="label rv">Begin the conversation</span>
+    <div class="foot-word rv">Kedem</div>
+    <a class="foot-cta rv" href="mailto:stay@kedem-demo.example">stay@kedem-demo.example</a>
+    <div class="foot-base">
+      <span>&copy; 2026 Kedem Desert Collection &middot; Fictional demo retreat</span>
+      <a href="#top">Made by Website Factory &middot; מפעל האתרים</a>
+    </div>
+  </footer>
+
+</main>
+
+<script>
+(function(){
+  var reduced=window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  /* reveals */
+  var items=document.querySelectorAll('.rv');
+  if('IntersectionObserver' in window && !reduced){
+    var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}})},{threshold:.12});
+    items.forEach(function(el){io.observe(el)});
+  }else{items.forEach(function(el){el.classList.add('in')})}
+
+  /* header: ivory over hero, ink after */
+  var hdr=document.getElementById('hdr'),hero=document.querySelector('.hero');
+  function hdrTick(){hdr.classList.toggle('on-dark', hero.getBoundingClientRect().bottom>70)}
+  window.addEventListener('scroll',hdrTick,{passive:true});hdrTick();
+})();
+</script>
+</body>
+</html>

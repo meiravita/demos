@@ -1,0 +1,459 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Shahor Cold Brew</title>
+<meta name="description" content="The Night Vigil: an illustrated journey into Shahor cold brew. A Website Factory demo experience.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Rozha+One&family=Archivo:wght@500;700&display=swap">
+<style>
+:root{
+  --paper:#EDE7DC;
+  --paper-dim:#E2DACC;
+  --ink:#15110F;
+  --crimson:#C8281F;
+  --wine:#592223;
+  --amber:#D98E32;
+  --cream-text:#EDE7DC;
+  --disp:'Rozha One',Georgia,serif;
+  --sans:'Archivo',Helvetica,Arial,sans-serif;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  background:var(--paper);
+  color:var(--ink);
+  font-family:var(--sans);
+  font-size:15px;
+  line-height:1.6;
+  overflow-x:hidden;
+}
+::selection{background:var(--crimson);color:var(--paper)}
+img{max-width:100%;display:block}
+a{color:inherit}
+
+/* paper grain over everything */
+body::after{
+  content:'';position:fixed;inset:0;pointer-events:none;z-index:90;opacity:.5;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2'/%3E%3CfeColorMatrix values='0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 .05 0'/%3E%3C/filter%3E%3Crect width='180' height='180' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+
+.label{font-size:11px;font-weight:700;letter-spacing:.26em;text-transform:uppercase}
+.disp{font-family:var(--disp);font-weight:400;text-transform:uppercase;line-height:.92}
+
+/* ---------- loader ---------- */
+#loader{position:fixed;inset:0;z-index:100;background:var(--ink);color:var(--paper);
+  display:flex;flex-direction:column;align-items:center;justify-content:center;gap:18px;
+  transition:opacity .8s ease;}
+#loader.done{opacity:0;pointer-events:none}
+#loader .disp{font-size:clamp(28px,5vw,54px);animation:pulse 1.6s ease infinite}
+#loader .label{color:var(--crimson)}
+@keyframes pulse{0%,100%{opacity:.75}50%{opacity:1}}
+
+/* ---------- header ---------- */
+header{position:fixed;top:0;left:0;right:0;z-index:60;display:flex;justify-content:space-between;align-items:center;
+  padding:18px clamp(18px,4vw,56px);mix-blend-mode:multiply}
+.brand{font-family:var(--disp);font-size:24px;letter-spacing:.05em;text-decoration:none;line-height:1}
+.brand small{display:block;font-family:var(--sans);font-size:9px;letter-spacing:.3em;font-weight:700;margin-top:2px}
+nav{display:flex;align-items:center;gap:10px;background:var(--paper);border:2px solid var(--ink);padding:9px 16px;box-shadow:4px 4px 0 var(--ink)}
+nav a{text-decoration:none;font-size:11px;font-weight:700;letter-spacing:.2em;text-transform:uppercase;padding:0 8px}
+nav a:hover,nav a:focus-visible{color:var(--crimson)}
+nav .sep{color:var(--crimson);font-family:var(--disp)}
+
+/* audio toggle */
+#audioBtn{position:fixed;right:clamp(18px,3vw,40px);bottom:clamp(18px,3vw,40px);z-index:70;
+  width:46px;height:46px;border-radius:50%;border:2px solid var(--ink);background:var(--paper);cursor:pointer;
+  display:flex;align-items:center;justify-content:center;gap:2.5px;box-shadow:3px 3px 0 var(--ink)}
+#audioBtn span{width:3px;background:var(--ink);height:6px;transition:height .2s}
+#audioBtn.on span{animation:eq .9s ease infinite alternate}
+#audioBtn.on span:nth-child(2){animation-delay:.2s}
+#audioBtn.on span:nth-child(3){animation-delay:.4s}
+@keyframes eq{from{height:5px}to{height:16px}}
+#audioBtn:focus-visible,button:focus-visible,a:focus-visible{outline:3px solid var(--crimson);outline-offset:2px}
+
+/* ---------- title ---------- */
+.title-scene{min-height:96vh;display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;
+  padding:16vh 20px 8vh;position:relative;overflow:hidden}
+.title-scene .label{color:var(--crimson);margin-bottom:3vh}
+.title-big{font-size:clamp(58px,12.5vw,190px)}
+.title-big .ln{display:block;overflow:hidden}
+.title-big .ln i{display:block;font-style:normal;transform:translateY(110%);animation:rise 1s cubic-bezier(.22,1,.36,1) forwards}
+.title-big .ln:nth-child(2) i{animation-delay:.12s}
+.title-big .ln:nth-child(3) i{animation-delay:.24s}
+@keyframes rise{to{transform:none}}
+.title-sub{margin-top:4vh;max-width:430px;color:rgba(21,17,15,.65);font-weight:500}
+.scroll-cue{margin-top:6vh;font-size:10px;letter-spacing:.3em;text-transform:uppercase;color:rgba(21,17,15,.5);animation:pulse 2s ease infinite}
+.ink-corner{position:absolute;width:30vw;max-width:360px;opacity:.9;pointer-events:none}
+
+/* ---------- scenes ---------- */
+.scene{position:relative;height:240vh}
+.scene-sticky{position:sticky;top:0;height:100vh;overflow:hidden;display:flex;align-items:center;justify-content:center}
+.panel{position:relative;width:min(92vw,1240px);height:min(82vh,760px);border:3px solid var(--ink);box-shadow:8px 8px 0 var(--ink);
+  overflow:hidden;background:var(--wine)}
+.panel img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;will-change:transform}
+.caption{position:absolute;z-index:3;background:var(--paper);border:2px solid var(--ink);box-shadow:4px 4px 0 var(--ink);
+  padding:12px 18px;max-width:330px;opacity:0;transform:translateY(16px);transition:opacity .5s,transform .5s}
+.caption.show{opacity:1;transform:none}
+.caption p{font-size:13px;font-weight:500;line-height:1.5}
+.caption .disp{font-size:19px;margin-bottom:2px;line-height:1.1}
+.cap-tl{top:7%;left:6%}
+.cap-br{bottom:8%;right:6%}
+.cap-bl{bottom:8%;left:6%}
+.scene-kicker{position:absolute;z-index:3;top:50%;left:50%;transform:translate(-50%,-50%);text-align:center;width:90%;pointer-events:none}
+.scene-kicker h2{font-family:var(--disp);font-size:clamp(40px,8vw,120px);color:var(--paper);text-transform:uppercase;line-height:.92;
+  text-shadow:4px 4px 0 var(--ink);opacity:0;transition:opacity .5s}
+.scene-kicker.show h2{opacity:1}
+
+/* ---------- pour (interactive) ---------- */
+.pour-scene{background:var(--crimson);padding:14vh 0;position:relative}
+.pour-grid{width:min(92vw,1240px);margin:0 auto;display:grid;grid-template-columns:1.25fr 1fr;gap:clamp(24px,4vw,60px);align-items:center}
+.pour-art{border:3px solid var(--ink);box-shadow:8px 8px 0 var(--ink);overflow:hidden;background:var(--wine)}
+.pour-art img{width:100%;height:100%;object-fit:cover}
+.pour-side{color:var(--paper)}
+.pour-side h2{font-family:var(--disp);font-size:clamp(34px,4.6vw,64px);text-transform:uppercase;line-height:.95;margin-bottom:3vh;text-shadow:3px 3px 0 var(--ink)}
+.pour-side .label{color:var(--ink)}
+#holdBtn{margin-top:4vh;background:var(--paper);border:3px solid var(--ink);box-shadow:5px 5px 0 var(--ink);cursor:pointer;
+  font-family:var(--sans);font-weight:700;font-size:12px;letter-spacing:.26em;text-transform:uppercase;padding:18px 30px;color:var(--ink);
+  user-select:none;-webkit-user-select:none;touch-action:none}
+#holdBtn:active{transform:translate(2px,2px);box-shadow:3px 3px 0 var(--ink)}
+.cupwrap{margin-top:4vh;width:150px}
+.cupwrap svg{width:100%;overflow:visible}
+#pourMsg{margin-top:2vh;font-family:var(--disp);font-size:26px;text-transform:uppercase;opacity:0;transition:opacity .6s;color:var(--paper);text-shadow:2px 2px 0 var(--ink)}
+#pourMsg.show{opacity:1}
+
+/* ---------- vortex ---------- */
+.vortex-sticky{background:var(--ink)}
+.vortex-sticky .panel{background:var(--ink);border-color:var(--paper);box-shadow:8px 8px 0 var(--crimson);width:min(82vw,700px);height:min(82vw,700px)}
+
+/* ---------- collection ---------- */
+.collection{background:var(--crimson);min-height:100vh;display:flex;flex-direction:column;justify-content:center;padding:14vh 0;position:relative;overflow:hidden}
+.col-head{text-align:center;color:var(--paper);margin-bottom:2vh}
+.col-head .label{color:var(--ink)}
+.col-stage{position:relative;width:100%;max-width:1240px;margin:0 auto;min-height:62vh;display:flex;align-items:center;justify-content:center}
+.col-word{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;pointer-events:none}
+.col-word span{font-family:var(--disp);font-size:clamp(54px,10.5vw,160px);line-height:.9;text-align:center;text-transform:uppercase;color:var(--paper);text-shadow:5px 5px 0 var(--ink);opacity:.96}
+.col-bottle{position:relative;z-index:2;width:clamp(190px,24vw,300px);border:3px solid var(--ink);box-shadow:8px 8px 0 var(--ink);background:var(--wine)}
+.col-bottle img{width:100%}
+.col-arrow{position:absolute;z-index:3;top:50%;transform:translateY(-50%);background:var(--paper);border:3px solid var(--ink);box-shadow:4px 4px 0 var(--ink);
+  width:54px;height:54px;cursor:pointer;font-size:20px;font-weight:700;font-family:var(--sans)}
+.col-arrow:active{transform:translateY(-50%) translate(2px,2px);box-shadow:2px 2px 0 var(--ink)}
+.col-prev{left:clamp(6px,3vw,30px)}
+.col-next{right:clamp(6px,3vw,30px)}
+.col-meta{display:flex;justify-content:center;gap:clamp(20px,5vw,70px);margin-top:5vh;color:var(--paper);text-align:center;flex-wrap:wrap}
+.col-meta div b{font-family:var(--disp);font-size:26px;font-weight:400;display:block;text-shadow:2px 2px 0 var(--ink)}
+.col-meta div span{font-size:10px;letter-spacing:.24em;text-transform:uppercase;color:var(--ink);font-weight:700}
+
+/* ---------- footer ---------- */
+footer{background:var(--ink);color:var(--paper);padding:14vh 0 0;text-align:center;position:relative;overflow:hidden}
+footer .label{color:var(--crimson)}
+.foot-big{font-family:var(--disp);font-size:clamp(34px,6.5vw,92px);text-transform:uppercase;line-height:.95;margin:3vh auto 5vh;max-width:16ch}
+.foot-mail{display:inline-block;text-decoration:none;border:2px solid var(--paper);padding:14px 30px;font-size:11px;letter-spacing:.26em;font-weight:700;text-transform:uppercase;transition:background .3s,color .3s}
+.foot-mail:hover{background:var(--crimson);border-color:var(--crimson)}
+.foot-word{font-family:var(--disp);font-size:clamp(80px,17vw,280px);line-height:.75;text-transform:uppercase;color:rgba(237,231,220,.12);margin-top:8vh;white-space:nowrap}
+.foot-base{display:flex;justify-content:space-between;gap:14px;flex-wrap:wrap;border-top:1px solid rgba(237,231,220,.2);padding:20px clamp(18px,4vw,56px);font-size:10px;letter-spacing:.2em;text-transform:uppercase;color:rgba(237,231,220,.5)}
+.foot-base a{text-decoration:none;color:rgba(237,231,220,.75)}
+
+.rv{opacity:0;transform:translateY(30px);transition:opacity .8s ease,transform .8s cubic-bezier(.22,1,.36,1)}
+.rv.in{opacity:1;transform:none}
+
+@media (max-width:860px){
+  nav a{padding:0 4px}
+  .pour-grid{grid-template-columns:1fr}
+  .scene{height:200vh}
+  .caption{max-width:250px}
+  .panel{height:72vh}
+}
+@media (prefers-reduced-motion:reduce){
+  *{animation:none!important;transition:none!important}
+  .rv,.caption,.scene-kicker h2{opacity:1!important;transform:none!important}
+  .title-big .ln i{transform:none}
+  html{scroll-behavior:auto}
+}
+</style>
+</head>
+<body>
+
+<div id="loader" aria-hidden="true">
+  <div class="disp">Shahor</div>
+  <div class="label" id="loadPct">Brewing &middot; 00</div>
+</div>
+
+<header>
+  <a class="brand" href="#top">Shahor<small>Cold&nbsp;Brew</small></a>
+  <nav>
+    <a href="he.html">עברית</a>
+    <a href="#vigil">The Vigil</a>
+    <span class="sep" aria-hidden="true">&#10045;</span>
+    <a href="#collection">Collection</a>
+  </nav>
+</header>
+
+<button id="audioBtn" aria-label="Toggle sound" aria-pressed="false"><span></span><span></span><span></span></button>
+
+<main id="top">
+
+  <!-- TITLE -->
+  <section class="title-scene" id="vigil">
+    <p class="label">Shahor Cold Brew presents</p>
+    <h1 class="title-big disp">
+      <span class="ln"><i>The</i></span>
+      <span class="ln"><i>Night</i></span>
+      <span class="ln"><i>Vigil</i></span>
+    </h1>
+    <p class="title-sub">An illustrated journey into the cold brew that is steeped for eighteen hours and bottled only after dark. Indulge now. Sleep later.</p>
+    <p class="scroll-cue">Scroll to begin &darr;</p>
+  </section>
+
+  <!-- SCENE 1: TEMPLE -->
+  <section class="scene" data-scene="temple">
+    <div class="scene-sticky">
+      <div class="panel">
+        <img src="assets/temple.jpg" alt="Engraved cathedral of columns, a tiny altar holding three glowing bottles">
+        <div class="caption cap-tl" data-at="0.15">
+          <div class="disp">Chapter I</div>
+          <p>In the last hour of the night, the doors of the brewhouse open.</p>
+        </div>
+        <div class="caption cap-br" data-at="0.45">
+          <p>Three vessels wait on the altar. Eighteen hours in the dark have made them ready.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SCENE 2: EYES -->
+  <section class="scene" data-scene="eyes">
+    <div class="scene-sticky">
+      <div class="panel">
+        <img src="assets/eyes.jpg" alt="A giant banner with intense engraved eyes, hung between columns">
+        <div class="caption cap-bl" data-at="0.2">
+          <div class="disp">Chapter II</div>
+          <p>The Keeper watches every batch. Nothing leaves before its hour.</p>
+        </div>
+      </div>
+      <div class="scene-kicker" data-at="0.55"><h2>No shortcuts<br>after dark</h2></div>
+    </div>
+  </section>
+
+  <!-- SCENE 3: KEEPER -->
+  <section class="scene" data-scene="keeper">
+    <div class="scene-sticky">
+      <div class="panel">
+        <img src="assets/keeper.jpg" alt="A robed keeper at a long stone counter with three glowing bottles">
+        <div class="caption cap-tl" data-at="0.15">
+          <div class="disp">Chapter III</div>
+          <p>Single-origin beans. Stone-cold water. Patience that borders on stubbornness.</p>
+        </div>
+        <div class="caption cap-br" data-at="0.5">
+          <p>That is the whole recipe. The rest is vigil.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- POUR: interactive -->
+  <section class="pour-scene">
+    <div class="pour-grid">
+      <div class="pour-art rv">
+        <img src="assets/pour.jpg" alt="An engraved hand pours black cold brew from a bottle into a coupe glass">
+      </div>
+      <div class="pour-side rv">
+        <p class="label">The first pour</p>
+        <h2>Hold, and do not let go</h2>
+        <div class="cupwrap" aria-hidden="true">
+          <svg viewBox="0 0 150 130">
+            <defs><clipPath id="cup"><path d="M25 18 H125 L82 70 V104 H68 V70 Z"/></clipPath></defs>
+            <rect id="liquid" x="20" y="130" width="110" height="112" fill="#2A1710" clip-path="url(#cup)"/>
+            <path d="M25 18 H125 L82 70 V104 H68 V104" fill="none" stroke="#15110F" stroke-width="5"/>
+            <line x1="46" y1="112" x2="104" y2="112" stroke="#15110F" stroke-width="6"/>
+          </svg>
+        </div>
+        <button id="holdBtn" aria-label="Hold the button to pour the cup">Hold to pour</button>
+        <div id="pourMsg" role="status">Atone later.</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SCENE 4: COLLAPSE -->
+  <section class="scene" data-scene="collapse">
+    <div class="scene-sticky">
+      <div class="panel">
+        <img src="assets/collapse.jpg" alt="Marble columns breaking apart, coffee beans flying like debris">
+      </div>
+      <div class="scene-kicker" data-at="0.4"><h2>Sleep<br>surrenders</h2></div>
+    </div>
+  </section>
+
+  <!-- SCENE 5: VORTEX -->
+  <section class="scene" data-scene="vortex">
+    <div class="scene-sticky vortex-sticky">
+      <div class="panel">
+        <img src="assets/vortex.jpg" alt="A cup of black coffee swirling into a hypnotic vortex, seen from above">
+      </div>
+      <div class="scene-kicker" data-at="0.5"><h2>Fall in</h2></div>
+    </div>
+  </section>
+
+  <!-- COLLECTION -->
+  <section class="collection" id="collection">
+    <div class="col-head">
+      <p class="label">The Vigil Collection &middot; 330 ml</p>
+    </div>
+    <div class="col-stage">
+      <div class="col-word"><span id="colWord">Original<br>Black</span></div>
+      <button class="col-arrow col-prev" id="colPrev" aria-label="Previous flavor">&larr;</button>
+      <div class="col-bottle"><img id="colImg" src="assets/bottle-black.jpg" alt="Shahor Original Black cold brew bottle"></div>
+      <button class="col-arrow col-next" id="colNext" aria-label="Next flavor">&rarr;</button>
+    </div>
+    <div class="col-meta">
+      <div><b id="colCaff">210 mg</b><span>Caffeine</span></div>
+      <div><b>18 h</b><span>Steep</span></div>
+      <div><b id="colNote">Cacao &middot; Fig</b><span>Notes</span></div>
+      <div><b>0 g</b><span>Sugar</span></div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <p class="label rv">The vigil ends at sunrise</p>
+    <h2 class="foot-big disp rv">Select stockists forthcoming</h2>
+    <a class="foot-mail rv" href="mailto:indulge@shahor-demo.example">indulge@shahor-demo.example</a>
+    <div class="foot-word" aria-hidden="true">Shahor</div>
+    <div class="foot-base">
+      <span>&copy; 2026 Shahor Cold Brew &middot; Fictional demo brand</span>
+      <span>Drink responsibly. It is only coffee, but still.</span>
+      <a href="#top">Made by Website Factory &middot; מפעל האתרים</a>
+    </div>
+  </footer>
+
+</main>
+
+<script>
+(function(){
+  var reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  /* ---------- loader ---------- */
+  var loader=document.getElementById('loader'), pct=document.getElementById('loadPct');
+  if(reduced){loader.style.display='none'}
+  else{
+    var n=0,t=setInterval(function(){
+      n+=Math.floor(Math.random()*16)+7;
+      if(n>=100){n=100;clearInterval(t);setTimeout(function(){loader.classList.add('done')},200)}
+      pct.textContent='Brewing · '+(n<10?'0':'')+n;
+    },80);
+    setTimeout(function(){loader.classList.add('done')},2600);
+  }
+
+  /* ---------- audio engine (synthesized, no files) ---------- */
+  var audioOn=false,ctx=null,master=null,droneNodes=[],pourNoise=null;
+  function ensureCtx(){
+    if(ctx)return;
+    ctx=new (window.AudioContext||window.webkitAudioContext)();
+    master=ctx.createGain();master.gain.value=0;master.connect(ctx.destination);
+    var o1=ctx.createOscillator(),o2=ctx.createOscillator(),og=ctx.createGain();
+    o1.frequency.value=54;o2.frequency.value=54.8;o1.type='sine';o2.type='sine';
+    og.gain.value=.5;o1.connect(og);o2.connect(og);og.connect(master);o1.start();o2.start();
+    droneNodes=[o1,o2,og];
+    var bufferSize=2*ctx.sampleRate,buffer=ctx.createBuffer(1,bufferSize,ctx.sampleRate),data=buffer.getChannelData(0),last=0;
+    for(var i=0;i<bufferSize;i++){var w=Math.random()*2-1;data[i]=(last+.02*w)/1.02;last=data[i];data[i]*=3.5}
+    var noise=ctx.createBufferSource();noise.buffer=buffer;noise.loop=true;
+    var lp=ctx.createBiquadFilter();lp.type='lowpass';lp.frequency.value=400;
+    pourNoise=ctx.createGain();pourNoise.gain.value=0;
+    noise.connect(lp);lp.connect(pourNoise);pourNoise.connect(master);noise.start();
+  }
+  var audioBtn=document.getElementById('audioBtn');
+  audioBtn.addEventListener('click',function(){
+    ensureCtx();if(ctx.state==='suspended')ctx.resume();
+    audioOn=!audioOn;
+    audioBtn.classList.toggle('on',audioOn);
+    audioBtn.setAttribute('aria-pressed',audioOn?'true':'false');
+    master.gain.linearRampToValueAtTime(audioOn?.05:0,ctx.currentTime+.6);
+  });
+
+  /* ---------- reveals ---------- */
+  var items=document.querySelectorAll('.rv');
+  if('IntersectionObserver' in window && !reduced){
+    var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}})},{threshold:.15});
+    items.forEach(function(el){io.observe(el)});
+  }else{items.forEach(function(el){el.classList.add('in')})}
+
+  /* ---------- scroll-scrubbed scenes ---------- */
+  var scenes=Array.prototype.slice.call(document.querySelectorAll('.scene'));
+  function sceneProgress(scene){
+    var r=scene.getBoundingClientRect(),total=scene.offsetHeight-window.innerHeight;
+    if(total<=0)return 0;
+    return Math.min(Math.max(-r.top/total,0),1);
+  }
+  function tick(){
+    scenes.forEach(function(scene){
+      var p=sceneProgress(scene),img=scene.querySelector('.panel img'),kind=scene.getAttribute('data-scene');
+      if(img){
+        if(kind==='collapse'){img.style.transform='scale('+(1.08+p*.22)+') rotate('+(-2+p*5)+'deg) translateY('+(p*-4)+'%)';}
+        else if(kind==='vortex'){img.style.transform='scale('+(1+p*.3)+') rotate('+(p*170)+'deg)';}
+        else{img.style.transform='scale('+(1.05+p*.17)+') translateY('+(p*-5)+'%)';}
+      }
+      scene.querySelectorAll('.caption,.scene-kicker').forEach(function(el){
+        var at=parseFloat(el.getAttribute('data-at')||'0.2');
+        el.classList.toggle('show',p>=at);
+      });
+    });
+  }
+  if(!reduced){
+    var raf=false;
+    window.addEventListener('scroll',function(){if(!raf){raf=true;requestAnimationFrame(function(){tick();raf=false})}},{passive:true});
+    tick();
+  }else{
+    document.querySelectorAll('.caption,.scene-kicker').forEach(function(el){el.classList.add('show')});
+  }
+
+  /* ---------- hold to pour ---------- */
+  var hold=document.getElementById('holdBtn'),liquid=document.getElementById('liquid'),msg=document.getElementById('pourMsg');
+  var fill=0,holding=false,rafPour=null;
+  function pourFrame(){
+    fill+=holding?.012:-.02;
+    fill=Math.min(Math.max(fill,0),1);
+    liquid.setAttribute('y',String(130-fill*112));
+    if(pourNoise&&ctx)pourNoise.gain.linearRampToValueAtTime(holding&&audioOn?1.6:0,ctx.currentTime+.15);
+    if(fill>=1){
+      msg.classList.add('show');holding=false;
+      hold.textContent='Poured. To the vigil.';
+      if(ctx&&audioOn){
+        var o=ctx.createOscillator(),g=ctx.createGain();
+        o.frequency.value=523;o.type='triangle';g.gain.value=0;
+        o.connect(g);g.connect(master);o.start();
+        g.gain.linearRampToValueAtTime(2.2,ctx.currentTime+.03);
+        g.gain.exponentialRampToValueAtTime(.001,ctx.currentTime+1.2);
+        o.stop(ctx.currentTime+1.3);
+      }
+      return;
+    }
+    if(fill>0||holding){rafPour=requestAnimationFrame(pourFrame)}else{rafPour=null}
+  }
+  function startHold(e){e.preventDefault();if(fill>=1)return;holding=true;if(!rafPour)rafPour=requestAnimationFrame(pourFrame)}
+  function endHold(){holding=false}
+  hold.addEventListener('pointerdown',startHold);
+  window.addEventListener('pointerup',endHold);
+  hold.addEventListener('keydown',function(e){if(e.key===' '||e.key==='Enter'){startHold(e)}});
+  hold.addEventListener('keyup',endHold);
+
+  /* ---------- collection ---------- */
+  var flavors=[
+    {word:'Original<br>Black',img:'assets/bottle-black.jpg',alt:'Shahor Original Black cold brew bottle',caff:'210 mg',note:'Cacao · Fig'},
+    {word:'Orange<br>&amp; Cacao',img:'assets/bottle-orange.jpg',alt:'Shahor Orange and Cacao cold brew bottle',caff:'190 mg',note:'Zest · Dark cacao'},
+    {word:'Halva<br>&amp; Sea Salt',img:'assets/bottle-halva.jpg',alt:'Shahor Halva and Sea Salt cold brew bottle',caff:'180 mg',note:'Sesame · Salt'}
+  ];
+  var ci=0,colWord=document.getElementById('colWord'),colImg=document.getElementById('colImg'),
+      colCaff=document.getElementById('colCaff'),colNote=document.getElementById('colNote');
+  function setFlavor(i){
+    ci=(i+flavors.length)%flavors.length;
+    var f=flavors[ci];
+    colWord.innerHTML=f.word;colImg.src=f.img;colImg.alt=f.alt;
+    colCaff.textContent=f.caff;colNote.textContent=f.note;
+  }
+  document.getElementById('colPrev').addEventListener('click',function(){setFlavor(ci-1)});
+  document.getElementById('colNext').addEventListener('click',function(){setFlavor(ci+1)});
+})();
+</script>
+</body>
+</html>
