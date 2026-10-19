@@ -110,20 +110,35 @@ nav .sep{color:var(--crimson);font-family:var(--disp)}
 
 /* ---------- pour (interactive) ---------- */
 .pour-scene{background:var(--crimson);padding:14vh 0;position:relative}
-.pour-grid{width:min(92vw,1240px);margin:0 auto;display:grid;grid-template-columns:1.25fr 1fr;gap:clamp(24px,4vw,60px);align-items:center}
-.pour-art{border:3px solid var(--ink);box-shadow:8px 8px 0 var(--ink);overflow:hidden;background:var(--wine)}
-.pour-art img{width:100%;height:100%;object-fit:cover}
-.pour-side{color:var(--paper)}
-.pour-side h2{font-family:var(--disp);font-size:clamp(34px,4.6vw,64px);text-transform:uppercase;line-height:.95;margin-bottom:3vh;text-shadow:3px 3px 0 var(--ink)}
-.pour-side .label{color:var(--ink)}
-#holdBtn{margin-top:4vh;background:var(--paper);border:3px solid var(--ink);box-shadow:5px 5px 0 var(--ink);cursor:pointer;
-  font-family:var(--sans);font-weight:700;font-size:12px;letter-spacing:.26em;text-transform:uppercase;padding:18px 30px;color:var(--ink);
-  user-select:none;-webkit-user-select:none;touch-action:none}
-#holdBtn:active{transform:translate(2px,2px);box-shadow:3px 3px 0 var(--ink)}
-.cupwrap{margin-top:4vh;width:150px}
-.cupwrap svg{width:100%;overflow:visible}
-#pourMsg{margin-top:2vh;font-family:var(--disp);font-size:26px;text-transform:uppercase;opacity:0;transition:opacity .6s;color:var(--paper);text-shadow:2px 2px 0 var(--ink)}
-#pourMsg.show{opacity:1}
+.pour-wrap{width:min(92vw,1100px);margin:0 auto}
+.pour-head{color:var(--paper);text-align:center;margin-bottom:5vh}
+.pour-head .label{color:var(--ink)}
+.pour-head h2{font-family:var(--disp);font-size:clamp(34px,5vw,64px);text-transform:uppercase;line-height:.95;text-shadow:3px 3px 0 var(--ink)}
+.pour-stage{position:relative;height:clamp(420px,72vh,660px);border:3px solid var(--ink);box-shadow:8px 8px 0 var(--ink);
+  background:var(--crimson);overflow:hidden;cursor:pointer;user-select:none;-webkit-user-select:none;touch-action:none}
+.pour-stage img{mix-blend-mode:multiply;pointer-events:none}
+.ps-bottle{position:absolute;top:1%;right:5%;width:clamp(200px,38%,360px);transform-origin:70% 45%;transform:rotate(-16deg);
+  transition:transform .6s cubic-bezier(.22,1,.36,1);will-change:transform}
+.pour-stage.pouring .ps-bottle{transform:rotate(6deg)}
+.ps-stream{position:absolute;pointer-events:none;width:clamp(9px,1.2%,14px);top:40%;left:58%;height:30%;opacity:0;
+  transform:scaleY(0);transform-origin:top;transition:opacity .2s,transform .35s ease}
+.pour-stage.pouring .ps-stream{opacity:1;transform:scaleY(1)}
+.ps-glass{position:absolute;bottom:3%;left:48%;width:clamp(130px,19%,220px)}
+.ps-glass img{width:100%}
+.ps-liquid{position:absolute;left:13%;right:13%;top:5%;height:32%;display:flex;align-items:flex-end;overflow:hidden}
+.ps-liquid::after{content:'';display:block;width:100%;height:calc(var(--fill,0)*100%);background:#241309;opacity:.92;
+  border-radius:0 0 45% 45%/0 0 75% 75%}
+.ps-chip{position:absolute;left:53%;bottom:30%;width:92px;height:92px;border-radius:50%;background:var(--paper);
+  border:2px solid var(--ink);box-shadow:3px 3px 0 var(--ink);color:var(--ink);display:flex;align-items:center;
+  justify-content:center;text-align:center;line-height:1.4;animation:chipPulse 1.8s ease infinite;transition:opacity .4s}
+.pour-stage.pouring .ps-chip{opacity:0}
+@keyframes chipPulse{0%,100%{transform:scale(1)}50%{transform:scale(1.07)}}
+.caption em{font-style:normal;color:var(--crimson);font-weight:700}
+#prog{position:fixed;top:0;right:0;width:3px;height:100vh;background:var(--ink);transform:scaleY(0);transform-origin:top;z-index:80;pointer-events:none}
+.ps-msg{position:absolute;top:8%;left:5%;font-family:var(--disp);font-size:clamp(26px,4vw,48px);text-transform:uppercase;
+  color:var(--paper);background:var(--crimson);border:3px solid var(--ink);box-shadow:5px 5px 0 var(--ink);padding:.15em .4em;
+  opacity:0;transition:opacity .6s}
+.ps-msg.show{opacity:1}
 
 /* ---------- vortex ---------- */
 .vortex-sticky{background:var(--ink)}
@@ -196,6 +211,7 @@ footer .label{color:var(--crimson)}
 </header>
 
 <button id="audioBtn" aria-label="Toggle sound" aria-pressed="false"><span></span><span></span><span></span></button>
+<div id="prog" aria-hidden="true"></div>
 
 <main id="top">
 
@@ -218,10 +234,10 @@ footer .label{color:var(--crimson)}
         <img src="assets/temple.jpg" alt="Engraved cathedral of columns, a tiny altar holding three glowing bottles">
         <div class="caption cap-tl" data-at="0.15">
           <div class="disp">Chapter I</div>
-          <p>In the last hour of the night, the doors of the brewhouse open.</p>
+          <p>In the last hour of the night, the doors of <em>the brewhouse</em> open.</p>
         </div>
         <div class="caption cap-br" data-at="0.45">
-          <p>Three vessels wait on the altar. Eighteen hours in the dark have made them ready.</p>
+          <p><em>Three vessels</em> wait on the altar. Eighteen hours in the dark have made them ready.</p>
         </div>
       </div>
     </div>
@@ -234,7 +250,7 @@ footer .label{color:var(--crimson)}
         <img src="assets/eyes.jpg" alt="A giant banner with intense engraved eyes, hung between columns">
         <div class="caption cap-bl" data-at="0.2">
           <div class="disp">Chapter II</div>
-          <p>The Keeper watches every batch. Nothing leaves before its hour.</p>
+          <p><em>The Keeper</em> watches every batch. Nothing leaves before its hour.</p>
         </div>
       </div>
       <div class="scene-kicker" data-at="0.55"><h2>No shortcuts<br>after dark</h2></div>
@@ -248,7 +264,7 @@ footer .label{color:var(--crimson)}
         <img src="assets/keeper.jpg" alt="A robed keeper at a long stone counter with three glowing bottles">
         <div class="caption cap-tl" data-at="0.15">
           <div class="disp">Chapter III</div>
-          <p>Single-origin beans. Stone-cold water. Patience that borders on stubbornness.</p>
+          <p>Single-origin beans. Stone-cold water. <em>Patience</em> that borders on stubbornness.</p>
         </div>
         <div class="caption cap-br" data-at="0.5">
           <p>That is the whole recipe. The rest is vigil.</p>
@@ -259,23 +275,22 @@ footer .label{color:var(--crimson)}
 
   <!-- POUR: interactive -->
   <section class="pour-scene">
-    <div class="pour-grid">
-      <div class="pour-art rv">
-        <img src="assets/pour.jpg" alt="An engraved hand pours black cold brew from a bottle into a coupe glass">
-      </div>
-      <div class="pour-side rv">
+    <div class="pour-wrap">
+      <div class="pour-head rv">
         <p class="label">The first pour</p>
         <h2>Hold, and do not let go</h2>
-        <div class="cupwrap" aria-hidden="true">
-          <svg viewBox="0 0 150 130">
-            <defs><clipPath id="cup"><path d="M25 18 H125 L82 70 V104 H68 V70 Z"/></clipPath></defs>
-            <rect id="liquid" x="20" y="130" width="110" height="112" fill="#2A1710" clip-path="url(#cup)"/>
-            <path d="M25 18 H125 L82 70 V104 H68 V104" fill="none" stroke="#15110F" stroke-width="5"/>
-            <line x1="46" y1="112" x2="104" y2="112" stroke="#15110F" stroke-width="6"/>
-          </svg>
+      </div>
+      <div class="pour-stage rv" id="pourStage" role="button" tabindex="0" aria-label="Press and hold to pour the cup">
+        <img class="ps-bottle" id="psBottle" src="assets/sprite-bottle.jpg" alt="">
+        <svg class="ps-stream" viewBox="0 0 40 300" preserveAspectRatio="none" aria-hidden="true">
+          <path d="M18 0 C 16 80, 22 160, 19 300 L 25 300 C 27 160, 22 80, 26 0 Z" fill="#241309"/>
+        </svg>
+        <div class="ps-glass">
+          <img src="assets/sprite-glass.jpg" alt="">
+          <div class="ps-liquid" id="psLiquid"></div>
         </div>
-        <button id="holdBtn" aria-label="Hold the button to pour the cup">Hold to pour</button>
-        <div id="pourMsg" role="status">Atone later.</div>
+        <div class="ps-chip label" id="psHint">Hold &amp;<br>pour</div>
+        <div class="ps-msg" id="pourMsg" role="status">Atone later.</div>
       </div>
     </div>
   </section>
@@ -390,7 +405,10 @@ footer .label{color:var(--crimson)}
     if(total<=0)return 0;
     return Math.min(Math.max(-r.top/total,0),1);
   }
+  var prog=document.getElementById('prog');
   function tick(){
+    var doc=document.documentElement;
+    prog.style.transform='scaleY('+(window.scrollY/(doc.scrollHeight-window.innerHeight))+')';
     scenes.forEach(function(scene){
       var p=sceneProgress(scene),img=scene.querySelector('.panel img'),kind=scene.getAttribute('data-scene');
       if(img){
@@ -413,16 +431,18 @@ footer .label{color:var(--crimson)}
   }
 
   /* ---------- hold to pour ---------- */
-  var hold=document.getElementById('holdBtn'),liquid=document.getElementById('liquid'),msg=document.getElementById('pourMsg');
-  var fill=0,holding=false,rafPour=null;
+  var stage=document.getElementById('pourStage'),liquid=document.getElementById('psLiquid'),
+      msg=document.getElementById('pourMsg'),hint=document.getElementById('psHint');
+  var fill=0,holding=false,rafPour=null,poured=false;
   function pourFrame(){
-    fill+=holding?.012:-.02;
+    fill+=holding?.010:-.015;
     fill=Math.min(Math.max(fill,0),1);
-    liquid.setAttribute('y',String(130-fill*112));
+    liquid.style.setProperty('--fill',fill);
     if(pourNoise&&ctx)pourNoise.gain.linearRampToValueAtTime(holding&&audioOn?1.6:0,ctx.currentTime+.15);
-    if(fill>=1){
-      msg.classList.add('show');holding=false;
-      hold.textContent='Poured. To the vigil.';
+    if(fill>=1&&!poured){
+      poured=true;holding=false;stage.classList.remove('pouring');
+      msg.classList.add('show');
+      hint.style.opacity='0';
       if(ctx&&audioOn){
         var o=ctx.createOscillator(),g=ctx.createGain();
         o.frequency.value=523;o.type='triangle';g.gain.value=0;
@@ -435,12 +455,12 @@ footer .label{color:var(--crimson)}
     }
     if(fill>0||holding){rafPour=requestAnimationFrame(pourFrame)}else{rafPour=null}
   }
-  function startHold(e){e.preventDefault();if(fill>=1)return;holding=true;if(!rafPour)rafPour=requestAnimationFrame(pourFrame)}
-  function endHold(){holding=false}
-  hold.addEventListener('pointerdown',startHold);
+  function startHold(e){if(poured)return;e.preventDefault();holding=true;stage.classList.add('pouring');if(!rafPour)rafPour=requestAnimationFrame(pourFrame)}
+  function endHold(){holding=false;stage.classList.remove('pouring')}
+  stage.addEventListener('pointerdown',startHold);
   window.addEventListener('pointerup',endHold);
-  hold.addEventListener('keydown',function(e){if(e.key===' '||e.key==='Enter'){startHold(e)}});
-  hold.addEventListener('keyup',endHold);
+  stage.addEventListener('keydown',function(e){if(e.key===' '||e.key==='Enter'){startHold(e)}});
+  stage.addEventListener('keyup',endHold);
 
   /* ---------- collection ---------- */
   var flavors=[
