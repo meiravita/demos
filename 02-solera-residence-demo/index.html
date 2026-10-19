@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" data-mode="night">
+<html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -31,7 +31,7 @@
   --script:'Imperial Script','Snell Roundhand',cursive;
   --sans:'Archivo',Helvetica,Arial,sans-serif;
 }
-html[data-mode="night"]{
+.plum-sec{
   --bg:var(--plum);
   --fg:var(--cream);
   --fg-soft:rgba(243,241,234,.62);
@@ -40,6 +40,7 @@ html[data-mode="night"]{
   --bg-alt:#35142F;
   --accent:var(--pink);
   --accent-2:var(--blue);
+  background:var(--bg);color:var(--fg);
 }
 *{margin:0;padding:0;box-sizing:border-box}
 html{scroll-behavior:smooth}
@@ -50,7 +51,6 @@ body{
   font-size:15px;
   line-height:1.6;
   overflow-x:hidden;
-  transition:background .8s ease,color .8s ease;
 }
 ::selection{background:var(--accent);color:var(--ink)}
 a{color:inherit}
@@ -87,8 +87,8 @@ img{max-width:100%}
 header{
   position:fixed;top:0;left:0;right:0;z-index:50;
   display:flex;align-items:center;justify-content:space-between;
-  padding:20px clamp(20px,5vw,72px);
-  mix-blend-mode:normal;
+  padding:20px clamp(20px,5vw,72px) 30px;
+  background:linear-gradient(to bottom,rgba(243,241,234,.97) 0%,rgba(243,241,234,.8) 60%,rgba(243,241,234,0) 100%);
 }
 .brand{font-family:var(--disp);font-size:20px;letter-spacing:.18em;text-transform:uppercase;text-decoration:none}
 .nav-right{display:flex;align-items:center;gap:22px}
@@ -106,15 +106,14 @@ header{
 .mode-dot{width:9px;height:9px;border-radius:50%;background:var(--accent);transition:background .4s}
 
 /* ---------- hero ---------- */
-.hero{position:relative;min-height:92vh;display:flex;flex-direction:column;justify-content:flex-end;padding-bottom:9vh;overflow:hidden}
+.hero{position:relative;min-height:92vh;display:flex;flex-direction:column;justify-content:flex-start;padding-top:15vh;padding-bottom:9vh;overflow:hidden}
 .hero-art{position:absolute;inset:0;z-index:0;pointer-events:none}
 .hero-art img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
-.hero-art::after{content:'';position:absolute;inset:0;background:linear-gradient(to top,var(--bg) 2%,transparent 52%),linear-gradient(to bottom,rgba(31,10,28,.4),transparent 36%)}
-.hero-title{position:relative;z-index:1;font-size:clamp(64px,13.5vw,210px);letter-spacing:.015em}
+.hero-art::after{content:'';position:absolute;inset:0;background:linear-gradient(to top,var(--bg) 2%,transparent 45%),linear-gradient(to bottom,rgba(31,10,28,.55),transparent 55%)}
+.hero-title{position:relative;z-index:1;margin-left:auto;text-align:right;font-size:clamp(50px,9.5vw,150px);letter-spacing:.015em;color:#F3F1EA;text-shadow:0 2px 26px rgba(31,10,28,.5)}
 .hero-title .script{font-size:.62em;color:var(--accent-2);display:inline-block;transform:translateY(.08em);margin-left:.06em}
-html[data-mode="day"] .hero-title .script{color:#D98FA5}
-.hero-sub{position:relative;z-index:1;display:flex;justify-content:space-between;align-items:flex-end;gap:24px;margin-top:3.5vh;flex-wrap:wrap}
-.hero-sub .label{max-width:360px;line-height:1.9}
+.hero-sub{position:relative;z-index:1;margin-left:auto;display:flex;justify-content:flex-end;align-items:flex-start;gap:clamp(24px,4vw,56px);margin-top:3.5vh;flex-wrap:wrap;text-align:right}
+.hero-sub .label{max-width:360px;line-height:1.9;color:rgba(243,241,234,.88)}
 
 /* ---------- marquee ---------- */
 .marquee{overflow:hidden;border-top:1px solid var(--line);border-bottom:1px solid var(--line);padding:14px 0;white-space:nowrap}
@@ -136,8 +135,8 @@ section.alt{background:var(--bg-alt);transition:background .8s ease}
 
 /* concept */
 .statement{font-family:var(--disp);font-size:clamp(30px,4.6vw,66px);text-transform:uppercase;line-height:1.08;max-width:20ch}
-.statement .script{color:var(--accent-2);font-size:1.05em}
-html[data-mode="day"] .statement .script{color:#D98FA5}
+.statement .script{color:#C47E93;font-size:1.05em}
+.plum-sec .statement .script{color:var(--pink)}
 .concept-grid{display:grid;grid-template-columns:1.4fr 1fr;gap:clamp(32px,6vw,96px);align-items:end}
 .concept-side p{color:var(--fg-soft);max-width:44ch;margin-bottom:28px}
 
@@ -243,9 +242,6 @@ html[data-mode="day"] .statement .script{color:#D98FA5}
       <a href="#architecture">Architecture</a>
       <a href="#contact">Contact</a>
     </div>
-    <button id="modeToggle" aria-label="Switch day and night theme">
-      <span class="mode-dot"></span><span id="modeLabel">Day</span>
-    </button>
   </nav>
 </header>
 
@@ -296,7 +292,7 @@ html[data-mode="day"] .statement .script{color:#D98FA5}
   </section>
 
   <!-- CONCEPT -->
-  <section class="wrap alt" id="concept">
+  <section class="wrap plum-sec" id="concept">
     <div class="sec-head rv">
       <p class="label">The concept</p>
       <span class="sec-num">02</span>
@@ -326,7 +322,7 @@ html[data-mode="day"] .statement .script{color:#D98FA5}
   </section>
 
   <!-- RESIDENCES: horizontal -->
-  <section id="residences" style="padding:0">
+  <section id="residences" class="plum-sec" style="padding:0">
     <div class="hwrap" id="hwrap">
       <div class="hsticky">
         <div class="wrap" style="margin-bottom:5vh">
@@ -401,7 +397,7 @@ html[data-mode="day"] .statement .script{color:#D98FA5}
   </section>
 
   <!-- FEATURES -->
-  <section class="wrap">
+  <section class="wrap plum-sec">
     <div class="sec-head rv">
       <p class="label">The space to live in</p>
       <span class="sec-num">06</span>
@@ -497,16 +493,6 @@ html[data-mode="day"] .statement .script{color:#D98FA5}
     }, 90);
     setTimeout(function(){ loader.classList.add('done'); }, 3000); /* hard cap */
   }
-
-  /* day / night */
-  var html = document.documentElement;
-  var toggle = document.getElementById('modeToggle');
-  var modeLabel = document.getElementById('modeLabel');
-  toggle.addEventListener('click', function(){
-    var night = html.getAttribute('data-mode') === 'night';
-    html.setAttribute('data-mode', night ? 'day' : 'night');
-    modeLabel.textContent = night ? 'Night' : 'Day';
-  });
 
   /* reveals */
   var items = document.querySelectorAll('.rv');
