@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Website Factory, what we offer</title>
+<meta name="description" content="What is included in a presence website, which upgrades are possible, and what we deliberately do not do.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Heebo:wght@400;500;700;900&display=swap">
+<style>
+:root{
+  --cream:#F1EDE4;
+  --cream-alt:#E8E3D6;
+  --ink:#1D1A16;
+  --soft:rgba(29,26,22,.66);
+  --line:rgba(29,26,22,.16);
+  --sienna:#B4552D;
+  --sans:'Heebo',Arial,sans-serif;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+body{background:var(--cream);color:var(--ink);font-family:var(--sans);font-size:16px;line-height:1.75}
+::selection{background:var(--ink);color:var(--cream)}
+.wrap{max-width:820px;margin:0 auto;padding:0 clamp(20px,5vw,48px)}
+header{padding:48px 0 8px}
+.brand{display:flex;justify-content:space-between;align-items:baseline;gap:16px;flex-wrap:wrap}
+.brand b{font-size:22px;font-weight:900}
+.brand a{font-size:13px;font-weight:700;color:var(--soft);text-decoration:none}
+h1{font-size:clamp(30px,5.5vw,44px);font-weight:900;line-height:1.2;margin:28px 0 10px;text-wrap:balance}
+.sub{color:var(--soft);max-width:54ch;font-size:17px}
+section{padding:40px 0}
+section.alt{background:var(--cream-alt)}
+h2{font-size:22px;font-weight:900;margin-bottom:6px}
+.h2-note{color:var(--sienna);font-size:13.5px;font-weight:700;letter-spacing:.06em;margin-bottom:22px}
+ul{list-style:none}
+li{padding:11px 0;border-bottom:1px solid var(--line);display:flex;gap:12px;align-items:baseline}
+li:last-child{border-bottom:none}
+li .m{flex:0 0 auto;font-weight:900;color:var(--sienna)}
+.no li .m{color:var(--soft)}
+li b{font-weight:700}
+li span.d{color:var(--soft)}
+.steps{counter-reset:s;display:grid;gap:0}
+.steps li{counter-increment:s}
+.steps li .m::before{content:counter(s)}
+.steps li .m{width:26px;height:26px;border:2px solid var(--ink);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:13px;color:var(--ink);transform:translateY(4px)}
+.note{background:var(--ink);color:var(--cream);padding:18px 22px;border-radius:8px;margin-top:26px;font-size:14.5px}
+.note b{color:#E8C3A8}
+footer{padding:36px 0 48px;color:var(--soft);font-size:13px;display:flex;justify-content:space-between;gap:14px;flex-wrap:wrap}
+@media print{section{padding:20px 0}header{padding-top:10px}}
+</style>
+</head>
+<body>
+
+<header class="wrap">
+  <div class="brand"><b>Website Factory</b><a href="index.html">גרסה בעברית</a></div>
+  <h1>A website that looks like the big brands'. For your business.</h1>
+  <p class="sub">One page that explains exactly what we build, which upgrades are possible later, and what we deliberately do not do. No fine print.</p>
+</header>
+
+<section>
+  <div class="wrap">
+    <h2>The base: a presence website</h2>
+    <p class="h2-note">This is what every client gets. A site that presents the business, builds trust, and brings inquiries.</p>
+    <ul>
+      <li><span class="m">+</span><span><b>Custom design at an international level.</b> <span class="d">Three design levels to choose from, from a clean editorial site to a full interactive experience. Never a template.</span></span></li>
+      <li><span class="m">+</span><span><b>Imagery created for you.</b> <span class="d">No good photos? We produce custom visuals for the business, in one consistent premium style.</span></span></li>
+      <li><span class="m">+</span><span><b>Hebrew and English.</b> <span class="d">Two complete versions of the site, switched with one tap.</span></span></li>
+      <li><span class="m">+</span><span><b>Perfect on mobile.</b> <span class="d">Most of your customers arrive from the phone. That is where the site is tested first.</span></span></li>
+      <li><span class="m">+</span><span><b>Everything that brings an inquiry.</b> <span class="d">WhatsApp button, tap to call, your Google reviews, map and hours, contact form.</span></span></li>
+      <li><span class="m">+</span><span><b>Domain and fast, secure hosting.</b> <span class="d">We set up the address, the hosting and HTTPS. The site loads exceptionally fast.</span></span></li>
+      <li><span class="m">+</span><span><b>Solid foundations for Google.</b> <span class="d">Correct structure, high speed, proper headings. The groundwork Google rewards.</span></span></li>
+      <li><span class="m">+</span><span><b>The files are yours.</b> <span class="d">The site is built in clean, open code. No platform lock-in, no forced subscription, take it anywhere.</span></span></li>
+    </ul>
+  </div>
+</section>
+
+<section class="alt">
+  <div class="wrap">
+    <h2>Possible upgrades</h2>
+    <p class="h2-note">We add only what the business actually needs, when it needs it.</p>
+    <ul>
+      <li><span class="m">↑</span><span><b>Client area with login.</b> <span class="d">Secure personal access for your customers, through dedicated platforms.</span></span></li>
+      <li><span class="m">↑</span><span><b>Accepting payments.</b> <span class="d">Bit, card payment or a secure external checkout embedded right in the site.</span></span></li>
+      <li><span class="m">↑</span><span><b>Appointments and booking.</b> <span class="d">A smart calendar that syncs to your phone.</span></span></li>
+      <li><span class="m">↑</span><span><b>Automations.</b> <span class="d">Instant alert on every inquiry, WhatsApp auto-reply, review requests to happy customers.</span></span></li>
+      <li><span class="m">↑</span><span><b>A smart support bot.</b> <span class="d">A virtual assistant that answers common customer questions, based on your business's information.</span></span></li>
+      <li><span class="m">↑</span><span><b>Ongoing Google presence.</b> <span class="d">Regular posts on your business profile and monthly articles, so the business shows up when people search.</span></span></li>
+      <li><span class="m">↑</span><span><b>More languages.</b> <span class="d">Russian, French, Arabic, any language your audience speaks.</span></span></li>
+      <li><span class="m">↑</span><span><b>Ongoing care and updates.</b> <span class="d">Content changes, fresh and seasonal imagery, with a single WhatsApp message.</span></span></li>
+    </ul>
+  </div>
+</section>
+
+<section class="no">
+  <div class="wrap">
+    <h2>What we deliberately do not do</h2>
+    <p class="h2-note">Transparency up front saves disappointment later.</p>
+    <ul>
+      <li><span class="m">✕</span><span><b>No WordPress, no Wix.</b> <span class="d">We build in clean code. That is what enables free-form design, speed, and zero security maintenance. If you specifically want Wix, we are not the right address.</span></span></li>
+      <li><span class="m">✕</span><span><b>No full online store.</b> <span class="d">Carts, inventory and shipping are a different world. Payments on the site? Yes, as an upgrade. A complete store? We will point you to the right solution.</span></span></li>
+      <li><span class="m">✕</span><span><b>We never touch card details.</b> <span class="d">Every payment runs through secure, regulated payment providers. Card details never pass through us and are never stored with us.</span></span></li>
+      <li><span class="m">✕</span><span><b>No "first place on Google" promises.</b> <span class="d">Whoever promises that is not telling the truth. We build the best foundations there are and work on ongoing presence.</span></span></li>
+      <li><span class="m">✕</span><span><b>We do not keep your passwords.</b> <span class="d">Connections to your accounts are done securely, without a password ever passing through chat or email.</span></span></li>
+      <li><span class="m">✕</span><span><b>No official accessibility certification.</b> <span class="d">We build with good accessibility practices. Formal certification, where required, is done with a licensed accessibility consultant.</span></span></li>
+    </ul>
+    <div class="note"><b>Why clean code?</b> A static site has no database to hack, no plugins to update, and no "the site is down". It loads fast, it is secure by its very structure, and the files belong to you.</div>
+  </div>
+</section>
+
+<section class="alt">
+  <div class="wrap">
+    <h2>How it works</h2>
+    <p class="h2-note">From hello to live, without the headache.</p>
+    <ul class="steps">
+      <li><span class="m"></span><span><b>A short call.</b> <span class="d">We understand what the business needs and what will bring it the most value.</span></span></li>
+      <li><span class="m"></span><span><b>You send materials.</b> <span class="d">Photos, texts, requests. Through your own private page, at your own pace.</span></span></li>
+      <li><span class="m"></span><span><b>You receive a first version to view.</b> <span class="d">A real site, on a link, to open on your phone and share.</span></span></li>
+      <li><span class="m"></span><span><b>A refinement round.</b> <span class="d">Your notes go in, until it feels right.</span></span></li>
+      <li><span class="m"></span><span><b>Going live.</b> <span class="d">On your domain, with every connection working.</span></span></li>
+    </ul>
+  </div>
+</section>
+
+<footer class="wrap">
+  <span>Website Factory · מפעל האתרים</span>
+  <span>Happy to show live examples on a call</span>
+</footer>
+
+</body>
+</html>
