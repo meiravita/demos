@@ -7,7 +7,7 @@
 <meta name="description" content="Websites that make people stop and stare. Built by ameizing.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Unbounded:wght@500;600;700;800&family=Archivo:wght@500;600;700;900&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Unbounded:wght@500;600;700;800;900&family=Archivo:wght@500;600;700;900&display=swap">
 <style>
 @font-face{font-family:'Alvaro';src:url("assets/alvaro.otf") format("opentype");font-weight:normal;font-style:normal;font-display:swap}
 :root{
@@ -61,13 +61,13 @@ body.dark .nav-cta{border-color:#fff}
   transform:translateY(105%);transform-origin:50% 100%;will-change:transform}
 .woman{width:100%;height:100%;object-fit:contain;object-position:bottom}
 .cap{position:absolute;z-index:3;left:0;right:0;top:60%;height:34%;pointer-events:none;display:grid;place-items:center}
-.cap .w{grid-area:1/1;font-family:var(--display);font-weight:800;color:#000;line-height:1;letter-spacing:-.03em;white-space:nowrap;
+.figure .w{grid-area:1/1;font-family:var(--display);font-weight:800;color:#000;line-height:1;letter-spacing:-.03em;white-space:nowrap;
   opacity:0;transform:scale(.5);transition:opacity .3s,transform .55s cubic-bezier(.2,1.4,.3,1)}
-.cap .w.on{opacity:1;transform:none}
-.cap .w.gone{opacity:0;transform:scale(1.25);transition:opacity .25s,transform .25s}
+.figure .w.on{opacity:1;transform:none}
+.figure .w.gone{opacity:0;transform:scale(1.25);transition:opacity .25s,transform .25s}
 
 .bigwrap{position:absolute;z-index:3;left:50%;top:49%;width:100vw;height:0;transform:translateX(-50%);display:grid;place-items:center;pointer-events:none}
-.bigwrap .w{color:#000}
+.bigwrap .w{color:#000;font-weight:900;-webkit-text-stroke:.022em #000;paint-order:stroke fill}
 
 /* black takes the stage from the center */
 .bloom{position:absolute;inset:0;z-index:4;background:#000;clip-path:circle(0% at 50% 50%);will-change:clip-path;pointer-events:none}
@@ -234,7 +234,7 @@ footer .base{margin-top:9vh;font-size:12px;letter-spacing:.1em;text-transform:up
   function sizeWords(){
     var W=fig.offsetWidth; /* layout width, untouched by the scroll transform */
     var c=document.createElement('canvas').getContext('2d');
-    c.font='800 100px Unbounded';
+    c.font='900 100px Unbounded';
     words.forEach(function(w){
       var m=c.measureText(w.textContent).width*0.97; /* letter-spacing -.03em */
       var fs=w.classList.contains('big')
@@ -243,7 +243,7 @@ footer .base{margin-top:9vh;font-size:12px;letter-spacing:.1em;text-transform:up
       w.style.fontSize=fs+'px';
     });
   }
-  if(document.fonts&&document.fonts.load){document.fonts.load('800 100px Unbounded').then(sizeWords)}
+  if(document.fonts&&document.fonts.load){Promise.all([document.fonts.load('800 100px Unbounded'),document.fonts.load('900 100px Unbounded')]).then(sizeWords)}
   sizeWords(); window.addEventListener('resize',sizeWords);
 
   /* reveals */
