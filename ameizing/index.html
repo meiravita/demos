@@ -41,20 +41,20 @@ body.dark .brand{color:var(--blue-light)} body.dark .brand i{color:#fff}
 body.dark .nav-cta{border-color:#fff}
 
 /* ---------- the one scene: caption, rings, woman, black ---------- */
-.scene-wrap{position:relative;height:560vh}
+.scene-wrap{position:relative;height:720vh}
 .scene{position:sticky;top:0;height:100vh;overflow:hidden;background:#fff;display:flex;align-items:flex-end;justify-content:center}
 .spiral{position:absolute;top:50%;left:50%;width:175vmax;height:175vmax;transform:translate(-50%,-50%);
   z-index:0;animation:spin 22s linear infinite;will-change:transform;opacity:.14}
 .spiral svg{width:100%;height:100%}
 @keyframes spin{to{transform:translate(-50%,-50%) rotate(360deg)}}
 
-/* opening caption: slides in word by word on load, then scroll fades it into the rings */
-.fab{position:absolute;inset:0;z-index:1;display:flex;align-items:center;align-content:center;justify-content:center;flex-wrap:wrap;
-  gap:0 .22em;padding:0 4vw;text-align:center;font-family:var(--poster);color:#000;
-  font-size:clamp(56px,13.5vw,210px);line-height:.95;letter-spacing:.01em;will-change:opacity,transform}
-.fab .fw{display:inline-block;opacity:0;transform:translateX(-.6em) skewX(-8deg);
-  animation:slidein .8s cubic-bezier(.2,1,.3,1) forwards}
-@keyframes slidein{to{opacity:1;transform:none}}
+/* opening caption: one word at a time as you scroll, each centered on the heart of the spiral, then the last fades into the rings */
+.fab{position:absolute;inset:0;z-index:1;display:grid;place-items:center;text-align:center;font-family:var(--poster);color:#000;
+  line-height:1;letter-spacing:.01em;will-change:opacity,transform;pointer-events:none}
+.fab .fw{grid-area:1/1;white-space:nowrap;opacity:0;transform:translateX(-.35em) skewX(-8deg);
+  transition:opacity .3s,transform .5s cubic-bezier(.2,1.2,.3,1)}
+.fab .fw.on{opacity:1;transform:none}
+.fab .fw.gone{opacity:0;transform:translateX(.25em) skewX(6deg);transition:opacity .22s,transform .22s}
 
 /* the figure box keeps the cutout's proportions so each word can be measured against her shoulders */
 .figure{position:relative;z-index:2;width:min(96vw,calc(98vh * 1100 / 1650));aspect-ratio:1100/1650;
@@ -66,7 +66,7 @@ body.dark .nav-cta{border-color:#fff}
 .figure .w.on{opacity:1;transform:none}
 .figure .w.gone{opacity:0;transform:scale(1.25);transition:opacity .25s,transform .25s}
 
-.bigwrap{position:absolute;z-index:3;left:50%;top:49%;width:100vw;height:0;transform:translateX(-50%);display:grid;place-items:center;pointer-events:none}
+.bigwrap{position:absolute;z-index:3;left:50%;top:71%;width:100vw;height:0;transform:translateX(-50%);display:grid;place-items:center;pointer-events:none}
 .bigwrap .w{color:#000;font-weight:900;-webkit-text-stroke:.022em #000;paint-order:stroke fill}
 
 /* black takes the stage from the center */
@@ -119,7 +119,7 @@ footer .base{margin-top:9vh;font-size:12px;letter-spacing:.1em;text-transform:up
 @media (max-width:560px){.grid{grid-template-columns:1fr}}
 @media (prefers-reduced-motion:reduce){
   *{animation:none!important}
-  .fab .fw,.cap .w,.rv,.work-head h2 .ch,.work-head .eyebrow,.work-head p{opacity:1;transform:none}
+  .fab .fw,.figure .w,.rv,.work-head h2 .ch,.work-head .eyebrow,.work-head p{opacity:1;transform:none}
   .fab{position:relative;height:100vh}
   .figure{transform:none}
   .spiral{opacity:1}
@@ -159,7 +159,7 @@ footer .base{margin-top:9vh;font-size:12px;letter-spacing:.1em;text-transform:up
     <div class="wrap">
       <div class="work-head" id="workHead">
         <p class="eyebrow">Selected work</p>
-        <h2><span class="ww">some</span> <span class="ww hi">ameizing</span> <span class="ww">sites</span></h2>
+        <h2><span class="ww">Here</span> <span class="ww">are</span> <span class="ww">some</span> <span class="ww hi">ameizing</span> <span class="ww">sites</span></h2>
         <p>A few of the worlds we have built. Each one custom and impossible to scroll past.</p>
       </div>
       <div class="grid">
@@ -226,8 +226,18 @@ footer .base{margin-top:9vh;font-size:12px;letter-spacing:.1em;text-transform:up
   buildSpiral();
   var rb; window.addEventListener('resize',function(){clearTimeout(rb);rb=setTimeout(buildSpiral,150)});
 
-  /* opening caption: one word after the other */
-  document.querySelectorAll('.fab .fw').forEach(function(w,i){w.style.animationDelay=(0.25+i*0.22)+'s'});
+  /* opening caption words: each sized to fill most of the screen, capped so tall screens stay sane */
+  var fabWords=document.querySelectorAll('.fab .fw'), sceneEl=document.querySelector('.scene');
+  function sizeFab(){
+    var c=document.createElement('canvas').getContext('2d'); c.font='100px Alvaro';
+    var W=sceneEl.offsetWidth, H=sceneEl.offsetHeight;
+    fabWords.forEach(function(w){
+      var m=c.measureText(w.textContent).width*1.01;
+      w.style.fontSize=Math.min(W*0.8/m*100, H*0.5)+'px';
+    });
+  }
+  if(document.fonts&&document.fonts.load){document.fonts.load('100px Alvaro').then(sizeFab)}
+  sizeFab(); window.addEventListener('resize',sizeFab);
 
   /* each chest word is sized on its own so it runs shoulder to shoulder */
   var fig=document.getElementById('figure'), words=document.querySelectorAll('.figure .w'), scene=document.querySelector('.scene');
@@ -268,36 +278,42 @@ footer .base{margin-top:9vh;font-size:12px;letter-spacing:.1em;text-transform:up
   }
 
   /* the scene, scrubbed by scroll (p = 0..1 across the tall wrapper):
-     0.00-0.14  caption fades into the rings while the rings come up to full black
-     0.14-0.30  she rises from the floor
-     0.30-0.82  four words take turns on her chest
-     0.82-1.00  black blooms from the center and takes the stage */
+     0.00-0.28  "it looks so fabulous," one word at a time, centered on the spiral
+     0.28-0.36  the last word fades into the rings while the rings come up to full black
+     0.36-0.48  she rises from the floor
+     0.48-0.84  four words take turns on her chest, the last one screen-wide
+     0.84-1.00  black blooms from the center and takes the stage */
   var wrap=document.getElementById('sceneWrap'), fab=document.getElementById('fab'), spiral=document.getElementById('spiral'),
-      bloom=document.getElementById('bloom'), cur=-1;
+      bloom=document.getElementById('bloom'), cur=-1, curF=-2;
   function ease(t){return t<0?0:t>1?1:t*t*(3-2*t)}
   function tick(){
     var r=wrap.getBoundingClientRect(),total=wrap.offsetHeight-window.innerHeight;
     var p=total>0?Math.min(Math.max(-r.top/total,0),1):0;
-    var a=ease(p/0.14);
+    var fi=Math.min(Math.floor(p/0.07),3);
+    if(fi!==curF){
+      fabWords.forEach(function(w,i){w.classList.toggle('on',i===fi);w.classList.toggle('gone',i<fi)});
+      curF=fi;
+    }
+    var a=ease((p-0.28)/0.08);
     fab.style.opacity=1-a; fab.style.transform='scale('+(1+a*.25)+')'; fab.style.filter='blur('+(a*6)+'px)';
     spiral.style.opacity=.14+a*.86;
-    var b=ease((p-0.14)/0.16);
-    var d=ease((p-0.82)/0.18);
+    var b=ease((p-0.36)/0.12);
+    var d=ease((p-0.84)/0.16);
     fig.style.transform='translateY('+((1-b)*105)+'%) scale('+(1-d*.12)+')';
-    var idx=p<0.30?-1:Math.min(Math.floor((p-0.30)/0.13),3);
+    var idx=p<0.48?-1:Math.min(Math.floor((p-0.48)/0.09),3);
     if(idx!==cur){
       words.forEach(function(w,i){w.classList.toggle('on',i===idx);w.classList.toggle('gone',i<idx)});
       cur=idx;
     }
     bloom.style.clipPath='circle('+(d*160)+'% at 50% 50%)';
-    document.body.classList.toggle('dark',p>0.92);
+    document.body.classList.toggle('dark',p>0.93);
   }
   if(!reduced){
     var raf=false;
     window.addEventListener('scroll',function(){if(!raf){raf=true;requestAnimationFrame(function(){tick();raf=false})}},{passive:true});
     window.addEventListener('resize',tick);
     tick();
-  }else{words.forEach(function(w){w.classList.add('on')})}
+  }else{words.forEach(function(w){w.classList.add('on')});fabWords.forEach(function(w){w.classList.add('on')})}
 })();
 </script>
 </body>
