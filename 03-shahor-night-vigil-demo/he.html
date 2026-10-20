@@ -108,51 +108,32 @@ nav .sep{color:var(--crimson);font-family:var(--disp)}
   text-transform:uppercase;line-height:1.05;opacity:0;transition:opacity .5s}
 .scene-kicker.show h2{opacity:1}
 
-/* ---------- pour (interactive) ---------- */
+/* ---------- pour (static dawn pour) ---------- */
 .pour-scene{background:var(--crimson);padding:14vh 0;position:relative}
 .pour-wrap{width:min(92vw,1100px);margin:0 auto}
 .pour-head{color:var(--paper);text-align:center;margin-bottom:5vh}
 .pour-head .label{color:var(--ink)}
 .pour-head h2{font-family:var(--disp);font-size:clamp(34px,5vw,64px);text-transform:uppercase;line-height:.95;text-shadow:3px 3px 0 var(--ink)}
-.pour-stage{position:relative;height:clamp(420px,72vh,660px);border:3px solid var(--ink);box-shadow:8px 8px 0 var(--ink);
-  background:var(--crimson);overflow:hidden;cursor:pointer;user-select:none;-webkit-user-select:none;touch-action:none}
-.pour-stage img{mix-blend-mode:multiply;pointer-events:none}
-.ps-bottle{position:absolute;top:-14%;right:10%;width:clamp(170px,30%,330px);transform-origin:70% 45%;transform:rotate(-14deg);
-  transition:transform .6s cubic-bezier(.22,1,.36,1);will-change:transform}
-.pour-stage.pouring .ps-bottle{transform:rotate(5deg)}
-.ps-stream{position:absolute;pointer-events:none;width:clamp(9px,1.1%,13px);top:45%;left:62%;height:22%;opacity:0;
-  transform:scaleY(0);transform-origin:top;transition:opacity .2s,transform .35s ease}
-.pour-stage.pouring .ps-stream{opacity:1;transform:scaleY(1)}
-.ps-glass{position:absolute;bottom:3%;left:55%;width:clamp(110px,15.5%,180px)}
-.ps-glass img{width:100%}
-.ps-liquid{position:absolute;left:9%;right:9%;top:11%;height:26%;display:flex;align-items:flex-end;overflow:hidden;
-  clip-path:polygon(1% 0%,99% 0%,96% 20%,86% 50%,72% 78%,58% 94%,50% 100%,42% 94%,28% 78%,14% 50%,4% 20%)}
-.ps-liquid::after{content:'';display:block;width:100%;height:calc(var(--fill,0)*100%);background:#2B1208;
-  mix-blend-mode:multiply;opacity:.95}
-.ps-chip{position:absolute;left:58.5%;bottom:30%;width:92px;height:92px;border-radius:50%;background:var(--paper);
-  border:2px solid var(--ink);box-shadow:3px 3px 0 var(--ink);color:var(--ink);display:flex;align-items:center;
-  justify-content:center;text-align:center;line-height:1.4;animation:chipPulse 1.8s ease infinite;transition:opacity .4s}
-.pour-stage.pouring .ps-chip{opacity:0}
-@keyframes chipPulse{0%,100%{transform:scale(1)}50%{transform:scale(1.07)}}
+.pour-stage{position:relative;border:3px solid var(--ink);box-shadow:10px 10px 0 var(--ink);background:var(--crimson);overflow:hidden}
+.pour-still{display:block;width:100%;height:auto;mix-blend-mode:multiply}
+.pour-tag{position:absolute;left:0;bottom:0;z-index:2;background:var(--ink);color:var(--paper);
+  font-family:var(--disp);text-transform:uppercase;font-size:clamp(13px,1.7vw,20px);letter-spacing:.06em;padding:.5em .9em}
 .caption em{font-style:normal;color:var(--crimson);font-weight:700}
 .caption .tw{opacity:0;transition:opacity .05s linear}
 .caption.show .tw{opacity:1}
-.scene[data-scene="temple"] .panel img{filter:grayscale(1) brightness(.85)}
-.silence{height:70vh;display:flex;align-items:center;justify-content:center;background:var(--paper-dim)}
 #prog{position:fixed;top:0;right:0;width:3px;height:100vh;background:var(--ink);transform:scaleY(0);transform-origin:top;z-index:80;pointer-events:none}
-.ps-msg{position:absolute;top:8%;left:5%;font-family:var(--disp);font-size:clamp(26px,4vw,48px);text-transform:uppercase;
-  color:var(--paper);background:var(--crimson);border:3px solid var(--ink);box-shadow:5px 5px 0 var(--ink);padding:.15em .4em;
-  opacity:0;transition:opacity .6s}
-.ps-msg.show{opacity:1}
 
-/* ---------- vortex ---------- */
+/* ---------- vortex (fades to black on all sides) ---------- */
 .vortex-sticky{background:var(--ink)}
-.vortex-sticky .panel{background:var(--ink);border-color:var(--paper);box-shadow:8px 8px 0 var(--crimson);width:min(82vw,700px);height:min(82vw,700px)}
+.vortex-sticky .panel{background:var(--ink);border:none;box-shadow:none;width:min(94vw,860px);height:min(94vw,860px)}
+.vortex-sticky .panel img{mix-blend-mode:screen;
+  -webkit-mask-image:radial-gradient(circle at 50% 50%, #000 42%, transparent 72%);
+  mask-image:radial-gradient(circle at 50% 50%, #000 42%, transparent 72%)}
 
 /* ---------- collection ---------- */
 .collection{background:var(--crimson);min-height:100vh;display:flex;flex-direction:column;justify-content:center;padding:14vh 0;position:relative;overflow:hidden}
-.col-head{text-align:center;color:var(--paper);margin-bottom:2vh}
-.col-head .label{color:var(--ink)}
+.col-head{text-align:center;color:var(--paper);margin-bottom:4vh}
+.col-head .label{color:var(--ink);font-family:var(--disp);font-size:clamp(26px,4.4vw,60px);letter-spacing:.04em;font-weight:400;text-shadow:3px 3px 0 var(--ink)}
 .col-stage{position:relative;width:100%;max-width:1240px;margin:0 auto;min-height:62vh;display:grid;grid-template-columns:auto auto;justify-content:center;align-items:center;gap:clamp(24px,4vw,64px);padding:0 clamp(70px,9vw,140px)}
 .col-word{display:flex;align-items:center;justify-content:flex-start}
 .col-word span{font-family:var(--disp);font-size:clamp(44px,8.5vw,140px);line-height:.92;text-align:start;text-transform:uppercase;color:var(--paper);text-shadow:5px 5px 0 var(--ink)}
@@ -245,12 +226,12 @@ footer .label{color:var(--crimson)}
     <div class="scene-sticky">
       <div class="panel">
         <img src="assets/temple.jpg" alt="קתדרלת עמודים חרוטה, מזבח קטן ועליו שלושה בקבוקים זוהרים">
-        <div class="caption cap-tl" data-at="0.15">
-          <div class="disp">פרק א'</div>
-          <p>בשעה האחרונה של הלילה נפתחות דלתות <em>המבשלה</em>.</p>
+        <div class="caption cap-tl" data-at="0.12">
+          <div class="disp">פרק א' · רדת הלילה</div>
+          <p>כשהעיר שוקעת בחושך, <em>אור אחד</em> נשאר דולק.</p>
         </div>
-        <div class="caption cap-br" data-at="0.45">
-          <p><em>שלושה כלים</em> מחכים על המזבח. שמונה עשרה שעות בחושך הכינו אותם.</p>
+        <div class="caption cap-br" data-at="0.5">
+          <p>בתוך מבשלה דוממת, <em>שלושה כלים</em> מתחילים את הלילה הארוך שלהם.</p>
         </div>
       </div>
     </div>
@@ -261,12 +242,12 @@ footer .label{color:var(--crimson)}
     <div class="scene-sticky">
       <div class="panel">
         <img src="assets/eyes.jpg" alt="כרזה ענקית עם עיניים חרוטות, תלויה בין עמודים">
-        <div class="caption cap-bl" data-at="0.2">
-          <div class="disp">פרק ב'</div>
-          <p><em>השומר</em> רואה כל אצווה. שום דבר לא יוצא לפני שהגיעה שעתו.</p>
+        <div class="caption cap-bl" data-at="0.18">
+          <div class="disp">פרק ב' · המשמרת</div>
+          <p>השומר לא ישן. הוא <em>שומר על החושך</em> כדי שאתם לא תצטרכו.</p>
         </div>
       </div>
-      <div class="scene-kicker" data-at="0.55"><h2>בלי קיצורי דרך<br>אחרי החושך</h2></div>
+      <div class="scene-kicker" data-at="0.55"><h2>שמונה עשרה שעות.<br>בלי חום. בלי למהר.</h2></div>
     </div>
   </section>
 
@@ -276,41 +257,28 @@ footer .label{color:var(--crimson)}
       <div class="panel">
         <img src="assets/keeper.jpg" alt="שומר גלימה ליד דלפק אבן ארוך עם שלושה בקבוקים זוהרים">
         <div class="caption cap-tl" data-at="0.15">
-          <div class="disp">פרק ג'</div>
-          <p>פולים ממקור יחיד. מים קרים כאבן. <em>סבלנות</em> שגובלת בעקשנות.</p>
+          <div class="disp">פרק ג' · המלאכה</div>
+          <p>פולים ממקור יחיד. מים קרים כאבן. ו<em>זמן</em>, שנמדד בסבלנות.</p>
         </div>
-        <div class="caption cap-br" data-at="0.5">
-          <p>זה כל המתכון. השאר זו משמרת.</p>
+        <div class="caption cap-br" data-at="0.52">
+          <p>עם אור ראשון, הלילה הארוך <em>מוכן למזיגה</em>.</p>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- POUR: interactive -->
+  <!-- POUR: the dawn pour (static) -->
   <section class="pour-scene">
     <div class="pour-wrap">
       <div class="pour-head rv">
-        <p class="label">המזיגה הראשונה</p>
-        <h2>להחזיק, ולא לעזוב</h2>
+        <p class="label">פרק ד' · מזיגת השחר</p>
+        <h2>הלילה הופך לכוס</h2>
       </div>
-      <div class="pour-stage rv" id="pourStage" role="button" tabindex="0" aria-label="לחצו והחזיקו כדי למזוג את הכוס">
-        <img class="ps-bottle" id="psBottle" src="assets/sprite-bottle.jpg" alt="">
-        <svg class="ps-stream" viewBox="0 0 40 300" preserveAspectRatio="none" aria-hidden="true">
-          <path d="M18 0 C 16 80, 22 160, 19 300 L 25 300 C 27 160, 22 80, 26 0 Z" fill="#241309"/>
-        </svg>
-        <div class="ps-glass">
-          <img src="assets/sprite-glass.jpg" alt="">
-          <div class="ps-liquid" id="psLiquid"></div>
-        </div>
-        <div class="ps-chip label" id="psHint">להחזיק<br>ולמזוג</div>
-        <div class="ps-msg" id="pourMsg" role="status">לכפר אחר כך.</div>
+      <div class="pour-stage rv">
+        <img class="pour-still" src="assets/pour.jpg" alt="יד חרוטה מוזגת קולד ברו שחור מבקבוק לכוס קופה">
+        <div class="pour-tag" aria-hidden="true">נחלט כל הלילה. שלכם עם הבוקר.</div>
       </div>
     </div>
-  </section>
-
-  <!-- SILENCE BEAT -->
-  <section class="silence" aria-hidden="true">
-    <svg viewBox="0 0 60 60" width="44"><path d="M30 6 C38 14,52 16,50 30 C48 44,38 54,29 52 C16 50,8 40,11 28 C14 15,22 12,30 6 Z" fill="#15110F"/><circle cx="48" cy="12" r="3" fill="#15110F"/><circle cx="12" cy="46" r="2" fill="#15110F"/></svg>
   </section>
 
   <!-- SCENE 4: COLLAPSE -->
@@ -319,7 +287,7 @@ footer .label{color:var(--crimson)}
       <div class="panel">
         <img src="assets/collapse.jpg" alt="עמודי שיש מתנפצים, פולי קפה עפים כרסיסים">
       </div>
-      <div class="scene-kicker" data-at="0.4"><h2>השינה<br>נכנעת</h2></div>
+      <div class="scene-kicker" data-at="0.4"><h2>לגימה אחת,<br>והשינה משחררת</h2></div>
     </div>
   </section>
 
@@ -329,7 +297,7 @@ footer .label{color:var(--crimson)}
       <div class="panel">
         <img src="assets/vortex.jpg" alt="כוס קפה שחור מסתחררת למערבולת היפנוטית, במבט מלמעלה">
       </div>
-      <div class="scene-kicker" data-at="0.5"><h2>ליפול פנימה</h2></div>
+      <div class="scene-kicker" data-at="0.5"><h2>ליפול אל<br>תוך החושך</h2></div>
     </div>
   </section>
 
@@ -361,7 +329,7 @@ footer .label{color:var(--crimson)}
     <div class="foot-base">
       <span>&copy; 2026 שחור קולד ברו · מותג דמו פיקטיבי</span>
       <span>לשתות באחריות. זה רק קפה, אבל בכל זאת.</span>
-      <a href="#top">מפעל האתרים · Website Factory</a>
+      <a href="#top">נבנה על ידי ameizing</a>
     </div>
   </footer>
 
@@ -383,22 +351,41 @@ footer .label{color:var(--crimson)}
     setTimeout(function(){loader.classList.add('done')},2600);
   }
 
-  /* ---------- audio engine (synthesized, no files) ---------- */
-  var audioOn=false,ctx=null,master=null,droneNodes=[],pourNoise=null;
+  /* ---------- audio engine: thriller ambience that melts into a lounge beat ---------- */
+  var audioOn=false,ctx=null,master=null,thrill=null,lounge=null,beatTimer=null,beatStep=0;
   function ensureCtx(){
     if(ctx)return;
     ctx=new (window.AudioContext||window.webkitAudioContext)();
     master=ctx.createGain();master.gain.value=0;master.connect(ctx.destination);
-    var o1=ctx.createOscillator(),o2=ctx.createOscillator(),og=ctx.createGain();
-    o1.frequency.value=54;o2.frequency.value=54.8;o1.type='sine';o2.type='sine';
-    og.gain.value=.5;o1.connect(og);o2.connect(og);og.connect(master);o1.start();o2.start();
-    droneNodes=[o1,o2,og];
-    var bufferSize=2*ctx.sampleRate,buffer=ctx.createBuffer(1,bufferSize,ctx.sampleRate),data=buffer.getChannelData(0),last=0;
-    for(var i=0;i<bufferSize;i++){var w=Math.random()*2-1;data[i]=(last+.02*w)/1.02;last=data[i];data[i]*=3.5}
-    var noise=ctx.createBufferSource();noise.buffer=buffer;noise.loop=true;
-    var lp=ctx.createBiquadFilter();lp.type='lowpass';lp.frequency.value=400;
-    pourNoise=ctx.createGain();pourNoise.gain.value=0;
-    noise.connect(lp);lp.connect(pourNoise);pourNoise.connect(master);noise.start();
+
+    /* THRILLER: detuned sub-drone + eerie dissonant shimmer with slow tremolo */
+    thrill=ctx.createGain();thrill.gain.value=1;thrill.connect(master);
+    var d1=ctx.createOscillator(),d2=ctx.createOscillator(),dg=ctx.createGain();
+    d1.type='sine';d2.type='sine';d1.frequency.value=47;d2.frequency.value=47.8;
+    dg.gain.value=.55;d1.connect(dg);d2.connect(dg);dg.connect(thrill);d1.start();d2.start();
+    var hi1=ctx.createOscillator(),hi2=ctx.createOscillator(),hg=ctx.createGain();
+    hi1.type='sine';hi2.type='sine';hi1.frequency.value=662;hi2.frequency.value=701;
+    hg.gain.value=.03;hi1.connect(hg);hi2.connect(hg);hg.connect(thrill);hi1.start();hi2.start();
+    var lfo=ctx.createOscillator(),lfg=ctx.createGain();lfo.frequency.value=0.11;lfg.gain.value=.028;
+    lfo.connect(lfg);lfg.connect(hg.gain);lfo.start();
+
+    /* LOUNGE: warm filtered chord pad + downtempo kick/hat/bass */
+    lounge=ctx.createGain();lounge.gain.value=0;lounge.connect(master);
+    var pad=ctx.createGain();pad.gain.value=.14;pad.connect(lounge);
+    [146.8,220,277.2,329.6].forEach(function(f){
+      var o=ctx.createOscillator();o.type='sawtooth';o.frequency.value=f;
+      var g=ctx.createGain();g.gain.value=.05;var lp=ctx.createBiquadFilter();lp.type='lowpass';lp.frequency.value=850;
+      o.connect(lp);lp.connect(g);g.connect(pad);o.start();
+    });
+    var bassRiff=[73.4,73.4,98,82.4];
+    beatTimer=setInterval(function(){
+      if(!audioOn||!ctx||lounge.gain.value<0.04){beatStep++;return;}
+      var t=ctx.currentTime,step=beatStep%8;
+      if(step===0||step===4){var k=ctx.createOscillator(),kg=ctx.createGain();k.frequency.setValueAtTime(115,t);k.frequency.exponentialRampToValueAtTime(44,t+.12);kg.gain.setValueAtTime(.0001,t);kg.gain.exponentialRampToValueAtTime(.9,t+.005);kg.gain.exponentialRampToValueAtTime(.001,t+.24);k.connect(kg);kg.connect(lounge);k.start(t);k.stop(t+.26);}
+      if(step%2===1){var hb=ctx.createBufferSource(),bs=ctx.createBuffer(1,(ctx.sampleRate*0.05)|0,ctx.sampleRate),dd=bs.getChannelData(0);for(var i=0;i<dd.length;i++)dd[i]=Math.random()*2-1;hb.buffer=bs;var hpf=ctx.createBiquadFilter();hpf.type='highpass';hpf.frequency.value=7200;var hgn=ctx.createGain();hgn.gain.setValueAtTime(.12,t);hgn.gain.exponentialRampToValueAtTime(.001,t+.04);hb.connect(hpf);hpf.connect(hgn);hgn.connect(lounge);hb.start(t);}
+      if(step%2===0){var b=ctx.createOscillator(),bgn=ctx.createGain();b.type='triangle';b.frequency.value=bassRiff[((beatStep/2)|0)%4];bgn.gain.setValueAtTime(.0001,t);bgn.gain.exponentialRampToValueAtTime(.2,t+.02);bgn.gain.exponentialRampToValueAtTime(.001,t+.34);b.connect(bgn);bgn.connect(lounge);b.start(t);b.stop(t+.36);}
+      beatStep++;
+    },345);
   }
   var audioBtn=document.getElementById('audioBtn');
   audioBtn.addEventListener('click',function(){
@@ -406,7 +393,7 @@ footer .label{color:var(--crimson)}
     audioOn=!audioOn;
     audioBtn.classList.toggle('on',audioOn);
     audioBtn.setAttribute('aria-pressed',audioOn?'true':'false');
-    master.gain.linearRampToValueAtTime(audioOn?.05:0,ctx.currentTime+.6);
+    master.gain.linearRampToValueAtTime(audioOn?.07:0,ctx.currentTime+.6);
   });
 
   /* ---------- reveals ---------- */
@@ -444,16 +431,30 @@ footer .label{color:var(--crimson)}
   var prog=document.getElementById('prog');
   function tick(){
     var doc=document.documentElement;
-    prog.style.transform='scaleY('+(window.scrollY/(doc.scrollHeight-window.innerHeight))+')';
+    var gp=window.scrollY/(doc.scrollHeight-window.innerHeight);
+    prog.style.transform='scaleY('+gp+')';
+    /* crossfade thriller -> lounge as the page descends */
+    if(ctx){
+      thrill.gain.setTargetAtTime(Math.max(0,1-gp*1.15),ctx.currentTime,0.4);
+      lounge.gain.setTargetAtTime(Math.min(1,gp*1.1),ctx.currentTime,0.4);
+    }
     scenes.forEach(function(scene){
       var p=sceneProgress(scene),img=scene.querySelector('.panel img'),kind=scene.getAttribute('data-scene');
       if(img){
-        if(kind==='collapse'){img.style.transform='scale('+(1.08+p*.22)+') rotate('+(-2+p*5)+'deg) translateY('+(p*-4)+'%)';}
-        else if(kind==='vortex'){img.style.transform='scale('+(1+p*.3)+') rotate('+(p*170)+'deg)';}
-        else{img.style.transform='scale('+(1.05+p*.17)+') translateY('+(p*-5)+'%)';}
-        if(kind==='temple'){
+        if(kind==='temple'){           /* slow push-in, rising, mono -> colour */
+          img.style.transform='scale('+(1.04+p*.18)+') translateY('+(p*-7)+'%)';
           var c=Math.min(p*1.7,1);
-          img.style.filter='grayscale('+(1-c)+') brightness('+(0.85+0.15*c)+')';
+          img.style.filter='grayscale('+(1-c)+') brightness('+(0.82+0.18*c)+')';
+        } else if(kind==='eyes'){       /* zoom into the stare, eyes drift sideways */
+          img.style.transform='scale('+(1.14+p*.12)+') translateX('+((p-0.5)*7)+'%)';
+        } else if(kind==='keeper'){     /* pan up the robe to the figure, pull back */
+          img.style.transform='scale('+(1.2-p*.16)+') translateY('+((0.55-p)*11)+'%)';
+        } else if(kind==='collapse'){
+          img.style.transform='scale('+(1.08+p*.24)+') rotate('+(-3+p*6)+'deg) translateY('+(p*-5)+'%)';
+        } else if(kind==='vortex'){
+          img.style.transform='scale('+(1+p*.32)+') rotate('+(p*180)+'deg)';
+        } else {
+          img.style.transform='scale('+(1.05+p*.17)+') translateY('+(p*-5)+'%)';
         }
       }
       scene.querySelectorAll('.caption,.scene-kicker').forEach(function(el){
@@ -469,38 +470,6 @@ footer .label{color:var(--crimson)}
   }else{
     document.querySelectorAll('.caption,.scene-kicker').forEach(function(el){el.classList.add('show')});
   }
-
-  /* ---------- hold to pour ---------- */
-  var stage=document.getElementById('pourStage'),liquid=document.getElementById('psLiquid'),
-      msg=document.getElementById('pourMsg'),hint=document.getElementById('psHint');
-  var fill=0,holding=false,rafPour=null,poured=false;
-  function pourFrame(){
-    fill+=holding?.010:-.015;
-    fill=Math.min(Math.max(fill,0),1);
-    liquid.style.setProperty('--fill',fill);
-    if(pourNoise&&ctx)pourNoise.gain.linearRampToValueAtTime(holding&&audioOn?1.6:0,ctx.currentTime+.15);
-    if(fill>=1&&!poured){
-      poured=true;holding=false;stage.classList.remove('pouring');
-      msg.classList.add('show');
-      hint.style.opacity='0';
-      if(ctx&&audioOn){
-        var o=ctx.createOscillator(),g=ctx.createGain();
-        o.frequency.value=523;o.type='triangle';g.gain.value=0;
-        o.connect(g);g.connect(master);o.start();
-        g.gain.linearRampToValueAtTime(2.2,ctx.currentTime+.03);
-        g.gain.exponentialRampToValueAtTime(.001,ctx.currentTime+1.2);
-        o.stop(ctx.currentTime+1.3);
-      }
-      return;
-    }
-    if(fill>0||holding){rafPour=requestAnimationFrame(pourFrame)}else{rafPour=null}
-  }
-  function startHold(e){if(poured)return;e.preventDefault();holding=true;stage.classList.add('pouring');if(!rafPour)rafPour=requestAnimationFrame(pourFrame)}
-  function endHold(){holding=false;stage.classList.remove('pouring')}
-  stage.addEventListener('pointerdown',startHold);
-  window.addEventListener('pointerup',endHold);
-  stage.addEventListener('keydown',function(e){if(e.key===' '||e.key==='Enter'){startHold(e)}});
-  stage.addEventListener('keyup',endHold);
 
   /* ---------- collection ---------- */
   var flavors=[
