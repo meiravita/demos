@@ -133,8 +133,12 @@ section.alt{background:var(--bg-alt);transition:background .8s ease}
 /* architecture with background photo */
 .arch-sec{position:relative;overflow:hidden;color:#F3F1EA}
 .arch-sec .arch-img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
-.arch-sec .arch-scrim{position:absolute;inset:0;background:linear-gradient(to right,rgba(31,10,28,.72),rgba(31,10,28,.3) 60%,rgba(31,10,28,.12))}
+.arch-sec .arch-scrim{position:absolute;inset:0;background:linear-gradient(to left,rgba(31,10,28,.66),rgba(31,10,28,.18) 55%,transparent),linear-gradient(to bottom,rgba(31,10,28,.4),transparent 42%)}
+.arch-sec{padding:7vh 0 13vh}
 .arch-sec .wrap{position:relative;z-index:2}
+.arch-sec .sec-head{margin-bottom:3vh}
+.arch-sec .statement{max-width:24ch;margin-left:auto;text-align:right}
+.arch-sec .statement+.label{text-align:right;margin-top:3vh}
 .arch-sec .label,.arch-sec .sec-num{color:rgba(243,241,234,.85)}
 .arch-sec .statement{color:#F3F1EA;text-shadow:0 2px 24px rgba(31,10,28,.5)}
 .arch-sec .statement .script{color:var(--pink)}
@@ -227,6 +231,7 @@ section.alt{background:var(--bg-alt);transition:background .8s ease}
   color:var(--cream);font-family:var(--sans);font-size:15px;padding:8px 0;resize:none}
 .cta-form input:focus,.cta-form textarea:focus{outline:none;border-color:var(--pink)}
 .cta-form .btn{grid-column:1/-1;justify-self:start;margin-top:10px;cursor:pointer;
+  font-size:14px;letter-spacing:.16em;padding:18px 34px;
   background:var(--pink);border-color:var(--pink);color:var(--plum-deep)}
 .cta-form .btn:hover{background:#F3A7BC;border-color:#F3A7BC;color:var(--plum-deep)}
 .cta-ok{grid-column:1/-1;color:var(--pink);font-size:14px}
