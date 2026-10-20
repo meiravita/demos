@@ -141,7 +141,14 @@ section.alt{background:var(--bg-alt);transition:background .8s ease}
 .concept-side p{color:var(--fg-soft);max-width:44ch;margin-bottom:28px}
 
 /* location */
-.location{background:var(--card);transition:background .8s ease}
+.location{position:relative;overflow:hidden;color:#F3F1EA}
+.location .loc-img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.location .loc-scrim{position:absolute;inset:0;background:linear-gradient(to top,rgba(31,10,28,.6),rgba(31,10,28,.14) 55%,rgba(31,10,28,.42))}
+.location .wrap{position:relative;z-index:2}
+.location .sec-head .label,.location .sec-num{color:rgba(243,241,234,.85)}
+.location .loc-big{color:#F3F1EA;text-shadow:0 2px 26px rgba(31,10,28,.55);margin-left:auto;text-align:right;width:fit-content}
+.location .loc-note p{color:rgba(243,241,234,.92)}
+.location .loc-note .label{color:rgba(243,241,234,.8)}
 .loc-big{font-family:var(--disp);text-transform:uppercase;line-height:.92;font-size:clamp(70px,14vw,230px);letter-spacing:.01em}
 .loc-big .ital{color:var(--accent);-webkit-text-stroke:0}
 .loc-note{display:flex;justify-content:space-between;align-items:flex-start;gap:32px;margin-top:6vh;flex-wrap:wrap}
@@ -317,6 +324,8 @@ section.alt{background:var(--bg-alt);transition:background .8s ease}
 
   <!-- LOCATION -->
   <section class="location">
+    <img class="loc-img" src="assets/carmel-coast.jpg" alt="מבט אווירי על חוף הכרמל בשעת הזהב, הר הכרמל נפגש עם הים התיכון">
+    <div class="loc-scrim" aria-hidden="true"></div>
     <div class="wrap">
       <div class="sec-head rv">
         <p class="label">בין חיפה לקיסריה</p>
