@@ -27,6 +27,8 @@ a{color:inherit}
 
 header{position:fixed;top:0;left:0;right:0;z-index:60;display:flex;justify-content:space-between;align-items:center;
   padding:16px clamp(20px,5vw,56px)}
+header::before{content:'';position:absolute;inset:0;bottom:-40px;z-index:-1;pointer-events:none;
+  background:linear-gradient(to bottom,rgba(251,251,248,.96) 0%,rgba(251,251,248,.75) 55%,rgba(251,251,248,0) 100%)}
 .brand{font-family:var(--display);font-weight:800;font-size:22px;letter-spacing:-.02em;text-decoration:none;color:var(--blue)}
 .brand i{font-style:normal;color:var(--ink)}
 .nav-cta{text-decoration:none;font-weight:700;font-size:13px;letter-spacing:.02em;border:2px solid var(--ink);
@@ -36,30 +38,32 @@ header{position:fixed;top:0;left:0;right:0;z-index:60;display:flex;justify-conte
 /* ---------- hero: star burst ---------- */
 .hero{position:relative;min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;
   text-align:center;padding:13vh 20px 8vh;background:var(--paper)}
-.hero-burst{width:min(72vw,580px);height:auto;animation:pop 1.1s cubic-bezier(.2,1.25,.3,1) both}
+.hero-burst{width:min(72vw,580px);height:auto;
+  animation:pop 1.1s cubic-bezier(.2,1.25,.3,1) both,breathe 5s ease-in-out 1.1s infinite alternate}
 @keyframes pop{0%{transform:scale(.35) rotate(-14deg);opacity:0}60%{opacity:1}100%{transform:scale(1) rotate(0);opacity:1}}
+@keyframes breathe{from{transform:scale(1) rotate(0)}to{transform:scale(1.045) rotate(1.5deg)}}
 .hero-fab{font-family:var(--display);font-weight:700;color:var(--blue);font-size:clamp(32px,6.4vw,82px);line-height:1.02;
   letter-spacing:-.03em;margin-top:3vh}
 
 /* ---------- op-art woman ---------- */
-.optic-wrap{position:relative;height:280vh}
+.optic-wrap{position:relative;height:340vh}
 .optic{position:sticky;top:0;height:100vh;overflow:hidden;background:#fff;display:flex;align-items:flex-end;justify-content:center}
 .spiral{position:absolute;top:50%;left:50%;width:175vmax;height:175vmax;transform:translate(-50%,-50%);
   z-index:0;animation:spin 20s linear infinite;will-change:transform}
 .spiral svg{width:100%;height:100%}
 @keyframes spin{to{transform:translate(-50%,-50%) rotate(360deg)}}
-.woman{position:relative;z-index:2;height:98vh;width:auto;max-width:96vw;object-fit:contain;object-position:bottom}
-.optic-cap{position:absolute;z-index:3;left:0;right:0;top:46%;transform:translateY(-50%);text-align:center;pointer-events:none;
-  display:flex;flex-direction:column;align-items:center;gap:.02em}
-.optic-cap .w{font-family:var(--display);font-weight:800;color:#000;line-height:.92;letter-spacing:-.02em;
-  font-size:clamp(40px,10vw,128px);opacity:0;transform:translateY(26px);transition:opacity .4s,transform .5s;
-  text-shadow:0 0 18px #fff,0 0 8px #fff,2px 2px 0 #fff,-2px -2px 0 #fff}
+/* the figure box keeps the cutout's exact proportions so the caption can be sized against her shoulders */
+.figure{position:relative;z-index:2;width:min(96vw,calc(98vh * 1100 / 1650));aspect-ratio:1100/1650;container-type:inline-size;
+  transform-origin:50% 100%;will-change:transform}
+.woman{width:100%;height:100%;object-fit:contain;object-position:bottom}
+.optic-cap{position:absolute;z-index:3;left:0;right:0;top:57%;text-align:center;pointer-events:none;
+  display:flex;flex-direction:column;align-items:center}
+.optic-cap .w{font-family:var(--display);font-weight:800;color:#000;line-height:.9;letter-spacing:-.03em;
+  font-size:15.2cqw;opacity:0;transform:translateY(.35em) scale(.6);transition:opacity .35s,transform .55s cubic-bezier(.2,1.3,.3,1)}
 .optic-cap .w.on{opacity:1;transform:none}
-
-/* ---------- dynamic transition wedge ---------- */
-.wedge{position:relative;height:0;z-index:5}
-.wedge::before{content:'';position:absolute;left:-5%;right:-5%;bottom:0;height:18vh;background:var(--blue);
-  transform:skewY(-3deg);transform-origin:left}
+/* blue ink bloom: scrubbed by scroll, swallows the black-and-white scene and becomes the portfolio ground */
+.wipe{position:absolute;inset:0;z-index:4;background-color:#eef0ff;background-image:url("assets/bluehatch.jpg");
+  background-size:280px;clip-path:circle(0% at 50% 100%);will-change:clip-path;pointer-events:none}
 
 /* ---------- portfolio ---------- */
 .work{position:relative;padding:12vh 0 15vh;background-color:#eef0ff;
@@ -68,8 +72,17 @@ header{position:fixed;top:0;left:0;right:0;z-index:60;display:flex;justify-conte
 .work-head .eyebrow{font-weight:700;font-size:13px;letter-spacing:.3em;text-transform:uppercase;color:var(--blue-deep)}
 .work-head h2{font-family:var(--display);font-weight:800;font-size:clamp(32px,6vw,76px);letter-spacing:-.03em;line-height:1;margin-top:14px;
   color:var(--ink);text-wrap:balance;display:inline-block}
-.work-head h2 .ww{display:inline-block;opacity:0;transform:translateY(30px) rotate(-4deg);transition:opacity .6s,transform .6s cubic-bezier(.2,1.1,.3,1)}
-.work-head.in h2 .ww{opacity:1;transform:none}
+.work-head h2 .ww{display:inline-block;white-space:nowrap}
+.work-head h2 .ch{display:inline-block;opacity:0;transform:translateY(.6em) rotate(-9deg) scale(.7);transform-origin:50% 100%;
+  transition:opacity .45s,transform .7s cubic-bezier(.2,1.4,.3,1)}
+.work-head.in h2 .ch{opacity:1;transform:none}
+.work-head h2 .ww:last-child{color:var(--blue);position:relative}
+.work-head h2 .ww:last-child::after{content:'';position:absolute;left:0;right:0;bottom:-.06em;height:.08em;background:var(--blue);
+  transform:scaleX(0);transform-origin:left;transition:transform .7s cubic-bezier(.2,1,.3,1) 1s}
+.work-head.in h2 .ww:last-child::after{transform:scaleX(1)}
+.work-head .eyebrow,.work-head p{opacity:0;transform:translateY(14px);transition:opacity .6s,transform .6s}
+.work-head.in .eyebrow{opacity:1;transform:none}
+.work-head.in p{opacity:1;transform:none;transition-delay:.9s}
 .work-head p{margin:18px auto 0;max-width:46ch;font-weight:600;color:var(--ink)}
 .grid{display:grid;grid-template-columns:repeat(3,1fr);gap:clamp(16px,2.2vw,28px)}
 .card{background:#fff;border:2px solid var(--ink);text-decoration:none;color:inherit;display:flex;flex-direction:column;
@@ -97,11 +110,12 @@ footer .base{margin-top:9vh;font-size:12px;letter-spacing:.1em;text-transform:up
 .rv{opacity:0;transform:translateY(26px);transition:opacity .8s ease,transform .8s cubic-bezier(.22,1,.36,1)}
 .rv.in{opacity:1;transform:none}
 
-@media (max-width:860px){.grid{grid-template-columns:1fr 1fr}.woman{height:72vh}}
+@media (max-width:860px){.grid{grid-template-columns:1fr 1fr}}
 @media (max-width:560px){.grid{grid-template-columns:1fr}}
 @media (prefers-reduced-motion:reduce){
   *{animation:none!important}
-  .optic-cap .w,.rv,.work-head h2 .ww{opacity:1;transform:none}
+  .optic-cap .w,.rv,.work-head h2 .ch,.work-head .eyebrow,.work-head p{opacity:1;transform:none}
+  .wipe{display:none}
   html{scroll-behavior:auto}
 }
 </style>
@@ -125,17 +139,18 @@ footer .base{margin-top:9vh;font-size:12px;letter-spacing:.1em;text-transform:up
   <section class="optic-wrap" id="opticWrap">
     <div class="optic">
       <div class="spiral" aria-hidden="true"><svg viewBox="0 0 1000 1000" preserveAspectRatio="xMidYMid slice"><path id="spath" fill="none" stroke="#141414" stroke-width="7"/></svg></div>
-      <img class="woman" id="woman" src="assets/girl-cut.png" alt="A woman in round op-art glasses, amazed">
-      <div class="optic-cap" id="opticCap" aria-hidden="true">
-        <span class="w">people</span>
-        <span class="w">will</span>
-        <span class="w">be</span>
-        <span class="w">ameized</span>
+      <div class="figure" id="figure">
+        <img class="woman" src="assets/woman-cut.png" alt="A woman in round op-art glasses, amazed">
+        <div class="optic-cap" id="opticCap" aria-hidden="true">
+          <span class="w">people</span>
+          <span class="w">will</span>
+          <span class="w">be</span>
+          <span class="w">ameized</span>
+        </div>
       </div>
+      <div class="wipe" id="wipe" aria-hidden="true"></div>
     </div>
   </section>
-
-  <div class="wedge" aria-hidden="true"></div>
 
   <!-- PORTFOLIO -->
   <section class="work" id="work">
@@ -212,24 +227,41 @@ footer .base{margin-top:9vh;font-size:12px;letter-spacing:.1em;text-transform:up
     items.forEach(function(el){io.observe(el)});
     var wh=document.getElementById('workHead');
     var io2=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){e.target.classList.add('in')}})},{threshold:.3});
-    if(wh){ wh.querySelectorAll('.ww').forEach(function(w,i){w.style.transitionDelay=(i*0.09)+'s'}); io2.observe(wh); }
+    if(wh){ splitLetters(wh); io2.observe(wh); }
   }else{
     items.forEach(function(el){el.classList.add('in')});
-    var wh2=document.getElementById('workHead'); if(wh2)wh2.classList.add('in');
+    var wh2=document.getElementById('workHead'); if(wh2){splitLetters(wh2);wh2.classList.add('in')}
   }
 
-  /* caption reveals one word per scroll step through the op-art section */
+  /* split the headline into letters so each one tumbles in on its own */
+  function splitLetters(head){
+    var n=0;
+    head.querySelectorAll('.ww').forEach(function(w){
+      var txt=w.textContent, out='';
+      for(var i=0;i<txt.length;i++){out+='<span class="ch" style="transition-delay:'+(n*0.035)+'s">'+txt[i]+'</span>';n++}
+      w.innerHTML=out;
+    });
+  }
+
+  /* op-art section, scrubbed by scroll:
+     0.04-0.62  the four words land one at a time on her chest
+     0.62-1.00  she grows a touch and the blue ink blooms up from the floor and swallows the scene */
   var wrap=document.getElementById('opticWrap');
   var words=document.querySelectorAll('.optic-cap .w');
+  var fig=document.getElementById('figure'), wipe=document.getElementById('wipe');
   function capTick(){
     var r=wrap.getBoundingClientRect(),total=wrap.offsetHeight-window.innerHeight;
     var p=total>0?Math.min(Math.max(-r.top/total,0),1):0;
-    var shown=Math.floor(p/0.22);
+    var shown=Math.floor((p-0.04)/0.145);
     words.forEach(function(w,i){w.classList.toggle('on',i<=shown && p>0.04)});
+    var q=Math.min(Math.max((p-0.62)/0.38,0),1), e=q*q;
+    fig.style.transform='scale('+(1+q*0.08)+')';
+    wipe.style.clipPath='circle('+(e*160)+'% at 50% 100%)';
   }
   if(!reduced){
     var raf=false;
     window.addEventListener('scroll',function(){if(!raf){raf=true;requestAnimationFrame(function(){capTick();raf=false})}},{passive:true});
+    window.addEventListener('resize',capTick);
     capTick();
   }else{words.forEach(function(w){w.classList.add('on')})}
 })();
