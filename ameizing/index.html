@@ -42,19 +42,16 @@ body.dark .nav-cta{border-color:#fff}
 
 /* ---------- the one scene: caption, rings, woman, black ---------- */
 .scene-wrap{position:relative;height:720vh}
-.scene{position:sticky;top:0;height:100vh;overflow:hidden;background:#fff;display:flex;align-items:flex-end;justify-content:center}
-.scene{transition:background .6s}
-.scene.black{background:#000}
-/* the rings film: scrubbed by scroll, held on its 3s frame and kept spinning while the words and the woman play out */
-.vidwrap{position:absolute;inset:0;z-index:0;animation:spin 24s linear infinite;will-change:transform}
-@keyframes spin{to{transform:rotate(360deg)}}
-.vid{position:absolute;top:50%;left:50%;width:100%;height:100%;object-fit:cover;transform:translate(-50%,-50%) scale(var(--vs,1.35));
-  --m1:52%;--m2:68%;
-  -webkit-mask-image:radial-gradient(circle,#000 var(--m1),transparent var(--m2));mask-image:radial-gradient(circle,#000 var(--m1),transparent var(--m2));
-  will-change:transform}
+.scene{position:sticky;top:0;height:100vh;overflow:hidden;background:#000;display:flex;align-items:flex-end;justify-content:center}
+/* two films: the bloom film plays itself to second 4 on load, the spin loop takes over and turns forever;
+   after "ameized" the bloom film comes back at second 4 and scrolls on to the black */
+.vidwrap{position:absolute;inset:0;z-index:0}
+.vid{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.v2{opacity:0;transition:opacity .5s}
+.vidwrap.loop .v2{opacity:1}
 
 /* opening caption: one word at a time as you scroll, each centered on the heart of the rings, then the last fades into the rings */
-.fab{position:absolute;inset:0;z-index:1;display:grid;place-items:center;text-align:center;font-family:var(--poster);color:#000;
+.fab{position:absolute;inset:0;z-index:1;display:grid;place-items:center;text-align:center;font-family:var(--poster);color:#fff;
   line-height:1;letter-spacing:.01em;will-change:opacity,transform;pointer-events:none}
 .fab .fw{grid-area:1/1;white-space:nowrap;opacity:0;transform:translateX(-.35em) skewX(-8deg);
   transition:opacity .3s,transform .5s cubic-bezier(.2,1.2,.3,1)}
@@ -72,7 +69,7 @@ body.dark .nav-cta{border-color:#fff}
 .figure .w.gone{opacity:0;transform:scale(1.25);transition:opacity .25s,transform .25s}
 
 .bigwrap{position:absolute;z-index:3;left:50%;top:60%;width:100vw;height:0;transform:translateX(-50%);display:grid;place-items:center;pointer-events:none}
-.bigwrap .w{color:#000;font-weight:900;-webkit-text-stroke:.022em #000;paint-order:stroke fill}
+.bigwrap .w{color:#fff;font-weight:900;-webkit-text-stroke:.03em #000;paint-order:stroke fill}
 
 
 /* ---------- portfolio, on black ---------- */
@@ -126,7 +123,7 @@ footer .base{margin-top:9vh;font-size:12px;letter-spacing:.1em;text-transform:up
   .fab .fw,.figure .w,.rv,.work-head h2 .ch,.work-head .eyebrow,.work-head p{opacity:1;transform:none}
   .fab{position:relative;height:100vh}
   .figure{transform:none}
-  .vidwrap{animation:none}
+  .vidwrap .v2{display:none}
 }
 </style>
 </head>
@@ -142,7 +139,10 @@ footer .base{margin-top:9vh;font-size:12px;letter-spacing:.1em;text-transform:up
   <!-- THE SCENE: caption slides in, fades into the rings, the woman rises, one word at a time, black takes over -->
   <section class="scene-wrap" id="sceneWrap">
     <div class="scene">
-      <div class="vidwrap" aria-hidden="true"><video class="vid" id="vid" src="assets/rings.mp4" muted playsinline preload="auto"></video></div>
+      <div class="vidwrap" id="vidwrap" aria-hidden="true">
+        <video class="vid v1" id="vid" src="assets/rings.mp4" muted playsinline preload="auto"></video>
+        <video class="vid v2" id="vid2" src="assets/rings-loop.mp4" muted playsinline loop preload="auto"></video>
+      </div>
       <h1 class="fab" id="fab"><span class="fw">it</span> <span class="fw">looks</span> <span class="fw">so</span> <span class="fw">fabulous,</span></h1>
       <div class="figure" id="figure">
         <img class="woman" src="assets/woman-cut.png" alt="A woman in round op-art glasses, amazed">
@@ -210,12 +210,29 @@ footer .base{margin-top:9vh;font-size:12px;letter-spacing:.1em;text-transform:up
 (function(){
   var reduced=window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
-  /* the rings film: scrubbed frame by frame, never played */
-  var vid=document.getElementById('vid'), vidT=-1;
-  vid.load();
+  /* the films. MATCH is the second of the bloom film that the spin loop's first frame was matched to */
+  var vid=document.getElementById('vid'), vid2=document.getElementById('vid2'), vidwrap=document.getElementById('vidwrap'),
+      MATCH=4.0, END=5.0, looping=false, ending=false, vidT=-1;
+  vid.muted=true; vid2.muted=true;
   function seek(t){
     if(vid.readyState<1||Math.abs(t-vidT)<1/60)return;
     vidT=t; vid.currentTime=t;
+  }
+  function startLoop(){
+    if(looping)return; looping=true;
+    vid.pause(); vid.currentTime=MATCH; vidT=MATCH;
+    vid2.currentTime=0; vid2.play().catch(function(){});
+    vidwrap.classList.add('loop'); document.body.classList.add('dark');
+  }
+  function watchIntro(){
+    if(looping||ending)return;
+    if(vid.currentTime>=MATCH-0.03){startLoop();return}
+    requestAnimationFrame(watchIntro);
+  }
+  if(!reduced){
+    vid.play().then(watchIntro).catch(function(){ startLoop(); });   /* autoplay refused: go straight to the loop */
+  }else{
+    vid.addEventListener('loadedmetadata',function(){vid.currentTime=MATCH});
   }
 
   /* opening caption words: each sized to fill most of the screen, capped so tall screens stay sane */
@@ -269,27 +286,28 @@ footer .base{margin-top:9vh;font-size:12px;letter-spacing:.1em;text-transform:up
     });
   }
 
-  /* the scene, scrubbed by scroll (p = 0..1 across the tall wrapper):
-     0.00-0.08  the film plays from its first dot to second 3, the rings bloom in
-     0.08-0.30  "it looks so fabulous," one word at a time, centered on the spinning rings (film held at 3s)
+  /* the scene, scrubbed by scroll (p = 0..1 across the tall wrapper), over the spinning loop:
+     0.00-0.28  "it looks so fabulous," one word at a time, centered on the rings
      0.30-0.36  the last word fades out
      0.36-0.48  she rises from the floor
      0.48-0.84  four words take turns on her chest, the last one screen-wide
-     0.84-0.96  the film runs on to its end: the rings fill the screen and go black, she fades with them */
+     0.84-0.96  the bloom film returns at second 4 and runs to its black end, she fades with it */
   var wrap=document.getElementById('sceneWrap'), fab=document.getElementById('fab'), cur=-1, curF=-2;
   function ease(t){return t<0?0:t>1?1:t*t*(3-2*t)}
   function tick(){
     var r=wrap.getBoundingClientRect(),total=wrap.offsetHeight-window.innerHeight;
     var p=total>0?Math.min(Math.max(-r.top/total,0),1):0;
-    /* film position */
-    var t = p<0.08 ? p/0.08*3 : p<0.84 ? 3 : 3+Math.min((p-0.84)/0.12,1)*2;
-    seek(t);
-    var z=ease((p-0.84)/0.10);                       /* zoom in and drop the soft edge as the rings swallow the screen */
-    vid.style.setProperty('--vs',(1.35+z*0.9).toFixed(3));
-    vid.style.setProperty('--m1',(52+z*60)+'%'); vid.style.setProperty('--m2',(68+z*70)+'%');
-    sceneEl.classList.toggle('black',p>0.9);
+    /* films */
+    if(p>=0.84){
+      if(!ending){ending=true; vid.pause(); vidwrap.classList.remove('loop'); document.body.classList.add('dark');}
+      seek(MATCH+Math.min((p-0.84)/0.12,1)*(END-MATCH));
+    }else if(ending){
+      ending=false;
+      if(looping){vidwrap.classList.add('loop'); vid2.play().catch(function(){});}
+      else{vid.play().then(watchIntro).catch(function(){startLoop()});}
+    }
 
-    var fi=p<0.08?-1:Math.min(Math.floor((p-0.08)/0.055),3);
+    var fi=p<0.005?-1:Math.min(Math.floor(p/0.07),3);
     if(fi!==curF){
       fabWords.forEach(function(w,i){w.classList.toggle('on',i===fi);w.classList.toggle('gone',i<fi)});
       curF=fi;
@@ -305,15 +323,13 @@ footer .base{margin-top:9vh;font-size:12px;letter-spacing:.1em;text-transform:up
       words.forEach(function(w,i){w.classList.toggle('on',i===idx);w.classList.toggle('gone',i<idx)});
       cur=idx;
     }
-    document.body.classList.toggle('dark',p>0.9);
   }
   if(!reduced){
     var raf=false;
     window.addEventListener('scroll',function(){if(!raf){raf=true;requestAnimationFrame(function(){tick();raf=false})}},{passive:true});
     window.addEventListener('resize',tick);
-    vid.addEventListener('loadedmetadata',function(){vidT=-1;tick()});
     tick();
-  }else{words.forEach(function(w){w.classList.add('on')});fabWords.forEach(function(w){w.classList.add('on')});vid.addEventListener('loadedmetadata',function(){vid.currentTime=3})}
+  }else{words.forEach(function(w){w.classList.add('on')});fabWords.forEach(function(w){w.classList.add('on')})}
 })();
 </script>
 </body>
