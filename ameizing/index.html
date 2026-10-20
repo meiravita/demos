@@ -11,8 +11,8 @@
 <style>
 @font-face{font-family:'Alvaro';src:url("assets/alvaro.otf") format("opentype");font-weight:normal;font-style:normal;font-display:swap}
 :root{
-  --blue:#2433C4;
-  --blue-light:#8d97ff;
+  --gold:#D7AD6A;        /* LILIMEI gold, used on black */
+  --gold-deep:#B8893C;   /* same gold pulled darker so it still reads on white */
   --paper:#FBFBF8;
   --ink:#15131A;
   --sans:'Archivo',Helvetica,Arial,sans-serif;
@@ -21,7 +21,7 @@
 }
 *{margin:0;padding:0;box-sizing:border-box}
 body{background:var(--paper);color:var(--ink);font-family:var(--sans);font-size:16px;line-height:1.6;overflow-x:hidden}
-::selection{background:var(--blue);color:#fff}
+::selection{background:var(--gold-deep);color:#fff}
 img{max-width:100%;display:block}
 a{color:inherit}
 .wrap{max-width:1200px;margin:0 auto;padding:0 clamp(20px,5vw,56px)}
@@ -30,14 +30,14 @@ header{position:fixed;top:0;left:0;right:0;z-index:60;display:flex;justify-conte
   padding:16px clamp(20px,5vw,56px)}
 header::before{content:'';position:absolute;inset:0;bottom:-40px;z-index:-1;pointer-events:none;transition:opacity .5s;
   background:linear-gradient(to bottom,rgba(255,255,255,.96) 0%,rgba(255,255,255,.75) 55%,rgba(255,255,255,0) 100%)}
-.brand{font-family:var(--display);font-weight:800;font-size:22px;letter-spacing:-.02em;text-decoration:none;color:var(--blue);transition:color .5s}
+.brand{font-family:var(--display);font-weight:800;font-size:22px;letter-spacing:-.02em;text-decoration:none;color:var(--gold-deep);transition:color .5s}
 .brand i{font-style:normal;color:var(--ink);transition:color .5s}
 .nav-cta{text-decoration:none;font-weight:700;font-size:13px;letter-spacing:.02em;border:2px solid var(--ink);
   border-radius:999px;padding:9px 18px;background:#fff;color:var(--ink);transition:background .2s,color .2s,border-color .5s}
 .nav-cta:hover{background:var(--ink);color:#fff}
 /* once the black takes over, the header flips to its dark dress */
 body.dark header::before{background:linear-gradient(to bottom,rgba(0,0,0,.92) 0%,rgba(0,0,0,.6) 55%,rgba(0,0,0,0) 100%)}
-body.dark .brand{color:var(--blue-light)} body.dark .brand i{color:#fff}
+body.dark .brand{color:var(--gold)} body.dark .brand i{color:#fff}
 body.dark .nav-cta{border-color:#fff}
 
 /* ---------- the one scene: caption, rings, woman, black ---------- */
@@ -75,15 +75,15 @@ body.dark .nav-cta{border-color:#fff}
 /* ---------- portfolio, on black ---------- */
 .work{position:relative;padding:5vh 0 15vh;background:#000;color:#fff}
 .work-head{text-align:center;margin-bottom:28vh}
-.work-head .eyebrow{font-weight:700;font-size:13px;letter-spacing:.3em;text-transform:uppercase;color:var(--blue-light)}
+.work-head .eyebrow{font-weight:700;font-size:13px;letter-spacing:.3em;text-transform:uppercase;color:var(--gold)}
 .work-head h2{font-family:var(--display);font-weight:800;font-size:clamp(32px,6vw,76px);letter-spacing:-.03em;line-height:1;margin-top:14px;
   color:#fff;text-wrap:balance;display:inline-block}
 .work-head h2 .ww{display:inline-block;white-space:nowrap}
 .work-head h2 .ch{display:inline-block;opacity:0;transform:translateY(.6em) rotate(-9deg) scale(.7);transform-origin:50% 100%;
   transition:opacity .45s,transform .7s cubic-bezier(.2,1.4,.3,1)}
 .work-head.in h2 .ch{opacity:1;transform:none}
-.work-head h2 .ww.hi{color:var(--blue-light);position:relative}
-.work-head h2 .ww.hi::after{content:'';position:absolute;left:0;right:0;bottom:-.06em;height:.08em;background:var(--blue-light);
+.work-head h2 .ww.hi{color:var(--gold);position:relative}
+.work-head h2 .ww.hi::after{content:'';position:absolute;left:0;right:0;bottom:-.06em;height:.08em;background:var(--gold);
   transform:scaleX(0);transform-origin:left;transition:transform .7s cubic-bezier(.2,1,.3,1) 1s}
 .work-head.in h2 .ww.hi::after{transform:scaleX(1)}
 .work-head .eyebrow,.work-head p{opacity:0;transform:translateY(14px);transition:opacity .6s,transform .6s}
@@ -93,20 +93,20 @@ body.dark .nav-cta{border-color:#fff}
 .grid{display:grid;grid-template-columns:repeat(3,1fr);gap:clamp(16px,2.2vw,28px)}
 .card{background:#fff;color:var(--ink);text-decoration:none;display:flex;flex-direction:column;overflow:hidden;transition:transform .2s}
 .card:hover{transform:translateY(-4px)}
-.card .cover{aspect-ratio:16/11;overflow:hidden;background:var(--blue);position:relative}
+.card .cover{aspect-ratio:16/11;overflow:hidden;background:var(--gold-deep);position:relative}
 .card .cover img{width:100%;height:100%;object-fit:cover}
 .card .ph{width:100%;height:100%;display:flex;align-items:center;justify-content:center;color:#fff;font-family:var(--display);
   font-weight:700;font-size:clamp(20px,2.2vw,30px);letter-spacing:-.01em;text-align:center;padding:16px}
 .card .meta{padding:15px 18px;display:flex;justify-content:space-between;align-items:baseline;gap:10px;border-top:2px solid var(--ink)}
 .card .meta b{font-weight:900;font-size:17px}
 .card .meta span{font-size:12.5px;color:rgba(21,19,26,.62);font-weight:500}
-.card .meta .go{font-weight:700;color:var(--blue);font-size:14px;white-space:nowrap}
-.soon{opacity:.82}.soon .cover{background:#b7bce6}.soon .ph{color:var(--blue)}
+.card .meta .go{font-weight:700;color:var(--gold-deep);font-size:14px;white-space:nowrap}
+.soon{opacity:.82}.soon .cover{background:#efe2c9}.soon .ph{color:var(--gold-deep)}
 
 /* ---------- footer (a shade lighter than the black above it) ---------- */
 footer{background:var(--ink);color:#fff;text-align:center;padding:13vh 20px 7vh}
 footer .big{font-family:var(--display);font-weight:800;font-size:clamp(34px,7vw,86px);color:#fff;line-height:1.02;letter-spacing:-.03em}
-footer .big i{font-style:normal;color:var(--blue-light)}
+footer .big i{font-style:normal;color:var(--gold)}
 footer .mail{display:inline-block;margin-top:5vh;text-decoration:none;border:2px solid #fff;border-radius:999px;
   padding:14px 30px;font-weight:700;font-size:14px;letter-spacing:.02em;transition:background .3s,color .3s}
 footer .mail:hover{background:#fff;color:var(--ink)}
