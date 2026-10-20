@@ -34,9 +34,8 @@ header{position:fixed;top:0;left:0;right:0;z-index:50;display:grid;grid-template
   background:linear-gradient(to bottom,rgba(239,235,227,.96) 0%,rgba(239,235,227,.68) 55%,rgba(239,235,227,0) 100%)}
 .clock{justify-self:start;display:flex;align-items:center;gap:6px;font-size:13px;font-weight:500;font-variant-numeric:tabular-nums}
 .clock span{border:1px solid currentColor;border-radius:999px;padding:3px 10px}
-.logo{justify-self:center;background:var(--cream);border:1px solid var(--black);border-radius:10px;padding:8px 18px;
-  font-weight:700;font-size:19px;text-decoration:none;display:flex;align-items:center;gap:10px;box-shadow:0 2px 0 var(--black)}
-.logo em{font-style:normal;color:var(--sienna)}
+.logo{justify-self:center;background:var(--cream);border:1px solid var(--black);border-radius:10px;padding:8px 20px;
+  font-weight:700;font-size:19px;text-decoration:none;display:flex;align-items:center}
 .talk{justify-self:end;text-decoration:none;font-weight:700;font-size:14px;display:flex;align-items:center;gap:8px}
 .talk .arr{display:inline-flex;width:28px;height:28px;border-radius:50%;background:var(--black);color:var(--cream);align-items:center;justify-content:center;transition:transform .3s}
 .talk:hover .arr{transform:translateX(4px)}
@@ -142,7 +141,7 @@ footer{background:var(--black);color:var(--cream);padding:14vh 0 0;margin-top:14
 
 <header>
   <div class="clock" aria-label="Local time, Tel Aviv"><span id="clock">00:00</span> <span>TLV</span></div>
-  <a class="logo" href="#top">Studio Gefen<em>&#10022;</em></a>
+  <a class="logo" href="#top">Studio Gefen</a>
   <div style="justify-self:end;display:flex;align-items:center;gap:18px"><a href="he.html" style="text-decoration:none;font-weight:700;font-size:13px">עברית</a><a class="talk" href="#contact">Let's talk <span class="arr">&rarr;</span></a></div>
 </header>
 
