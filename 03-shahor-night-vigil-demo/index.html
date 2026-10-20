@@ -117,23 +117,28 @@ nav .sep{color:var(--crimson);font-family:var(--disp)}
 .pour-stage{position:relative;height:clamp(420px,72vh,660px);border:3px solid var(--ink);box-shadow:8px 8px 0 var(--ink);
   background:var(--crimson);overflow:hidden;cursor:pointer;user-select:none;-webkit-user-select:none;touch-action:none}
 .pour-stage img{mix-blend-mode:multiply;pointer-events:none}
-.ps-bottle{position:absolute;top:1%;right:5%;width:clamp(200px,38%,360px);transform-origin:70% 45%;transform:rotate(-16deg);
+.ps-bottle{position:absolute;top:-14%;right:10%;width:clamp(170px,30%,330px);transform-origin:70% 45%;transform:rotate(-14deg);
   transition:transform .6s cubic-bezier(.22,1,.36,1);will-change:transform}
-.pour-stage.pouring .ps-bottle{transform:rotate(6deg)}
-.ps-stream{position:absolute;pointer-events:none;width:clamp(9px,1.2%,14px);top:40%;left:58%;height:30%;opacity:0;
+.pour-stage.pouring .ps-bottle{transform:rotate(5deg)}
+.ps-stream{position:absolute;pointer-events:none;width:clamp(9px,1.1%,13px);top:45%;left:62%;height:22%;opacity:0;
   transform:scaleY(0);transform-origin:top;transition:opacity .2s,transform .35s ease}
 .pour-stage.pouring .ps-stream{opacity:1;transform:scaleY(1)}
-.ps-glass{position:absolute;bottom:3%;left:48%;width:clamp(130px,19%,220px)}
+.ps-glass{position:absolute;bottom:3%;left:55%;width:clamp(110px,15.5%,180px)}
 .ps-glass img{width:100%}
-.ps-liquid{position:absolute;left:13%;right:13%;top:5%;height:32%;display:flex;align-items:flex-end;overflow:hidden}
-.ps-liquid::after{content:'';display:block;width:100%;height:calc(var(--fill,0)*100%);background:#241309;opacity:.92;
-  border-radius:0 0 45% 45%/0 0 75% 75%}
-.ps-chip{position:absolute;left:53%;bottom:30%;width:92px;height:92px;border-radius:50%;background:var(--paper);
+.ps-liquid{position:absolute;left:9%;right:9%;top:11%;height:26%;display:flex;align-items:flex-end;overflow:hidden;
+  clip-path:polygon(1% 0%,99% 0%,96% 20%,86% 50%,72% 78%,58% 94%,50% 100%,42% 94%,28% 78%,14% 50%,4% 20%)}
+.ps-liquid::after{content:'';display:block;width:100%;height:calc(var(--fill,0)*100%);background:#2B1208;
+  mix-blend-mode:multiply;opacity:.95}
+.ps-chip{position:absolute;left:58.5%;bottom:30%;width:92px;height:92px;border-radius:50%;background:var(--paper);
   border:2px solid var(--ink);box-shadow:3px 3px 0 var(--ink);color:var(--ink);display:flex;align-items:center;
   justify-content:center;text-align:center;line-height:1.4;animation:chipPulse 1.8s ease infinite;transition:opacity .4s}
 .pour-stage.pouring .ps-chip{opacity:0}
 @keyframes chipPulse{0%,100%{transform:scale(1)}50%{transform:scale(1.07)}}
 .caption em{font-style:normal;color:var(--crimson);font-weight:700}
+.caption .tw{opacity:0;transition:opacity .05s linear}
+.caption.show .tw{opacity:1}
+.scene[data-scene="temple"] .panel img{filter:grayscale(1) brightness(.85)}
+.silence{height:70vh;display:flex;align-items:center;justify-content:center;background:var(--paper-dim)}
 #prog{position:fixed;top:0;right:0;width:3px;height:100vh;background:var(--ink);transform:scaleY(0);transform-origin:top;z-index:80;pointer-events:none}
 .ps-msg{position:absolute;top:8%;left:5%;font-family:var(--disp);font-size:clamp(26px,4vw,48px);text-transform:uppercase;
   color:var(--paper);background:var(--crimson);border:3px solid var(--ink);box-shadow:5px 5px 0 var(--ink);padding:.15em .4em;
@@ -295,6 +300,11 @@ footer .label{color:var(--crimson)}
     </div>
   </section>
 
+  <!-- SILENCE BEAT -->
+  <section class="silence" aria-hidden="true">
+    <svg viewBox="0 0 60 60" width="44"><path d="M30 6 C38 14,52 16,50 30 C48 44,38 54,29 52 C16 50,8 40,11 28 C14 15,22 12,30 6 Z" fill="#15110F"/><circle cx="48" cy="12" r="3" fill="#15110F"/><circle cx="12" cy="46" r="2" fill="#15110F"/></svg>
+  </section>
+
   <!-- SCENE 4: COLLAPSE -->
   <section class="scene" data-scene="collapse">
     <div class="scene-sticky">
@@ -398,6 +408,24 @@ footer .label{color:var(--crimson)}
     items.forEach(function(el){io.observe(el)});
   }else{items.forEach(function(el){el.classList.add('in')})}
 
+  /* ---------- typewriter captions (word by word) ---------- */
+  if(!reduced){
+    document.querySelectorAll('.caption p').forEach(function(p){
+      Array.prototype.slice.call(p.childNodes).forEach(function(node){
+        if(node.nodeType===3){
+          var frag=document.createDocumentFragment();
+          node.textContent.split(/(\s+)/).forEach(function(tok){
+            if(tok===''){return}
+            if(/^\s+$/.test(tok)){frag.appendChild(document.createTextNode(tok));return}
+            var s=document.createElement('span');s.className='tw';s.textContent=tok;frag.appendChild(s);
+          });
+          p.replaceChild(frag,node);
+        } else if(node.nodeType===1){ node.classList.add('tw'); }
+      });
+      p.querySelectorAll('.tw').forEach(function(s,i){s.style.transitionDelay=(i*0.07)+'s'});
+    });
+  }
+
   /* ---------- scroll-scrubbed scenes ---------- */
   var scenes=Array.prototype.slice.call(document.querySelectorAll('.scene'));
   function sceneProgress(scene){
@@ -415,6 +443,10 @@ footer .label{color:var(--crimson)}
         if(kind==='collapse'){img.style.transform='scale('+(1.08+p*.22)+') rotate('+(-2+p*5)+'deg) translateY('+(p*-4)+'%)';}
         else if(kind==='vortex'){img.style.transform='scale('+(1+p*.3)+') rotate('+(p*170)+'deg)';}
         else{img.style.transform='scale('+(1.05+p*.17)+') translateY('+(p*-5)+'%)';}
+        if(kind==='temple'){
+          var c=Math.min(p*1.7,1);
+          img.style.filter='grayscale('+(1-c)+') brightness('+(0.85+0.15*c)+')';
+        }
       }
       scene.querySelectorAll('.caption,.scene-kicker').forEach(function(el){
         var at=parseFloat(el.getAttribute('data-at')||'0.2');
