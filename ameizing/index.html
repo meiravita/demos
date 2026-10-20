@@ -74,7 +74,7 @@ body.dark .nav-cta{border-color:#fff}
 
 
 /* ---------- portfolio, on black ---------- */
-.work{position:relative;padding:0 0 105vh;background:#000;color:#fff}
+.work{position:relative;padding:0 0 70vh;background:#000;color:#fff}
 .work-hold{height:320vh}
 .work-head{position:sticky;top:0;height:100vh;display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center}
 .work-head .eyebrow{font-weight:700;font-size:13px;letter-spacing:.3em;text-transform:uppercase;color:var(--gold)}
@@ -85,13 +85,14 @@ body.dark .nav-cta{border-color:#fff}
   transition:opacity .45s,transform .7s cubic-bezier(.2,1.4,.3,1)}
 .work-head.in h2 .ch{opacity:1;transform:none}
 .work-head h2 .ww.hi{color:var(--gold);position:relative}
-.work-head h2 .ww.hi::after{content:'';position:absolute;left:0;right:0;bottom:-.06em;height:.08em;background:var(--gold);
-  transform:scaleX(0);transform-origin:left;transition:transform .7s cubic-bezier(.2,1,.3,1) 1s}
-.work-head.in h2 .ww.hi::after{transform:scaleX(1)}
 .work-head .eyebrow,.work-head p{opacity:0;transform:translateY(14px);transition:opacity .6s,transform .6s}
 .work-head.in .eyebrow{opacity:1;transform:none}
 .work-head.in p{opacity:1;transform:none;transition-delay:.9s}
 .work-head p{margin:18px auto 0;max-width:46ch;font-weight:500;color:rgba(255,255,255,.8)}
+.work-head .scrollcue{position:absolute;bottom:4.5vh;left:50%;width:42px;height:42px;color:var(--gold);
+  transform:translateX(-50%);opacity:0;transition:opacity .6s .9s;animation:bob 1.6s ease-in-out infinite}
+.work-head.in .scrollcue{opacity:1}
+@keyframes bob{0%,100%{transform:translateX(-50%) translateY(0)}50%{transform:translateX(-50%) translateY(10px)}}
 .grid{display:flex;flex-direction:column;gap:clamp(30px,6vh,70px);max-width:920px;margin:0 auto}
 .card{background:#fff;color:var(--ink);text-decoration:none;display:flex;flex-direction:column;overflow:hidden;transition:transform .2s}
 .card:hover{transform:translateY(-4px)}
@@ -106,7 +107,8 @@ body.dark .nav-cta{border-color:#fff}
 .soon{opacity:.82}.soon .cover{background:#efe2c9}.soon .ph{color:var(--gold-deep)}
 
 /* ---------- footer (a shade lighter than the black above it) ---------- */
-footer{background:var(--ink);color:#fff;text-align:center;padding:13vh 20px 7vh}
+footer{background:#000;color:#fff;text-align:center;min-height:100vh;
+  display:flex;flex-direction:column;justify-content:center;align-items:center;padding:10vh 20px}
 footer .big{font-family:var(--display);font-weight:800;font-size:clamp(34px,7vw,86px);color:#fff;line-height:1.02;letter-spacing:-.03em}
 footer .big i{font-style:normal;color:var(--gold)}
 footer .mail{display:inline-block;margin-top:5vh;text-decoration:none;border:2px solid #fff;border-radius:999px;
@@ -164,6 +166,7 @@ footer .base{margin-top:9vh;font-size:12px;letter-spacing:.1em;text-transform:up
         <p class="eyebrow">Selected work</p>
         <h2><span class="ww">Here</span> <span class="ww">are</span> <span class="ww">some</span> <span class="ww hi">ameizing</span> <span class="ww">sites</span></h2>
         <p>A few of the worlds we have built. Each one custom and impossible to scroll past.</p>
+        <svg class="scrollcue" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M5 8.5l7 7 7-7" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
       </div></div>
       <div class="grid">
         <a class="card rv" href="https://meiravita.github.io/demos/02-solera-residence-demo/" target="_blank" rel="noopener">
