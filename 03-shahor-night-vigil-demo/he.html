@@ -108,6 +108,18 @@ nav .sep{color:var(--crimson);font-family:var(--disp)}
   text-transform:uppercase;line-height:1.05;opacity:0;transition:opacity .5s}
 .scene-kicker.show h2{opacity:1}
 
+/* ---------- style journey ---------- */
+.journey{position:relative;height:460vh}
+.jsticky{position:sticky;top:0;height:100vh;overflow:hidden;display:flex;align-items:center;justify-content:center;
+  background:var(--jbg,#0d0b0a);transition:background .5s linear}
+.jlayer{position:absolute;inset:0;opacity:0;will-change:opacity,transform}
+.jlayer img{width:100%;height:100%;object-fit:cover}
+.jcap{position:absolute;z-index:4;left:clamp(18px,5vw,64px);bottom:clamp(40px,12vh,120px);max-width:min(90vw,560px)}
+.jcap .box{background:var(--paper);border:3px solid var(--ink);box-shadow:8px 8px 0 var(--ink);padding:16px 22px;display:inline-block}
+.jcap .k{display:inline-block;font-family:var(--disp);text-transform:uppercase;font-size:clamp(13px,1.6vw,18px);
+  letter-spacing:.08em;color:var(--crimson);margin-bottom:.35em}
+.jcap h2{font-family:var(--disp);text-transform:uppercase;font-size:clamp(28px,4.6vw,62px);line-height:1;color:var(--ink)}
+
 /* ---------- pour (static dawn pour) ---------- */
 .pour-scene{background:var(--crimson);padding:14vh 0;position:relative}
 .pour-wrap{width:min(92vw,1100px);margin:0 auto}
@@ -221,83 +233,19 @@ footer .label{color:var(--crimson)}
     <p class="scroll-cue">גללו כדי להתחיל &darr;</p>
   </section>
 
-  <!-- SCENE 1: TEMPLE -->
-  <section class="scene alt" data-scene="temple">
-    <div class="scene-sticky">
-      <div class="panel">
-        <img src="assets/temple.jpg" alt="קתדרלת עמודים חרוטה, מזבח קטן ועליו שלושה בקבוקים זוהרים">
-        <div class="caption cap-tl" data-at="0.12">
-          <div class="disp">פרק א' · רדת הלילה</div>
-          <p>כשהעיר שוקעת בחושך, <em>אור אחד</em> נשאר דולק.</p>
-        </div>
-        <div class="caption cap-br" data-at="0.5">
-          <p>בתוך מבשלה דוממת, <em>שלושה כלים</em> מתחילים את הלילה הארוך שלהם.</p>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- SCENE 2: EYES -->
-  <section class="scene" data-scene="eyes">
-    <div class="scene-sticky">
-      <div class="panel">
-        <img src="assets/eyes.jpg" alt="כרזה ענקית עם עיניים חרוטות, תלויה בין עמודים">
-        <div class="caption cap-bl" data-at="0.18">
-          <div class="disp">פרק ב' · המשמרת</div>
-          <p>השומר לא ישן. הוא <em>שומר על החושך</em> כדי שאתם לא תצטרכו.</p>
+  <!-- STYLE JOURNEY: four art styles cross-dissolving as you scroll -->
+  <section class="journey" id="journey">
+    <div class="jsticky" id="jsticky">
+      <div class="jlayer" data-i="0"><img src="assets/style-opart.jpg" alt="אמנות אופ בשחור-לבן, מעגלים היפנוטיים סביב דמות עטויה ברדס"></div>
+      <div class="jlayer" data-i="1"><img src="assets/style-pencil.jpg" alt="סקיצת עיפרון מינימליסטית של שומר בודד בין כלי חליטה גבוהים"></div>
+      <div class="jlayer" data-i="2"><img src="assets/style-collage.jpg" alt="דמות בכחול וזהב מוזגת קפה כהה על רקע שמש שחר כתומה"></div>
+      <div class="jlayer" data-i="3"><img src="assets/style-deco.jpg" alt="כוס קופה בסגנון ארט דקו של קולד ברו כהה על רקע צדפים ורוד"></div>
+      <div class="jcap">
+        <div class="box">
+          <span class="k" id="jk">א' · ליל נדודים</span>
+          <h2 id="jh">כשהעיר נרדמת,<br>אתם לא.</h2>
         </div>
       </div>
-      <div class="scene-kicker" data-at="0.55"><h2>שמונה עשרה שעות.<br>בלי חום. בלי למהר.</h2></div>
-    </div>
-  </section>
-
-  <!-- SCENE 3: KEEPER -->
-  <section class="scene alt" data-scene="keeper">
-    <div class="scene-sticky">
-      <div class="panel">
-        <img src="assets/keeper.jpg" alt="שומר גלימה ליד דלפק אבן ארוך עם שלושה בקבוקים זוהרים">
-        <div class="caption cap-tl" data-at="0.15">
-          <div class="disp">פרק ג' · המלאכה</div>
-          <p>פולים ממקור יחיד. מים קרים כאבן. ו<em>זמן</em>, שנמדד בסבלנות.</p>
-        </div>
-        <div class="caption cap-br" data-at="0.52">
-          <p>עם אור ראשון, הלילה הארוך <em>מוכן למזיגה</em>.</p>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- POUR: the dawn pour (static) -->
-  <section class="pour-scene">
-    <div class="pour-wrap">
-      <div class="pour-head rv">
-        <p class="label">פרק ד' · מזיגת השחר</p>
-        <h2>הלילה הופך לכוס</h2>
-      </div>
-      <div class="pour-stage rv">
-        <img class="pour-still" src="assets/pour.jpg" alt="יד חרוטה מוזגת קולד ברו שחור מבקבוק לכוס קופה">
-        <div class="pour-tag" aria-hidden="true">נחלט כל הלילה. שלכם עם הבוקר.</div>
-      </div>
-    </div>
-  </section>
-
-  <!-- SCENE 4: COLLAPSE -->
-  <section class="scene" data-scene="collapse">
-    <div class="scene-sticky">
-      <div class="panel">
-        <img src="assets/collapse.jpg" alt="עמודי שיש מתנפצים, פולי קפה עפים כרסיסים">
-      </div>
-      <div class="scene-kicker" data-at="0.4"><h2>לגימה אחת,<br>והשינה משחררת</h2></div>
-    </div>
-  </section>
-
-  <!-- SCENE 5: VORTEX -->
-  <section class="scene" data-scene="vortex">
-    <div class="scene-sticky vortex-sticky">
-      <div class="panel">
-        <img src="assets/vortex.jpg" alt="כוס קפה שחור מסתחררת למערבולת היפנוטית, במבט מלמעלה">
-      </div>
-      <div class="scene-kicker" data-at="0.5"><h2>ליפול אל<br>תוך החושך</h2></div>
     </div>
   </section>
 
@@ -421,54 +369,45 @@ footer .label{color:var(--crimson)}
     });
   }
 
-  /* ---------- scroll-scrubbed scenes ---------- */
-  var scenes=Array.prototype.slice.call(document.querySelectorAll('.scene'));
-  function sceneProgress(scene){
-    var r=scene.getBoundingClientRect(),total=scene.offsetHeight-window.innerHeight;
-    if(total<=0)return 0;
-    return Math.min(Math.max(-r.top/total,0),1);
-  }
+  /* ---------- style journey: cross-dissolve + captions + background ---------- */
+  var journey=document.getElementById('journey'),jsticky=document.getElementById('jsticky'),
+      jlayers=Array.prototype.slice.call(document.querySelectorAll('.jlayer')),
+      jk=document.getElementById('jk'),jh=document.getElementById('jh');
+  var ACTS=[
+    {k:'א' · ליל נדודים', h:'כשהעיר נרדמת,<br>אתם לא.', bg:'#0d0b0a'},
+    {k:'ב' · המשמרת', h:'שומר ממתין בשקט.<br>שמונה עשרה שעות. בלי למהר.', bg:'#E7DFCF'},
+    {k:'ג' · מזיגת השחר', h:'הלילה הארוך<br>הופך לכוס.', bg:'#5a2d16'},
+    {k:'ד' · להתפנק', h:'קר. שחור.<br>שלכם.', bg:'#C58591'}
+  ];
+  var curAct=-1;
   var prog=document.getElementById('prog');
   function tick(){
     var doc=document.documentElement;
     var gp=window.scrollY/(doc.scrollHeight-window.innerHeight);
     prog.style.transform='scaleY('+gp+')';
-    /* crossfade thriller -> lounge as the page descends */
     if(ctx){
       thrill.gain.setTargetAtTime(Math.max(0,1-gp*1.15),ctx.currentTime,0.4);
       lounge.gain.setTargetAtTime(Math.min(1,gp*1.1),ctx.currentTime,0.4);
     }
-    scenes.forEach(function(scene){
-      var p=sceneProgress(scene),img=scene.querySelector('.panel img'),kind=scene.getAttribute('data-scene');
-      if(img){
-        if(kind==='temple'){           /* slow push-in, rising, mono -> colour */
-          img.style.transform='scale('+(1.04+p*.18)+') translateY('+(p*-7)+'%)';
-          var c=Math.min(p*1.7,1);
-          img.style.filter='grayscale('+(1-c)+') brightness('+(0.82+0.18*c)+')';
-        } else if(kind==='eyes'){       /* zoom into the stare, eyes drift sideways */
-          img.style.transform='scale('+(1.14+p*.12)+') translateX('+((p-0.5)*7)+'%)';
-        } else if(kind==='keeper'){     /* pan up the robe to the figure, pull back */
-          img.style.transform='scale('+(1.2-p*.16)+') translateY('+((0.55-p)*11)+'%)';
-        } else if(kind==='collapse'){
-          img.style.transform='scale('+(1.08+p*.24)+') rotate('+(-3+p*6)+'deg) translateY('+(p*-5)+'%)';
-        } else if(kind==='vortex'){
-          img.style.transform='scale('+(1+p*.32)+') rotate('+(p*180)+'deg)';
-        } else {
-          img.style.transform='scale('+(1.05+p*.17)+') translateY('+(p*-5)+'%)';
-        }
-      }
-      scene.querySelectorAll('.caption,.scene-kicker').forEach(function(el){
-        var at=parseFloat(el.getAttribute('data-at')||'0.2');
-        el.classList.toggle('show',p>=at);
-      });
+    var r=journey.getBoundingClientRect(),total=journey.offsetHeight-window.innerHeight;
+    var jp=total>0?Math.min(Math.max(-r.top/total,0),1):0;
+    var f=jp*(ACTS.length-1);                 /* 0 .. 3 position along the styles */
+    jlayers.forEach(function(l,i){
+      var o=Math.max(0,1-Math.abs(i-f));
+      l.style.opacity=o;
+      l.style.transform='scale('+(1.03+(1-Math.abs(i-f))*0.05)+')';
     });
+    var idx=Math.round(f);
+    if(idx!==curAct){curAct=idx;var a=ACTS[idx];jk.innerHTML=a.k;jh.innerHTML=a.h;jsticky.style.setProperty('--jbg',a.bg);}
   }
   if(!reduced){
     var raf=false;
     window.addEventListener('scroll',function(){if(!raf){raf=true;requestAnimationFrame(function(){tick();raf=false})}},{passive:true});
+    window.addEventListener('resize',tick);
     tick();
   }else{
-    document.querySelectorAll('.caption,.scene-kicker').forEach(function(el){el.classList.add('show')});
+    /* reduced motion: show the first style frame at rest */
+    if(jlayers[0]) jlayers[0].style.opacity=1;
   }
 
   /* ---------- collection ---------- */
