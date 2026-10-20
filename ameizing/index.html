@@ -66,15 +66,16 @@ body.dark .nav-cta{border-color:#fff}
 .figure .w.on{opacity:1;transform:none}
 .figure .w.gone{opacity:0;transform:scale(1.25);transition:opacity .25s,transform .25s}
 
-.bigwrap{position:absolute;z-index:3;left:50%;top:71%;width:100vw;height:0;transform:translateX(-50%);display:grid;place-items:center;pointer-events:none}
+.bigwrap{position:absolute;z-index:3;left:50%;top:60%;width:100vw;height:0;transform:translateX(-50%);display:grid;place-items:center;pointer-events:none}
 .bigwrap .w{color:#000;font-weight:900;-webkit-text-stroke:.022em #000;paint-order:stroke fill}
 
 /* black takes the stage from the center */
 .bloom{position:absolute;inset:0;z-index:4;background:#000;clip-path:circle(0% at 50% 50%);will-change:clip-path;pointer-events:none}
 
 /* ---------- portfolio, on black ---------- */
-.work{position:relative;padding:5vh 0 15vh;background:#000;color:#fff}
-.work-head{text-align:center;margin-bottom:28vh}
+.work{position:relative;padding:0 0 15vh;background:#000;color:#fff}
+.work-hold{height:190vh}
+.work-head{position:sticky;top:0;height:100vh;display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center}
 .work-head .eyebrow{font-weight:700;font-size:13px;letter-spacing:.3em;text-transform:uppercase;color:var(--gold)}
 .work-head h2{font-family:var(--display);font-weight:800;font-size:clamp(32px,6vw,76px);letter-spacing:-.03em;line-height:1;margin-top:14px;
   color:#fff;text-wrap:balance;display:inline-block}
@@ -157,11 +158,11 @@ footer .base{margin-top:9vh;font-size:12px;letter-spacing:.1em;text-transform:up
   <!-- PORTFOLIO -->
   <section class="work" id="work">
     <div class="wrap">
-      <div class="work-head" id="workHead">
+      <div class="work-hold"><div class="work-head" id="workHead">
         <p class="eyebrow">Selected work</p>
         <h2><span class="ww">Here</span> <span class="ww">are</span> <span class="ww">some</span> <span class="ww hi">ameizing</span> <span class="ww">sites</span></h2>
         <p>A few of the worlds we have built. Each one custom and impossible to scroll past.</p>
-      </div>
+      </div></div>
       <div class="grid">
         <a class="card rv" href="https://meiravita.github.io/demos/02-solera-residence-demo/" target="_blank" rel="noopener">
           <div class="cover"><img src="assets/shot-solera.jpg" alt="Solera Residence homepage"></div>
