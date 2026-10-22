@@ -7,324 +7,245 @@
 <meta name="description" content="רזידנס בוטיק ים תיכוני עכשווי על חוף הכרמל. דמו של מפעל האתרים.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Frank+Ruhl+Libre:wght@300;400&family=Heebo:wght@400;500;600&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Frank+Ruhl+Libre:wght@300;400;500&family=Heebo:wght@400;500;600&display=swap">
 <style>
 :root{
   --cream:#F3F1EA;
+  --cream-alt:#EAE5D7;
+  --card:#ECE9DF;
   --plum:#2B0F26;
   --plum-deep:#1F0A1C;
   --blue:#B5CEDB;
   --pink:#F8BBCB;
   --ink:#231426;
-  --taupe:#8A8070;
-
-  --bg:var(--cream);
-  --fg:var(--ink);
-  --fg-soft:rgba(35,20,38,.62);
-  --line:rgba(35,20,38,.18);
-  --card:#ECE9DF;
-  --bg-alt:#EAE5D7;
-  --accent:var(--blue);
-  --accent-2:var(--pink);
-
+  --ink-soft:rgba(35,20,38,.62);
+  --line:rgba(35,20,38,.16);
   --disp:'Frank Ruhl Libre',Georgia,serif;
-  --script:'Frank Ruhl Libre','Snell Roundhand',cursive;
+  --script:'Frank Ruhl Libre',Georgia,serif;
   --sans:'Heebo',Helvetica,Arial,sans-serif;
-}
-.plum-sec{
-  --bg:var(--plum);
-  --fg:var(--cream);
-  --fg-soft:rgba(243,241,234,.62);
-  --line:rgba(243,241,234,.2);
-  --card:#3A1733;
-  --bg-alt:#35142F;
-  --accent:var(--pink);
-  --accent-2:var(--blue);
-  background:var(--bg);color:var(--fg);
 }
 *{margin:0;padding:0;box-sizing:border-box}
 html{scroll-behavior:smooth}
-body{
-  background:var(--bg);
-  color:var(--fg);
-  font-family:var(--sans);
-  font-size:15px;
-  line-height:1.6;
-  overflow-x:hidden;
-}
-::selection{background:var(--accent);color:var(--ink)}
+body{background:var(--cream);color:var(--ink);font-family:var(--sans);font-size:16px;line-height:1.7;overflow-x:hidden}
+::selection{background:var(--pink);color:var(--ink)}
+img{max-width:100%;display:block}
 a{color:inherit}
-img{max-width:100%}
-
-/* ---------- utilities ---------- */
-.label{
-  font-family:var(--sans);
-  font-size:14px;
-  font-weight:600;
-  letter-spacing:.2em;
-  text-transform:uppercase;
-  color:var(--fg-soft);
-}
-.disp{font-family:var(--disp);font-weight:400;text-transform:uppercase;line-height:.95}
-.script{font-family:var(--script);text-transform:none;font-weight:400}
 .wrap{padding-left:clamp(20px,5vw,72px);padding-right:clamp(20px,5vw,72px)}
-.rule{border:none;border-top:1px solid var(--line)}
-
-/* ---------- preloader ---------- */
-#loader{
-  position:fixed;inset:0;z-index:100;
-  background:var(--plum-deep);color:var(--cream);
-  display:flex;align-items:center;justify-content:center;
-  transition:transform 1s cubic-bezier(.76,0,.24,1);
-}
-#loader.done{transform:translateY(-101%)}
-.loader-inner{text-align:center}
-.loader-script{font-family:var(--script);font-size:clamp(64px,12vw,140px);color:var(--pink);opacity:0;animation:fadeUp 1.2s .2s ease forwards}
-.loader-count{font-family:var(--disp);font-size:13px;letter-spacing:.4em;margin-top:18px;color:rgba(243,241,234,.55)}
-@keyframes fadeUp{from{opacity:0;transform:translateY(24px)}to{opacity:1;transform:none}}
+.label{font-family:var(--sans);font-size:12px;font-weight:600;letter-spacing:.1em;color:var(--ink-soft)}
+.disp{font-family:var(--disp);font-weight:400;line-height:.98}
+.script{font-family:var(--script);font-weight:500;font-style:italic;color:#C47E93}
 
 /* ---------- nav ---------- */
-header{
-  position:fixed;top:0;left:0;right:0;z-index:50;
-  display:grid;grid-template-columns:1fr auto 1fr;align-items:center;
-  padding:16px clamp(20px,5vw,72px) 26px;
-  background:linear-gradient(to bottom,rgba(243,241,234,.97) 0%,rgba(243,241,234,.8) 60%,rgba(243,241,234,0) 100%);
-}
-.brand{grid-column:2;justify-self:center;font-family:var(--disp);font-size:34px;line-height:1;letter-spacing:.18em;text-transform:uppercase;text-decoration:none;transition:opacity .25s}
-.nav-right{grid-column:3;justify-self:end;display:flex;align-items:center;gap:22px}
-.nav-links{display:flex;gap:22px}
-.nav-links a{text-decoration:none;font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:var(--fg-soft)}
-.nav-links a:hover{color:var(--fg)}
-#modeToggle{
-  cursor:pointer;border:1px solid var(--line);background:transparent;color:var(--fg);
-  border-radius:999px;padding:7px 16px;display:flex;align-items:center;gap:10px;
-  font-family:var(--sans);font-size:10px;letter-spacing:.22em;text-transform:uppercase;
-  transition:background .4s,color .4s;
-}
-#modeToggle:hover{background:var(--fg);color:var(--bg)}
-#modeToggle:focus-visible,a:focus-visible,.btn:focus-visible{outline:2px solid var(--accent);outline-offset:3px}
-.mode-dot{width:9px;height:9px;border-radius:50%;background:var(--accent);transition:background .4s}
+header{position:fixed;top:0;left:0;right:0;z-index:50;display:flex;justify-content:space-between;align-items:center;
+  padding:16px clamp(20px,5vw,72px) 28px;color:var(--ink);transition:color .5s;
+  background:linear-gradient(to bottom,rgba(243,241,234,.96) 0%,rgba(243,241,234,.72) 58%,rgba(243,241,234,0) 100%)}
+header.on-dark{color:var(--cream);
+  background:linear-gradient(to bottom,rgba(31,10,28,.6) 0%,rgba(31,10,28,.3) 60%,rgba(31,10,28,0) 100%)}
+.brand{font-family:var(--disp);font-size:27px;letter-spacing:.06em;text-decoration:none;line-height:1}
+.nav-right{display:flex;align-items:center;gap:clamp(14px,2.4vw,26px)}
+.nav-right a{text-decoration:none;font-size:12px;font-weight:600;letter-spacing:.08em;color:inherit;opacity:.82}
+.nav-right a:hover{opacity:1}
+.nav-right .enq{border:1px solid currentColor;border-radius:999px;padding:9px 18px;opacity:1}
+a:focus-visible,button:focus-visible{outline:2px solid var(--pink);outline-offset:3px}
 
 /* ---------- hero ---------- */
-.hero{position:relative;min-height:96vh;overflow:hidden}
-.hero-stack{position:absolute;z-index:2;top:15vh;right:clamp(20px,6vw,96px);max-width:min(64vw,780px);
-  display:flex;flex-direction:column;align-items:flex-end;gap:2vh;text-align:right}
-.hero-art{position:absolute;inset:0;z-index:0;pointer-events:none}
-.hero-art img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
-.hero-art::after{content:'';position:absolute;inset:0;background:linear-gradient(to top,var(--bg) 2%,transparent 45%),linear-gradient(to bottom,rgba(31,10,28,.55),transparent 55%)}
-.hero-title{position:relative;z-index:60;font-size:clamp(64px,12vw,200px);line-height:1;letter-spacing:.06em;color:#F3F1EA;
-  text-shadow:0 2px 30px rgba(31,10,28,.55);transform-origin:center center;will-change:transform;pointer-events:none}
-.hero-tag{font-family:var(--disp);text-transform:uppercase;font-size:clamp(16px,2.2vw,26px);
-  letter-spacing:.5em;color:rgba(243,241,234,.92);margin-top:1vh;text-shadow:0 1px 14px rgba(31,10,28,.5)}
-.hero-sub{display:flex;justify-content:flex-end;align-items:flex-start;gap:clamp(20px,3vw,48px);margin-top:4vh;flex-wrap:wrap;text-align:right}
-.hero-sub .label{max-width:300px;line-height:1.9;color:rgba(243,241,234,.88)}
-
-/* ---------- lifestyle band ---------- */
-.life-band{padding:0;line-height:0}
-.life-band img{width:100%;height:clamp(360px,68vh,680px);object-fit:cover;display:block}
+.hero{position:relative;height:100vh;min-height:560px;overflow:hidden;display:flex;align-items:flex-end;color:var(--cream)}
+.hero img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.hero::after{content:'';position:absolute;inset:0;
+  background:linear-gradient(to top,rgba(31,10,28,.72),rgba(31,10,28,.12) 46%,transparent 68%)}
+.hero-text{position:relative;z-index:2;padding:0 clamp(20px,5vw,72px) 8vh;max-width:760px;text-align:right}
+.hero-eyebrow{font-size:12px;font-weight:600;letter-spacing:.2em;color:rgba(243,241,234,.85);margin-bottom:18px}
+.hero h1{font-family:var(--disp);font-size:clamp(58px,13vw,168px);line-height:.95;letter-spacing:0;
+  text-shadow:0 2px 34px rgba(31,10,28,.5)}
+.hero-sub{margin-top:22px;max-width:36ch;font-size:clamp(15px,1.7vw,18px);line-height:1.8;color:rgba(243,241,234,.92);
+  text-shadow:0 1px 14px rgba(31,10,28,.5)}
+.scroll-pill{position:absolute;left:clamp(20px,5vw,72px);bottom:7vh;z-index:2;color:var(--cream);font-size:12px;font-weight:600;
+  letter-spacing:.1em;display:flex;align-items:center;gap:8px;text-shadow:0 1px 10px rgba(31,10,28,.6)}
 
 /* ---------- marquee ---------- */
-.marquee{overflow:hidden;border-top:1px solid var(--line);border-bottom:1px solid var(--line);padding:14px 0;white-space:nowrap}
-.marquee-track{display:inline-block;animation:slide 28s linear infinite}
-.marquee span{font-family:var(--disp);font-size:15px;letter-spacing:.3em;text-transform:uppercase;color:var(--fg-soft);margin:0 34px}
+.marquee{overflow:hidden;border-bottom:1px solid var(--line);padding:16px 0;white-space:nowrap;background:var(--cream)}
+.marquee-track{display:inline-block;animation:slide 30s linear infinite}
+.marquee span{font-family:var(--disp);font-size:16px;letter-spacing:.14em;color:var(--ink-soft);margin:0 30px}
 @keyframes slide{from{transform:translateX(0)}to{transform:translateX(-50%)}}
 
-/* ---------- sections ---------- */
-section{padding:14vh 0}
-section.alt{background:var(--bg-alt);transition:background .8s ease}
-.sec-head{display:flex;justify-content:space-between;align-items:baseline;gap:20px;margin-bottom:7vh}
-.sec-num{font-family:var(--disp);font-size:15px;letter-spacing:.3em;color:var(--fg-soft)}
-/* architecture with background photo */
-.arch-sec{position:relative;overflow:hidden;color:#F3F1EA}
-.arch-sec .arch-img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
-.arch-sec .arch-scrim{position:absolute;inset:0;background:linear-gradient(to left,rgba(31,10,28,.66),rgba(31,10,28,.18) 55%,transparent),linear-gradient(to bottom,rgba(31,10,28,.4),transparent 42%)}
-.arch-sec{padding:7vh 0 13vh}
-.arch-sec .wrap{position:relative;z-index:2}
-.arch-sec .sec-head{margin-bottom:3vh}
-.arch-sec .statement{max-width:24ch;margin-left:auto;text-align:right}
-.arch-sec .statement+.label{text-align:right;margin-top:3vh}
-.arch-sec .label,.arch-sec .sec-num{color:rgba(243,241,234,.85)}
-.arch-sec .statement{color:#F3F1EA;text-shadow:0 2px 24px rgba(31,10,28,.5)}
-.arch-sec .statement .script{color:var(--pink)}
+/* ---------- generic section ---------- */
+section{padding:13vh 0}
+section.alt{background:var(--cream-alt)}
+.sec-head{display:flex;justify-content:space-between;align-items:baseline;gap:20px;margin-bottom:6vh}
+.sec-num{font-family:var(--disp);font-size:16px;letter-spacing:.1em;color:var(--ink-soft)}
 
-/* reasons */
+/* ---------- word-fill statement ---------- */
+.fill{font-family:var(--disp);font-size:clamp(28px,4.4vw,58px);line-height:1.18;letter-spacing:0;max-width:24ch;font-weight:400}
+.fill .w{color:rgba(35,20,38,.26);transition:color .25s linear}
+.fill .w.on{color:var(--ink)}
+.fill .script .w{color:rgba(196,126,147,.4)}
+.fill .script .w.on{color:#C47E93}
+.fill-side{margin-top:5vh;display:flex;gap:clamp(24px,5vw,80px);flex-wrap:wrap}
+.fill-side p{color:var(--ink-soft);max-width:42ch}
+
+/* ---------- reasons ---------- */
 .reasons{display:grid;grid-template-columns:repeat(3,1fr);gap:clamp(24px,4vw,64px)}
-.reason{border-top:1px solid var(--line);padding-top:26px}
-.reason h3{font-family:var(--disp);font-size:clamp(22px,2.2vw,30px);text-transform:uppercase;letter-spacing:.05em;line-height:1.15;margin:14px 0 16px}
-.reason p{color:var(--fg-soft);max-width:34ch}
+.reason{border-top:1px solid var(--line);padding-top:24px}
+.reason .sec-num{display:block;margin-bottom:12px}
+.reason h3{font-family:var(--disp);font-size:clamp(23px,2.2vw,31px);letter-spacing:0;line-height:1.2;margin-bottom:14px}
+.reason p{color:var(--ink-soft);max-width:34ch}
 
-/* concept */
-.statement{font-family:var(--disp);font-size:clamp(30px,4.6vw,66px);text-transform:uppercase;line-height:1.08;max-width:20ch}
-.statement .script{color:#C47E93;font-size:1.05em}
-.plum-sec .statement .script{color:var(--pink)}
-.concept-grid{display:grid;grid-template-columns:1.4fr 1fr;gap:clamp(32px,6vw,96px);align-items:end}
-.concept-side p{color:var(--fg-soft);max-width:44ch;margin-bottom:28px}
+/* ---------- full-width image band ---------- */
+.band-img{line-height:0}
+.band-img img{width:100%;height:clamp(320px,62vh,620px);object-fit:cover}
 
-/* location */
-.location{position:relative;overflow:hidden;color:#F3F1EA}
+/* ---------- editorial split (image + text) ---------- */
+.split{display:grid;grid-template-columns:1.15fr 1fr;gap:clamp(28px,5vw,88px);align-items:center}
+.split.flip{grid-template-columns:1fr 1.15fr}
+.split.flip .split-media{order:2}
+.split-media img{width:100%;aspect-ratio:4/3;object-fit:cover;border-radius:4px}
+.split-text h2{font-family:var(--disp);font-size:clamp(28px,3.4vw,50px);line-height:1.18;letter-spacing:0;margin:14px 0 20px;max-width:20ch;font-weight:400}
+.split-text p{color:var(--ink-soft);max-width:46ch;margin-bottom:16px}
+.split-text ul{list-style:none;margin-top:8px}
+.split-text li{padding:13px 0;border-bottom:1px solid var(--line);color:var(--ink-soft);font-size:14px;letter-spacing:.02em}
+.split-coords{display:flex;gap:28px;flex-wrap:wrap;margin-top:22px}
+
+/* ---------- location: full-bleed image with text ---------- */
+.location{position:relative;min-height:86vh;overflow:hidden;display:flex;align-items:flex-end;color:var(--cream)}
 .location .loc-img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
-.location .loc-scrim{position:absolute;inset:0;background:linear-gradient(to top,rgba(31,10,28,.6),rgba(31,10,28,.14) 55%,rgba(31,10,28,.42))}
-.location .wrap{position:relative;z-index:2}
-.location .sec-head .label,.location .sec-num{color:rgba(243,241,234,.85)}
-.location .loc-big{color:#F3F1EA;text-shadow:0 2px 26px rgba(31,10,28,.55);margin-left:auto;text-align:right;width:fit-content}
-.location .loc-note p{color:rgba(243,241,234,.92)}
-.location .loc-note .label{color:rgba(243,241,234,.8)}
-.loc-big{font-family:var(--disp);text-transform:uppercase;line-height:.92;font-size:clamp(70px,14vw,230px);letter-spacing:.01em}
-.loc-big .ital{color:var(--accent);-webkit-text-stroke:0}
-.loc-note{display:flex;justify-content:space-between;align-items:flex-start;gap:32px;margin-top:6vh;flex-wrap:wrap}
-.loc-note p{color:var(--fg-soft);max-width:52ch}
+.location::after{content:'';position:absolute;inset:0;
+  background:linear-gradient(to top,rgba(31,10,28,.82),rgba(31,10,28,.18) 50%,rgba(31,10,28,.1) 74%,transparent)}
+.loc-inner{position:relative;z-index:2;width:100%;padding:0 clamp(20px,5vw,72px) 9vh;text-align:right}
+.loc-eyebrow{font-size:12px;font-weight:600;letter-spacing:.2em;color:rgba(243,241,234,.85);margin-bottom:16px}
+.loc-big{font-family:var(--disp);line-height:.95;font-size:clamp(54px,12vw,170px);letter-spacing:0;
+  text-shadow:0 2px 30px rgba(31,10,28,.5)}
+.loc-big .ital{color:var(--blue)}
+.loc-note{display:flex;justify-content:space-between;align-items:flex-start;gap:clamp(18px,4vw,48px);margin-top:4vh;flex-wrap:wrap}
+.loc-note p{max-width:52ch;color:rgba(243,241,234,.92);text-shadow:0 1px 12px rgba(31,10,28,.55)}
+.loc-note .label{color:rgba(243,241,234,.82);white-space:nowrap}
 
-/* horizontal residences */
-.hwrap{position:relative}
-.hsticky{position:sticky;top:0;height:100vh;display:flex;flex-direction:column;justify-content:center;overflow:hidden}
-.htrack{display:flex;gap:clamp(18px,2.5vw,36px);will-change:transform;padding-left:clamp(20px,5vw,72px)}
-.hcard{
-  flex:0 0 auto;width:clamp(300px,34vw,460px);
-  --fg:var(--ink);--fg-soft:rgba(35,20,38,.62);--line:rgba(35,20,38,.18);
-  background:var(--cream);color:var(--fg);border:1px solid var(--line);
-  padding:30px;display:flex;flex-direction:column;gap:0;
-}
-.hcard-art{height:clamp(200px,24vh,280px);margin-bottom:26px;position:relative;overflow:hidden;background:linear-gradient(160deg,var(--blue) 0%,var(--pink) 100%)}
-.hcard-art.v2{background:linear-gradient(200deg,var(--pink) 0%,var(--blue) 90%)}
-.hcard-art.v3{background:linear-gradient(120deg,var(--blue) 10%,#DCE6D5 100%)}
-.hcard-art.v4{background:linear-gradient(240deg,var(--pink) 0%,#E8DFCE 100%)}
-.hcard-art img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
-.hcard h3{font-family:var(--disp);font-size:26px;text-transform:uppercase;letter-spacing:.06em;margin-bottom:18px}
-.hstats{display:grid;grid-template-columns:1fr 1fr;border-top:1px solid var(--line)}
-.hstat{padding:14px 0;border-bottom:1px solid var(--line)}
-.hstat b{font-family:var(--disp);font-size:24px;font-weight:400;display:block;font-variant-numeric:tabular-nums}
-.hcard p{color:var(--fg-soft);margin-top:16px;font-size:13.5px}
-.drag-hint{margin-top:4vh;padding-left:clamp(20px,5vw,72px)}
+/* ---------- residences (plum) ---------- */
+.res{background:var(--plum);color:var(--cream)}
+.res .label,.res .sec-num{color:rgba(243,241,234,.7)}
+.res-grid{display:grid;grid-template-columns:1fr 1fr;gap:clamp(20px,3vw,40px)}
+.rcard{background:var(--card);color:var(--ink);border-radius:5px;overflow:hidden;display:flex;flex-direction:column}
+.rcard .rart{aspect-ratio:16/11;overflow:hidden;background:linear-gradient(160deg,var(--blue),var(--pink))}
+.rcard .rart img{width:100%;height:100%;object-fit:cover;transition:transform .7s cubic-bezier(.22,1,.36,1)}
+.rcard:hover .rart img{transform:scale(1.04)}
+.rcard .rbody{padding:24px 26px 28px}
+.rcard h3{font-family:var(--disp);font-size:clamp(23px,2vw,29px);letter-spacing:0;margin-bottom:16px;font-weight:500}
+.rstats{display:grid;grid-template-columns:1fr 1fr;border-top:1px solid var(--line)}
+.rstat{padding:13px 0;border-bottom:1px solid var(--line)}
+.rstat span{font-size:11px;font-weight:600;letter-spacing:.06em;color:var(--ink-soft);display:block;margin-bottom:4px}
+.rstat b{font-family:var(--disp);font-size:21px;font-weight:400;font-variant-numeric:tabular-nums}
+.rcard .rbody>p{color:var(--ink-soft);margin-top:16px;font-size:14px}
 
-/* amenities */
+/* ---------- amenities ---------- */
 .amen-list{border-top:1px solid var(--line)}
-.amen{display:flex;align-items:baseline;gap:clamp(14px,2.2vw,30px);padding:24px 0;border-bottom:1px solid var(--line)}
-.amen h3{font-family:var(--disp);font-size:clamp(24px,3vw,40px);text-transform:uppercase;font-weight:400;letter-spacing:.04em}
-.amen span{color:var(--fg-soft);font-size:14px;letter-spacing:.16em;text-transform:uppercase}
+.amen{display:flex;justify-content:space-between;align-items:baseline;gap:20px;padding:22px 0;border-bottom:1px solid var(--line)}
+.amen h3{font-family:var(--disp);font-size:clamp(23px,3vw,38px);font-weight:400;letter-spacing:0}
+.amen span{color:var(--ink-soft);font-size:13px;letter-spacing:.04em;text-align:left}
 
-/* features */
-.feat-grid{display:grid;grid-template-columns:1fr 1fr;gap:clamp(32px,6vw,96px)}
-.feat-grid ul{list-style:none;margin-top:30px}
-.feat-grid li{padding:14px 0;border-bottom:1px solid var(--line);color:var(--fg-soft);font-size:13px;letter-spacing:.14em;text-transform:uppercase}
-.space-art{position:relative;min-height:320px}
-.space-art img{width:100%;height:100%;position:absolute;inset:0;object-fit:cover}
-
-/* trust */
+/* ---------- trust ---------- */
 .trust{display:grid;grid-template-columns:repeat(3,1fr);gap:clamp(24px,4vw,64px)}
 .trust div{border-top:1px solid var(--line);padding-top:22px}
-.trust b{font-family:var(--disp);font-size:20px;font-weight:400;text-transform:uppercase;letter-spacing:.06em;display:block;margin:10px 0 12px}
-.trust p{color:var(--fg-soft);font-size:13.5px}
+.trust b{font-family:var(--disp);font-size:21px;font-weight:500;letter-spacing:0;display:block;margin:10px 0 12px}
+.trust p{color:var(--ink-soft);font-size:14px}
 
-/* cta / footer */
-.cta{background:var(--plum-deep);color:var(--cream);padding:16vh 0 0;overflow:hidden}
+/* ---------- cta / footer ---------- */
+.cta{background:var(--plum-deep);color:var(--cream);padding:15vh 0 0;overflow:hidden}
 .cta .label{color:rgba(243,241,234,.5)}
-.cta-big{font-family:var(--disp);font-size:clamp(34px,5.5vw,82px);text-transform:uppercase;line-height:1;margin:4vh 0}
-.cta-big .script{color:var(--pink);font-size:1em}
-.btn{
-  display:inline-block;margin-top:20px;text-decoration:none;
-  border:1px solid rgba(243,241,234,.4);border-radius:999px;
-  padding:16px 34px;font-size:11px;letter-spacing:.24em;text-transform:uppercase;color:var(--cream);
-  transition:background .4s,color .4s;
-}
-.btn:hover{background:var(--pink);border-color:var(--pink);color:var(--plum-deep)}
+.cta-big{font-family:var(--disp);font-size:clamp(34px,5.5vw,78px);line-height:1.1;margin:3vh 0;letter-spacing:0}
+.cta-big .script{color:var(--pink)}
 .cta-form{margin:5vh 0 2vh;max-width:620px;display:grid;grid-template-columns:1fr 1fr;gap:18px}
 .cta-form .field{display:flex;flex-direction:column;gap:7px}
 .cta-form .field-wide{grid-column:1/-1}
-.cta-form label{font-size:13px;letter-spacing:.14em;text-transform:uppercase;color:rgba(243,241,234,.72)}
+.cta-form label{font-size:13px;letter-spacing:.02em;color:rgba(243,241,234,.72)}
 .cta-form input,.cta-form textarea{background:transparent;border:none;border-bottom:1px solid rgba(243,241,234,.35);
-  color:var(--cream);font-family:var(--sans);font-size:15px;padding:8px 0;resize:none}
+  color:var(--cream);font-family:var(--sans);font-size:15px;padding:9px 0;resize:none}
 .cta-form input:focus,.cta-form textarea:focus{outline:none;border-color:var(--pink)}
-.cta-form .btn{grid-column:1/-1;justify-self:start;margin-top:10px;cursor:pointer;
-  font-size:14px;letter-spacing:.16em;padding:18px 34px;
-  background:var(--pink);border-color:var(--pink);color:var(--plum-deep)}
-.cta-form .btn:hover{background:#F3A7BC;border-color:#F3A7BC;color:var(--plum-deep)}
-.cta-ok{grid-column:1/-1;color:var(--pink);font-size:14px}
-.cta-meta{display:flex;justify-content:space-between;gap:28px;flex-wrap:wrap;margin:10vh 0 6vh;color:rgba(243,241,234,.6);font-size:12px;letter-spacing:.14em;text-transform:uppercase}
-.foot-word{font-family:var(--disp);font-size:clamp(60px,12.5vw,200px);text-transform:uppercase;line-height:.8;text-align:center;color:rgba(243,241,234,.14);white-space:nowrap}
-.foot-base{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;padding:22px clamp(20px,5vw,72px);border-top:1px solid rgba(243,241,234,.14);font-size:10px;letter-spacing:.18em;text-transform:uppercase;color:rgba(243,241,234,.45)}
+.cta-form .btn{grid-column:1/-1;justify-self:start;margin-top:10px;cursor:pointer;border:none;
+  background:var(--pink);color:var(--plum-deep);border-radius:999px;padding:16px 34px;
+  font-family:var(--sans);font-size:14px;font-weight:600;letter-spacing:.02em;transition:background .35s}
+.cta-form .btn:hover{background:#F3A7BC}
+.cta-ok{grid-column:1/-1;color:var(--pink);font-size:15px}
+.cta-meta{display:flex;justify-content:space-between;gap:28px;flex-wrap:wrap;margin:9vh 0 6vh;color:rgba(243,241,234,.6);
+  font-size:13px;letter-spacing:.02em}
+.foot-word{font-family:var(--disp);font-size:clamp(60px,13vw,220px);line-height:.8;text-align:center;
+  color:rgba(243,241,234,.13);white-space:nowrap;letter-spacing:0}
+.foot-base{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;padding:22px clamp(20px,5vw,72px);
+  border-top:1px solid rgba(243,241,234,.14);font-size:11px;letter-spacing:.06em;color:rgba(243,241,234,.45)}
 .foot-base a{color:rgba(243,241,234,.65);text-decoration:none}
 
-/* reveals */
-.rv{opacity:0;transform:translateY(34px);transition:opacity .9s ease,transform .9s cubic-bezier(.22,1,.36,1)}
+/* ---------- reveals ---------- */
+.rv{opacity:0;transform:translateY(30px);transition:opacity .9s ease,transform .9s cubic-bezier(.22,1,.36,1)}
 .rv.in{opacity:1;transform:none}
 
 @media (max-width:860px){
-  .nav-links{display:none}
   .reasons,.trust{grid-template-columns:1fr}
-  .concept-grid,.feat-grid{grid-template-columns:1fr}
-  .hero{min-height:86vh}
+  .res-grid{grid-template-columns:1fr}
+  .split,.split.flip{grid-template-columns:1fr;gap:28px}
+  .split.flip .split-media{order:0}
+  .cta-form{grid-template-columns:1fr}
   section{padding:10vh 0}
+  .brand{font-size:23px}
+  .nav-sec{display:none}
 }
 @media (prefers-reduced-motion:reduce){
   *{animation:none!important;transition:none!important}
   .rv{opacity:1;transform:none}
+  .fill .w{color:var(--ink)}
+  .fill .script .w{color:#C47E93}
   html{scroll-behavior:auto}
 }
-</style>
-<style>
-[dir="rtl"] .disp,[dir="rtl"] .loc-big,[dir="rtl"] .statement,[dir="rtl"] .cta-big,[dir="rtl"] .hero-title{letter-spacing:0}
-[dir="rtl"] .hero-tag{letter-spacing:.2em}
-[dir="rtl"] .hero-stack{align-items:flex-start}
-[dir="rtl"] .hero-sub{justify-content:flex-start}
-[dir="rtl"] .script{font-style:italic}
-[dir="rtl"] .label{letter-spacing:.1em}
-[dir="rtl"] .marquee span{letter-spacing:.12em}
-[dir="rtl"] .htrack{padding-left:0;padding-right:clamp(20px,5vw,72px)}
-[dir="rtl"] .drag-hint{padding-left:0;padding-right:clamp(20px,5vw,72px)}
-[dir="rtl"] .brand{letter-spacing:.08em}
-[dir="rtl"] .cta-form .btn{justify-self:start}
 </style>
 </head>
 <body>
 
-<div id="loader" aria-hidden="true">
-  <div class="loader-inner">
-    <div class="loader-script">Solera</div>
-    <div class="loader-count" id="count">00</div>
-  </div>
-</div>
-
-<header>
+<header id="hdr" class="on-dark">
   <a class="brand" href="#top">סולרה</a>
   <nav class="nav-right">
-    <div class="nav-links">
-      <a href="index.html">EN</a>
-      <a href="#concept">הקונספט</a>
-      <a href="#residences">הרזידנסים</a>
-      <a href="#architecture">אדריכלות</a>
-      <a href="#contact">יצירת קשר</a>
-    </div>
+    <a class="nav-sec" href="#residences">הרזידנסים</a>
+    <a href="index.html">EN</a>
+    <a class="enq" href="#contact">יצירת קשר</a>
   </nav>
 </header>
 
 <main id="top">
 
   <!-- HERO -->
-  <section class="hero wrap">
-    <div class="hero-art">
-      <img src="assets/hero.jpg" alt="סולרה רזידנס בשעת בין ערביים: בתי אבן, בריכה ארוכה והים">
+  <section class="hero">
+    <img src="assets/hero.jpg" alt="סולרה רזידנס בשעת בין ערביים: בתי אבן, בריכה ארוכה והים">
+    <div class="hero-text">
+      <p class="hero-eyebrow">רזידנס בוטיק &middot; חוף הכרמל</p>
+      <h1>סולרה</h1>
+      <p class="hero-sub">מקום לחיות בו, ולחזור אליו, שנה אחרי שנה. עשרים וחמישה בתים בין חיפה לקיסריה, שתי דקות יחפים מהים.</p>
     </div>
-    <div class="hero-stack">
-      <h1 class="hero-title disp" id="heroBrand">סולרה</h1>
-      <p class="hero-tag rv">חוף הכרמל</p>
-      <div class="hero-sub rv">
-        <p class="label">מקום לחיות בו. לחזור אליו,<br>שנה אחרי שנה.</p>
-        <p class="label">רזידנס בוטיק בין<br>חיפה לקיסריה · ישראל</p>
-      </div>
-    </div>
+    <p class="scroll-pill" aria-hidden="true">גללו &darr;</p>
   </section>
 
+  <!-- MARQUEE -->
   <div class="marquee" aria-hidden="true">
     <div class="marquee-track">
-      <span>סולרה רזידנס</span><span>&#9675;</span><span>25 בתים בלבד</span><span>&#9675;</span><span>ים · גן · אור</span><span>&#9675;</span><span>חוף הכרמל</span><span>&#9675;</span>
-      <span>סולרה רזידנס</span><span>&#9675;</span><span>25 בתים בלבד</span><span>&#9675;</span><span>ים · גן · אור</span><span>&#9675;</span><span>חוף הכרמל</span><span>&#9675;</span>
+      <span>סולרה רזידנס</span><span>&#9675;</span><span>25 בתים בלבד</span><span>&#9675;</span><span>ים &middot; גן &middot; אור</span><span>&#9675;</span><span>חוף הכרמל</span><span>&#9675;</span>
+      <span>סולרה רזידנס</span><span>&#9675;</span><span>25 בתים בלבד</span><span>&#9675;</span><span>ים &middot; גן &middot; אור</span><span>&#9675;</span><span>חוף הכרמל</span><span>&#9675;</span>
     </div>
   </div>
 
+  <!-- CONCEPT (word fill) -->
+  <section class="wrap" id="concept">
+    <span class="label" style="display:block;margin-bottom:5vh">הקונספט</span>
+    <p class="fill" id="fill">קהילת בוטיק סגורה של עשרים וחמש יחידות בלבד, מתוכננת סביב פרטיות, רווחה וחיים ים תיכוניים <span class="script">נצחיים</span>.</p>
+    <div class="fill-side rv">
+      <p>בהשראת תור הזהב של חוף הים הישראלי, סולרה משלבת אדריכלות עכשווית עם חומרים חמים, צמחייה מקומית וחללים משותפים שנבחרו בקפידה.</p>
+      <p>כל יחידה נפתחת אל חדר חוץ פרטי: גינה, מרפסת, או סולריום גג הפונה לים.</p>
+    </div>
+  </section>
+
+  <!-- LIFESTYLE BAND (pool) -->
+  <div class="band-img">
+    <img src="assets/families.jpg" alt="משפחות וילדים נהנים אחר הצהריים ליד הבריכה והגינות בסולרה" loading="lazy">
+  </div>
+
   <!-- REASONS -->
-  <section class="wrap">
+  <section class="wrap alt">
     <div class="sec-head rv">
-      <p class="label">שלוש סיבות לבחור בסולרה</p>
+      <span class="label">שלוש סיבות לבחור בסולרה</span>
       <span class="sec-num">01</span>
     </div>
     <div class="reasons">
@@ -346,160 +267,133 @@ section.alt{background:var(--bg-alt);transition:background .8s ease}
     </div>
   </section>
 
-  <!-- LIFESTYLE BAND -->
-  <section class="life-band">
-    <img src="assets/families.jpg" alt="משפחות וילדים נהנים אחר הצהריים ליד הבריכה והגינות בסולרה" loading="lazy">
-  </section>
-
-  <!-- CONCEPT -->
-  <section class="wrap plum-sec" id="concept">
-    <div class="sec-head rv">
-      <p class="label">הקונספט</p>
-      <span class="sec-num">02</span>
-    </div>
-    <div class="concept-grid">
-      <h2 class="statement rv">קהילת בוטיק סגורה של 25 יחידות בלבד, מתוכננת סביב פרטיות, רווחה וחיים ים תיכוניים <span class="script">נצחיים</span></h2>
-      <div class="concept-side rv">
-        <p>בהשראת תור הזהב של חוף הים הישראלי, סולרה משלבת אדריכלות עכשווית עם חומרים חמים, צמחייה מקומית וחללים משותפים שנבחרו בקפידה.</p>
-        <p>כל יחידה נפתחת אל חדר חוץ פרטי: גינה, מרפסת, או סולריום גג הפונה לים.</p>
-      </div>
-    </div>
-  </section>
-
-  <!-- LOCATION -->
+  <!-- LOCATION (full-bleed image with text on it) -->
   <section class="location">
     <img class="loc-img" src="assets/carmel-coast.jpg" alt="מבט אווירי על חוף הכרמל בשעת הזהב, הר הכרמל נפגש עם הים התיכון">
-    <div class="loc-scrim" aria-hidden="true"></div>
-    <div class="wrap">
-      <div class="sec-head rv">
-        <p class="label">בין חיפה לקיסריה</p>
-        <span class="sec-num">03</span>
-      </div>
-      <h2 class="loc-big rv"><span class="ital">חוֹף</span><br>הַכַּרְמֶל</h2>
+    <div class="loc-inner">
+      <p class="loc-eyebrow rv">02 &middot; בין חיפה לקיסריה</p>
+      <h2 class="loc-big rv"><span class="ital">חוף</span><br>הכרמל</h2>
       <div class="loc-note rv">
-        <p>מוקף חופים, שמורות טבע, כרמים ויישובי חוף מבוססים, הפרויקט משלב פרטיות עם חיבור קל לכל מה שחשוב. מיקום שתוכנן לא סביב תנועה, אלא סביב חזרה.</p>
-        <p class="label">31.95&deg; N &middot; 34.72&deg; E</p>
+        <p>מוקף חופים, שמורות טבע, כרמים ויישובי חוף מבוססים, הפרויקט משלב פרטיות עם חיבור קל לכל מה שחשוב. מקום שתוכנן לא סביב תנועה, אלא סביב חזרה הביתה.</p>
+        <p class="label" dir="ltr">31.95&deg; N &middot; 34.72&deg; E</p>
       </div>
     </div>
   </section>
 
-  <!-- RESIDENCES: horizontal -->
-  <section id="residences" class="plum-sec" style="padding:0">
-    <div class="hwrap" id="hwrap">
-      <div class="hsticky">
-        <div class="wrap" style="margin-bottom:5vh">
-          <div class="sec-head rv" style="margin-bottom:0">
-            <p class="label">הרזידנסים · 104 עד 244 מ"ר</p>
-            <span class="sec-num">04</span>
+  <!-- RESIDENCES -->
+  <section class="res wrap" id="residences">
+    <div class="sec-head rv">
+      <span class="label">הרזידנסים &middot; 104 עד 244 מ"ר</span>
+      <span class="sec-num">03</span>
+    </div>
+    <div class="res-grid">
+      <article class="rcard rv">
+        <div class="rart"><img src="assets/garden-home.jpg" alt="בית גן עם כניסה מקושתת וגינה פרטית בשעת בין ערביים" loading="lazy"></div>
+        <div class="rbody">
+          <h3>בית גן</h3>
+          <div class="rstats">
+            <div class="rstat"><span>חדרי שינה</span><b>3</b></div>
+            <div class="rstat"><span>שטח עד</span><b>104&ndash;128 m&sup2;</b></div>
           </div>
+          <p>גינה פרטית, יציאה ישירה לחוץ וקומה תחתונה ייעודית עם כניסה משלה.</p>
         </div>
-        <div class="htrack" id="htrack">
-          <article class="hcard">
-            <div class="hcard-art">
-              <img src="assets/garden-home.jpg" alt="בית גן עם כניסה מקושתת וגינה פרטית בשעת בין ערביים" loading="lazy">
-            </div>
-            <h3>בית גן</h3>
-            <div class="hstats">
-              <div class="hstat"><span class="label">חדרי שינה</span><b>3</b></div>
-              <div class="hstat"><span class="label">שטח עד</span><b>104&ndash;128 m&sup2;</b></div>
-            </div>
-            <p>גינה פרטית, יציאה ישירה לחוץ וקומה תחתונה ייעודית עם כניסה משלה.</p>
-          </article>
-          <article class="hcard">
-            <div class="hcard-art v2">
-              <img src="assets/duplex.jpg" alt="סלון דופלקס בגובה כפול עם מדרגות אבן וחלון קשת לים" loading="lazy">
-            </div>
-            <h3>דופלקס</h3>
-            <div class="hstats">
-              <div class="hstat"><span class="label">חדרי שינה</span><b>4</b></div>
-              <div class="hstat"><span class="label">שטח עד</span><b>152&ndash;178 m&sup2;</b></div>
-            </div>
-            <p>שתי קומות נדיבות המחוברות במדרגות פיסוליות, עם סלון בגובה כפול הפונה מערבה.</p>
-          </article>
-          <article class="hcard">
-            <div class="hcard-art v3">
-              <img src="assets/sky-duplex.jpg" alt="סולריום גג עם פרגולה, מטבח חוץ ונוף לים" loading="lazy">
-            </div>
-            <h3>דופלקס שמיים</h3>
-            <div class="hstats">
-              <div class="hstat"><span class="label">חדרי שינה</span><b>4</b></div>
-              <div class="hstat"><span class="label">שטח עד</span><b>178&ndash;202 m&sup2;</b></div>
-            </div>
-            <p>מגורים בקומה עליונה עם סולריום גג, מטבח חוץ ונוף פתוח לים.</p>
-          </article>
-          <article class="hcard">
-            <div class="hcard-art v4">
-              <img src="assets/penthouse.jpg" alt="מרפסת פנטהאוז עם בריכת אינסוף פרטית המשקפת את שמי בין הערביים" loading="lazy">
-            </div>
-            <h3>פנטהאוז</h3>
-            <div class="hstats">
-              <div class="hstat"><span class="label">חדרי שינה</span><b>5</b></div>
-              <div class="hstat"><span class="label">שטח עד</span><b>210&ndash;244 m&sup2;</b></div>
-            </div>
-            <p>כל הקומה העליונה: בריכה פרטית, מרפסת 360 מעלות, ורכס הכרמל מאחוריכם.</p>
-          </article>
+      </article>
+      <article class="rcard rv">
+        <div class="rart"><img src="assets/duplex.jpg" alt="סלון דופלקס בגובה כפול עם מדרגות אבן וחלון קשת לים" loading="lazy"></div>
+        <div class="rbody">
+          <h3>דופלקס</h3>
+          <div class="rstats">
+            <div class="rstat"><span>חדרי שינה</span><b>4</b></div>
+            <div class="rstat"><span>שטח עד</span><b>152&ndash;178 m&sup2;</b></div>
+          </div>
+          <p>שתי קומות נדיבות המחוברות במדרגות פיסוליות, עם סלון בגובה כפול הפונה מערבה.</p>
         </div>
-        <p class="label drag-hint" aria-hidden="true">גללו לעוד &#8592;</p>
-      </div>
+      </article>
+      <article class="rcard rv">
+        <div class="rart"><img src="assets/sky-duplex.jpg" alt="סולריום גג עם פרגולה, מטבח חוץ ונוף לים" loading="lazy"></div>
+        <div class="rbody">
+          <h3>דופלקס שמיים</h3>
+          <div class="rstats">
+            <div class="rstat"><span>חדרי שינה</span><b>4</b></div>
+            <div class="rstat"><span>שטח עד</span><b>178&ndash;202 m&sup2;</b></div>
+          </div>
+          <p>מגורים בקומה עליונה עם סולריום גג, מטבח חוץ ונוף פתוח לים.</p>
+        </div>
+      </article>
+      <article class="rcard rv">
+        <div class="rart"><img src="assets/penthouse.jpg" alt="מרפסת פנטהאוז עם בריכת אינסוף פרטית המשקפת את שמי בין הערביים" loading="lazy"></div>
+        <div class="rbody">
+          <h3>פנטהאוז</h3>
+          <div class="rstats">
+            <div class="rstat"><span>חדרי שינה</span><b>5</b></div>
+            <div class="rstat"><span>שטח עד</span><b>210&ndash;244 m&sup2;</b></div>
+          </div>
+          <p>כל הקומה העליונה: בריכה פרטית, מרפסת 360 מעלות, ורכס הכרמל מאחוריכם.</p>
+        </div>
+      </article>
     </div>
   </section>
 
   <!-- AMENITIES -->
   <section class="wrap alt">
     <div class="sec-head rv">
-      <p class="label">השטחים המשותפים</p>
-      <span class="sec-num">05</span>
+      <span class="label">השטחים המשותפים</span>
+      <span class="sec-num">04</span>
     </div>
     <div class="amen-list">
-      <div class="amen rv"><h3>בריכת שחייה</h3><span>מי מלח · 25 מ'</span></div>
+      <div class="amen rv"><h3>בריכת שחייה</h3><span>מי מלח &middot; 25 מ'</span></div>
       <div class="amen rv"><h3>ספא וחדר כושר</h3><span>לדיירים בלבד</span></div>
       <div class="amen rv"><h3>שבילי גינה</h3><span>צמחייה מקומית</span></div>
-      <div class="amen rv"><h3>חניון</h3><span>תת קרקעי · מוכן לרכב חשמלי</span></div>
+      <div class="amen rv"><h3>חניון</h3><span>תת קרקעי &middot; מוכן לרכב חשמלי</span></div>
     </div>
   </section>
 
-  <!-- FEATURES -->
-  <section class="wrap plum-sec">
+  <!-- FEATURES (split) -->
+  <section class="wrap">
     <div class="sec-head rv">
-      <p class="label">המרחב לחיות בו</p>
-      <span class="sec-num">06</span>
+      <span class="label">המרחב לחיות בו</span>
+      <span class="sec-num">05</span>
     </div>
-    <div class="feat-grid">
-      <div class="rv">
-        <h2 class="statement">כל פרט נבחר כדי להרגיש אלגנטי, אינטואיטיבי <span class="script">וקל</span></h2>
+    <div class="split flip">
+      <div class="split-media rv">
+        <img src="assets/detail.jpg" alt="פתח קשת מאבן גיר עם מנעול חכם מפליז ותריס אלומיניום פתוח למחצה" loading="lazy">
+      </div>
+      <div class="split-text rv">
+        <h2>כל פרט נבחר כדי להרגיש אלגנטי, אינטואיטיבי <span class="script">וקל</span></h2>
         <ul>
           <li>חימום וקירור תת רצפתי בכל הבית</li>
           <li>אוטומציית אקלים ותאורה</li>
           <li>מערכות כניסה עם מנעול חכם</li>
           <li>תריסי אלומיניום חשמליים</li>
-          <li>אופציונלי: ג'קוזי פרטי · פאנלים סולאריים</li>
+          <li>אופציונלי: ג'קוזי פרטי &middot; פאנלים סולאריים</li>
         </ul>
-      </div>
-      <div class="space-art rv">
-        <img src="assets/detail.jpg" alt="פתח קשת מאבן גיר עם מנעול חכם מפליז ותריס אלומיניום פתוח למחצה" loading="lazy">
       </div>
     </div>
   </section>
 
-  <!-- ARCHITECTURE -->
-  <section class="arch-sec" id="architecture">
-    <img class="arch-img" src="assets/architect-studio.jpg" alt="סטודיו של אדריכל עם שרטוטים על השולחן וסקיצות על מסך גדול">
-    <div class="arch-scrim" aria-hidden="true"></div>
-    <div class="wrap">
-      <div class="sec-head rv">
-        <p class="label">אדריכלות</p>
-        <span class="sec-num">07</span>
+  <!-- ARCHITECTURE (split) -->
+  <section class="wrap alt" id="architecture">
+    <div class="sec-head rv">
+      <span class="label">אדריכלות</span>
+      <span class="sec-num">06</span>
+    </div>
+    <div class="split">
+      <div class="split-media rv">
+        <img src="assets/architect-studio.jpg" alt="סטודיו של אדריכל עם שרטוטים על השולחן וסקיצות על מסך גדול" loading="lazy">
       </div>
-      <h2 class="statement rv" style="max-width:26ch">האדריכלות מאזנת קווים עכשוויים נקיים עם חום ומרקם ים תיכוני</h2>
-      <p class="label rv" style="margin-top:4vh">קרמל אטלייה · קרדיט דמו</p>
+      <div class="split-text rv">
+        <span class="label">קרמל אטלייה &middot; קרדיט דמו</span>
+        <h2>קווים עכשוויים נקיים, חום ומרקם ים תיכוני</h2>
+        <p>האדריכלות מאזנת שפה מודרנית ומאופקת עם החומרים והאור של החוף: אבן, טיח סיד, פליז וצל עמוק, שרטטו כדי להרגיש בבית על רכס מוכה מלח.</p>
+      </div>
     </div>
   </section>
 
   <!-- TRUST -->
   <section class="wrap">
     <div class="sec-head rv">
-      <p class="label">בידיים טובות</p>
-      <span class="sec-num">08</span>
+      <span class="label">בידיים טובות</span>
+      <span class="sec-num">07</span>
     </div>
     <div class="trust">
       <div class="rv">
@@ -524,25 +418,24 @@ section.alt{background:var(--bg-alt);transition:background .8s ease}
   <footer class="cta" id="contact">
     <div class="wrap">
       <p class="label rv">שיחה קצרה מספיקה כדי להבין איזה בית מתאים לכם</p>
-      <h2 class="cta-big rv">החוף<br>שרציתם,<br><span class="script">שלכם</span> השנה</h2>
+      <h2 class="cta-big rv">החוף שרציתם,<br><span class="script">שלכם</span> השנה</h2>
       <form class="cta-form rv" id="contactForm" novalidate>
         <div class="field"><label for="cf-name">שם מלא</label><input id="cf-name" name="name" type="text" required></div>
         <div class="field"><label for="cf-phone">טלפון</label><input id="cf-phone" name="phone" type="tel" required></div>
-        <div class="field"><label for="cf-email">אימייל</label><input id="cf-email" name="email" type="email"></div>
-        <div class="field field-wide"><label for="cf-msg">איזו יחידה מעניינת אתכם?</label><textarea id="cf-msg" name="message" rows="2"></textarea></div>
-        <button class="btn" type="submit">ליצירת קשר ומידע על היחידות הזמינות</button>
+        <div class="field field-wide"><label for="cf-msg">איזה רזידנס מעניין אתכם?</label><textarea id="cf-msg" name="message" rows="2"></textarea></div>
+        <button class="btn" type="submit">בקשת מידע על יחידות זמינות</button>
         <p class="cta-ok" id="cfOk" hidden>תודה. נחזור אליכם בהקדם.</p>
       </form>
       <div class="cta-meta rv">
-        <span>+972 (0) 4 000 0000</span>
-        <span>משרד מכירות · דרך החוף, חוף הכרמל</span>
-        <span>hello@solera-demo.example</span>
+        <span dir="ltr">+972 (0) 4 000 0000</span>
+        <span>משרד מכירות &middot; דרך החוף, חוף הכרמל</span>
+        <span dir="ltr">hello@solera-demo.example</span>
       </div>
     </div>
     <div class="foot-word" aria-hidden="true">סולרה</div>
     <div class="foot-base">
-      <span>&copy; 2026 סולרה רזידנס · פרויקט דמו פיקטיבי</span>
-      <span>פרטיות · תנאים</span>
+      <span>&copy; 2026 סולרה רזידנס &middot; פרויקט דמו פיקטיבי</span>
+      <span>פרטיות &middot; תנאים</span>
       <a href="#top">נבנה על ידי ameizing</a>
     </div>
   </footer>
@@ -551,108 +444,55 @@ section.alt{background:var(--bg-alt);transition:background .8s ease}
 
 <script>
 (function(){
-  var reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-
-  /* preloader */
-  var loader = document.getElementById('loader');
-  var count = document.getElementById('count');
-  if (reduced) { loader.style.display = 'none'; }
-  else {
-    var n = 0;
-    var t = setInterval(function(){
-      n += Math.floor(Math.random()*14)+6;
-      if (n >= 100) { n = 100; clearInterval(t); setTimeout(function(){ loader.classList.add('done'); }, 250); }
-      count.textContent = (n<10?'0':'') + n;
-    }, 90);
-    setTimeout(function(){ loader.classList.add('done'); }, 3000); /* hard cap */
-  }
-
-  /* hero brand slides + shrinks into the header logo on scroll */
-  var heroBrand = document.getElementById('heroBrand');
-  var headerBrand = document.querySelector('header .brand');
-  if (!reduced && heroBrand && headerBrand) {
-    headerBrand.style.opacity = '0';
-    headerBrand.style.pointerEvents = 'none';
-    var startX, startY, targetX, targetY, targetScale, endPx, brandRAF = false;
-    function measure(){
-      heroBrand.style.transform = 'none';
-      var h = heroBrand.getBoundingClientRect();
-      var t = headerBrand.getBoundingClientRect();
-      startX = h.left + h.width/2; startY = h.top + h.height/2 + window.scrollY;
-      targetX = t.left + t.width/2; targetY = t.top + t.height/2;
-      targetScale = t.height / h.height;
-      endPx = window.innerHeight * 0.45;
-    }
-    function brandMorph(){
-      var s = window.scrollY;
-      var p = Math.min(Math.max(s / endPx, 0), 1);
-      var naturalY = startY - s;            /* hero centre travels up with scroll */
-      var tx = (targetX - startX) * p;
-      var ty = (targetY - naturalY) * p;
-      var scale = 1 - (1 - targetScale) * p;
-      heroBrand.style.transform = 'translate(' + tx + 'px,' + ty + 'px) scale(' + scale + ')';
-      var on = p >= 0.995;
-      headerBrand.style.opacity = on ? '1' : '0';
-      headerBrand.style.pointerEvents = on ? 'auto' : 'none';
-      heroBrand.style.opacity = on ? '0' : '1';
-    }
-    measure(); brandMorph();
-    window.addEventListener('scroll', function(){
-      if (!brandRAF){ brandRAF = true; requestAnimationFrame(function(){ brandMorph(); brandRAF = false; }); }
-    }, { passive:true });
-    window.addEventListener('resize', function(){ measure(); brandMorph(); });
-  }
-
-  /* contact form (demo: no backend, shows confirmation) */
-  var cf = document.getElementById('contactForm');
-  if (cf) {
-    cf.addEventListener('submit', function(e){
-      e.preventDefault();
-      if (!cf.checkValidity()) { cf.reportValidity(); return; }
-      cf.querySelectorAll('.field, .btn').forEach(function(el){ el.style.display = 'none'; });
-      document.getElementById('cfOk').hidden = false;
-    });
-  }
+  var reduced=window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
   /* reveals */
-  var items = document.querySelectorAll('.rv');
-  if ('IntersectionObserver' in window && !reduced) {
-    var io = new IntersectionObserver(function(entries){
-      entries.forEach(function(e){
-        if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); }
-      });
-    }, { threshold: 0.15 });
-    items.forEach(function(el){ io.observe(el); });
-  } else {
-    items.forEach(function(el){ el.classList.add('in'); });
+  var items=document.querySelectorAll('.rv');
+  if('IntersectionObserver' in window && !reduced){
+    var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}})},{threshold:.15});
+    items.forEach(function(el){io.observe(el)});
+  }else{items.forEach(function(el){el.classList.add('in')})}
+
+  /* word fill on scroll (non-pinned, mobile-safe) */
+  var fill=document.getElementById('fill');
+  if(fill){
+    (function(){
+      var out=[],nodes=fill.childNodes;
+      function wrapText(t){return t.split(/(\s+)/).map(function(tok){return /\S/.test(tok)?'<span class="w">'+tok+'</span>':tok}).join('')}
+      for(var i=0;i<nodes.length;i++){
+        var n=nodes[i];
+        if(n.nodeType===3){out.push(wrapText(n.textContent))}
+        else{out.push('<span class="script">'+wrapText(n.textContent)+'</span>')}
+      }
+      fill.innerHTML=out.join('');
+    })();
+    var spans=fill.querySelectorAll('.w');
+    function fillTick(){
+      var r=fill.getBoundingClientRect(),vh=window.innerHeight;
+      var p=Math.min(Math.max((vh*0.82-r.top)/(r.height+vh*0.25),0),1);
+      var n=Math.floor(p*spans.length);
+      spans.forEach(function(s,i){s.classList.toggle('on',i<n)});
+    }
+    if(!reduced){
+      var raf=false;
+      window.addEventListener('scroll',function(){if(!raf){raf=true;requestAnimationFrame(function(){fillTick();raf=false})}},{passive:true});
+      window.addEventListener('resize',fillTick);fillTick();
+    }else{spans.forEach(function(s){s.classList.add('on')})}
   }
 
-  /* horizontal residences: sticky + scrub */
-  var hwrap = document.getElementById('hwrap');
-  var htrack = document.getElementById('htrack');
-  function setH(){
-    var dist = htrack.scrollWidth - window.innerWidth + (window.innerWidth*0.08);
-    hwrap.style.height = (window.innerHeight + Math.max(dist,0)) + 'px';
-    return dist;
-  }
-  var dist = setH();
-  function onScroll(){
-    var rect = hwrap.getBoundingClientRect();
-    var total = hwrap.offsetHeight - window.innerHeight;
-    if (total <= 0) return;
-    var p = Math.min(Math.max(-rect.top / total, 0), 1);
-    htrack.style.transform = 'translateX(' + (p * dist) + 'px)';
-  }
-  if (!reduced) {
-    window.addEventListener('scroll', onScroll, { passive:true });
-    window.addEventListener('resize', function(){ dist = setH(); onScroll(); });
-    onScroll();
-  } else {
-    hwrap.style.height = 'auto';
-    document.querySelector('.hsticky').style.position = 'static';
-    document.querySelector('.hsticky').style.height = 'auto';
-    htrack.style.overflowX = 'auto';
-  }
+  /* header: light over hero, ink after */
+  var hdr=document.getElementById('hdr'),hero=document.querySelector('.hero');
+  function hdrTick(){hdr.classList.toggle('on-dark', hero.getBoundingClientRect().bottom>70)}
+  window.addEventListener('scroll',hdrTick,{passive:true});hdrTick();
+
+  /* contact form (demo: no backend) */
+  var cf=document.getElementById('contactForm');
+  if(cf){cf.addEventListener('submit',function(e){
+    e.preventDefault();
+    if(!cf.checkValidity()){cf.reportValidity();return}
+    cf.querySelectorAll('.field, .btn').forEach(function(el){el.style.display='none'});
+    document.getElementById('cfOk').hidden=false;
+  });}
 })();
 </script>
 </body>
