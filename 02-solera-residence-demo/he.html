@@ -54,8 +54,9 @@ a:focus-visible,button:focus-visible{outline:2px solid var(--pink);outline-offse
 .hero::after{content:'';position:absolute;inset:0;
   background:linear-gradient(to top,rgba(31,10,28,.72),rgba(31,10,28,.12) 46%,transparent 68%)}
 .hero-text{position:relative;z-index:2;padding:0 clamp(20px,5vw,72px) 8vh;max-width:760px;text-align:right}
-.hero-eyebrow{font-size:12px;font-weight:600;letter-spacing:.2em;color:rgba(243,241,234,.85);margin-bottom:18px}
-.hero h1{font-family:var(--disp);font-size:clamp(58px,13vw,168px);line-height:.95;letter-spacing:0;
+.hero-eyebrow{font-size:clamp(13px,1.6vw,16px);font-weight:600;letter-spacing:.2em;color:rgba(243,241,234,.96);margin-bottom:18px;
+  text-shadow:0 1px 3px rgba(31,10,28,.6),0 2px 16px rgba(31,10,28,.7)}
+.hero h1{font-family:var(--disp);font-weight:300;font-size:clamp(58px,13vw,168px);line-height:.95;letter-spacing:0;
   text-shadow:0 2px 34px rgba(31,10,28,.5)}
 .hero-sub{margin-top:22px;max-width:36ch;font-size:clamp(15px,1.7vw,18px);line-height:1.8;color:rgba(243,241,234,.92);
   text-shadow:0 1px 14px rgba(31,10,28,.5)}
@@ -111,8 +112,9 @@ section.alt{background:var(--cream-alt)}
 .location::after{content:'';position:absolute;inset:0;
   background:linear-gradient(to top,rgba(31,10,28,.82),rgba(31,10,28,.18) 50%,rgba(31,10,28,.1) 74%,transparent)}
 .loc-inner{position:relative;z-index:2;width:100%;padding:0 clamp(20px,5vw,72px) 9vh;text-align:right}
-.loc-eyebrow{font-size:12px;font-weight:600;letter-spacing:.2em;color:rgba(243,241,234,.85);margin-bottom:16px}
-.loc-big{font-family:var(--disp);line-height:.95;font-size:clamp(54px,12vw,170px);letter-spacing:0;
+.loc-eyebrow{font-size:clamp(13px,1.6vw,16px);font-weight:600;letter-spacing:.2em;color:rgba(243,241,234,.96);margin-bottom:16px;
+  text-shadow:0 1px 3px rgba(31,10,28,.6),0 2px 16px rgba(31,10,28,.7)}
+.loc-big{font-family:var(--disp);font-weight:300;line-height:.95;font-size:clamp(54px,12vw,170px);letter-spacing:0;
   text-shadow:0 2px 30px rgba(31,10,28,.5)}
 .loc-big .ital{color:var(--blue)}
 .loc-note{display:flex;justify-content:space-between;align-items:flex-start;gap:clamp(18px,4vw,48px);margin-top:4vh;flex-wrap:wrap}
@@ -150,7 +152,8 @@ section.alt{background:var(--cream-alt)}
 /* ---------- cta / footer ---------- */
 .cta{background:var(--plum-deep);color:var(--cream);padding:15vh 0 0;overflow:hidden}
 .cta .label{color:rgba(243,241,234,.5)}
-.cta-big{font-family:var(--disp);font-size:clamp(34px,5.5vw,78px);line-height:1.1;margin:3vh 0;letter-spacing:0}
+.cta-intro{font-size:clamp(14px,1.7vw,18px);font-weight:500;letter-spacing:.04em;color:rgba(243,241,234,.78)}
+.cta-big{font-family:var(--disp);font-weight:300;font-size:clamp(34px,5.5vw,78px);line-height:1.1;margin:3vh 0;letter-spacing:0}
 .cta-big .script{color:var(--pink)}
 .cta-form{margin:5vh 0 2vh;max-width:620px;display:grid;grid-template-columns:1fr 1fr;gap:18px}
 .cta-form .field{display:flex;flex-direction:column;gap:7px}
@@ -417,7 +420,7 @@ section.alt{background:var(--cream-alt)}
   <!-- CTA / FOOTER -->
   <footer class="cta" id="contact">
     <div class="wrap">
-      <p class="label rv">שיחה קצרה מספיקה כדי להבין איזה בית מתאים לכם</p>
+      <p class="label cta-intro rv">שיחה קצרה מספיקה כדי להבין איזה בית מתאים לכם</p>
       <h2 class="cta-big rv">החוף שרציתם,<br><span class="script">שלכם</span> השנה</h2>
       <form class="cta-form rv" id="contactForm" novalidate>
         <div class="field"><label for="cf-name">שם מלא</label><input id="cf-name" name="name" type="text" required></div>
