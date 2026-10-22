@@ -114,8 +114,17 @@ footer .label{color:rgba(241,236,227,.5)}
   .ed .inset{width:100%;margin-top:0}
   .trio{grid-template-columns:1fr}
   .trio figure img,.coming{aspect-ratio:4/3}
-  .hero-text{position:static;transform:none;max-width:100%;padding:16vh clamp(20px,5vw,72px) 0;align-items:flex-start;text-align:start}
+  .hero-text{position:static;transform:none;max-width:100%;padding:15vh clamp(20px,5vw,72px) 0;align-items:flex-start;text-align:start;gap:3.2vh}
   .hero-title .l2{margin-right:8vw}
+  .hero-title{text-shadow:0 2px 30px rgba(42,39,33,.55)}
+  .hero-sub{text-shadow:0 1px 18px rgba(42,39,33,.6)}
+}
+@media (max-width:600px){
+  header{padding:14px 16px 20px}
+  .nav-link,.menu-btn{font-size:11px;letter-spacing:.12em}
+  .wordmark b{font-size:18px;letter-spacing:.2em}
+  .wordmark span{font-size:9px;letter-spacing:.28em}
+  header>div{gap:10px!important}
 }
 @media (prefers-reduced-motion:reduce){
   *{transition:none!important;animation:none!important}
