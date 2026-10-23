@@ -61,9 +61,8 @@ header{position:fixed;top:0;left:0;right:0;z-index:60;display:flex;justify-conte
   -webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;
   text-shadow:0 1px 1px rgba(55,38,6,.6);
   filter:drop-shadow(0 3px 2px rgba(40,28,4,.4))}
-.fab-arrow{width:clamp(34px,4.5vw,56px);height:auto;color:var(--gold);margin-top:2.5vh;opacity:0;
+.fab-arrow{width:clamp(34px,4.5vw,56px);height:auto;color:var(--gold);margin-top:2.5vh;opacity:.95;
   filter:drop-shadow(0 0 3px rgba(255,255,255,.85));transition:opacity .45s;animation:bobY 1.6s ease-in-out infinite}
-.fab-arrow.on{opacity:.95}
 @keyframes bobY{0%,100%{transform:translateY(0)}50%{transform:translateY(9px)}}
 
 /* the figure box keeps the cutout's proportions so each word can be measured against her shoulders */
@@ -130,6 +129,10 @@ footer .base{margin-top:9vh;font-size:12px;letter-spacing:.1em;text-transform:up
 .rv.in{opacity:1;transform:none}
 
 @media (max-width:860px){.grid{grid-template-columns:1fr 1fr}}
+@media (max-width:640px){
+  /* on mobile the caption is narrow and short, so centre it lower instead of hugging the header */
+  .fab{justify-content:center;padding-top:calc(46px + 2vh)}
+}
 @media (max-width:560px){.grid{grid-template-columns:1fr}}
 @media (prefers-reduced-motion:reduce){
   *{animation:none!important}
@@ -264,7 +267,7 @@ footer .base{margin-top:9vh;font-size:12px;letter-spacing:.1em;text-transform:up
     var c=document.createElement('canvas').getContext('2d'); c.font='100px Alvaro';
     var W=sceneEl.offsetWidth, H=sceneEl.offsetHeight, n=fabWords.length;
     var lastM=c.measureText(fabWords[n-1].textContent).width;  /* "fabulous," is the big one */
-    var big=W*0.92/(lastM*1.01)*100, small=big*0.56, lineH=0.92;
+    var big=W*0.92/(lastM*1.01)*100, small=big*0.70, lineH=0.92;
     var totalH=(big+(n-1)*small)*lineH;
     var avail=H*0.88-50;   /* fill from the header offset down to the section bottom, leaving room for the arrow */
     if(totalH>avail){ var k=avail/totalH; big*=k; small*=k; }
