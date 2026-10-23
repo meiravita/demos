@@ -266,8 +266,7 @@ footer .base{margin-top:9vh;font-size:12px;letter-spacing:.1em;text-transform:up
     var imgW=Math.min(W*0.86,1040), imgH=imgW/3.03;   /* gold FABULOUS image (aspect ~3.03) is CSS-sized */
     var maxM=0; texts.forEach(function(e){ maxM=Math.max(maxM,c.measureText(e.textContent).width); });
     var byW=W*0.62/(maxM*1.01)*100;
-    var byH=(H*0.80 - imgH - 60)/texts.length/0.95;   /* short words share the height left above the image + arrow */
-    var fs=Math.max(18,Math.min(byW,byH));
+    var fs=Math.max(16,Math.min(byW, imgH*0.39));   /* "it looks so" ~ half the FABULOUS letter height */
     texts.forEach(function(e){ e.style.fontSize=fs+'px'; });
   }
   if(document.fonts&&document.fonts.load){document.fonts.load('100px Alvaro').then(sizeFab)}
