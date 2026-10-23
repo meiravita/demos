@@ -35,7 +35,7 @@ header{position:fixed;top:0;left:0;right:0;z-index:60;display:flex;justify-conte
 .nav-cta:hover{background:var(--ink);color:#fff}
 
 /* ---------- the one scene: caption, rings, woman, black ---------- */
-.scene-wrap{position:relative;height:900vh}
+.scene-wrap{position:relative;height:1040vh}
 .scene{position:sticky;top:0;height:100vh;overflow:hidden;background:#000;display:flex;align-items:flex-end;justify-content:center}
 /* static op-art spiral background (white spiral on black); it fades to pure black at the
    end of the scene so the portfolio below starts clean, no video, no transition glitches */
@@ -51,9 +51,16 @@ header{position:fixed;top:0;left:0;right:0;z-index:60;display:flex;justify-conte
   will-change:opacity,transform;pointer-events:none}
 /* each word on its own line; they stay once shown, the whole block fades together after the sentence is complete */
 .fab .fw{display:block;white-space:nowrap;opacity:0;transform:translateY(.32em) skewX(-6deg);
+  -webkit-text-stroke:.018em #000;paint-order:stroke fill;
   text-shadow:0 0 .04em rgba(255,255,255,.95),0 0 .16em rgba(255,255,255,.8),0 0 .45em rgba(255,255,255,.6);
   transition:opacity .35s,transform .55s cubic-bezier(.2,1.2,.3,1)}
 .fab .fw.on{opacity:1;transform:none}
+/* "fabulous" as a thick slab of shiny 24k gold: bright-to-deep gradient fill, black frame, soft depth */
+.fab .fw.gold{
+  background:linear-gradient(177deg,#FBEAA0 0%,#EDC85C 19%,#CB9730 41%,#A4761F 53%,#DFB246 65%,#FBEAA0 83%,#BC8B2C 100%);
+  -webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;
+  text-shadow:0 1px 1px rgba(55,38,6,.6);
+  filter:drop-shadow(0 3px 2px rgba(40,28,4,.4))}
 .fab-arrow{width:clamp(34px,4.5vw,56px);height:auto;color:var(--gold);margin-top:2.5vh;opacity:0;
   filter:drop-shadow(0 0 3px rgba(255,255,255,.85));transition:opacity .45s;animation:bobY 1.6s ease-in-out infinite}
 .fab-arrow.on{opacity:.95}
@@ -147,7 +154,7 @@ footer .base{margin-top:9vh;font-size:12px;letter-spacing:.1em;text-transform:up
       <div class="spiralwrap" id="spiralwrap" aria-hidden="true">
         <canvas class="spiral" id="spiral"></canvas>
       </div>
-      <h1 class="fab" id="fab"><span class="fw">it</span> <span class="fw">looks</span> <span class="fw">so</span> <span class="fw">fabulous,</span><svg class="fab-arrow" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M5 9l7 7 7-7" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg></h1>
+      <h1 class="fab" id="fab"><span class="fw">it</span> <span class="fw">looks</span> <span class="fw">so</span> <span class="fw gold">fabulous,</span><svg class="fab-arrow" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M5 9l7 7 7-7" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg></h1>
       <div class="figure" id="figure">
         <img class="woman" src="assets/woman-cut.png" alt="A woman in round op-art glasses, amazed">
         <div class="cap" id="cap" aria-hidden="true">
@@ -325,13 +332,13 @@ footer .base{margin-top:9vh;font-size:12px;letter-spacing:.1em;text-transform:up
     var a=ease((p-0.44)/0.06);
     fab.style.opacity=1-a; fab.style.transform='scale('+(1+a*.25)+')'; fab.style.filter='blur('+(a*6)+'px)';
     var b=ease((p-0.50)/0.10);
-    var d=ease((p-0.93)/0.06);
+    var d=ease((p-0.95)/0.05);
     fig.style.transform='translateY('+((1-b)*105 + b*6)+'%) scale('+(1-d*.12)+')';
     fig.style.opacity=1-d;
     spiral.style.opacity=1-d;   /* spiral dissolves to black for the portfolio */
     /* people / will / be, then ameized holds longest and is gone before she leaves (0.84) */
     var idx;
-    if(p<0.60)idx=-1; else if(p<0.67)idx=0; else if(p<0.74)idx=1; else if(p<0.80)idx=2; else if(p<0.92)idx=3; else idx=4;
+    if(p<0.60)idx=-1; else if(p<0.68)idx=0; else if(p<0.76)idx=1; else if(p<0.83)idx=2; else if(p<0.94)idx=3; else idx=4;
     if(idx!==cur){
       words.forEach(function(w,i){w.classList.toggle('on',i===idx);w.classList.toggle('gone',i<idx)});
       cur=idx;
