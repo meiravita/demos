@@ -146,7 +146,7 @@ footer .base{margin-top:9vh;font-size:12px;letter-spacing:.1em;text-transform:up
   <section class="scene-wrap" id="sceneWrap">
     <div class="scene">
       <div class="spiralwrap" id="spiralwrap" aria-hidden="true">
-        <img class="spiral" id="spiral" src="assets/spiral.jpg" alt="">
+        <canvas class="spiral" id="spiral"></canvas>
       </div>
       <h1 class="fab" id="fab"><span class="fw">it</span> <span class="fw">looks</span> <span class="fw">so</span> <span class="fw">fabulous,</span></h1>
       <div class="figure" id="figure">
@@ -216,9 +216,42 @@ footer .base{margin-top:9vh;font-size:12px;letter-spacing:.1em;text-transform:up
 (function(){
   var reduced=window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
-  /* static spiral: the scene and the portfolio both sit on black, so the header wears its dark dress throughout */
+  /* the spiral is drawn live on a canvas at the screen's own resolution: vector-sharp at any size,
+     and the stroke tapers to a true point at the very centre. the scene + portfolio sit on black. */
   var spiral=document.getElementById('spiral');
   document.body.classList.add('dark');
+  function drawSpiral(){
+    if(!spiral||!spiral.getContext)return;
+    var disp=1.65*Math.max(window.innerWidth,window.innerHeight);
+    var dpr=Math.min(window.devicePixelRatio||1,2);
+    var N=Math.min(Math.round(disp*dpr),2800);
+    spiral.width=N; spiral.height=N;
+    var ctx=spiral.getContext('2d');
+    ctx.fillStyle='#000'; ctx.fillRect(0,0,N,N);
+    var cx=N/2, cy=N/2, Rmax=Math.hypot(cx,cy);
+    var pitch=N*0.020, a=pitch/(2*Math.PI), lw=pitch*0.5;   /* tight bands; lw=half pitch = even black/white */
+    ctx.strokeStyle='#fff'; ctx.lineCap='round'; ctx.lineJoin='round';
+    var taperTh=(pitch*1.8)/a, th, r, x, y;
+    /* outer spiral: one stroke, constant width */
+    ctx.lineWidth=lw; ctx.beginPath();
+    th=taperTh; var first=true;
+    while(th<=Rmax/a){
+      r=a*th; x=cx+r*Math.cos(th); y=cy+r*Math.sin(th);
+      if(first){ctx.moveTo(x,y);first=false;}else ctx.lineTo(x,y);
+      th+=Math.min(0.25,Math.max(0.012,1.1/Math.max(r,1)));
+    }
+    ctx.stroke();
+    /* inner spiral: taper the width down to a point so it grows out of the exact centre */
+    var px=null,py=null;
+    for(th=0; th<=taperTh; th+=0.06){
+      r=a*th; x=cx+r*Math.cos(th); y=cy+r*Math.sin(th);
+      if(px!==null){ ctx.beginPath(); ctx.moveTo(px,py); ctx.lineTo(x,y);
+        ctx.lineWidth=Math.max(0.6, lw*(th/taperTh)); ctx.stroke(); }
+      px=x; py=y;
+    }
+  }
+  drawSpiral();
+  var sprTO; window.addEventListener('resize',function(){clearTimeout(sprTO);sprTO=setTimeout(drawSpiral,150);});
 
   /* opening caption words: each sized to fill most of the screen, capped so tall screens stay sane */
   var fabWords=document.querySelectorAll('.fab .fw'), sceneEl=document.querySelector('.scene');
