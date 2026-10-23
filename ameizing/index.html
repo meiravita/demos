@@ -45,16 +45,20 @@ body.dark .nav-cta{border-color:#fff}
 .scene{position:sticky;top:0;height:100vh;overflow:hidden;background:#000;display:flex;align-items:flex-end;justify-content:center}
 /* static op-art spiral background (white spiral on black); it fades to pure black at the
    end of the scene so the portfolio below starts clean, no video, no transition glitches */
-.spiralwrap{position:absolute;inset:0;z-index:0;background:#000}
-.spiral{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;will-change:opacity}
+.spiralwrap{position:absolute;inset:0;z-index:0;background:#000;overflow:hidden}
+/* oversized centred square so it always covers the viewport as it turns, no corners showing */
+.spiral{position:absolute;top:50%;left:50%;width:max(165vw,165vh);height:max(165vw,165vh);max-width:none;
+  object-fit:cover;will-change:opacity,transform;animation:spin 34s linear infinite}
+@keyframes spin{from{transform:translate(-50%,-50%) rotate(0)}to{transform:translate(-50%,-50%) rotate(360deg)}}
 
 /* opening caption: one word at a time as you scroll, each centered on the heart of the rings, then the last fades into the rings */
-.fab{position:absolute;inset:0;z-index:1;display:grid;place-items:center;text-align:center;font-family:var(--poster);color:var(--gold);
-  line-height:1;letter-spacing:.01em;will-change:opacity,transform;pointer-events:none}
-.fab .fw{grid-area:1/1;white-space:nowrap;opacity:0;transform:translateX(-.35em) skewX(-8deg);
-  transition:opacity .3s,transform .5s cubic-bezier(.2,1.2,.3,1)}
+.fab{position:absolute;inset:0;z-index:1;display:flex;flex-direction:column;align-items:center;justify-content:center;
+  text-align:center;font-family:var(--poster);color:var(--gold);line-height:1.04;letter-spacing:.01em;
+  will-change:opacity,transform;pointer-events:none}
+/* each word on its own line; they stay once shown, the whole block fades together after the sentence is complete */
+.fab .fw{display:block;white-space:nowrap;opacity:0;transform:translateY(.32em) skewX(-6deg);
+  transition:opacity .35s,transform .55s cubic-bezier(.2,1.2,.3,1)}
 .fab .fw.on{opacity:1;transform:none}
-.fab .fw.gone{opacity:0;transform:translateX(.25em) skewX(6deg);transition:opacity .22s,transform .22s}
 
 /* the figure box keeps the cutout's proportions so each word can be measured against her shoulders */
 .figure{position:relative;z-index:2;width:min(96vw,calc(98vh * 827 / 1229));aspect-ratio:827/1229;
@@ -220,11 +224,11 @@ footer .base{margin-top:9vh;font-size:12px;letter-spacing:.1em;text-transform:up
   var fabWords=document.querySelectorAll('.fab .fw'), sceneEl=document.querySelector('.scene');
   function sizeFab(){
     var c=document.createElement('canvas').getContext('2d'); c.font='100px Alvaro';
-    var W=sceneEl.offsetWidth, H=sceneEl.offsetHeight;
-    fabWords.forEach(function(w){
-      var m=c.measureText(w.textContent).width*1.01;
-      w.style.fontSize=Math.min(W*0.8/m*100, H*0.5)+'px';
-    });
+    var W=sceneEl.offsetWidth, H=sceneEl.offsetHeight, maxM=0;
+    fabWords.forEach(function(w){ maxM=Math.max(maxM,c.measureText(w.textContent).width); });
+    /* one uniform size: longest word fits the width, and all lines fit the height */
+    var fs=Math.min(W*0.82/(maxM*1.01)*100, H*0.86/fabWords.length/1.1);
+    fabWords.forEach(function(w){ w.style.fontSize=fs+'px'; });
   }
   if(document.fonts&&document.fonts.load){document.fonts.load('100px Alvaro').then(sizeFab)}
   sizeFab(); window.addEventListener('resize',sizeFab);
@@ -281,7 +285,7 @@ footer .base{margin-top:9vh;font-size:12px;letter-spacing:.1em;text-transform:up
 
     var fi=p<0.005?-1:Math.min(Math.floor(p/0.07),3);
     if(fi!==curF){
-      fabWords.forEach(function(w,i){w.classList.toggle('on',i===fi);w.classList.toggle('gone',i<fi)});
+      fabWords.forEach(function(w,i){w.classList.toggle('on',i<=fi)});  /* cumulative: words stay */
       curF=fi;
     }
     var a=ease((p-0.30)/0.06);
