@@ -46,14 +46,18 @@ header{position:fixed;top:0;left:0;right:0;z-index:60;display:flex;justify-conte
 @keyframes spin{from{transform:translate(-50%,-50%) rotate(0)}to{transform:translate(-50%,-50%) rotate(360deg)}}
 
 /* opening caption: one word at a time as you scroll, each centered on the heart of the rings, then the last fades into the rings */
-.fab{position:absolute;inset:0;z-index:1;display:flex;flex-direction:column;align-items:center;justify-content:center;
-  text-align:center;font-family:var(--poster);color:var(--gold);line-height:1.04;letter-spacing:.01em;
+.fab{position:absolute;inset:0;z-index:1;display:flex;flex-direction:column;align-items:center;justify-content:flex-start;
+  padding-top:calc(60px + 6vh);text-align:center;font-family:var(--poster);color:var(--gold);line-height:.88;letter-spacing:.01em;
   will-change:opacity,transform;pointer-events:none}
 /* each word on its own line; they stay once shown, the whole block fades together after the sentence is complete */
 .fab .fw{display:block;white-space:nowrap;opacity:0;transform:translateY(.32em) skewX(-6deg);
   text-shadow:0 0 .05em rgba(21,19,26,.7),0 0 .2em rgba(21,19,26,.55),0 0 .55em rgba(21,19,26,.45);
   transition:opacity .35s,transform .55s cubic-bezier(.2,1.2,.3,1)}
 .fab .fw.on{opacity:1;transform:none}
+.fab-arrow{width:clamp(34px,4.5vw,56px);height:auto;color:var(--gold);margin-top:2.5vh;opacity:0;
+  filter:drop-shadow(0 1px 2px rgba(21,19,26,.55));transition:opacity .45s;animation:bobY 1.6s ease-in-out infinite}
+.fab-arrow.on{opacity:.95}
+@keyframes bobY{0%,100%{transform:translateY(0)}50%{transform:translateY(9px)}}
 
 /* the figure box keeps the cutout's proportions so each word can be measured against her shoulders */
 .figure{position:relative;z-index:2;width:min(96vw,calc(98vh * 827 / 1229));aspect-ratio:827/1229;
@@ -143,7 +147,7 @@ footer .base{margin-top:9vh;font-size:12px;letter-spacing:.1em;text-transform:up
       <div class="spiralwrap" id="spiralwrap" aria-hidden="true">
         <canvas class="spiral" id="spiral"></canvas>
       </div>
-      <h1 class="fab" id="fab"><span class="fw">it</span> <span class="fw">looks</span> <span class="fw">so</span> <span class="fw">fabulous,</span></h1>
+      <h1 class="fab" id="fab"><span class="fw">it</span> <span class="fw">looks</span> <span class="fw">so</span> <span class="fw">fabulous,</span><svg class="fab-arrow" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M5 9l7 7 7-7" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg></h1>
       <div class="figure" id="figure">
         <img class="woman" src="assets/woman-cut.png" alt="A woman in round op-art glasses, amazed">
         <div class="cap" id="cap" aria-hidden="true">
@@ -253,9 +257,9 @@ footer .base{margin-top:9vh;font-size:12px;letter-spacing:.1em;text-transform:up
     var c=document.createElement('canvas').getContext('2d'); c.font='100px Alvaro';
     var W=sceneEl.offsetWidth, H=sceneEl.offsetHeight, n=fabWords.length;
     var lastM=c.measureText(fabWords[n-1].textContent).width;  /* "fabulous," is the big one */
-    var big=W*0.9/(lastM*1.01)*100, small=big*0.56, lineH=1.06;
+    var big=W*0.9/(lastM*1.01)*100, small=big*0.56, lineH=0.92;
     var totalH=(big+(n-1)*small)*lineH;
-    if(totalH>H*0.9){ var k=H*0.9/totalH; big*=k; small*=k; }
+    if(totalH>H*0.58){ var k=H*0.58/totalH; big*=k; small*=k; }
     fabWords.forEach(function(w,i){ w.style.fontSize=(i===n-1?big:small)+'px'; });
   }
   if(document.fonts&&document.fonts.load){document.fonts.load('100px Alvaro').then(sizeFab)}
@@ -305,7 +309,7 @@ footer .base{margin-top:9vh;font-size:12px;letter-spacing:.1em;text-transform:up
      0.36-0.48  she rises from the floor
      0.48-0.84  four words take turns on her chest, the last one screen-wide
      0.84-0.96  the bloom film returns at second 4 and runs to its black end, she fades with it */
-  var wrap=document.getElementById('sceneWrap'), fab=document.getElementById('fab'), cur=-1, curF=-2;
+  var wrap=document.getElementById('sceneWrap'), fab=document.getElementById('fab'), fabArrow=document.querySelector('.fab-arrow'), cur=-1, curF=-2;
   function ease(t){return t<0?0:t>1?1:t*t*(3-2*t)}
   function tick(){
     var r=wrap.getBoundingClientRect(),total=wrap.offsetHeight-window.innerHeight;
@@ -314,13 +318,14 @@ footer .base{margin-top:9vh;font-size:12px;letter-spacing:.1em;text-transform:up
     var fi=p<0.005?-1:Math.min(Math.floor(p/0.07),3);
     if(fi!==curF){
       fabWords.forEach(function(w,i){w.classList.toggle('on',i<=fi)});  /* cumulative: words stay */
+      if(fabArrow)fabArrow.classList.toggle('on',fi>=3);               /* arrow appears once the sentence is complete */
       curF=fi;
     }
     var a=ease((p-0.44)/0.06);
     fab.style.opacity=1-a; fab.style.transform='scale('+(1+a*.25)+')'; fab.style.filter='blur('+(a*6)+'px)';
     var b=ease((p-0.50)/0.10);
     var d=ease((p-0.93)/0.06);
-    fig.style.transform='translateY('+((1-b)*105)+'%) scale('+(1-d*.12)+')';
+    fig.style.transform='translateY('+((1-b)*105 + b*15)+'%) scale('+(1-d*.12)+')';
     fig.style.opacity=1-d;
     spiral.style.opacity=1-d;   /* spiral dissolves to black for the portfolio */
     /* people / will / be, then ameized holds longest and is gone before she leaves (0.84) */
