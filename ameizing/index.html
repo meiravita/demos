@@ -55,12 +55,9 @@ header{position:fixed;top:0;left:0;right:0;z-index:60;display:flex;justify-conte
   text-shadow:0 0 .04em rgba(255,255,255,.95),0 0 .16em rgba(255,255,255,.8),0 0 .45em rgba(255,255,255,.6);
   transition:opacity .35s,transform .55s cubic-bezier(.2,1.2,.3,1)}
 .fab .fw.on{opacity:1;transform:none}
-/* "fabulous" as a thick slab of shiny 24k gold: bright-to-deep gradient fill, black frame, soft depth */
-.fab .fw.gold{
-  background:linear-gradient(177deg,#FBEAA0 0%,#EDC85C 19%,#CB9730 41%,#A4761F 53%,#DFB246 65%,#FBEAA0 83%,#BC8B2C 100%);
-  -webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;
-  text-shadow:0 1px 1px rgba(55,38,6,.6);
-  filter:drop-shadow(0 3px 2px rgba(40,28,4,.4))}
+/* "fabulous" is the 3D gold render keyed to transparent */
+.fab-img{display:block;width:min(86vw,1040px);height:auto;margin-top:1.4vh;
+  filter:drop-shadow(0 5px 6px rgba(0,0,0,.42))}
 .fab-arrow{width:clamp(34px,4.5vw,56px);height:auto;color:var(--gold);margin-top:2.5vh;opacity:.95;
   filter:drop-shadow(0 0 3px rgba(255,255,255,.85));transition:opacity .45s;animation:bobY 1.6s ease-in-out infinite}
 @keyframes bobY{0%,100%{transform:translateY(0)}50%{transform:translateY(9px)}}
@@ -157,7 +154,7 @@ footer .base{margin-top:9vh;font-size:12px;letter-spacing:.1em;text-transform:up
       <div class="spiralwrap" id="spiralwrap" aria-hidden="true">
         <canvas class="spiral" id="spiral"></canvas>
       </div>
-      <h1 class="fab" id="fab"><span class="fw">it</span> <span class="fw">looks</span> <span class="fw">so</span> <span class="fw gold">fabulous,</span><svg class="fab-arrow" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M5 9l7 7 7-7" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg></h1>
+      <h1 class="fab" id="fab"><span class="fw">it</span> <span class="fw">looks</span> <span class="fw">so</span> <img class="fw fab-img" src="assets/fabulous.png" alt="fabulous"><svg class="fab-arrow" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M5 9l7 7 7-7" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg></h1>
       <div class="figure" id="figure">
         <img class="woman" src="assets/woman-cut.png" alt="A woman in round op-art glasses, amazed">
         <div class="cap" id="cap" aria-hidden="true">
@@ -265,13 +262,14 @@ footer .base{margin-top:9vh;font-size:12px;letter-spacing:.1em;text-transform:up
   var fabWords=document.querySelectorAll('.fab .fw'), sceneEl=document.querySelector('.scene');
   function sizeFab(){
     var c=document.createElement('canvas').getContext('2d'); c.font='100px Alvaro';
-    var W=sceneEl.offsetWidth, H=sceneEl.offsetHeight, n=fabWords.length;
-    var lastM=c.measureText(fabWords[n-1].textContent).width;  /* "fabulous," is the big one */
-    var big=W*0.92/(lastM*1.01)*100, small=big*0.70, lineH=0.92;
-    var totalH=(big+(n-1)*small)*lineH;
-    var avail=H*0.88-50;   /* fill from the header offset down to the section bottom, leaving room for the arrow */
-    if(totalH>avail){ var k=avail/totalH; big*=k; small*=k; }
-    fabWords.forEach(function(w,i){ w.style.fontSize=(i===n-1?big:small)+'px'; });
+    var W=sceneEl.offsetWidth, H=sceneEl.offsetHeight;
+    var texts=[],i; for(i=0;i<fabWords.length;i++){ if(fabWords[i].tagName!=='IMG') texts.push(fabWords[i]); }
+    var imgW=Math.min(W*0.86,1040), imgH=imgW/3.03;   /* gold FABULOUS image (aspect ~3.03) is CSS-sized */
+    var maxM=0; texts.forEach(function(e){ maxM=Math.max(maxM,c.measureText(e.textContent).width); });
+    var byW=W*0.62/(maxM*1.01)*100;
+    var byH=(H*0.80 - imgH - 60)/texts.length/0.95;   /* short words share the height left above the image + arrow */
+    var fs=Math.max(18,Math.min(byW,byH));
+    texts.forEach(function(e){ e.style.fontSize=fs+'px'; });
   }
   if(document.fonts&&document.fonts.load){document.fonts.load('100px Alvaro').then(sizeFab)}
   sizeFab(); window.addEventListener('resize',sizeFab);
@@ -282,12 +280,17 @@ footer .base{margin-top:9vh;font-size:12px;letter-spacing:.1em;text-transform:up
     var W=fig.offsetWidth; /* layout width, untouched by the scroll transform */
     var c=document.createElement('canvas').getContext('2d');
     c.font='900 100px Unbounded';
+    /* the three short chest words all share ONE size (fit to the widest of them) so they match */
+    var shortMax=0;
+    words.forEach(function(w){ if(!w.classList.contains('big')) shortMax=Math.max(shortMax,c.measureText(w.textContent).width*0.97); });
+    var shortFs=Math.min(W*0.84/shortMax*100, W*0.5);
     words.forEach(function(w){
-      var m=c.measureText(w.textContent).width*0.97; /* letter-spacing -.03em */
-      var fs=w.classList.contains('big')
-        ? scene.offsetWidth*0.95/m*100                /* the last word nearly fills the screen */
-        : Math.min(W*0.84/m*100, W*0.46);            /* short words cap out so "be" stays on her chest */
-      w.style.fontSize=fs+'px';
+      if(w.classList.contains('big')){
+        var m=c.measureText(w.textContent).width*0.97;
+        w.style.fontSize=(scene.offsetWidth*0.95/m*100)+'px';   /* ameized nearly fills the screen */
+      }else{
+        w.style.fontSize=shortFs+'px';
+      }
     });
   }
   if(document.fonts&&document.fonts.load){Promise.all([document.fonts.load('800 100px Unbounded'),document.fonts.load('900 100px Unbounded')]).then(sizeWords)}
@@ -324,7 +327,7 @@ footer .base{margin-top:9vh;font-size:12px;letter-spacing:.1em;text-transform:up
   function ease(t){return t<0?0:t>1?1:t*t*(3-2*t)}
   function tick(){
     var r=wrap.getBoundingClientRect(),total=wrap.offsetHeight-window.innerHeight;
-    var p=total>0?Math.min(Math.max(-r.top/total,0),1):0;
+    var p=total>0?Math.min(Math.max(-r.top/total,0),1):0, mob=window.innerWidth<=640;
 
     var fi=p<0.005?-1:Math.min(Math.floor(p/0.07),3);
     if(fi!==curF){
@@ -332,16 +335,17 @@ footer .base{margin-top:9vh;font-size:12px;letter-spacing:.1em;text-transform:up
       if(fabArrow)fabArrow.classList.toggle('on',fi>=3);               /* arrow appears once the sentence is complete */
       curF=fi;
     }
-    var a=ease((p-0.44)/0.06);
+    var a=ease((p-(mob?0.34:0.44))/0.06);   /* the caption sticks less on mobile */
     fab.style.opacity=1-a; fab.style.transform='scale('+(1+a*.25)+')'; fab.style.filter='blur('+(a*6)+'px)';
     var b=ease((p-0.50)/0.10);
-    var d=ease((p-0.95)/0.05);
+    var d=ease((p-(mob?0.975:0.95))/(mob?0.025:0.05));
     fig.style.transform='translateY('+((1-b)*105 + b*6)+'%) scale('+(1-d*.12)+')';
     fig.style.opacity=1-d;
     spiral.style.opacity=1-d;   /* spiral dissolves to black for the portfolio */
     /* people / will / be, then ameized holds longest and is gone before she leaves (0.84) */
     var idx;
-    if(p<0.60)idx=-1; else if(p<0.68)idx=0; else if(p<0.76)idx=1; else if(p<0.83)idx=2; else if(p<0.94)idx=3; else idx=4;
+    if(mob){ if(p<0.60)idx=-1; else if(p<0.66)idx=0; else if(p<0.72)idx=1; else if(p<0.78)idx=2; else if(p<0.975)idx=3; else idx=4; }
+    else { if(p<0.60)idx=-1; else if(p<0.68)idx=0; else if(p<0.76)idx=1; else if(p<0.83)idx=2; else if(p<0.94)idx=3; else idx=4; }
     if(idx!==cur){
       words.forEach(function(w,i){w.classList.toggle('on',i===idx);w.classList.toggle('gone',i<idx)});
       cur=idx;
