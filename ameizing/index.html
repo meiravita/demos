@@ -50,9 +50,8 @@ header{position:fixed;top:0;left:0;right:0;z-index:60;display:flex;justify-conte
   padding-top:calc(62px + 1.5vh);text-align:center;font-family:var(--poster);color:var(--gold);line-height:.88;letter-spacing:.01em;
   will-change:opacity,transform;pointer-events:none}
 /* each word on its own line; they stay once shown, the whole block fades together after the sentence is complete */
-.fab .fw{display:block;white-space:nowrap;opacity:0;transform:translateY(.32em) skewX(-6deg);
-  -webkit-text-stroke:.018em #000;paint-order:stroke fill;
-  text-shadow:0 0 .04em rgba(255,255,255,.95),0 0 .16em rgba(255,255,255,.8),0 0 .45em rgba(255,255,255,.6);
+.fab .fw{display:block;white-space:nowrap;opacity:0;transform:translateY(.32em) skewX(-6deg);color:#000;
+  text-shadow:0 0 .04em rgba(255,255,255,.95),0 0 .16em rgba(255,255,255,.85),0 0 .5em rgba(255,255,255,.7);
   transition:opacity .35s,transform .55s cubic-bezier(.2,1.2,.3,1)}
 .fab .fw.on{opacity:1;transform:none}
 /* "fabulous" is the 3D gold render keyed to transparent */
