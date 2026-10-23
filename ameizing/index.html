@@ -41,7 +41,7 @@ body.dark .brand{color:var(--gold)} body.dark .brand i{color:#fff}
 body.dark .nav-cta{border-color:#fff}
 
 /* ---------- the one scene: caption, rings, woman, black ---------- */
-.scene-wrap{position:relative;height:720vh}
+.scene-wrap{position:relative;height:900vh}
 .scene{position:sticky;top:0;height:100vh;overflow:hidden;background:#000;display:flex;align-items:flex-end;justify-content:center}
 /* static op-art spiral background (white spiral on black); it fades to pure black at the
    end of the scene so the portfolio below starts clean, no video, no transition glitches */
@@ -57,6 +57,7 @@ body.dark .nav-cta{border-color:#fff}
   will-change:opacity,transform;pointer-events:none}
 /* each word on its own line; they stay once shown, the whole block fades together after the sentence is complete */
 .fab .fw{display:block;white-space:nowrap;opacity:0;transform:translateY(.32em) skewX(-6deg);
+  text-shadow:0 0 .05em rgba(21,19,26,.7),0 0 .2em rgba(21,19,26,.55),0 0 .55em rgba(21,19,26,.45);
   transition:opacity .35s,transform .55s cubic-bezier(.2,1.2,.3,1)}
 .fab .fw.on{opacity:1;transform:none}
 
@@ -219,7 +220,6 @@ footer .base{margin-top:9vh;font-size:12px;letter-spacing:.1em;text-transform:up
   /* the spiral is drawn live on a canvas at the screen's own resolution: vector-sharp at any size,
      and the stroke tapers to a true point at the very centre. the scene + portfolio sit on black. */
   var spiral=document.getElementById('spiral');
-  document.body.classList.add('dark');
   function drawSpiral(){
     if(!spiral||!spiral.getContext)return;
     var disp=1.65*Math.max(window.innerWidth,window.innerHeight);
@@ -227,10 +227,10 @@ footer .base{margin-top:9vh;font-size:12px;letter-spacing:.1em;text-transform:up
     var N=Math.min(Math.round(disp*dpr),2800);
     spiral.width=N; spiral.height=N;
     var ctx=spiral.getContext('2d');
-    ctx.fillStyle='#000'; ctx.fillRect(0,0,N,N);
+    ctx.fillStyle='#fff'; ctx.fillRect(0,0,N,N);
     var cx=N/2, cy=N/2, Rmax=Math.hypot(cx,cy);
     var pitch=N*0.020, a=pitch/(2*Math.PI), lw=pitch*0.5;   /* tight bands; lw=half pitch = even black/white */
-    ctx.strokeStyle='#fff'; ctx.lineCap='round'; ctx.lineJoin='round';
+    ctx.strokeStyle='#000'; ctx.lineCap='round'; ctx.lineJoin='round';
     var taperTh=(pitch*1.8)/a, th, r, x, y;
     /* outer spiral: one stroke, constant width */
     ctx.lineWidth=lw; ctx.beginPath();
@@ -257,11 +257,12 @@ footer .base{margin-top:9vh;font-size:12px;letter-spacing:.1em;text-transform:up
   var fabWords=document.querySelectorAll('.fab .fw'), sceneEl=document.querySelector('.scene');
   function sizeFab(){
     var c=document.createElement('canvas').getContext('2d'); c.font='100px Alvaro';
-    var W=sceneEl.offsetWidth, H=sceneEl.offsetHeight, maxM=0;
-    fabWords.forEach(function(w){ maxM=Math.max(maxM,c.measureText(w.textContent).width); });
-    /* one uniform size: longest word fits the width, and all lines fit the height */
-    var fs=Math.min(W*0.82/(maxM*1.01)*100, H*0.86/fabWords.length/1.1);
-    fabWords.forEach(function(w){ w.style.fontSize=fs+'px'; });
+    var W=sceneEl.offsetWidth, H=sceneEl.offsetHeight, n=fabWords.length;
+    var lastM=c.measureText(fabWords[n-1].textContent).width;  /* "fabulous," is the big one */
+    var big=W*0.9/(lastM*1.01)*100, small=big*0.56, lineH=1.06;
+    var totalH=(big+(n-1)*small)*lineH;
+    if(totalH>H*0.9){ var k=H*0.9/totalH; big*=k; small*=k; }
+    fabWords.forEach(function(w,i){ w.style.fontSize=(i===n-1?big:small)+'px'; });
   }
   if(document.fonts&&document.fonts.load){document.fonts.load('100px Alvaro').then(sizeFab)}
   sizeFab(); window.addEventListener('resize',sizeFab);
@@ -324,13 +325,14 @@ footer .base{margin-top:9vh;font-size:12px;letter-spacing:.1em;text-transform:up
     var a=ease((p-0.44)/0.06);
     fab.style.opacity=1-a; fab.style.transform='scale('+(1+a*.25)+')'; fab.style.filter='blur('+(a*6)+'px)';
     var b=ease((p-0.50)/0.10);
-    var d=ease((p-0.84)/0.10);
+    var d=ease((p-0.89)/0.09);
+    document.body.classList.toggle('dark', d>0.55);   /* light dress over the white spiral, dark for the black portfolio */
     fig.style.transform='translateY('+((1-b)*105)+'%) scale('+(1-d*.12)+')';
     fig.style.opacity=1-d;
     spiral.style.opacity=1-d;   /* spiral dissolves to black for the portfolio */
     /* people / will / be, then ameized holds longest and is gone before she leaves (0.84) */
     var idx;
-    if(p<0.60)idx=-1; else if(p<0.64)idx=0; else if(p<0.68)idx=1; else if(p<0.72)idx=2; else if(p<0.83)idx=3; else idx=4;
+    if(p<0.60)idx=-1; else if(p<0.67)idx=0; else if(p<0.74)idx=1; else if(p<0.80)idx=2; else if(p<0.88)idx=3; else idx=4;
     if(idx!==cur){
       words.forEach(function(w,i){w.classList.toggle('on',i===idx);w.classList.toggle('gone',i<idx)});
       cur=idx;
