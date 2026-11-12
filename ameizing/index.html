@@ -36,7 +36,7 @@ a{color:inherit}
 
 header{position:fixed;top:0;left:0;right:0;z-index:60;display:flex;justify-content:space-between;align-items:center;
   padding:12px clamp(20px,5vw,56px) 40px;background:linear-gradient(180deg,#000 0%,#000 42%,rgba(0,0,0,0) 100%)}
-.brand{display:inline-flex;align-items:center;text-decoration:none;font-family:var(--display);font-weight:800;font-size:23px;letter-spacing:-.02em;line-height:1;color:var(--gold)}
+.brand{display:inline-flex;align-items:center;text-decoration:none;font-family:var(--display);font-weight:800;font-size:23px;letter-spacing:-.02em;line-height:1;color:var(--gold);direction:ltr;unicode-bidi:isolate}
 .brand .bing{color:#fff}
 .hright{display:flex;align-items:center;gap:clamp(8px,2vw,18px)}
 .langs{display:flex;gap:1px;align-items:center}
@@ -65,14 +65,14 @@ body.rtl .why h2,body.rtl .work-head h2,body.rtl footer .big,body.rtl .ltitle,bo
   transform:translate(-50%,-50%);object-fit:cover;opacity:0;will-change:opacity}
 
 /* opening caption: a timed title sequence (plays on load), per-word black glow, no vignette */
-.fab{position:absolute;inset:0;z-index:1;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:1.1vh;
+.fab{position:absolute;inset:0;z-index:1;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:.7vh;
   padding:0 14px;text-align:center;font-family:var(--poster);line-height:.9;letter-spacing:.01em;
   will-change:opacity,transform;pointer-events:none}
 .fab .fw{opacity:0;will-change:opacity,transform}
-.fab .looks,.fab .speaks{display:block;white-space:pre-line;color:#F6F1E6;font-size:clamp(47px,10.6vmin,128px);letter-spacing:.01em;
+.fab .looks,.fab .speaks{display:block;white-space:pre-line;color:#F6F1E6;font-size:clamp(24px,5.3vmin,64px);letter-spacing:.01em;
   text-shadow:0 0 .12em rgba(0,0,0,.92),0 0 .3em rgba(0,0,0,.8),0 0 .6em rgba(0,0,0,.55)}
 .fabwrap{position:relative;display:inline-block;line-height:0}
-.fab-img{display:block;height:auto;width:auto;max-height:min(33vw,186px);max-width:92vw;margin:0;
+.fab-img{display:block;height:auto;width:auto;max-height:min(16.5vw,93px);max-width:92vw;margin:0;
   filter:brightness(1.2) saturate(1.05) drop-shadow(0 0 .14em rgba(0,0,0,.9)) drop-shadow(0 0 .4em rgba(0,0,0,.6))}
 /* the gleam sweeps F -> S across the fabulous wordmark, masked to its shape (mask set per language in JS) */
 .gleam{position:absolute;inset:0;overflow:hidden;opacity:0;mix-blend-mode:screen;
@@ -81,9 +81,9 @@ body.rtl .why h2,body.rtl .work-head h2,body.rtl footer .big,body.rtl .ltitle,bo
   background:linear-gradient(100deg,transparent,rgba(255,255,255,.35) 24%,#fff 46%,#fff 54%,rgba(255,255,255,.35) 76%,transparent);
   filter:blur(1px) brightness(1.25);transform:skewX(-14deg)}
 .fab .aiq{display:flex;align-items:center;justify-content:center;gap:.52em}
-.ai-img{display:block;width:min(42vw,232px);height:auto;margin:0;
+.ai-img{display:block;width:min(21vw,116px);height:auto;margin:0;
   filter:drop-shadow(0 0 .16em rgba(0,0,0,.98)) drop-shadow(0 0 .45em rgba(0,0,0,.9)) drop-shadow(0 0 1em rgba(0,0,0,.65))}
-.aiq .qm{color:#F6F1E6;font-size:min(34vw,180px);line-height:1;
+.aiq .qm{color:#F6F1E6;font-size:min(17vw,90px);line-height:1;
   text-shadow:0 0 .1em rgba(0,0,0,.98),0 0 .3em rgba(0,0,0,.9),0 0 .7em rgba(0,0,0,.65)}
 /* the title sequence plays once when .scene gets .play */
 .scene.play .bgvid {animation:vidIn .45s ease 0s both}
@@ -113,14 +113,14 @@ body.rtl .why h2,body.rtl .work-head h2,body.rtl footer .big,body.rtl .ltitle,bo
   opacity:0;transform:translateY(.28em) scale(.82);transition:opacity .3s,transform .55s cubic-bezier(.2,1.4,.3,1)}
 .figure .w.on{opacity:1;transform:none}
 /* the climax word is the ameizing wordmark as text so only the "ing" carries a thin white frame */
-.figure .amz{color:var(--gold);font-size:clamp(34px,10vmin,112px);letter-spacing:-.03em;
+.figure .amz{direction:ltr;unicode-bidi:isolate;color:var(--gold);font-size:clamp(34px,10vmin,112px);letter-spacing:-.03em;
   text-shadow:0 0 .1em rgba(0,0,0,.96),0 0 .28em rgba(0,0,0,.9),0 0 .6em rgba(0,0,0,.7)}
 .figure .amz .ing{color:var(--ink);-webkit-text-stroke:1.3px #fff;paint-order:stroke;text-shadow:none}
 
 
 /* ---------- portfolio, on black ---------- */
 .work{position:relative;padding:0 0 70vh;background:#000;color:#fff}
-.work-hold{height:320vh}
+.work-hold{height:220vh}
 .work-head{position:sticky;top:0;height:100vh;display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center}
 .work-head .eyebrow{font-weight:700;font-size:13px;letter-spacing:.3em;text-transform:uppercase;color:var(--gold)}
 .work-head h2{font-family:var(--display);font-weight:800;font-size:clamp(32px,6vw,76px);letter-spacing:-.03em;line-height:1;margin-top:14px;
@@ -190,11 +190,11 @@ body.rtl .work-head h2 .ww.hi{direction:ltr;unicode-bidi:isolate}
 .why .tepage{margin:0;background:#fff;padding:clamp(15px,3vw,26px) clamp(16px,3.4vw,30px)}
 .why .tepage code{font-family:'SF Mono',ui-monospace,Menlo,Monaco,'Courier New',monospace;font-size:12px;line-height:1.62;color:#1d1d1f;white-space:pre-wrap;word-break:break-word;direction:ltr;text-align:left;display:block}
 .why .cap{margin:0 3px 15px}
-.why .cap .tag{display:block;font-weight:700;font-size:12px;letter-spacing:.13em;text-transform:uppercase;margin-bottom:6px}
+.why .cap .tag{display:block;font-weight:700;font-size:clamp(16px,2vw,20px);letter-spacing:.11em;text-transform:uppercase;margin-bottom:8px}
 .why .surface .cap .tag{color:var(--gold-deep)}
 .why .data .cap .tag{color:var(--gold)}
-.why .cap span:last-child{font-weight:500;font-size:14.5px;line-height:1.5;color:rgba(255,255,255,.72)}
-.why .stakes{max-width:42ch;margin:clamp(46px,7vh,78px) auto 0;padding:0 clamp(20px,5vw,56px);text-align:center;font-weight:500;font-size:clamp(17px,1.9vw,22px);line-height:1.52;color:rgba(255,255,255,.9)}
+.why .cap span:last-child{font-weight:500;font-size:clamp(13.5px,1.45vw,16px);line-height:1.5;color:rgba(255,255,255,.72)}
+.why .stakes{max-width:74ch;margin:clamp(46px,7vh,78px) auto 0;padding:0 clamp(20px,5vw,56px);text-align:center;font-weight:500;font-size:clamp(17px,1.9vw,22px);line-height:1.52;color:rgba(255,255,255,.9)}
 .why .stakes b{color:var(--gold);font-weight:700}
 .why .bridge{text-align:center;margin:clamp(26px,3.5vh,46px) auto 0;padding:0 24px;font-family:var(--display);font-weight:700;font-size:clamp(18px,2.4vw,30px);letter-spacing:-.02em;line-height:1.15;color:#fff;max-width:22ch}
 /* full-bleed 1:1 video strip between the why section and the portfolio */
@@ -221,7 +221,9 @@ footer{background:#000;color:#fff;text-align:center;min-height:100vh;
   display:flex;flex-direction:column;justify-content:center;align-items:center;padding:10vh 20px}
 footer .big{font-family:var(--display);font-weight:800;font-size:clamp(34px,7vw,86px);color:#fff;line-height:1.02;letter-spacing:-.03em}
 footer .big i{font-style:normal;color:var(--gold)}
-footer .contacts{display:flex;gap:clamp(34px,8vw,72px);margin-top:6vh;flex-wrap:wrap;justify-content:center}
+footer .write-cta{display:inline-block;margin-top:5.5vh;font-family:var(--sans);font-weight:800;font-size:16px;letter-spacing:.02em;background:var(--gold);color:var(--ink);text-decoration:none;padding:14px 36px;border-radius:999px;transition:transform .2s,opacity .2s}
+footer .write-cta:hover{transform:translateY(-3px);opacity:.9}
+footer .contacts{display:flex;gap:clamp(34px,8vw,72px);margin-top:4.5vh;flex-wrap:wrap;justify-content:center}
 footer .contact{display:flex;flex-direction:column;align-items:center;gap:12px;text-decoration:none;color:var(--gold);transition:transform .25s,opacity .25s}
 footer .contact:hover{transform:translateY(-3px);opacity:.85}
 footer .contact .ic{width:clamp(46px,8vw,58px);height:clamp(46px,8vw,58px);display:flex;align-items:center;justify-content:center;border-radius:999px;border:2px solid var(--gold)}
@@ -329,7 +331,7 @@ footer .base a:hover{color:var(--gold)}
 
   <!-- CLOSING COPY (above the video) -->
   <section class="why closing">
-    <p class="stakes rv" data-i18nh="stakes">The businesses that adapt their online presence now will pull ahead and grow their customer base. The ones that wait will quietly lose clients to the ones that did. An <b>ameizing</b> site keeps you on the right side of that line.</p>
+    <p class="stakes rv" data-i18nh="stakes">The businesses that adapt their online presence now will pull ahead and grow their customer base.<br>The ones that wait will quietly lose clients to the ones that did.<br>An <b>ameizing</b> site keeps you on the right side of that line.</p>
     <p class="scanline rv"><a class="scan-btn" href="scan/" data-i18n="scan_cta">Free check: can AI read your site?</a></p>
   </section>
 
@@ -346,7 +348,7 @@ footer .base a:hover{color:var(--gold)}
       <div class="work-hold"><div class="work-head" id="workHead">
         <p class="eyebrow" data-i18n="work_eyebrow">Selected work</p>
         <h2 id="workH2"><span class="ww">Here</span> <span class="ww">are</span> <span class="ww">some</span> <span class="ww hi">ameizing</span> <span class="ww">sites</span></h2>
-        <p data-i18n="work_sub">A few of the worlds we have built. Each one custom and impossible to scroll past.</p>
+        <p data-i18nh="work_sub">A few of the worlds we have built.<br>Each one custom and impossible to scroll past.</p>
         <svg class="scrollcue" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M5 8.5l7 7 7-7" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
       </div></div>
       <div class="grid">
@@ -385,6 +387,7 @@ footer .base a:hover{color:var(--gold)}
 
   <footer>
     <p class="big" data-i18nh="footer_big">let's make yours<br><i>ameizing</i> too</p>
+    <a class="write-cta" href="mailto:hello@ameiz.ing" data-i18n="footer_write">Write us</a>
     <div class="contacts">
       <a class="contact" href="https://wa.me/972500000000" aria-label="WhatsApp">
         <span class="ic"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.45 1.32 4.95L2 22l5.25-1.38a9.9 9.9 0 0 0 4.79 1.22h.01c5.46 0 9.91-4.45 9.91-9.91 0-2.65-1.03-5.14-2.9-7.01A9.82 9.82 0 0 0 12.04 2zm0 1.8c2.17 0 4.2.84 5.74 2.38a8.06 8.06 0 0 1 2.38 5.73c0 4.47-3.64 8.11-8.12 8.11a8.1 8.1 0 0 1-4.13-1.13l-.3-.18-3.12.82.83-3.04-.19-.31a8.07 8.07 0 0 1-1.24-4.31c0-4.47 3.64-8.11 8.12-8.11zm-4.6 4.34c-.22 0-.57.08-.87.41-.3.33-1.14 1.11-1.14 2.72 0 1.6 1.17 3.14 1.33 3.36.16.22 2.3 3.52 5.59 4.8 2.73 1.06 3.29.85 3.88.8.59-.05 1.91-.78 2.18-1.53.27-.75.27-1.4.19-1.53-.08-.14-.3-.22-.63-.38-.33-.17-1.91-.94-2.2-1.05-.3-.11-.52-.16-.73.16-.22.33-.84 1.05-1.03 1.27-.19.22-.38.25-.71.08-.33-.16-1.37-.5-2.6-1.6-.96-.86-1.61-1.92-1.8-2.24-.19-.33-.02-.5.15-.67.15-.15.33-.38.49-.58.16-.19.22-.33.33-.55.11-.22.05-.41-.03-.58-.08-.16-.73-1.76-1-2.41-.26-.63-.53-.55-.73-.56l-.62-.01z"/></svg></span>
@@ -532,11 +535,11 @@ footer .base a:hover{color:var(--gold)}
       r3_n:"03 / Most sites",r3_h:"Most do one, and neither on purpose",r3_p:"They look pretty but stay mute to AI, or they are technical and forgettable. We build both into one site: it looks fabulous, and it speaks AI.",
       layers_title:"One site, <i>two layers</i>",layers_surface_tag:"On the surface, for people",layers_surface_p:"Aesthetic visuals and words, up front, that stop them and make them stay.",
       layers_data_tag:"Underneath, for AI agents",layers_data_p:"Clean, structured technical data that the machines read to understand, trust and recommend you.",
-      stakes:"The businesses that adapt their online presence now will pull ahead and grow their customer base. The ones that wait will quietly lose clients to the ones that did. An <b>ameizing</b> site keeps you on the right side of that line.",
-      work_eyebrow:"Selected work",work_sub:"A few of the worlds we have built. Each one custom and impossible to scroll past.",card_view:"View &rarr;",
+      stakes:"The businesses that adapt their online presence now will pull ahead and grow their customer base.<br>The ones that wait will quietly lose clients to the ones that did.<br>An <b>ameizing</b> site keeps you on the right side of that line.",
+      work_eyebrow:"Selected work",work_sub:"A few of the worlds we have built.<br>Each one custom and impossible to scroll past.",card_view:"View &rarr;",
       card_solera:"Luxury real estate",card_gefen:"Design & build studio",card_kedem:"Desert hospitality",card_meik:"Property in Germany",card_sharatone:"Bilingual, 4 languages",card_thisismei:"Personal brand",card_lilimei:"Interior design",
       scan_cta:"Free check: can AI read your site?",
-      footer_big:"let's make your website<br><i>ameizing</i> too",footer_base:'<a href="scan/">AI scan</a> &middot; <a href="portal/">client login</a>',
+      footer_big:"let's make your website<br><i>ameizing</i> too",footer_write:"Write us",footer_base:'<a href="scan/">AI scan</a> &middot; <a href="portal/">client login</a>',
       meta:"Websites that make people stop and stare, and talk fluently to the AI agents becoming your customers. Built by ameizing."},
     he:{nav_cta:"לצפייה בעבודות",hero_looks:"נראה",hero_speaks:"ומדבר",
       why_eyebrow:"למה זה חשוב",why_h2:"לאתר שלך יש עכשיו שני סוגים של מבקרים",
@@ -546,11 +549,11 @@ footer .base a:hover{color:var(--gold)}
       r3_n:"03 / רוב האתרים",r3_h:"רובם עושים אחד, ואף אחד לא בכוונה",r3_p:"הם נראים יפה אבל אילמים מול AI, או שהם טכניים ונשכחים. אנחנו בונים את שניהם לאתר אחד: הוא נראה מהמם, והוא מדבר AI.",
       layers_title:"אתר אחד, <i>שתי שכבות</i>",layers_surface_tag:"על פני השטח, בשביל אנשים",layers_surface_p:"ויזואליה ומילים אסתטיות, בחזית, שעוצרות אותם וגורמות להם להישאר.",
       layers_data_tag:"מתחת, בשביל סוכני AI",layers_data_p:"נתונים טכניים נקיים ומובנים שהמכונות קוראות כדי להבין, לתת אמון ולהמליץ עליך.",
-      stakes:"העסקים שיתאימו עכשיו את הנוכחות הדיגיטלית שלהם יזנקו קדימה ויגדילו את מאגר הלקוחות. אלה שימתינו יאבדו לקוחות בשקט לאלה שכבר עשו זאת. אתר <b>ameizing</b> שומר אותך בצד הנכון של הקו.",
-      work_eyebrow:"עבודות נבחרות",work_sub:"כמה מהעולמות שבנינו. כל אחד מותאם אישית ובלתי אפשרי לגלול מעליו.",card_view:"צפייה &larr;",
+      stakes:"העסקים שיתאימו עכשיו את הנוכחות הדיגיטלית שלהם יזנקו קדימה ויגדילו את מאגר הלקוחות.<br>אלה שימתינו יאבדו לקוחות בשקט לאלה שכבר עשו זאת.<br>אתר <b>ameizing</b> שומר אותך בצד הנכון של הקו.",
+      work_eyebrow:"עבודות נבחרות",work_sub:"כמה מהעולמות שבנינו.<br>כל אחד מותאם אישית ובלתי אפשרי לגלול מעליו.",card_view:"צפייה &larr;",
       card_solera:"נדל\"ן יוקרה",card_gefen:"סטודיו לעיצוב ובנייה",card_kedem:"אירוח במדבר",card_meik:"נדל\"ן בגרמניה",card_sharatone:"רב-לשוני, 4 שפות",card_thisismei:"מותג אישי",card_lilimei:"עיצוב פנים",
       scan_cta:"בדיקה חינם: האם AI קורא את האתר שלכם?",
-      footer_big:"בוא נהפוך גם את<br>האתר שלך ל<i>ameizing</i>",footer_base:'<a href="scan/">סריקת AI</a> &middot; <a href="portal/">כניסת לקוחות</a>',
+      footer_big:"בוא נהפוך גם את<br>האתר שלך ל<i>ameizing</i>",footer_write:"כתבו לנו",footer_base:'<a href="scan/">סריקת AI</a> &middot; <a href="portal/">כניסת לקוחות</a>',
       meta:"אתרים שגורמים לאנשים לעצור ולהתבונן, ומדברים שוטף עם סוכני ה-AI שהופכים ללקוחות שלך. נבנה על ידי ameizing."},
     es:{nav_cta:"Ver el trabajo",hero_looks:"Se ve",hero_speaks:"y habla",
       why_eyebrow:"Por qué importa",why_h2:"Tu sitio web ahora tiene dos tipos de visitantes",
@@ -560,11 +563,11 @@ footer .base a:hover{color:var(--gold)}
       r3_n:"03 / La mayoría",r3_h:"La mayoría hace uno, y ninguno a propósito",r3_p:"Se ven bonitos pero están mudos ante la AI, o son técnicos y olvidables. Nosotros unimos ambos en un sitio: se ve fabuloso y habla AI.",
       layers_title:"Un sitio, <i>dos capas</i>",layers_surface_tag:"En la superficie, para personas",layers_surface_p:"Imágenes y palabras estéticas, al frente, que los detienen y los hacen quedarse.",
       layers_data_tag:"Debajo, para agentes de AI",layers_data_p:"Datos técnicos limpios y estructurados que las máquinas leen para entenderte, confiar y recomendarte.",
-      stakes:"Las empresas que adapten su presencia online ahora tomarán la delantera y harán crecer su base de clientes. Las que esperen perderán clientes, en silencio, frente a las que sí lo hicieron. Un sitio <b>ameizing</b> te mantiene del lado correcto de esa línea.",
-      work_eyebrow:"Trabajos seleccionados",work_sub:"Algunos de los mundos que hemos creado. Cada uno a medida e imposible de pasar de largo.",card_view:"Ver &rarr;",
+      stakes:"Las empresas que adapten su presencia online ahora tomarán la delantera y harán crecer su base de clientes.<br>Las que esperen perderán clientes, en silencio, frente a las que sí lo hicieron.<br>Un sitio <b>ameizing</b> te mantiene del lado correcto de esa línea.",
+      work_eyebrow:"Trabajos seleccionados",work_sub:"Algunos de los mundos que hemos creado.<br>Cada uno a medida e imposible de pasar de largo.",card_view:"Ver &rarr;",
       card_solera:"Inmobiliaria de lujo",card_gefen:"Estudio de diseño y construcción",card_kedem:"Hospitalidad en el desierto",card_meik:"Propiedades en Alemania",card_sharatone:"Multilingüe, 4 idiomas",card_thisismei:"Marca personal",card_lilimei:"Diseño de interiores",
       scan_cta:"Prueba gratis: ¿la AI lee tu sitio?",
-      footer_big:"hagamos tu web<br><i>ameizing</i> también",footer_base:'<a href="scan/">AI scan</a> &middot; <a href="portal/">acceso clientes</a>',
+      footer_big:"hagamos tu web<br><i>ameizing</i> también",footer_write:"Escríbenos",footer_base:'<a href="scan/">AI scan</a> &middot; <a href="portal/">acceso clientes</a>',
       meta:"Sitios que hacen que la gente se detenga a mirar, y que hablan con fluidez con los agentes de AI que se vuelven tus clientes. Hecho por ameizing."},
     de:{nav_cta:"Arbeiten ansehen",hero_looks:"Sieht",hero_speaks:"aus\nund spricht",
       why_eyebrow:"Warum es zählt",why_h2:"Deine Website hat jetzt zwei Arten von Besuchern",
@@ -574,11 +577,11 @@ footer .base a:hover{color:var(--gold)}
       r3_n:"03 / Die meisten",r3_h:"Die meisten können eins, und keins mit Absicht",r3_p:"Sie sehen hübsch aus, bleiben aber stumm für AI, oder sie sind technisch und vergesslich. Wir bauen beides in eine Seite: Sie sieht fabelhaft aus und spricht AI.",
       layers_title:"Eine Seite, <i>zwei Ebenen</i>",layers_surface_tag:"An der Oberfläche, für Menschen",layers_surface_p:"Ästhetische Bilder und Worte, vorne, die sie stoppen und zum Bleiben bringen.",
       layers_data_tag:"Darunter, für AI-Agenten",layers_data_p:"Saubere, strukturierte technische Daten, die die Maschinen lesen, um dich zu verstehen, dir zu vertrauen und dich zu empfehlen.",
-      stakes:"Die Unternehmen, die ihre Online-Präsenz jetzt anpassen, ziehen vorbei und bauen ihren Kundenstamm aus. Die, die warten, verlieren still Kunden an die, die es getan haben. Eine <b>ameizing</b> Seite hält dich auf der richtigen Seite dieser Linie.",
-      work_eyebrow:"Ausgewählte Arbeiten",work_sub:"Ein paar der Welten, die wir gebaut haben. Jede maßgeschneidert, an der man nicht einfach vorbeiscrollt.",card_view:"Ansehen &rarr;",
+      stakes:"Die Unternehmen, die ihre Online-Präsenz jetzt anpassen, ziehen vorbei und bauen ihren Kundenstamm aus.<br>Die, die warten, verlieren still Kunden an die, die es getan haben.<br>Eine <b>ameizing</b> Seite hält dich auf der richtigen Seite dieser Linie.",
+      work_eyebrow:"Ausgewählte Arbeiten",work_sub:"Ein paar der Welten, die wir gebaut haben.<br>Jede maßgeschneidert, an der man nicht einfach vorbeiscrollt.",card_view:"Ansehen &rarr;",
       card_solera:"Luxusimmobilien",card_gefen:"Design- und Baustudio",card_kedem:"Gastfreundschaft in der Wüste",card_meik:"Immobilien in Deutschland",card_sharatone:"Mehrsprachig, 4 Sprachen",card_thisismei:"Personenmarke",card_lilimei:"Innenarchitektur",
       scan_cta:"Gratis-Check: liest AI deine Website?",
-      footer_big:"machen wir deine Website<br>auch <i>ameizing</i>",footer_base:'<a href="scan/">AI Scan</a> &middot; <a href="portal/">Kunden-Login</a>',
+      footer_big:"machen wir deine Website<br>auch <i>ameizing</i>",footer_write:"Schreib uns",footer_base:'<a href="scan/">AI Scan</a> &middot; <a href="portal/">Kunden-Login</a>',
       meta:"Websites, die Menschen innehalten lassen und fließend mit den AI-Agenten sprechen, die zu deinen Kunden werden. Gebaut von ameizing."}
   };
   var sayEl=document.getElementById('say'), fabImg=document.getElementById('fabImg'), gleamEl=document.getElementById('gleam'), workH2=document.getElementById('workH2'), workHeadEl=document.getElementById('workHead'), metaDesc=document.querySelector('meta[name="description"]');
