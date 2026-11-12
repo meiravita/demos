@@ -55,38 +55,48 @@ body.rtl .why h2,body.rtl .work-head h2,body.rtl footer .big,body.rtl .ltitle,bo
 .nav-cta:hover{background:var(--ink);color:#fff}
 
 /* ---------- the one scene: caption, rings, woman, black ---------- */
-.scene-wrap{position:relative;height:1040vh}
+.scene-wrap{position:relative;height:230vh}
 .scene{position:sticky;top:0;height:100vh;overflow:hidden;background:#000;display:flex;align-items:flex-end;justify-content:center}
 /* static op-art spiral background (white spiral on black); it fades to pure black at the
    end of the scene so the portfolio below starts clean, no video, no transition glitches */
 .spiralwrap{position:absolute;inset:0;z-index:0;background:#000;overflow:hidden}
 /* AI circuit-board loop, cover-scaled to fill the viewport; fades to pure black at the end of the scene */
 .bgvid{position:absolute;top:50%;left:50%;min-width:100%;min-height:100%;width:100%;height:100%;max-width:none;
-  transform:translate(-50%,-50%);object-fit:cover;will-change:opacity}
+  transform:translate(-50%,-50%);object-fit:cover;opacity:0;will-change:opacity}
 
-/* opening caption: one word at a time as you scroll, each centered on the heart of the rings, then the last fades into the rings */
-.fab{position:absolute;inset:0;z-index:1;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:.7vh;
-  padding:13vh 14px 0;text-align:center;font-family:var(--poster);color:var(--gold);line-height:.88;letter-spacing:.01em;
+/* opening caption: a timed title sequence (plays on load), per-word black glow, no vignette */
+.fab{position:absolute;inset:0;z-index:1;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:1.1vh;
+  padding:0 14px;text-align:center;font-family:var(--poster);line-height:.9;letter-spacing:.01em;
   will-change:opacity,transform;pointer-events:none}
-/* dark scrim behind the caption so the gold/silver/black reads over the busy circuit;
-   JS grows its opacity as each word appears, and the whole caption (scrim included) fades into the finale */
-.fabscrim{position:absolute;inset:0;z-index:-1;pointer-events:none;opacity:0;transition:opacity .45s ease;
-  background:radial-gradient(ellipse 72% 62% at 50% 50%, rgba(0,0,0,.9) 0%, rgba(0,0,0,.74) 40%, rgba(0,0,0,.35) 68%, rgba(0,0,0,0) 85%)}
-/* each word on its own line; they stay once shown, the whole block fades together after the sentence is complete */
-.fab .fw{display:block;white-space:nowrap;font-size:clamp(44px,13vmin,118px);opacity:0;transform:translateY(.32em) skewX(-6deg);color:#000;
-  text-shadow:0 0 .04em rgba(255,255,255,.95),0 0 .16em rgba(255,255,255,.85),0 0 .5em rgba(255,255,255,.7);
-  transition:opacity .35s,transform .55s cubic-bezier(.2,1.2,.3,1)}
-.fab .fw.on{opacity:1;transform:none}
-/* "fabulous" is the 3D gold render keyed to transparent */
-.fab-img{display:block;height:auto;width:auto;max-height:min(39vw,205px);max-width:92vw;margin:0;
-  filter:brightness(1.22) saturate(1.06) drop-shadow(0 5px 6px rgba(0,0,0,.42))}
-.fab .fw.aiq{display:flex;align-items:center;justify-content:center;gap:.14em}
-.aiq .qm{color:#000;font-size:min(41vw,215px);line-height:1;text-shadow:0 0 .04em rgba(255,255,255,.95),0 0 .16em rgba(255,255,255,.85),0 0 .5em rgba(255,255,255,.7)}
-.ai-img{display:block;width:min(50vw,264px);height:auto;margin:0;
-  filter:drop-shadow(0 5px 6px rgba(0,0,0,.42))}
-.fab-arrow{width:clamp(34px,4.5vw,56px);height:auto;color:var(--gold);margin-top:2.5vh;opacity:.95;
-  filter:drop-shadow(0 0 3px rgba(255,255,255,.85));transition:opacity .45s;animation:bobY 1.6s ease-in-out infinite}
-@keyframes bobY{0%,100%{transform:translateY(0)}50%{transform:translateY(9px)}}
+.fab .fw{opacity:0;will-change:opacity,transform}
+.fab .looks,.fab .speaks{display:block;white-space:pre-line;color:#F6F1E6;font-size:clamp(47px,10.6vmin,128px);letter-spacing:.01em;
+  text-shadow:0 0 .12em rgba(0,0,0,.92),0 0 .3em rgba(0,0,0,.8),0 0 .6em rgba(0,0,0,.55)}
+.fabwrap{position:relative;display:inline-block;line-height:0}
+.fab-img{display:block;height:auto;width:auto;max-height:min(33vw,186px);max-width:92vw;margin:0;
+  filter:brightness(1.2) saturate(1.05) drop-shadow(0 0 .14em rgba(0,0,0,.9)) drop-shadow(0 0 .4em rgba(0,0,0,.6))}
+/* the gleam sweeps F -> S across the fabulous wordmark, masked to its shape (mask set per language in JS) */
+.gleam{position:absolute;inset:0;overflow:hidden;opacity:0;mix-blend-mode:screen;
+  -webkit-mask:url("assets/fabulous-gold.png") center/contain no-repeat;mask:url("assets/fabulous-gold.png") center/contain no-repeat}
+.gleam::before{content:"";position:absolute;top:-40%;bottom:-40%;left:-60%;width:55%;
+  background:linear-gradient(100deg,transparent,rgba(255,255,255,.35) 24%,#fff 46%,#fff 54%,rgba(255,255,255,.35) 76%,transparent);
+  filter:blur(1px) brightness(1.25);transform:skewX(-14deg)}
+.fab .aiq{display:flex;align-items:center;justify-content:center;gap:.52em}
+.ai-img{display:block;width:min(42vw,232px);height:auto;margin:0;
+  filter:drop-shadow(0 0 .16em rgba(0,0,0,.98)) drop-shadow(0 0 .45em rgba(0,0,0,.9)) drop-shadow(0 0 1em rgba(0,0,0,.65))}
+.aiq .qm{color:#F6F1E6;font-size:min(34vw,180px);line-height:1;
+  text-shadow:0 0 .1em rgba(0,0,0,.98),0 0 .3em rgba(0,0,0,.9),0 0 .7em rgba(0,0,0,.65)}
+/* the title sequence plays once when .scene gets .play */
+.scene.play .bgvid {animation:vidIn .45s ease 0s both}
+.scene.play .looks {animation:fadeUp .7s cubic-bezier(.2,1,.3,1) .55s both}
+.scene.play .fabwrap{animation:pop .7s cubic-bezier(.2,1.3,.3,1) 1.15s both}
+.scene.play .gleam {animation:gleamOn .01s linear 1.65s both, sweep 1.15s cubic-bezier(.4,0,.2,1) 1.65s both}
+.scene.play .speaks{animation:fadeUp .7s cubic-bezier(.2,1,.3,1) 2.05s both}
+.scene.play .aiq   {animation:fadeUp .7s cubic-bezier(.2,1,.3,1) 2.75s both}
+@keyframes vidIn{from{opacity:0}to{opacity:1}}
+@keyframes fadeUp{from{opacity:0;transform:translateY(.4em)}to{opacity:1;transform:none}}
+@keyframes pop{from{opacity:0;transform:scale(.8)}to{opacity:1;transform:none}}
+@keyframes gleamOn{to{opacity:1}}
+@keyframes sweep{from{left:-62%}to{left:118%}}
 
 /* the figure box keeps the cutout's proportions so each word can be measured against her shoulders */
 .figure{position:relative;z-index:2;width:min(96vw,calc(98vh * 827 / 1229));aspect-ratio:827/1229;
@@ -94,17 +104,18 @@ body.rtl .why h2,body.rtl .work-head h2,body.rtl footer .big,body.rtl .ltitle,bo
 .woman{width:100%;height:100%;object-fit:contain;object-position:bottom}
 /* the finale sentence: the four words stack down her body, first one just under her neck,
    each revealing and STAYING until the whole line reads "That's an ameizing website" */
-.say{position:absolute;z-index:3;left:50%;top:46%;transform:translateX(-50%);width:100vw;
-  display:flex;flex-direction:column;align-items:center;justify-content:flex-start;gap:.3vmin;
+.say{position:absolute;z-index:3;left:50%;top:52%;transform:translateX(-50%);width:100vw;
+  display:flex;flex-direction:column;align-items:center;justify-content:flex-start;gap:.5vmin;
   pointer-events:none;text-align:center}
-.figure .w{font-family:var(--display);font-weight:800;color:#000;
-  text-shadow:0 0 .08em #fff,0 0 .18em #fff,0 0 .34em rgba(255,255,255,.85),0 0 .62em rgba(255,255,255,.55);
-  line-height:.9;letter-spacing:-.03em;white-space:nowrap;font-size:clamp(26px,8.5vmin,86px);
+.figure .w{font-family:var(--display);font-weight:800;color:#F6F1E6;
+  text-shadow:0 0 .1em rgba(0,0,0,.96),0 0 .26em rgba(0,0,0,.9),0 0 .55em rgba(0,0,0,.72),0 0 1em rgba(0,0,0,.5);
+  line-height:.92;letter-spacing:-.03em;white-space:nowrap;font-size:clamp(26px,8.5vmin,86px);
   opacity:0;transform:translateY(.28em) scale(.82);transition:opacity .3s,transform .55s cubic-bezier(.2,1.4,.3,1)}
 .figure .w.on{opacity:1;transform:none}
-/* the climax word is the ameizing logo (gold ameiz + black ing); a small white glow so the black "ing" still reads */
-.figure img.w.big{width:min(48vw,575px);height:auto;margin:-1.4vmin 0;white-space:normal;
-  filter:drop-shadow(0 0 1px #fff) drop-shadow(0 0 5px rgba(255,255,255,.8)) drop-shadow(0 0 13px rgba(255,255,255,.5))}
+/* the climax word is the ameizing wordmark as text so only the "ing" carries a thin white frame */
+.figure .amz{color:var(--gold);font-size:clamp(34px,10vmin,112px);letter-spacing:-.03em;
+  text-shadow:0 0 .1em rgba(0,0,0,.96),0 0 .28em rgba(0,0,0,.9),0 0 .6em rgba(0,0,0,.7)}
+.figure .amz .ing{color:var(--ink);-webkit-text-stroke:1.3px #fff;paint-order:stroke;text-shadow:none}
 
 
 /* ---------- portfolio, on black ---------- */
@@ -225,8 +236,7 @@ footer .base a:hover{color:var(--gold)}
 
 @media (max-width:860px){.grid{grid-template-columns:1fr 1fr}}
 @media (max-width:640px){
-  /* on mobile the caption is narrow and short, so centre it lower instead of hugging the header */
-  .fab{justify-content:center;padding-top:calc(46px + 2vh)}
+  .fab{justify-content:center}
 }
 @media (max-width:560px){.grid{grid-template-columns:1fr}}
 @media (prefers-reduced-motion:reduce){
@@ -262,15 +272,10 @@ footer .base a:hover{color:var(--gold)}
           <source src="assets/hero-bg.mp4" type="video/mp4">
         </video>
       </div>
-      <h1 class="fab" id="fab"><div class="fabscrim" id="fabscrim" aria-hidden="true"></div><span class="fw" data-i18n="hero_looks">Looks</span> <img class="fw fab-img" id="fabImg" src="assets/fabulous-gold.png" alt="fabulous"> <span class="fw" data-i18n="hero_speaks" style="white-space:pre-line;line-height:1.3">and speaks</span> <span class="fw aiq"><img class="ai-img" src="assets/ai-silver.png" alt="AI"><span class="qm">?</span></span><svg class="fab-arrow" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12 3V18M6 12l6 6 6-6" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></h1>
+      <h1 class="fab" id="fab"><span class="fw looks" data-i18n="hero_looks">Looks</span> <span class="fw fabwrap"><img class="fab-img" id="fabImg" src="assets/fabulous-gold.png" alt="fabulous"><span class="gleam" id="gleam"></span></span> <span class="fw speaks" data-i18n="hero_speaks">and speaks</span> <span class="fw aiq"><img class="ai-img" src="assets/ai-silver-tight.png" alt="AI"><span class="qm">?</span></span></h1>
       <div class="figure" id="figure">
         <img class="woman" src="assets/woman-cut.png" alt="A woman in round op-art glasses, amazed">
-        <div class="say" id="say" aria-hidden="true">
-          <span class="w">That's</span>
-          <span class="w">an</span>
-          <img class="w big" src="assets/logo-ameizing.png" alt="ameizing">
-          <span class="w">website</span>
-        </div>
+        <div class="say" id="say" aria-hidden="true"></div>
       </div>
     </div>
   </section>
@@ -325,7 +330,6 @@ footer .base a:hover{color:var(--gold)}
   <!-- CLOSING COPY (above the video) -->
   <section class="why closing">
     <p class="stakes rv" data-i18nh="stakes">The businesses that adapt their online presence now will pull ahead and grow their customer base. The ones that wait will quietly lose clients to the ones that did. An <b>ameizing</b> site keeps you on the right side of that line.</p>
-    <p class="bridge rv" data-i18nh="bridge">That is what every site below is <i>built to do</i>.</p>
     <p class="scanline rv"><a class="scan-btn" href="scan/" data-i18n="scan_cta">Free check: can AI read your site?</a></p>
   </section>
 
@@ -470,48 +474,34 @@ footer .base a:hover{color:var(--gold)}
     });
   }
 
-  /* the scene, scrubbed by scroll (p = 0..1 across the tall wrapper), over the spinning loop:
-     0.00-0.28  "it looks so fabulous," one word at a time, centered on the rings
-     0.30-0.36  the last word fades out
-     0.36-0.48  she rises from the floor
-     0.48-0.84  four words take turns on her chest, the last one screen-wide
-     0.84-0.96  the bloom film returns at second 4 and runs to its black end, she fades with it */
-  var wrap=document.getElementById('sceneWrap'), fab=document.getElementById('fab'), fabArrow=document.querySelector('.fab-arrow'), fabScrim=document.getElementById('fabscrim'), cur=-1, curF=-2;
-  function ease(t){return t<0?0:t>1?1:t*t*(3-2*t)}
-  function tick(){
-    var r=wrap.getBoundingClientRect(),total=wrap.offsetHeight-window.innerHeight;
-    var p=total>0?Math.min(Math.max(-r.top/total,0),1):0, mob=window.innerWidth<=640;
-
-    var fi=p<0.005?-1:Math.min(Math.floor(p/0.08),3);
-    if(fi!==curF){
-      fabWords.forEach(function(w,i){w.classList.toggle('on',i<=fi)});  /* cumulative: words stay */
-      if(fabArrow)fabArrow.classList.toggle('on',fi>=3);               /* arrow appears once the sentence is complete */
-      if(fabScrim)fabScrim.style.opacity=fi<0?0:Math.min((fi+1)/4,1); /* the dark backing grows in with each word */
-      curF=fi;
-    }
-    var a=ease((p-(mob?0.34:0.44))/0.06);   /* the caption sticks less on mobile */
-    fab.style.opacity=1-a; fab.style.transform='scale('+(1+a*.25)+')'; fab.style.filter='blur('+(a*6)+'px)';
-    var b=ease((p-0.50)/0.10);
-    var d=ease((p-(mob?0.975:0.95))/(mob?0.025:0.05));
-    fig.style.transform='translateY('+((1-b)*105 + b*6)+'%) scale('+(1-d*.12)+')';
-    fig.style.opacity=1-d;
-    spiral.style.opacity=1-d;   /* spiral dissolves to black for the portfolio */
-    /* the sentence builds down her body one word at a time and every word STAYS,
-       so by the end the whole line "That's an ameizing website" reads at once, then fades with her */
-    var idx;
-    if(mob){ if(p<0.58)idx=-1; else if(p<0.64)idx=0; else if(p<0.70)idx=1; else if(p<0.77)idx=2; else idx=3; }
-    else { if(p<0.58)idx=-1; else if(p<0.64)idx=0; else if(p<0.70)idx=1; else if(p<0.77)idx=2; else idx=3; }
-    if(idx!==cur){
-      words.forEach(function(w,i){w.classList.toggle('on',i<=idx)});   /* cumulative: words stay until all show */
-      cur=idx;
-    }
+  /* the title sequence: a timed intro plays on load, then scroll raises the girl and her line plays on a timer */
+  var wrap=document.getElementById('sceneWrap'), scene=document.querySelector('.scene'), bg=document.getElementById('spiral'),
+      fab=document.getElementById('fab'), figEl=document.getElementById('figure');
+  var released=false, wordsStarted=false, wordTimers=[], introTmr, AFTER_AI_MS=3450+1000;
+  function clampN(t){return t<0?0:t>1?1:t}
+  function startWords(){
+    if(wordsStarted) return; wordsStarted=true;
+    var items=document.querySelectorAll('.figure .w'), n=items.length;
+    items.forEach(function(el,i){ var dd=i*350; if(i===n-1) dd+=500;   /* last word lands a little later */
+      wordTimers.push(setTimeout(function(){el.classList.add('on');}, dd)); });
   }
-  if(!reduced){
-    var raf=false;
-    window.addEventListener('scroll',function(){if(!raf){raf=true;requestAnimationFrame(function(){tick();raf=false})}},{passive:true});
-    window.addEventListener('resize',tick);
-    tick();
-  }else{words.forEach(function(w){w.classList.add('on')});fabWords.forEach(function(w){w.classList.add('on')})}
+  function onScroll(){
+    if(!released) return;
+    var total=wrap.offsetHeight-window.innerHeight, p=total>0?clampN(window.scrollY/total):0;
+    fab.style.opacity=1-clampN(p/0.18);
+    figEl.style.transform='translateY('+((1-clampN((p-0.06)/0.44))*106)+'%)';
+    if(p>=0.5) startWords();
+  }
+  function releaseScroll(){ released=true; document.documentElement.style.overflow=''; onScroll(); }
+  function playIntro(){
+    released=false; wordsStarted=false; wordTimers.forEach(clearTimeout); wordTimers=[];
+    document.documentElement.style.overflow='hidden'; window.scrollTo(0,0);
+    fab.style.opacity=''; figEl.style.transform='';
+    document.querySelectorAll('.figure .w').forEach(function(w){w.classList.remove('on');});
+    scene.classList.remove('play'); void scene.offsetWidth; scene.classList.add('play');
+    if(bg){ try{bg.currentTime=0;}catch(e){} bg.playbackRate=0.6; bg.play().catch(function(){bg.playbackRate=0.6;}); }
+    clearTimeout(introTmr); introTmr=setTimeout(releaseScroll, AFTER_AI_MS);
+  }
 
   /* ---------- language (EN / HE / ES / DE) ---------- */
   var FAB={en:'assets/fabulous-gold.png',he:'assets/fabulous-he.png',es:'assets/fabulous-es.png',de:'assets/fabulous-de.png'};
@@ -543,7 +533,6 @@ footer .base a:hover{color:var(--gold)}
       layers_title:"One site, <i>two layers</i>",layers_surface_tag:"On the surface, for people",layers_surface_p:"Aesthetic visuals and words, up front, that stop them and make them stay.",
       layers_data_tag:"Underneath, for AI agents",layers_data_p:"Clean, structured technical data that the machines read to understand, trust and recommend you.",
       stakes:"The businesses that adapt their online presence now will pull ahead and grow their customer base. The ones that wait will quietly lose clients to the ones that did. An <b>ameizing</b> site keeps you on the right side of that line.",
-      bridge:"That is what every site below is <i>built to do</i>.",
       work_eyebrow:"Selected work",work_sub:"A few of the worlds we have built. Each one custom and impossible to scroll past.",card_view:"View &rarr;",
       card_solera:"Luxury real estate",card_gefen:"Design & build studio",card_kedem:"Desert hospitality",card_meik:"Property in Germany",card_sharatone:"Bilingual, 4 languages",card_thisismei:"Personal brand",card_lilimei:"Interior design",
       scan_cta:"Free check: can AI read your site?",
@@ -558,7 +547,6 @@ footer .base a:hover{color:var(--gold)}
       layers_title:"אתר אחד, <i>שתי שכבות</i>",layers_surface_tag:"על פני השטח, בשביל אנשים",layers_surface_p:"ויזואליה ומילים אסתטיות, בחזית, שעוצרות אותם וגורמות להם להישאר.",
       layers_data_tag:"מתחת, בשביל סוכני AI",layers_data_p:"נתונים טכניים נקיים ומובנים שהמכונות קוראות כדי להבין, לתת אמון ולהמליץ עליך.",
       stakes:"העסקים שיתאימו עכשיו את הנוכחות הדיגיטלית שלהם יזנקו קדימה ויגדילו את מאגר הלקוחות. אלה שימתינו יאבדו לקוחות בשקט לאלה שכבר עשו זאת. אתר <b>ameizing</b> שומר אותך בצד הנכון של הקו.",
-      bridge:"בדיוק לזה <i>נבנה</i> כל אתר שלמטה.",
       work_eyebrow:"עבודות נבחרות",work_sub:"כמה מהעולמות שבנינו. כל אחד מותאם אישית ובלתי אפשרי לגלול מעליו.",card_view:"צפייה &larr;",
       card_solera:"נדל\"ן יוקרה",card_gefen:"סטודיו לעיצוב ובנייה",card_kedem:"אירוח במדבר",card_meik:"נדל\"ן בגרמניה",card_sharatone:"רב-לשוני, 4 שפות",card_thisismei:"מותג אישי",card_lilimei:"עיצוב פנים",
       scan_cta:"בדיקה חינם: האם AI קורא את האתר שלכם?",
@@ -573,7 +561,6 @@ footer .base a:hover{color:var(--gold)}
       layers_title:"Un sitio, <i>dos capas</i>",layers_surface_tag:"En la superficie, para personas",layers_surface_p:"Imágenes y palabras estéticas, al frente, que los detienen y los hacen quedarse.",
       layers_data_tag:"Debajo, para agentes de AI",layers_data_p:"Datos técnicos limpios y estructurados que las máquinas leen para entenderte, confiar y recomendarte.",
       stakes:"Las empresas que adapten su presencia online ahora tomarán la delantera y harán crecer su base de clientes. Las que esperen perderán clientes, en silencio, frente a las que sí lo hicieron. Un sitio <b>ameizing</b> te mantiene del lado correcto de esa línea.",
-      bridge:"Para eso está <i>hecho</i> cada sitio de abajo.",
       work_eyebrow:"Trabajos seleccionados",work_sub:"Algunos de los mundos que hemos creado. Cada uno a medida e imposible de pasar de largo.",card_view:"Ver &rarr;",
       card_solera:"Inmobiliaria de lujo",card_gefen:"Estudio de diseño y construcción",card_kedem:"Hospitalidad en el desierto",card_meik:"Propiedades en Alemania",card_sharatone:"Multilingüe, 4 idiomas",card_thisismei:"Marca personal",card_lilimei:"Diseño de interiores",
       scan_cta:"Prueba gratis: ¿la AI lee tu sitio?",
@@ -588,23 +575,23 @@ footer .base a:hover{color:var(--gold)}
       layers_title:"Eine Seite, <i>zwei Ebenen</i>",layers_surface_tag:"An der Oberfläche, für Menschen",layers_surface_p:"Ästhetische Bilder und Worte, vorne, die sie stoppen und zum Bleiben bringen.",
       layers_data_tag:"Darunter, für AI-Agenten",layers_data_p:"Saubere, strukturierte technische Daten, die die Maschinen lesen, um dich zu verstehen, dir zu vertrauen und dich zu empfehlen.",
       stakes:"Die Unternehmen, die ihre Online-Präsenz jetzt anpassen, ziehen vorbei und bauen ihren Kundenstamm aus. Die, die warten, verlieren still Kunden an die, die es getan haben. Eine <b>ameizing</b> Seite hält dich auf der richtigen Seite dieser Linie.",
-      bridge:"Genau dafür ist jede Seite unten <i>gebaut</i>.",
       work_eyebrow:"Ausgewählte Arbeiten",work_sub:"Ein paar der Welten, die wir gebaut haben. Jede maßgeschneidert, an der man nicht einfach vorbeiscrollt.",card_view:"Ansehen &rarr;",
       card_solera:"Luxusimmobilien",card_gefen:"Design- und Baustudio",card_kedem:"Gastfreundschaft in der Wüste",card_meik:"Immobilien in Deutschland",card_sharatone:"Mehrsprachig, 4 Sprachen",card_thisismei:"Personenmarke",card_lilimei:"Innenarchitektur",
       scan_cta:"Gratis-Check: liest AI deine Website?",
       footer_big:"machen wir deine Website<br>auch <i>ameizing</i>",footer_base:'<a href="scan/">AI Scan</a> &middot; <a href="portal/">Kunden-Login</a>',
       meta:"Websites, die Menschen innehalten lassen und fließend mit den AI-Agenten sprechen, die zu deinen Kunden werden. Gebaut von ameizing."}
   };
-  var sayEl=document.getElementById('say'), fabImg=document.getElementById('fabImg'), workH2=document.getElementById('workH2'), workHeadEl=document.getElementById('workHead'), metaDesc=document.querySelector('meta[name="description"]');
+  var sayEl=document.getElementById('say'), fabImg=document.getElementById('fabImg'), gleamEl=document.getElementById('gleam'), workH2=document.getElementById('workH2'), workHeadEl=document.getElementById('workHead'), metaDesc=document.querySelector('meta[name="description"]');
   function buildSay(lang){
     var parts=FINALE[lang]||FINALE.en, html='';
     for(var i=0;i<parts.length;i++){
-      if(parts[i]==='@logo') html+='<img class="w big" src="assets/logo-ameizing.png" alt="ameizing">';
+      if(parts[i]==='@logo') html+='<span class="w amz" aria-label="ameizing">ameiz<span class="ing">ing</span></span>';
       else html+='<span class="w">'+parts[i]+'</span>';
     }
     sayEl.innerHTML=html;
     words=document.querySelectorAll('.figure .w');
-    if(reduced){ words.forEach(function(w){w.classList.add('on')}); } else { cur=-1; }
+    if(reduced){ words.forEach(function(w){w.classList.add('on')}); }
+    else { wordsStarted=false; wordTimers.forEach(clearTimeout); wordTimers=[]; }
   }
   var demoEyebrow=document.getElementById('demoEyebrow'),demoSub=document.getElementById('demoSub'),demoCta=document.getElementById('demoCta'),demoCode=document.getElementById('demoCode');
   function buildDemo(lang){
@@ -629,11 +616,12 @@ footer .base a:hover{color:var(--gold)}
     document.querySelectorAll('[data-i18n]').forEach(function(el){ var k=el.getAttribute('data-i18n'); if(dict[k]!=null) el.textContent=dict[k]; });
     document.querySelectorAll('[data-i18nh]').forEach(function(el){ var k=el.getAttribute('data-i18nh'); if(dict[k]!=null) el.innerHTML=dict[k]; });
     if(fabImg&&FAB[lang]) fabImg.src=FAB[lang];
+    if(gleamEl&&FAB[lang]){ gleamEl.style.webkitMaskImage='url("'+FAB[lang]+'")'; gleamEl.style.maskImage='url("'+FAB[lang]+'")'; }
     if(metaDesc&&dict.meta) metaDesc.setAttribute('content',dict.meta);
     buildSay(lang); buildWorkH2(lang); buildDemo(lang);
     document.querySelectorAll('#langs button').forEach(function(b){ b.classList.toggle('on',b.getAttribute('data-lang')===lang); });
     try{localStorage.setItem('ameizing_lang',lang)}catch(e){}
-    if(!reduced) tick();
+    if(!reduced && released) onScroll();
   }
   document.querySelectorAll('#langs button').forEach(function(b){ b.addEventListener('click',function(){ applyLang(b.getAttribute('data-lang')); }); });
   /* parallax drift on the stacked panels (layers + video) */
@@ -646,6 +634,10 @@ footer .base a:hover{color:var(--gold)}
   if(!reduced){window.addEventListener('scroll',function(){requestAnimationFrame(parallax);},{passive:true});window.addEventListener('resize',parallax);parallax();}
   var savedLang=null; try{savedLang=localStorage.getItem('ameizing_lang')}catch(e){}
   applyLang(savedLang||'en');
+  /* kick off the title sequence (or, for reduced motion, just show the circuit and the static caption) */
+  try{ if('scrollRestoration' in history) history.scrollRestoration='manual'; }catch(e){}
+  if(reduced){ if(bg) bg.style.opacity=1; }
+  else{ window.addEventListener('scroll',onScroll,{passive:true}); window.addEventListener('resize',onScroll); playIntro(); }
 })();
 </script>
 </body>
