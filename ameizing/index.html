@@ -35,7 +35,7 @@ a{color:inherit}
 .wrap{max-width:1200px;margin:0 auto;padding:0 clamp(20px,5vw,56px)}
 
 header{position:fixed;top:0;left:0;right:0;z-index:60;display:flex;justify-content:space-between;align-items:center;
-  padding:9px clamp(20px,5vw,56px);background:#fff;border-bottom:1px solid rgba(21,19,26,.14);box-shadow:0 2px 14px rgba(0,0,0,.07)}
+  padding:12px clamp(20px,5vw,56px) 40px;background:linear-gradient(180deg,#fff 0%,#fff 36%,rgba(255,255,255,0) 100%)}
 .brand{display:inline-flex;align-items:center;text-decoration:none}
 .brand img{display:block;height:25px;width:auto}
 .hright{display:flex;align-items:center;gap:clamp(8px,2vw,18px)}
@@ -66,7 +66,7 @@ body.rtl .why h2,body.rtl .work-head h2,body.rtl footer .big,body.rtl .ltitle,bo
 
 /* opening caption: one word at a time as you scroll, each centered on the heart of the rings, then the last fades into the rings */
 .fab{position:absolute;inset:0;z-index:1;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:.7vh;
-  padding:64px 14px 0;text-align:center;font-family:var(--poster);color:var(--gold);line-height:.88;letter-spacing:.01em;
+  padding:13vh 14px 0;text-align:center;font-family:var(--poster);color:var(--gold);line-height:.88;letter-spacing:.01em;
   will-change:opacity,transform;pointer-events:none}
 /* dark scrim behind the caption so the gold/silver/black reads over the busy circuit;
    JS grows its opacity as each word appears, and the whole caption (scrim included) fades into the finale */
@@ -103,7 +103,7 @@ body.rtl .why h2,body.rtl .work-head h2,body.rtl footer .big,body.rtl .ltitle,bo
   opacity:0;transform:translateY(.28em) scale(.82);transition:opacity .3s,transform .55s cubic-bezier(.2,1.4,.3,1)}
 .figure .w.on{opacity:1;transform:none}
 /* the climax word is the ameizing logo (gold ameiz + black ing); a small white glow so the black "ing" still reads */
-.figure img.w.big{width:min(96vw,1150px);height:auto;margin:-1.4vmin 0;white-space:normal;
+.figure img.w.big{width:min(48vw,575px);height:auto;margin:-1.4vmin 0;white-space:normal;
   filter:drop-shadow(0 0 1px #fff) drop-shadow(0 0 5px rgba(255,255,255,.8)) drop-shadow(0 0 13px rgba(255,255,255,.5))}
 
 
@@ -275,32 +275,6 @@ footer .base a:hover{color:var(--gold)}
     </div>
   </section>
 
-  <!-- WHY IT MATTERS -->
-  <section class="why" id="why">
-    <div class="head rv">
-      <p class="eyebrow" data-i18n="why_eyebrow">Why it matters</p>
-      <h2 data-i18n="why_h2">Your website now has two kinds of visitors</h2>
-      <p class="lead" data-i18n="why_lead">Times are changing fast. People still decide in seconds, but now AI agents are starting to shop, compare and recommend on their behalf. To keep growing, your online presence has to win both.</p>
-    </div>
-    <div class="reasons">
-      <div class="reason rv">
-        <p class="n" data-i18n="r1_n">01 / People</p>
-        <h3 data-i18n="r1_h">They judge you in three seconds</h3>
-        <p data-i18n="r1_p">If your site does not stop them and make them stare, they are gone before they read a word. Looks are not decoration here. They are the whole first impression.</p>
-      </div>
-      <div class="reason rv">
-        <p class="n" data-i18n="r2_n">02 / Machines</p>
-        <h3 data-i18n="r2_h">Your next customer may be a machine</h3>
-        <p data-i18n="r2_p">ChatGPT, Claude, Gemini and Perplexity already answer "who should I hire" for your clients. If your site does not speak their language, you are invisible in the answer.</p>
-      </div>
-      <div class="reason rv">
-        <p class="n" data-i18n="r3_n">03 / Most sites</p>
-        <h3 data-i18n="r3_h">Most do one, and neither on purpose</h3>
-        <p data-i18n="r3_p">They look pretty but stay mute to AI, or they are technical and forgettable. We build both into one site: it looks fabulous, and it speaks AI.</p>
-      </div>
-    </div>
-    <div class="reasons-end" aria-hidden="true"></div>
-  </section>
 
   <!-- ONE SITE, TWO LAYERS (parallax panel) -->
   <section class="why layers-sec">
