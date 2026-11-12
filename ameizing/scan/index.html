@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ameizing | AI Scan</title>
+<meta name="description" content="בדיקה חינמית: האם סוכני AI כמו ChatGPT, Claude ו-Gemini מצליחים לקרוא את האתר שלך? ציון מיידי מ-0 עד 100.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Unbounded:wght@600;700;800&family=Archivo:wght@500;600;700;900&family=Heebo:wght@400;500;700;800;900&display=swap">
+<style>
+:root{
+  --gold:#D7AD6A; --gold-deep:#B8893C; --paper:#FBFBF8; --ink:#15131A;
+  --sans:'Archivo',Helvetica,Arial,sans-serif;
+  --display:'Unbounded','Archivo',sans-serif;
+  --good:#3fae6e; --mid:#e0a23c; --bad:#e05a3a;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+body{background:#000;color:#fff;font-family:var(--sans);font-size:16px;line-height:1.6;min-height:100vh}
+body[dir-he]{font-family:'Heebo','Archivo',sans-serif}
+html[lang=he] body{font-family:'Heebo','Archivo',sans-serif}
+html[lang=he] .display{font-family:'Heebo','Unbounded',sans-serif}
+a{color:inherit}
+.wrap{max-width:860px;margin:0 auto;padding:0 clamp(20px,5vw,56px)}
+header{display:flex;justify-content:space-between;align-items:center;padding:12px clamp(20px,5vw,56px);
+  background:#fff;border-bottom:1px solid rgba(21,19,26,.14)}
+.brand img{display:block;height:24px;width:auto}
+.langs{display:flex;gap:1px}
+.langs button{background:none;border:0;font-family:var(--sans);font-weight:700;font-size:12px;color:rgba(21,19,26,.45);
+  cursor:pointer;padding:4px 7px;border-radius:6px}
+.langs button.on{color:var(--ink);background:rgba(21,19,26,.08)}
+main{padding:clamp(40px,8vh,90px) 0 90px}
+.eyebrow{font-weight:700;font-size:13px;letter-spacing:.3em;text-transform:uppercase;color:var(--gold);text-align:center}
+h1.display{font-family:var(--display);font-weight:800;font-size:clamp(26px,5vw,52px);letter-spacing:-.02em;
+  line-height:1.08;text-align:center;margin-top:14px;text-wrap:balance}
+.sub{margin:16px auto 0;max-width:52ch;text-align:center;color:rgba(255,255,255,.75);font-weight:500}
+.scanrow{display:flex;gap:10px;max-width:620px;margin:34px auto 0;flex-wrap:wrap;justify-content:center}
+.scanrow input{flex:1;min-width:240px;padding:15px 18px;border-radius:12px;border:1.5px solid rgba(255,255,255,.25);
+  background:rgba(255,255,255,.06);color:#fff;font-family:inherit;font-size:16px;direction:ltr;text-align:left}
+.scanrow input:focus{outline:none;border-color:var(--gold)}
+.scanrow button{font-family:inherit;font-weight:800;font-size:15px;border:0;border-radius:12px;padding:15px 28px;
+  background:var(--gold);color:var(--ink);cursor:pointer;transition:transform .15s}
+.scanrow button:hover{transform:translateY(-2px)}
+.scanrow button:disabled{opacity:.6;cursor:wait;transform:none}
+.status{text-align:center;margin-top:14px;color:rgba(255,255,255,.65);font-size:14px;min-height:22px}
+#result{display:none;margin-top:46px}
+.scorehead{display:flex;gap:26px;align-items:center;justify-content:center;flex-wrap:wrap}
+.ring{width:120px;height:120px;border-radius:50%;display:grid;place-items:center;flex:0 0 auto;
+  background:conic-gradient(var(--c,#777) var(--deg,0deg), rgba(255,255,255,.14) 0deg)}
+.ring>div{width:92px;height:92px;border-radius:50%;background:#000;display:grid;place-items:center;
+  font-size:32px;font-weight:800;font-family:var(--display);color:var(--c,#777)}
+.gradeline{text-align:center}
+.gradeline .g{font-family:var(--display);font-weight:800;font-size:clamp(18px,2.6vw,26px);color:var(--c,#fff)}
+.gradeline .u{margin-top:4px;font-size:13px;color:rgba(255,255,255,.55);direction:ltr}
+table{width:100%;border-collapse:collapse;margin-top:30px;font-size:14.5px;background:rgba(255,255,255,.04);
+  border-radius:12px;overflow:hidden}
+td{padding:10px 14px;border-bottom:1px solid rgba(255,255,255,.08)}
+tr:last-child td{border-bottom:0}
+.mark{font-weight:800;width:28px}
+tr.ok .mark{color:var(--good)} tr.fail .mark{color:var(--bad)}
+tr.fail .lbl{font-weight:700}
+.pts{color:rgba(255,255,255,.5);white-space:nowrap;direction:ltr;width:58px;text-align:center}
+.samplebox{margin-top:26px;background:rgba(255,255,255,.04);border:1px dashed rgba(255,255,255,.25);
+  border-radius:12px;padding:16px;font-size:13.5px;color:rgba(255,255,255,.7);max-height:150px;overflow:hidden}
+.samplebox .cap{font-weight:700;font-size:12px;letter-spacing:.12em;text-transform:uppercase;color:var(--gold);margin-bottom:8px}
+.samplebox .empty{color:var(--bad);font-weight:700}
+#leadbox{display:none;margin-top:40px;border-top:2px solid var(--gold);padding-top:26px;text-align:center}
+#leadbox h2{font-family:var(--display);font-weight:700;font-size:clamp(18px,2.6vw,26px)}
+#leadbox p{margin-top:8px;color:rgba(255,255,255,.72);font-size:15px}
+.leadrow{display:flex;gap:10px;max-width:640px;margin:20px auto 0;flex-wrap:wrap;justify-content:center}
+.leadrow input{flex:1;min-width:170px;padding:13px 16px;border-radius:12px;border:1.5px solid rgba(255,255,255,.25);
+  background:rgba(255,255,255,.06);color:#fff;font-family:inherit;font-size:15px}
+.leadrow input:focus{outline:none;border-color:var(--gold)}
+.leadrow button{font-family:inherit;font-weight:800;font-size:15px;border:0;border-radius:12px;padding:13px 26px;
+  background:var(--gold);color:var(--ink);cursor:pointer}
+.hp{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)}
+#leadok{display:none;margin-top:18px;color:var(--good);font-weight:700}
+footer{border-top:1px solid rgba(255,255,255,.12);padding:26px 20px;text-align:center;font-size:12.5px;
+  letter-spacing:.08em;text-transform:uppercase;color:rgba(255,255,255,.5)}
+footer a{text-decoration:none;border-bottom:1px solid rgba(255,255,255,.28)}
+</style>
+</head>
+<body>
+
+<header>
+  <a class="brand" href="../"><img src="../assets/logo-ameizing.png" alt="ameizing"></a>
+  <div class="langs" id="langs">
+    <button type="button" data-lang="en">EN</button>
+    <button type="button" data-lang="he">עב</button>
+    <button type="button" data-lang="es">ES</button>
+    <button type="button" data-lang="de">DE</button>
+  </div>
+</header>
+
+<main>
+  <div class="wrap">
+    <p class="eyebrow" data-t="eyebrow">AI Scan</p>
+    <h1 class="display" data-t="h1">האם סוכן AI מצליח לקרוא את האתר שלך?</h1>
+    <p class="sub" data-t="sub">ChatGPT, Claude ו-Gemini כבר ממליצים ללקוחות שלך על עסקים. הבדיקה הזו קוראת את האתר שלך בדיוק כמו שסוכן AI קורא אותו, ונותנת ציון מ-0 עד 100. חינם, בלי הרשמה.</p>
+
+    <div class="scanrow">
+      <input id="url" type="url" placeholder="https://your-site.co.il" autocomplete="url">
+      <button id="go" data-t="go">בדיקה</button>
+    </div>
+    <p class="status" id="status"></p>
+
+    <div id="result">
+      <div class="scorehead">
+        <div class="ring" id="ring"><div id="scoreNum">0</div></div>
+        <div class="gradeline"><div class="g" id="gradeTxt"></div><div class="u" id="urlTxt"></div></div>
+      </div>
+      <table><tbody id="checksBody"></tbody></table>
+      <div class="samplebox"><div class="cap" data-t="sample_cap">מה הסוכן רואה בעמוד שלך</div><div id="sampleTxt"></div></div>
+    </div>
+
+    <div id="leadbox">
+      <h2 data-t="lead_h">רוצים את הדוח המלא, עם התיקונים?</h2>
+      <p data-t="lead_p">נשלח ניתוח מפורט של האתר ומה צריך לתקן כדי שסוכני AI ימליצו עליכם. בלי התחייבות.</p>
+      <div class="leadrow">
+        <input id="lname" data-tp="lead_name" placeholder="שם">
+        <input id="lphone" data-tp="lead_phone" placeholder="טלפון" dir="ltr">
+        <input id="lemail" data-tp="lead_email" placeholder="אימייל (לא חובה)" dir="ltr">
+        <input class="hp" id="company_site_extra" tabindex="-1" autocomplete="off">
+        <button id="leadGo" data-t="lead_go">שלחו לי את הדוח</button>
+      </div>
+      <p id="leadok" data-t="lead_ok">קיבלנו! נחזור אליכם עם הדוח המלא.</p>
+    </div>
+  </div>
+</main>
+
+<footer><span data-t="foot">ameizing · websites that look fabulous</span> · <a href="../" data-t="foot_back">חזרה לאתר</a></footer>
+
+<script>
+(function(){
+  /* The backend web app (Google Apps Script). Paste the deployed /exec URL here. */
+  var ENDPOINT = "PASTE_GAS_EXEC_URL_HERE";
+
+  var T = {
+    he:{eyebrow:"AI Scan",h1:"האם סוכן AI מצליח לקרוא את האתר שלך?",
+      sub:"ChatGPT, Claude ו-Gemini כבר ממליצים ללקוחות שלך על עסקים. הבדיקה הזו קוראת את האתר שלך בדיוק כמו שסוכן AI קורא אותו, ונותנת ציון מ-0 עד 100. חינם, בלי הרשמה.",
+      go:"בדיקה",scanning:"סורקים את האתר... זה לוקח כמה שניות",
+      err:"הסריקה לא הצליחה. בדקו שהכתובת מלאה ונסו שוב.",
+      offline:"הסורק עולה לאוויר ממש בקרוב. נסו שוב מאוחר יותר.",
+      blocked:"האתר שלך חסם את הסריקה. זה בדיוק מה שקורה גם לסוכני AI שמנסים לקרוא אותו.",
+      unreachable:"לא הצלחנו להגיע לאתר. בדקו את הכתובת.",
+      grade_readable:"קריא לסוכני AI",grade_partial:"קריא חלקית לסוכני AI",grade_invisible:"כמעט בלתי נראה לסוכני AI",
+      grade_blocked:"חוסם סוכני AI",grade_unreachable:"לא נגיש",
+      sample_cap:"מה הסוכן רואה בעמוד שלך",sample_empty:"(עמוד ריק: בלי הרצת JavaScript אין כאן טקסט)",
+      lead_h:"רוצים את הדוח המלא, עם התיקונים?",
+      lead_p:"נשלח ניתוח מפורט של האתר ומה צריך לתקן כדי שסוכני AI ימליצו עליכם. בלי התחייבות.",
+      lead_name:"שם",lead_phone:"טלפון",lead_email:"אימייל (לא חובה)",lead_go:"שלחו לי את הדוח",
+      lead_ok:"קיבלנו! נחזור אליכם עם הדוח המלא.",lead_need:"צריך לפחות שם וטלפון או אימייל.",
+      foot:"ameizing · websites that look fabulous",foot_back:"חזרה לאתר",
+      checks:{content:"תוכן קריא ללא JavaScript",robots:"robots.txt לא חוסם בוטים של AI",
+        livebot:"האתר עונה לסוכן אוטומטי",jsonld:"נתונים מובנים (JSON-LD)",
+        jsonld_biz:"פרטי העסק בנתונים המובנים",jsonld_rich:"ביקורות או שאלות נפוצות מובנות",
+        title:"כותרת עמוד",meta:"תיאור עמוד",h1:"כותרת ראשית (h1)",alt:"טקסט חלופי לתמונות",
+        lang:"הצהרת שפה",llms:"קובץ llms.txt",sitemap:"מפת אתר"}},
+    en:{eyebrow:"AI Scan",h1:"Can an AI agent actually read your website?",
+      sub:"ChatGPT, Claude and Gemini already recommend businesses to your customers. This scan reads your site exactly the way an AI agent does and scores it 0 to 100. Free, no signup.",
+      go:"Scan",scanning:"Scanning your site... a few seconds",
+      err:"The scan failed. Check the full address and try again.",
+      offline:"The scanner is coming online very soon. Try again later.",
+      blocked:"Your site blocked the scan. That is exactly what happens to AI agents that try to read it.",
+      unreachable:"We could not reach that site. Check the address.",
+      grade_readable:"Readable by AI agents",grade_partial:"Partially readable by AI agents",grade_invisible:"Nearly invisible to AI agents",
+      grade_blocked:"Blocks AI agents",grade_unreachable:"Unreachable",
+      sample_cap:"What the agent sees on your page",sample_empty:"(Empty page: without JavaScript there is no text here)",
+      lead_h:"Want the full report, with the fixes?",
+      lead_p:"We will send a detailed analysis of your site and what to fix so AI agents recommend you. No strings.",
+      lead_name:"Name",lead_phone:"Phone",lead_email:"Email (optional)",lead_go:"Send me the report",
+      lead_ok:"Got it! We will get back to you with the full report.",lead_need:"We need at least a name and a phone or email.",
+      foot:"ameizing · websites that look fabulous",foot_back:"back to the site",
+      checks:{content:"Content readable without JavaScript",robots:"robots.txt does not block AI bots",
+        livebot:"The site answers an automated agent",jsonld:"Structured data (JSON-LD)",
+        jsonld_biz:"Business details in structured data",jsonld_rich:"Structured reviews or FAQ",
+        title:"Page title",meta:"Meta description",h1:"Main heading (h1)",alt:"Image alt text",
+        lang:"Language declaration",llms:"llms.txt file",sitemap:"Sitemap"}},
+    es:{eyebrow:"AI Scan",h1:"¿Puede un agente de AI leer tu sitio web?",
+      sub:"ChatGPT, Claude y Gemini ya recomiendan negocios a tus clientes. Este escaneo lee tu sitio exactamente como lo hace un agente de AI y lo califica de 0 a 100. Gratis, sin registro.",
+      go:"Escanear",scanning:"Escaneando tu sitio... unos segundos",
+      err:"El escaneo falló. Revisa la dirección completa e intenta de nuevo.",
+      offline:"El escáner estará en línea muy pronto. Intenta más tarde.",
+      blocked:"Tu sitio bloqueó el escaneo. Eso mismo les pasa a los agentes de AI que intentan leerlo.",
+      unreachable:"No pudimos llegar a ese sitio. Revisa la dirección.",
+      grade_readable:"Legible para agentes de AI",grade_partial:"Parcialmente legible para agentes de AI",grade_invisible:"Casi invisible para agentes de AI",
+      grade_blocked:"Bloquea agentes de AI",grade_unreachable:"Inaccesible",
+      sample_cap:"Lo que el agente ve en tu página",sample_empty:"(Página vacía: sin JavaScript no hay texto aquí)",
+      lead_h:"¿Quieres el informe completo, con las correcciones?",
+      lead_p:"Te enviaremos un análisis detallado de tu sitio y qué corregir para que los agentes de AI te recomienden. Sin compromiso.",
+      lead_name:"Nombre",lead_phone:"Teléfono",lead_email:"Email (opcional)",lead_go:"Envíenme el informe",
+      lead_ok:"¡Recibido! Volveremos con el informe completo.",lead_need:"Necesitamos al menos nombre y teléfono o email.",
+      foot:"ameizing · websites that look fabulous",foot_back:"volver al sitio",
+      checks:{content:"Contenido legible sin JavaScript",robots:"robots.txt no bloquea bots de AI",
+        livebot:"El sitio responde a un agente automático",jsonld:"Datos estructurados (JSON-LD)",
+        jsonld_biz:"Datos del negocio estructurados",jsonld_rich:"Reseñas o FAQ estructuradas",
+        title:"Título de página",meta:"Meta descripción",h1:"Encabezado principal (h1)",alt:"Texto alternativo de imágenes",
+        lang:"Declaración de idioma",llms:"Archivo llms.txt",sitemap:"Mapa del sitio"}},
+    de:{eyebrow:"AI Scan",h1:"Kann ein AI-Agent deine Website wirklich lesen?",
+      sub:"ChatGPT, Claude und Gemini empfehlen deinen Kunden schon Unternehmen. Dieser Scan liest deine Seite genau so, wie ein AI-Agent es tut, und bewertet sie von 0 bis 100. Kostenlos, ohne Anmeldung.",
+      go:"Scannen",scanning:"Deine Seite wird gescannt... ein paar Sekunden",
+      err:"Der Scan ist fehlgeschlagen. Prüfe die vollständige Adresse und versuche es erneut.",
+      offline:"Der Scanner geht sehr bald online. Versuche es später noch einmal.",
+      blocked:"Deine Seite hat den Scan blockiert. Genau das passiert auch AI-Agenten, die sie lesen wollen.",
+      unreachable:"Wir konnten die Seite nicht erreichen. Prüfe die Adresse.",
+      grade_readable:"Lesbar für AI-Agenten",grade_partial:"Teilweise lesbar für AI-Agenten",grade_invisible:"Fast unsichtbar für AI-Agenten",
+      grade_blocked:"Blockiert AI-Agenten",grade_unreachable:"Nicht erreichbar",
+      sample_cap:"Was der Agent auf deiner Seite sieht",sample_empty:"(Leere Seite: ohne JavaScript gibt es hier keinen Text)",
+      lead_h:"Willst du den vollen Report, mit den Fixes?",
+      lead_p:"Wir senden dir eine detaillierte Analyse deiner Seite und was zu beheben ist, damit AI-Agenten dich empfehlen. Unverbindlich.",
+      lead_name:"Name",lead_phone:"Telefon",lead_email:"Email (optional)",lead_go:"Report schicken",
+      lead_ok:"Angekommen! Wir melden uns mit dem vollen Report.",lead_need:"Wir brauchen mindestens Name und Telefon oder Email.",
+      foot:"ameizing · websites that look fabulous",foot_back:"zurück zur Seite",
+      checks:{content:"Inhalt ohne JavaScript lesbar",robots:"robots.txt blockiert keine AI-Bots",
+        livebot:"Die Seite antwortet einem automatischen Agenten",jsonld:"Strukturierte Daten (JSON-LD)",
+        jsonld_biz:"Unternehmensdaten strukturiert",jsonld_rich:"Strukturierte Bewertungen oder FAQ",
+        title:"Seitentitel",meta:"Meta-Beschreibung",h1:"Hauptüberschrift (h1)",alt:"Alt-Texte der Bilder",
+        lang:"Sprachdeklaration",llms:"llms.txt Datei",sitemap:"Sitemap"}}
+  };
+  var COLORS={readable:"#3fae6e",partial:"#e0a23c",invisible:"#e05a3a",blocked:"#e05a3a",unreachable:"#888"};
+  var cur="he", lastScan=null;
+
+  function $(id){return document.getElementById(id)}
+  function dict(){return T[cur]||T.he}
+  function applyLang(lang){
+    if(!T[lang])lang="he";
+    cur=lang;
+    document.documentElement.lang=lang;
+    document.documentElement.dir=(lang==="he")?"rtl":"ltr";
+    var d=dict();
+    document.querySelectorAll("[data-t]").forEach(function(el){var k=el.getAttribute("data-t");if(d[k])el.textContent=d[k]});
+    document.querySelectorAll("[data-tp]").forEach(function(el){var k=el.getAttribute("data-tp");if(d[k])el.placeholder=d[k]});
+    document.querySelectorAll("#langs button").forEach(function(b){b.classList.toggle("on",b.getAttribute("data-lang")===lang)});
+    try{localStorage.setItem("ameizing_lang",lang)}catch(e){}
+    if(lastScan)render(lastScan);
+  }
+  document.querySelectorAll("#langs button").forEach(function(b){
+    b.addEventListener("click",function(){applyLang(b.getAttribute("data-lang"))});
+  });
+
+  function render(r){
+    lastScan=r;
+    var d=dict();
+    var key=r.gradeKey||"unreachable";
+    var color=COLORS[key]||"#888";
+    var score=r.score||0;
+    $("result").style.display="block";
+    var ring=$("ring");
+    ring.style.setProperty("--c",color);
+    ring.style.setProperty("--deg",Math.round(score*3.6)+"deg");
+    $("scoreNum").textContent=score;
+    $("scoreNum").style.color=color;
+    $("gradeTxt").textContent=d["grade_"+key]||key;
+    $("gradeTxt").style.color=color;
+    $("urlTxt").textContent=r.finalUrl||r.url||"";
+    var rows="";
+    (r.checks||[]).forEach(function(c){
+      var lbl=d.checks[c.id]||c.id;
+      rows+='<tr class="'+(c.ok?"ok":"fail")+'"><td class="mark">'+(c.ok?"✓":"✗")+'</td>'+
+        '<td class="lbl">'+lbl+'</td><td class="pts">'+c.points+"/"+c.max+"</td></tr>";
+    });
+    $("checksBody").innerHTML=rows;
+    var s=(r.sample||"").trim();
+    $("sampleTxt").innerHTML=s?"":'<span class="empty">'+d.sample_empty+"</span>";
+    if(s)$("sampleTxt").textContent=s;
+    $("leadbox").style.display="block";
+  }
+
+  $("go").addEventListener("click",run);
+  $("url").addEventListener("keydown",function(e){if(e.key==="Enter")run()});
+  function run(){
+    var u=$("url").value.trim();
+    var d=dict();
+    if(!u){$("url").focus();return}
+    if(ENDPOINT.indexOf("http")!==0){$("status").textContent=d.offline;return}
+    $("go").disabled=true;
+    $("status").textContent=d.scanning;
+    $("result").style.display="none";$("leadbox").style.display="none";
+    fetch(ENDPOINT+"?url="+encodeURIComponent(u))
+      .then(function(r){return r.json()})
+      .then(function(r){
+        $("go").disabled=false;
+        if(r.error){$("status").textContent=d.err;return}
+        if(r.gradeKey==="blocked"){$("status").textContent=d.blocked;render(r);return}
+        if(r.gradeKey==="unreachable"&&!r.ok){$("status").textContent=d.unreachable;return}
+        $("status").textContent="";
+        render(r);
+      })
+      .catch(function(){$("go").disabled=false;$("status").textContent=d.err});
+  }
+
+  $("leadGo").addEventListener("click",function(){
+    var d=dict();
+    var name=$("lname").value.trim(),phone=$("lphone").value.trim(),email=$("lemail").value.trim();
+    if(!name||(!phone&&!email)){alert(d.lead_need);return}
+    if(ENDPOINT.indexOf("http")===0){
+      fetch(ENDPOINT,{method:"POST",mode:"no-cors",keepalive:true,
+        headers:{"Content-Type":"text/plain"},
+        body:JSON.stringify({url:(lastScan&&(lastScan.finalUrl||lastScan.url))||$("url").value.trim(),
+          score:lastScan?lastScan.score:"",name:name,phone:phone,email:email,
+          company_site_extra:$("company_site_extra").value})});
+    }
+    $("leadok").style.display="block";
+    $("leadGo").disabled=true;
+  });
+
+  var saved=null;try{saved=localStorage.getItem("ameizing_lang")}catch(e){}
+  applyLang(saved||"he");
+})();
+</script>
+</body>
+</html>

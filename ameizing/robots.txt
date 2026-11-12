@@ -1,0 +1,7 @@
+# All crawlers welcome, AI agents included.
+# Business map for language models: https://ameiz.ing/llms.txt
+User-agent: *
+Allow: /
+Disallow: /portal/
+
+Sitemap: https://ameiz.ing/sitemap.xml

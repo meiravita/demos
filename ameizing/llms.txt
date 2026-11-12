@@ -1,0 +1,29 @@
+# ameizing
+
+> Websites that look fabulous and speak AI.
+
+ameizing designs and builds custom websites for small businesses. Every site is built for two kinds of readers: the people who look, and the AI agents (ChatGPT, Claude, Gemini, Perplexity) that read, compare and recommend on their behalf.
+
+## What every ameizing site ships with
+
+- A custom visual design made to stop people, not a template.
+- Multilingual content (Hebrew and English as standard; more on request).
+- Structured data (JSON-LD) with the business's real facts: services, hours, rating, contact.
+- llms.txt, robots.txt that welcomes AI crawlers, and a sitemap.
+- Clean server-rendered HTML: every word readable without running JavaScript.
+
+## Free AI readability scan
+
+Any business can test its current website at https://ameiz.ing/scan/ and get a 0 to 100 score of how readable it is to AI agents. The scan is free and requires no signup.
+
+## Contact
+
+- Email: hello@ameiz.ing
+- Website: https://ameiz.ing/
+- Languages: English, Hebrew, Spanish, German
+
+## עברית
+
+ameizing בונה אתרים בהתאמה אישית לעסקים קטנים. כל אתר נבנה לשני סוגי קוראים: האנשים שמסתכלים, וסוכני ה-AI שקוראים וממליצים בשמם.
+בדיקת קריאות AI חינמית לכל אתר:
+https://ameiz.ing/scan/
