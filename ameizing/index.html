@@ -35,24 +35,24 @@ a{color:inherit}
 .wrap{max-width:1200px;margin:0 auto;padding:0 clamp(20px,5vw,56px)}
 
 header{position:fixed;top:0;left:0;right:0;z-index:60;display:flex;justify-content:space-between;align-items:center;
-  padding:12px clamp(20px,5vw,56px) 40px;background:linear-gradient(180deg,#fff 0%,#fff 36%,rgba(255,255,255,0) 100%)}
+  padding:12px clamp(20px,5vw,56px) 40px;background:linear-gradient(180deg,#000 0%,#000 42%,rgba(0,0,0,0) 100%)}
 .brand{display:inline-flex;align-items:center;text-decoration:none}
-.brand img{display:block;height:25px;width:auto}
+.brand img{display:block;height:25px;width:auto;filter:brightness(0) invert(1)}
 .hright{display:flex;align-items:center;gap:clamp(8px,2vw,18px)}
 .langs{display:flex;gap:1px;align-items:center}
 .langs button{background:none;border:0;font-family:var(--sans);font-weight:700;font-size:12px;letter-spacing:.04em;
-  color:rgba(21,19,26,.45);cursor:pointer;padding:4px 7px;border-radius:6px;transition:color .2s,background .2s}
-.langs button.on{color:var(--ink);background:rgba(21,19,26,.08)}
-.langs button:hover{color:var(--ink)}
+  color:rgba(255,255,255,.6);cursor:pointer;padding:4px 7px;border-radius:6px;transition:color .2s,background .2s}
+.langs button.on{color:#fff;background:rgba(255,255,255,.16)}
+.langs button:hover{color:#fff}
 
 /* right-to-left + Hebrew type */
 .snippet{direction:ltr;text-align:left}
 body.rtl{font-family:'Heebo','Archivo',sans-serif}
 body.rtl .why h2,body.rtl .work-head h2,body.rtl footer .big,body.rtl .ltitle,body.rtl .bridge,body.rtl .reason h3,body.rtl .stakes{font-family:'Heebo','Unbounded',sans-serif}
 @media (max-width:560px){.langs button{padding:3px 5px;font-size:11px;letter-spacing:0}}
-.nav-cta{text-decoration:none;font-weight:700;font-size:13px;letter-spacing:.02em;border:2px solid var(--ink);
-  border-radius:999px;padding:9px 18px;background:#fff;color:var(--ink);transition:background .2s,color .2s,border-color .5s}
-.nav-cta:hover{background:var(--ink);color:#fff}
+.nav-cta{text-decoration:none;font-weight:700;font-size:13px;letter-spacing:.02em;border:2px solid #fff;
+  border-radius:999px;padding:9px 18px;background:transparent;color:#fff;transition:background .2s,color .2s,border-color .5s}
+.nav-cta:hover{background:#fff;color:#000}
 
 /* ---------- the one scene: caption, rings, woman, black ---------- */
 .scene-wrap{position:relative;height:230vh}
@@ -504,7 +504,7 @@ footer .base a:hover{color:var(--gold)}
   }
 
   /* ---------- language (EN / HE / ES / DE) ---------- */
-  var FAB={en:'assets/fabulous-gold.png',he:'assets/fabulous-he.png',es:'assets/fabulous-es.png',de:'assets/fabulous-de.png'};
+  var FAB={en:'assets/fabulous-gold.png',he:'assets/fabulous-he-v2.png',es:'assets/fabulous-es.png',de:'assets/fabulous-de.png'};
   var FINALE={
     en:["That's","an","@logo","website"],
     he:["זה","אתר","@logo"],
