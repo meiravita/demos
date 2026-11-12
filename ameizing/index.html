@@ -36,8 +36,8 @@ a{color:inherit}
 
 header{position:fixed;top:0;left:0;right:0;z-index:60;display:flex;justify-content:space-between;align-items:center;
   padding:12px clamp(20px,5vw,56px) 40px;background:linear-gradient(180deg,#000 0%,#000 42%,rgba(0,0,0,0) 100%)}
-.brand{display:inline-flex;align-items:center;text-decoration:none}
-.brand img{display:block;height:25px;width:auto;filter:brightness(0) invert(1)}
+.brand{display:inline-flex;align-items:center;text-decoration:none;font-family:var(--display);font-weight:800;font-size:23px;letter-spacing:-.02em;line-height:1;color:var(--gold)}
+.brand .bing{color:#fff}
 .hright{display:flex;align-items:center;gap:clamp(8px,2vw,18px)}
 .langs{display:flex;gap:1px;align-items:center}
 .langs button{background:none;border:0;font-family:var(--sans);font-weight:700;font-size:12px;letter-spacing:.04em;
@@ -250,7 +250,7 @@ footer .base a:hover{color:var(--gold)}
 <body>
 
 <header>
-  <a class="brand" href="#top"><img src="assets/logo-ameizing.png" alt="ameizing"></a>
+  <a class="brand" href="#top" aria-label="ameizing">ameiz<span class="bing">ing</span></a>
   <div class="hright">
     <div class="langs" id="langs">
       <button type="button" data-lang="en">EN</button>
