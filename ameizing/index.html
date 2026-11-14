@@ -28,6 +28,7 @@
   --poster:'Alvaro','Unbounded',sans-serif;
 }
 *{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
 body{background:var(--paper);color:var(--ink);font-family:var(--sans);font-size:16px;line-height:1.6;overflow-x:hidden}
 ::selection{background:var(--gold-deep);color:#fff}
 img{max-width:100%;display:block}
@@ -55,7 +56,7 @@ body.rtl .why h2,body.rtl .work-head h2,body.rtl footer .big,body.rtl .ltitle,bo
 .nav-cta:hover{background:#fff;color:#000}
 
 /* ---------- the one scene: caption, rings, woman, black ---------- */
-.scene-wrap{position:relative;height:230vh}
+.scene-wrap{position:relative;height:300vh}
 .scene{position:sticky;top:0;height:100vh;overflow:hidden;background:#000;display:flex;align-items:flex-end;justify-content:center}
 /* static op-art spiral background (white spiral on black); it fades to pure black at the
    end of the scene so the portfolio below starts clean, no video, no transition glitches */
@@ -212,6 +213,11 @@ body.rtl .work-head h2 .ww.hi{direction:ltr;unicode-bidi:isolate}
 .scan-btn{display:inline-block;font-weight:800;font-size:15px;letter-spacing:.02em;border:2px solid var(--gold);
   border-radius:999px;padding:13px 28px;color:var(--gold);text-decoration:none;transition:background .2s,color .2s}
 .scan-btn:hover{background:var(--gold);color:var(--ink)}
+.why .cta-stack{display:flex;flex-direction:column;align-items:center;gap:13px;margin:clamp(30px,5vh,54px) auto 0;padding:0 20px}
+.why .cta-primary{font-family:var(--sans);font-weight:800;font-size:16px;letter-spacing:.02em;background:var(--gold);color:var(--ink);text-decoration:none;padding:15px 36px;border-radius:999px;text-align:center;transition:transform .2s,opacity .2s}
+.why .cta-primary:hover{transform:translateY(-3px);opacity:.92}
+.why .cta-secondary{font-family:var(--sans);font-weight:700;font-size:14px;letter-spacing:.02em;border:2px solid var(--gold);color:var(--gold);text-decoration:none;padding:12px 26px;border-radius:999px;text-align:center;transition:background .2s,color .2s}
+.why .cta-secondary:hover{background:var(--gold);color:var(--ink)}
 /* stacked parallax panels: each slides up and sits above the previous */
 .layers-sec{position:relative;z-index:2;background:#0a0a0c;margin-top:-6.5vh;padding:clamp(46px,8vh,104px) 0 clamp(84px,14vh,190px);box-shadow:0 -30px 80px rgba(0,0,0,.6);overflow:hidden}
 .layers-sec .plx{will-change:transform}
@@ -234,9 +240,10 @@ footer .contact:hover{transform:translateY(-3px);opacity:.85}
 footer .contact .ic{width:clamp(46px,8vw,58px);height:clamp(46px,8vw,58px);display:flex;align-items:center;justify-content:center;border-radius:999px;border:2px solid var(--gold)}
 footer .contact .ic svg{width:52%;height:52%;color:var(--gold)}
 footer .contact .lbl{font-weight:700;font-size:14px;letter-spacing:.02em;color:var(--gold)}
-footer .base{margin-top:9vh;font-size:12px;letter-spacing:.1em;text-transform:uppercase;color:rgba(255,255,255,.5)}
-footer .base a{color:rgba(255,255,255,.5);text-decoration:none;border-bottom:1px solid rgba(255,255,255,.28);transition:color .2s}
-footer .base a:hover{color:var(--gold)}
+.sitebase{background:#000;text-align:center;padding:5vh 20px 7vh}
+.base{font-size:12px;letter-spacing:.1em;text-transform:uppercase;color:rgba(255,255,255,.5)}
+.base a{color:rgba(255,255,255,.5);text-decoration:none;border-bottom:1px solid rgba(255,255,255,.28);transition:color .2s}
+.base a:hover{color:var(--gold)}
 
 .rv{opacity:0;transform:translateY(26px);transition:opacity .8s ease,transform .8s cubic-bezier(.22,1,.36,1)}
 .rv.in{opacity:1;transform:none}
@@ -337,7 +344,10 @@ footer .base a:hover{color:var(--gold)}
   <!-- CLOSING COPY (above the video) -->
   <section class="why closing">
     <p class="stakes rv" data-i18nh="stakes">The businesses that adapt their online presence now will pull ahead and grow their customer base.<br>The ones that wait will quietly lose clients to the ones that did.<br>An <b>ameizing</b> site keeps you on the right side of that line.</p>
-    <p class="scanline rv"><a class="scan-btn" href="scan/" data-i18n="scan_cta">Free check: can AI read your site?</a></p>
+    <div class="cta-stack rv">
+      <a class="cta-primary" href="#contact" data-i18nh="cta_want">I want an ameizing website</a>
+      <a class="cta-secondary" href="scan/" data-i18nh="scan_cta">Already have a website? Check if AI can read it</a>
+    </div>
   </section>
 
   <!-- VIDEO STRIP (parallax panel) -->
@@ -390,7 +400,22 @@ footer .base a:hover{color:var(--gold)}
     </div>
   </section>
 
-  <!-- OBJECTIONS: what people ask us -->
+  <footer id="contact">
+    <p class="big" data-i18nh="footer_big">let's make yours<br><i>ameizing</i> too</p>
+    <p class="write-title" data-i18n="footer_write">Write us</p>
+    <div class="contacts">
+      <a class="contact" href="https://wa.me/972500000000" aria-label="WhatsApp">
+        <span class="ic"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.45 1.32 4.95L2 22l5.25-1.38a9.9 9.9 0 0 0 4.79 1.22h.01c5.46 0 9.91-4.45 9.91-9.91 0-2.65-1.03-5.14-2.9-7.01A9.82 9.82 0 0 0 12.04 2zm0 1.8c2.17 0 4.2.84 5.74 2.38a8.06 8.06 0 0 1 2.38 5.73c0 4.47-3.64 8.11-8.12 8.11a8.1 8.1 0 0 1-4.13-1.13l-.3-.18-3.12.82.83-3.04-.19-.31a8.07 8.07 0 0 1-1.24-4.31c0-4.47 3.64-8.11 8.12-8.11zm-4.6 4.34c-.22 0-.57.08-.87.41-.3.33-1.14 1.11-1.14 2.72 0 1.6 1.17 3.14 1.33 3.36.16.22 2.3 3.52 5.59 4.8 2.73 1.06 3.29.85 3.88.8.59-.05 1.91-.78 2.18-1.53.27-.75.27-1.4.19-1.53-.08-.14-.3-.22-.63-.38-.33-.17-1.91-.94-2.2-1.05-.3-.11-.52-.16-.73.16-.22.33-.84 1.05-1.03 1.27-.19.22-.38.25-.71.08-.33-.16-1.37-.5-2.6-1.6-.96-.86-1.61-1.92-1.8-2.24-.19-.33-.02-.5.15-.67.15-.15.33-.38.49-.58.16-.19.22-.33.33-.55.11-.22.05-.41-.03-.58-.08-.16-.73-1.76-1-2.41-.26-.63-.53-.55-.73-.56l-.62-.01z"/></svg></span>
+        <span class="lbl">WhatsApp</span>
+      </a>
+      <a class="contact" href="mailto:hello@ameiz.ing" aria-label="Email">
+        <span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3.5 6.5l8.5 6 8.5-6"/></svg></span>
+        <span class="lbl">hello@ameiz.ing</span>
+      </a>
+    </div>
+  </footer>
+
+  <!-- OBJECTIONS: what people ask us (under the contact section) -->
   <section class="why faq">
     <div class="head rv">
       <p class="eyebrow" data-i18n="faq_eyebrow">What people ask us</p>
@@ -406,21 +431,9 @@ footer .base a:hover{color:var(--gold)}
     </div>
   </section>
 
-  <footer>
-    <p class="big" data-i18nh="footer_big">let's make yours<br><i>ameizing</i> too</p>
-    <p class="write-title" data-i18n="footer_write">Write us</p>
-    <div class="contacts">
-      <a class="contact" href="https://wa.me/972500000000" aria-label="WhatsApp">
-        <span class="ic"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.45 1.32 4.95L2 22l5.25-1.38a9.9 9.9 0 0 0 4.79 1.22h.01c5.46 0 9.91-4.45 9.91-9.91 0-2.65-1.03-5.14-2.9-7.01A9.82 9.82 0 0 0 12.04 2zm0 1.8c2.17 0 4.2.84 5.74 2.38a8.06 8.06 0 0 1 2.38 5.73c0 4.47-3.64 8.11-8.12 8.11a8.1 8.1 0 0 1-4.13-1.13l-.3-.18-3.12.82.83-3.04-.19-.31a8.07 8.07 0 0 1-1.24-4.31c0-4.47 3.64-8.11 8.12-8.11zm-4.6 4.34c-.22 0-.57.08-.87.41-.3.33-1.14 1.11-1.14 2.72 0 1.6 1.17 3.14 1.33 3.36.16.22 2.3 3.52 5.59 4.8 2.73 1.06 3.29.85 3.88.8.59-.05 1.91-.78 2.18-1.53.27-.75.27-1.4.19-1.53-.08-.14-.3-.22-.63-.38-.33-.17-1.91-.94-2.2-1.05-.3-.11-.52-.16-.73.16-.22.33-.84 1.05-1.03 1.27-.19.22-.38.25-.71.08-.33-.16-1.37-.5-2.6-1.6-.96-.86-1.61-1.92-1.8-2.24-.19-.33-.02-.5.15-.67.15-.15.33-.38.49-.58.16-.19.22-.33.33-.55.11-.22.05-.41-.03-.58-.08-.16-.73-1.76-1-2.41-.26-.63-.53-.55-.73-.56l-.62-.01z"/></svg></span>
-        <span class="lbl">WhatsApp</span>
-      </a>
-      <a class="contact" href="mailto:hello@ameiz.ing" aria-label="Email">
-        <span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3.5 6.5l8.5 6 8.5-6"/></svg></span>
-        <span class="lbl">hello@ameiz.ing</span>
-      </a>
-    </div>
+  <div class="sitebase">
     <p class="base" data-i18nh="footer_base">ameizing &middot; websites that look fabulous &middot; <a href="scan/">AI scan</a> &middot; <a href="portal/">client login</a></p>
-  </footer>
+  </div>
 
 </main>
 
@@ -514,7 +527,7 @@ footer .base a:hover{color:var(--gold)}
     var total=wrap.offsetHeight-window.innerHeight, p=total>0?clampN(window.scrollY/total):0;
     fab.style.opacity=1-clampN(p/0.18);
     figEl.style.transform='translateY('+((1-clampN((p-0.06)/0.44))*106)+'%)';
-    if(p>=0.5) startWords();
+    if(p>=0.44) startWords();
   }
   function releaseScroll(){ released=true; document.documentElement.style.overflow=''; onScroll(); }
   function playIntro(){
@@ -559,7 +572,7 @@ footer .base a:hover{color:var(--gold)}
       stakes:"The businesses that adapt their online presence now will pull ahead and grow their customer base.<br>The ones that wait will quietly lose clients to the ones that did.<br>An <b>ameizing</b> site keeps you on the right side of that line.",
       work_eyebrow:"Selected work",work_sub:"A few of the worlds we have built.<br>Each one custom and impossible to scroll past.",card_view:"View &rarr;",
       card_solera:"Luxury real estate",card_gefen:"Design & build studio",card_kedem:"Desert hospitality",card_meik:"Property in Germany",card_sharatone:"Bilingual, 4 languages",card_thisismei:"Personal brand",card_lilimei:"Interior design",
-      scan_cta:"Free check: can AI read your site?",
+      scan_cta:"Already have a website? Check if AI can read it",cta_want:"I want an ameizing website",
       faq_eyebrow:"What people ask us",faq_h2:"The website that wins <i>both your visitors</i>: the person who looks, and the AI that reads.",
       faq_q1:"Can't I just build this myself with Lovable, Base44 or Wix AI?",faq_a1:"You can make a site with those in an afternoon. But the hard part was never the typing, it is taste and the AI layer. Those tools hand you a generic result unless you already know exactly what great looks like, and they build JavaScript-heavy sites that ChatGPT and Claude cannot actually read. You would spend your time building the one thing that hides you from the AI we are here to make you visible to. We do the opposite, on purpose.",
       faq_q2:"Does AI readability really matter for my business?",faq_a2:"It is already happening. When someone asks ChatGPT who is a good business like yours nearby, names come back. If your site is invisible to it, you are not one of them, and you never find out the lead existed. Want proof? We scan your current site for free and show you exactly what the AI can and cannot see.",
@@ -580,7 +593,7 @@ footer .base a:hover{color:var(--gold)}
       stakes:"העסקים שיתאימו עכשיו את הנוכחות הדיגיטלית שלהם יזנקו קדימה ויגדילו את מאגר הלקוחות.<br>אלה שימתינו יאבדו לקוחות בשקט לאלה שכבר עשו זאת.<br>אתר <b>ameizing</b> שומר אותך בצד הנכון של הקו.",
       work_eyebrow:"עבודות נבחרות",work_sub:"כמה מהעולמות שבנינו.<br>כל אחד מותאם אישית ובלתי אפשרי לגלול מעליו.",card_view:"צפייה &larr;",
       card_solera:"נדל\"ן יוקרה",card_gefen:"סטודיו לעיצוב ובנייה",card_kedem:"אירוח במדבר",card_meik:"נדל\"ן בגרמניה",card_sharatone:"רב-לשוני, 4 שפות",card_thisismei:"מותג אישי",card_lilimei:"עיצוב פנים",
-      scan_cta:"בדיקה חינם: האם AI קורא את האתר שלכם?",
+      scan_cta:"כבר יש לך אתר? בדוק אם <bdi>AI</bdi> מצליח לקרוא אותו",cta_want:"אני רוצה אתר <bdi>ameizing</bdi>",
       faq_eyebrow:"מה שואלים אותנו",faq_h2:"האתר שמנצח את <i>שני המבקרים</i> שלך: האדם שמסתכל, וה<bdi>AI</bdi> שקורא.",
       faq_q1:"אי אפשר פשוט לבנות את זה לבד עם <bdi>Lovable</bdi>, <bdi>Base44</bdi> או <bdi>Wix AI</bdi>?",faq_a1:"אפשר להרכיב אתר עם אלה בתוך אחר צהריים. אבל החלק הקשה אף פעם לא היה ההקלדה, אלא הטעם ושכבת ה<bdi>AI</bdi>. הכלים האלה נותנים תוצאה גנרית, אלא אם כבר ברור לך בדיוק איך נראה אתר מעולה, והם בונים אתרים עמוסי <bdi>JavaScript</bdi> ש<bdi>ChatGPT</bdi> ו<bdi>Claude</bdi> לא באמת יכולים לקרוא. ככה תשקיע את הזמן שלך בדיוק בדבר שמסתיר אותך מה<bdi>AI</bdi> שאנחנו כאן כדי לחשוף אותך אליו. אנחנו עושים בדיוק הפוך, במכוון.",
       faq_q2:"האם קריאוּת ל<bdi>AI</bdi> באמת משנה לעסק שלי?",faq_a2:"זה כבר קורה. כששואלים את <bdi>ChatGPT</bdi> מי עסק טוב כמו שלך באזור, חוזרים שמות. אם האתר שלך בלתי נראה עבורו, אתה לא אחד מהם, ואתה אף פעם לא יודע שהליד הזה היה קיים. רוצה הוכחה? אנחנו סורקים את האתר הנוכחי שלך בחינם ומראים לך בדיוק מה ה<bdi>AI</bdi> רואה ומה לא.",
@@ -601,7 +614,7 @@ footer .base a:hover{color:var(--gold)}
       stakes:"Las empresas que adapten su presencia online ahora tomarán la delantera y harán crecer su base de clientes.<br>Las que esperen perderán clientes, en silencio, frente a las que sí lo hicieron.<br>Un sitio <b>ameizing</b> te mantiene del lado correcto de esa línea.",
       work_eyebrow:"Trabajos seleccionados",work_sub:"Algunos de los mundos que hemos creado.<br>Cada uno a medida e imposible de pasar de largo.",card_view:"Ver &rarr;",
       card_solera:"Inmobiliaria de lujo",card_gefen:"Estudio de diseño y construcción",card_kedem:"Hospitalidad en el desierto",card_meik:"Propiedades en Alemania",card_sharatone:"Multilingüe, 4 idiomas",card_thisismei:"Marca personal",card_lilimei:"Diseño de interiores",
-      scan_cta:"Prueba gratis: ¿la AI lee tu sitio?",
+      scan_cta:"¿Ya tienes web? Comprueba si la AI puede leerla",cta_want:"Quiero una web ameizing",
       faq_eyebrow:"Lo que nos preguntan",faq_h2:"La web que gana a <i>tus dos visitantes</i>: la persona que mira, y la AI que lee.",
       faq_q1:"¿No puedo construirla yo con Lovable, Base44 o Wix AI?",faq_a1:"Puedes hacer una web con esas herramientas en una tarde. Pero lo difícil nunca fue teclear, es el gusto y la capa de AI. Esas herramientas te dan un resultado genérico, salvo que ya sepas exactamente cómo se ve algo excelente, y construyen webs cargadas de JavaScript que ChatGPT y Claude no pueden leer de verdad. Gastarías tu tiempo construyendo justo lo que te esconde de la AI para la que estamos aquí para hacerte visible. Nosotros hacemos lo contrario, a propósito.",
       faq_q2:"¿De verdad le importa a mi negocio que la AI pueda leerlo?",faq_a2:"Ya está pasando. Cuando alguien le pregunta a ChatGPT por un buen negocio como el tuyo cerca, vuelven nombres. Si tu web es invisible para ella, tú no eres uno de ellos, y nunca te enteras de que ese cliente existió. ¿Quieres pruebas? Escaneamos tu web actual gratis y te mostramos exactamente qué ve y qué no ve la AI.",
@@ -622,7 +635,7 @@ footer .base a:hover{color:var(--gold)}
       stakes:"Die Unternehmen, die ihre Online-Präsenz jetzt anpassen, ziehen vorbei und bauen ihren Kundenstamm aus.<br>Die, die warten, verlieren still Kunden an die, die es getan haben.<br>Eine <b>ameizing</b> Seite hält dich auf der richtigen Seite dieser Linie.",
       work_eyebrow:"Ausgewählte Arbeiten",work_sub:"Ein paar der Welten, die wir gebaut haben.<br>Jede maßgeschneidert, an der man nicht einfach vorbeiscrollt.",card_view:"Ansehen &rarr;",
       card_solera:"Luxusimmobilien",card_gefen:"Design- und Baustudio",card_kedem:"Gastfreundschaft in der Wüste",card_meik:"Immobilien in Deutschland",card_sharatone:"Mehrsprachig, 4 Sprachen",card_thisismei:"Personenmarke",card_lilimei:"Innenarchitektur",
-      scan_cta:"Gratis-Check: liest AI deine Website?",
+      scan_cta:"Schon eine Website? Prüf, ob die AI sie lesen kann",cta_want:"Ich will eine ameizing Website",
       faq_eyebrow:"Was man uns fragt",faq_h2:"Die Website, die <i>beide Besucher</i> gewinnt: den Menschen, der schaut, und die AI, die liest.",
       faq_q1:"Kann ich das nicht einfach selbst mit Lovable, Base44 oder Wix AI bauen?",faq_a1:"Mit denen baust du an einem Nachmittag eine Website. Aber das Schwere war nie das Tippen, es ist der Geschmack und die AI-Ebene. Diese Tools liefern ein generisches Ergebnis, außer du weißt schon genau, wie großartig aussieht, und sie bauen JavaScript-lastige Seiten, die ChatGPT und Claude gar nicht lesen können. Du würdest deine Zeit darauf verwenden, genau das zu bauen, was dich vor der AI versteckt, für die wir dich sichtbar machen. Wir machen das Gegenteil, mit Absicht.",
       faq_q2:"Ist AI-Lesbarkeit für mein Geschäft wirklich wichtig?",faq_a2:"Es passiert schon. Wenn jemand ChatGPT nach einem guten Betrieb wie deinem in der Nähe fragt, kommen Namen zurück. Ist deine Seite für sie unsichtbar, bist du keiner davon, und du erfährst nie, dass der Kunde da war. Willst du Beweise? Wir scannen deine aktuelle Seite kostenlos und zeigen dir genau, was die AI sieht und was nicht.",
