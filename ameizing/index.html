@@ -48,7 +48,7 @@ header{position:fixed;top:0;left:0;right:0;z-index:60;display:flex;justify-conte
 /* right-to-left + Hebrew type */
 .snippet{direction:ltr;text-align:left}
 body.rtl{font-family:'Heebo','Archivo',sans-serif}
-body.rtl .why h2,body.rtl .work-head h2,body.rtl footer .big,body.rtl .ltitle,body.rtl .bridge,body.rtl .reason h3,body.rtl .stakes{font-family:'Heebo','Unbounded',sans-serif}
+body.rtl .why h2,body.rtl .work-head h2,body.rtl footer .big,body.rtl .ltitle,body.rtl .bridge,body.rtl .reason h3,body.rtl .faq-item h3,body.rtl .stakes{font-family:'Heebo','Unbounded',sans-serif}
 @media (max-width:560px){.langs button{padding:3px 5px;font-size:11px;letter-spacing:0}}
 .nav-cta{text-decoration:none;font-weight:700;font-size:13px;letter-spacing:.02em;border:2px solid #fff;
   border-radius:999px;padding:9px 18px;background:transparent;color:#fff;transition:background .2s,color .2s,border-color .5s}
@@ -119,7 +119,7 @@ body.rtl .why h2,body.rtl .work-head h2,body.rtl footer .big,body.rtl .ltitle,bo
 
 
 /* ---------- portfolio, on black ---------- */
-.work{position:relative;padding:0 0 70vh;background:#000;color:#fff}
+.work{position:relative;padding:0 0 16vh;background:#000;color:#fff}
 .work-hold{height:220vh}
 .work-head{position:sticky;top:0;height:100vh;display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center}
 .work-head .eyebrow{font-weight:700;font-size:13px;letter-spacing:.3em;text-transform:uppercase;color:var(--gold)}
@@ -196,6 +196,12 @@ body.rtl .work-head h2 .ww.hi{direction:ltr;unicode-bidi:isolate}
 .why .cap span:last-child{font-weight:500;font-size:clamp(13.5px,1.45vw,16px);line-height:1.5;color:rgba(255,255,255,.72)}
 .why .stakes{max-width:74ch;margin:clamp(46px,7vh,78px) auto 0;padding:0 clamp(20px,5vw,56px);text-align:center;font-weight:500;font-size:clamp(17px,1.9vw,22px);line-height:1.52;color:rgba(255,255,255,.9)}
 .why .stakes b{color:var(--gold);font-weight:700}
+.why h2 i{font-style:normal;color:var(--gold)}
+.why.faq{background:#09090b;padding:14vh 0 13vh}
+.why .faqlist{max-width:760px;margin:clamp(40px,6vh,70px) auto 0;padding:0 clamp(20px,5vw,56px)}
+.why .faq-item{border-top:2px solid var(--gold);padding:clamp(22px,3.2vh,30px) 0}
+.why .faq-item h3{font-family:var(--display);font-weight:700;font-size:clamp(17px,1.9vw,22px);line-height:1.22;letter-spacing:-.02em;color:#fff;margin-bottom:11px}
+.why .faq-item p{font-weight:500;font-size:clamp(14.5px,1.5vw,16.5px);line-height:1.62;color:rgba(255,255,255,.76)}
 .why .bridge{text-align:center;margin:clamp(26px,3.5vh,46px) auto 0;padding:0 24px;font-family:var(--display);font-weight:700;font-size:clamp(18px,2.4vw,30px);letter-spacing:-.02em;line-height:1.15;color:#fff;max-width:22ch}
 /* full-bleed 1:1 video strip between the why section and the portfolio */
 .vstrip{background:#000;line-height:0;font-size:0}
@@ -384,6 +390,22 @@ footer .base a:hover{color:var(--gold)}
     </div>
   </section>
 
+  <!-- OBJECTIONS: what people ask us -->
+  <section class="why faq">
+    <div class="head rv">
+      <p class="eyebrow" data-i18n="faq_eyebrow">What people ask us</p>
+      <h2 data-i18nh="faq_h2">The website that wins <i>both your visitors</i>: the person who looks, and the AI that reads.</h2>
+    </div>
+    <div class="faqlist rv">
+      <div class="faq-item"><h3 data-i18nh="faq_q1">Can't I just build this myself with Lovable, Base44 or Wix AI?</h3><p data-i18nh="faq_a1">You can make a site with those in an afternoon. But the hard part was never the typing, it is taste and the AI layer. Those tools hand you a generic result unless you already know exactly what great looks like, and they build JavaScript-heavy sites that ChatGPT and Claude cannot actually read. You would spend your time building the one thing that hides you from the AI we are here to make you visible to. We do the opposite, on purpose.</p></div>
+      <div class="faq-item"><h3 data-i18nh="faq_q2">Does AI readability really matter for my business?</h3><p data-i18nh="faq_a2">It is already happening. When someone asks ChatGPT who is a good business like yours nearby, names come back. If your site is invisible to it, you are not one of them, and you never find out the lead existed. Want proof? We scan your current site for free and show you exactly what the AI can and cannot see.</p></div>
+      <div class="faq-item"><h3 data-i18nh="faq_q3">I already have a website.</h3><p data-i18nh="faq_a3">Good, let us look at how it reads. Most sites built in the last few years look fine to people and are silent to machines. In a few minutes we can tell you whether yours is one of them, and whether it actually stops a visitor or quietly loses them.</p></div>
+      <div class="faq-item"><h3 data-i18nh="faq_q4">Isn't this just SEO?</h3><p data-i18nh="faq_a4">SEO got you found on Google. This is the next layer: being understood and recommended by AI agents, which do not rank links, they choose answers. Most of your competitors have not noticed it changed yet. That gap is your opening.</p></div>
+      <div class="faq-item"><h3 data-i18nh="faq_q5">Can't my current web person do this?</h3><p data-i18nh="faq_a5">Ask them two questions. Can you show me what an AI agent sees when it reads my site? And can you make it beautiful enough to stop someone in three seconds? If both answers are yes, keep them. We built ameizing because, for most businesses, they are not.</p></div>
+      <div class="faq-item"><h3 data-i18nh="faq_q6">Why does it cost more than a template?</h3><p data-i18nh="faq_a6">Because you are not buying a template. You are buying judgment, the technical layer that makes you visible to AI, and the whole thing done, hosted and maintained, in your languages, without you lifting a finger. A cheap site that no one sees and no AI recommends is the expensive one.</p></div>
+    </div>
+  </section>
+
   <footer>
     <p class="big" data-i18nh="footer_big">let's make yours<br><i>ameizing</i> too</p>
     <p class="write-title" data-i18n="footer_write">Write us</p>
@@ -538,6 +560,13 @@ footer .base a:hover{color:var(--gold)}
       work_eyebrow:"Selected work",work_sub:"A few of the worlds we have built.<br>Each one custom and impossible to scroll past.",card_view:"View &rarr;",
       card_solera:"Luxury real estate",card_gefen:"Design & build studio",card_kedem:"Desert hospitality",card_meik:"Property in Germany",card_sharatone:"Bilingual, 4 languages",card_thisismei:"Personal brand",card_lilimei:"Interior design",
       scan_cta:"Free check: can AI read your site?",
+      faq_eyebrow:"What people ask us",faq_h2:"The website that wins <i>both your visitors</i>: the person who looks, and the AI that reads.",
+      faq_q1:"Can't I just build this myself with Lovable, Base44 or Wix AI?",faq_a1:"You can make a site with those in an afternoon. But the hard part was never the typing, it is taste and the AI layer. Those tools hand you a generic result unless you already know exactly what great looks like, and they build JavaScript-heavy sites that ChatGPT and Claude cannot actually read. You would spend your time building the one thing that hides you from the AI we are here to make you visible to. We do the opposite, on purpose.",
+      faq_q2:"Does AI readability really matter for my business?",faq_a2:"It is already happening. When someone asks ChatGPT who is a good business like yours nearby, names come back. If your site is invisible to it, you are not one of them, and you never find out the lead existed. Want proof? We scan your current site for free and show you exactly what the AI can and cannot see.",
+      faq_q3:"I already have a website.",faq_a3:"Good, let us look at how it reads. Most sites built in the last few years look fine to people and are silent to machines. In a few minutes we can tell you whether yours is one of them, and whether it actually stops a visitor or quietly loses them.",
+      faq_q4:"Isn't this just SEO?",faq_a4:"SEO got you found on Google. This is the next layer: being understood and recommended by AI agents, which do not rank links, they choose answers. Most of your competitors have not noticed it changed yet. That gap is your opening.",
+      faq_q5:"Can't my current web person do this?",faq_a5:"Ask them two questions. Can you show me what an AI agent sees when it reads my site? And can you make it beautiful enough to stop someone in three seconds? If both answers are yes, keep them. We built ameizing because, for most businesses, they are not.",
+      faq_q6:"Why does it cost more than a template?",faq_a6:"Because you are not buying a template. You are buying judgment, the technical layer that makes you visible to AI, and the whole thing done, hosted and maintained, in your languages, without you lifting a finger. A cheap site that no one sees and no AI recommends is the expensive one.",
       footer_big:"let's make your website<br><i>ameizing</i> too",footer_write:"Write us",footer_base:'<a href="scan/">AI scan</a> &middot; <a href="portal/">client login</a>',
       meta:"Websites that make people stop and stare, and talk fluently to the AI agents becoming your customers. Built by ameizing."},
     he:{nav_cta:"לצפייה בעבודות",hero_looks:"נראה",hero_speaks:"ומדבר",
@@ -552,6 +581,13 @@ footer .base a:hover{color:var(--gold)}
       work_eyebrow:"עבודות נבחרות",work_sub:"כמה מהעולמות שבנינו.<br>כל אחד מותאם אישית ובלתי אפשרי לגלול מעליו.",card_view:"צפייה &larr;",
       card_solera:"נדל\"ן יוקרה",card_gefen:"סטודיו לעיצוב ובנייה",card_kedem:"אירוח במדבר",card_meik:"נדל\"ן בגרמניה",card_sharatone:"רב-לשוני, 4 שפות",card_thisismei:"מותג אישי",card_lilimei:"עיצוב פנים",
       scan_cta:"בדיקה חינם: האם AI קורא את האתר שלכם?",
+      faq_eyebrow:"מה שואלים אותנו",faq_h2:"האתר שמנצח את <i>שני המבקרים</i> שלך: האדם שמסתכל, וה<bdi>AI</bdi> שקורא.",
+      faq_q1:"אי אפשר פשוט לבנות את זה לבד עם <bdi>Lovable</bdi>, <bdi>Base44</bdi> או <bdi>Wix AI</bdi>?",faq_a1:"אפשר להרכיב אתר עם אלה בתוך אחר צהריים. אבל החלק הקשה אף פעם לא היה ההקלדה, אלא הטעם ושכבת ה<bdi>AI</bdi>. הכלים האלה נותנים תוצאה גנרית, אלא אם כבר ברור לך בדיוק איך נראה אתר מעולה, והם בונים אתרים עמוסי <bdi>JavaScript</bdi> ש<bdi>ChatGPT</bdi> ו<bdi>Claude</bdi> לא באמת יכולים לקרוא. ככה תשקיע את הזמן שלך בדיוק בדבר שמסתיר אותך מה<bdi>AI</bdi> שאנחנו כאן כדי לחשוף אותך אליו. אנחנו עושים בדיוק הפוך, במכוון.",
+      faq_q2:"האם קריאוּת ל<bdi>AI</bdi> באמת משנה לעסק שלי?",faq_a2:"זה כבר קורה. כששואלים את <bdi>ChatGPT</bdi> מי עסק טוב כמו שלך באזור, חוזרים שמות. אם האתר שלך בלתי נראה עבורו, אתה לא אחד מהם, ואתה אף פעם לא יודע שהליד הזה היה קיים. רוצה הוכחה? אנחנו סורקים את האתר הנוכחי שלך בחינם ומראים לך בדיוק מה ה<bdi>AI</bdi> רואה ומה לא.",
+      faq_q3:"כבר יש לי אתר.",faq_a3:"יופי, בוא נראה איך הוא נקרא. רוב האתרים שנבנו בשנים האחרונות נראים טוב לאנשים ואילמים מול מכונות. תוך כמה דקות נוכל להגיד לך אם שלך הוא אחד מהם, ואם הוא באמת עוצר מבקר או מאבד אותו בשקט.",
+      faq_q4:"זה לא פשוט <bdi>SEO</bdi>?",faq_a4:"<bdi>SEO</bdi> דאג שימצאו אותך ב<bdi>Google</bdi>. זו השכבה הבאה: שסוכני <bdi>AI</bdi> יבינו אותך וימליצו עליך, והם לא מדרגים קישורים, הם בוחרים תשובות. רוב המתחרים שלך עדיין לא שמו לב שהמשחק השתנה. הפער הזה הוא ההזדמנות שלך.",
+      faq_q5:"איש האתרים הנוכחי שלי לא יכול לעשות את זה?",faq_a5:"שאל אותו שתי שאלות. אתה יכול להראות לי מה סוכן <bdi>AI</bdi> רואה כשהוא קורא את האתר שלי? ואתה יכול לעשות אותו יפה מספיק כדי לעצור מישהו בשלוש שניות? אם שתי התשובות כן, תישאר איתו. בנינו את <bdi>ameizing</bdi> כי אצל רוב העסקים, הן לא.",
+      faq_q6:"למה זה עולה יותר מתבנית מוכנה?",faq_a6:"כי אתה לא קונה תבנית. אתה קונה שיקול דעת, את השכבה הטכנית שהופכת אותך לנראה ל<bdi>AI</bdi>, ואת כל זה מוכן, מאוחסן ומתוחזק, בשפות שלך, בלי שתצטרך לגעת בכלום. אתר זול שאף אחד לא רואה ושום <bdi>AI</bdi> לא ממליץ עליו הוא היקר באמת.",
       footer_big:"בוא נהפוך גם את<br>האתר שלך ל<i>ameizing</i>",footer_write:"כתבו לנו",footer_base:'<a href="scan/">סריקת AI</a> &middot; <a href="portal/">כניסת לקוחות</a>',
       meta:"אתרים שגורמים לאנשים לעצור ולהתבונן, ומדברים שוטף עם סוכני ה-AI שהופכים ללקוחות שלך. נבנה על ידי ameizing."},
     es:{nav_cta:"Ver el trabajo",hero_looks:"Se ve",hero_speaks:"y habla",
@@ -566,6 +602,13 @@ footer .base a:hover{color:var(--gold)}
       work_eyebrow:"Trabajos seleccionados",work_sub:"Algunos de los mundos que hemos creado.<br>Cada uno a medida e imposible de pasar de largo.",card_view:"Ver &rarr;",
       card_solera:"Inmobiliaria de lujo",card_gefen:"Estudio de diseño y construcción",card_kedem:"Hospitalidad en el desierto",card_meik:"Propiedades en Alemania",card_sharatone:"Multilingüe, 4 idiomas",card_thisismei:"Marca personal",card_lilimei:"Diseño de interiores",
       scan_cta:"Prueba gratis: ¿la AI lee tu sitio?",
+      faq_eyebrow:"Lo que nos preguntan",faq_h2:"La web que gana a <i>tus dos visitantes</i>: la persona que mira, y la AI que lee.",
+      faq_q1:"¿No puedo construirla yo con Lovable, Base44 o Wix AI?",faq_a1:"Puedes hacer una web con esas herramientas en una tarde. Pero lo difícil nunca fue teclear, es el gusto y la capa de AI. Esas herramientas te dan un resultado genérico, salvo que ya sepas exactamente cómo se ve algo excelente, y construyen webs cargadas de JavaScript que ChatGPT y Claude no pueden leer de verdad. Gastarías tu tiempo construyendo justo lo que te esconde de la AI para la que estamos aquí para hacerte visible. Nosotros hacemos lo contrario, a propósito.",
+      faq_q2:"¿De verdad le importa a mi negocio que la AI pueda leerlo?",faq_a2:"Ya está pasando. Cuando alguien le pregunta a ChatGPT por un buen negocio como el tuyo cerca, vuelven nombres. Si tu web es invisible para ella, tú no eres uno de ellos, y nunca te enteras de que ese cliente existió. ¿Quieres pruebas? Escaneamos tu web actual gratis y te mostramos exactamente qué ve y qué no ve la AI.",
+      faq_q3:"Ya tengo una web.",faq_a3:"Bien, veamos cómo se lee. La mayoría de las webs de los últimos años se ven bien para las personas y están mudas para las máquinas. En unos minutos podemos decirte si la tuya es una de ellas, y si de verdad detiene a un visitante o lo pierde en silencio.",
+      faq_q4:"¿Esto no es solo SEO?",faq_a4:"El SEO hizo que te encontraran en Google. Esto es la siguiente capa: que los agentes de AI te entiendan y te recomienden, y ellos no clasifican enlaces, eligen respuestas. La mayoría de tus competidores aún no se ha dado cuenta de que el juego cambió. Ese hueco es tu oportunidad.",
+      faq_q5:"¿No puede hacer esto mi diseñador actual?",faq_a5:"Hazle dos preguntas. ¿Puedes mostrarme qué ve un agente de AI cuando lee mi web? ¿Y puedes hacerla lo bastante bella como para detener a alguien en tres segundos? Si las dos respuestas son sí, quédate con él. Creamos ameizing porque, para la mayoría de los negocios, no lo son.",
+      faq_q6:"¿Por qué cuesta más que una plantilla?",faq_a6:"Porque no estás comprando una plantilla. Compras criterio, la capa técnica que te hace visible para la AI, y todo hecho, alojado y mantenido, en tus idiomas, sin que muevas un dedo. Una web barata que nadie ve y que ninguna AI recomienda es la cara.",
       footer_big:"hagamos tu web<br><i>ameizing</i> también",footer_write:"Escríbenos",footer_base:'<a href="scan/">AI scan</a> &middot; <a href="portal/">acceso clientes</a>',
       meta:"Sitios que hacen que la gente se detenga a mirar, y que hablan con fluidez con los agentes de AI que se vuelven tus clientes. Hecho por ameizing."},
     de:{nav_cta:"Arbeiten ansehen",hero_looks:"Sieht",hero_speaks:"aus\nund spricht",
@@ -580,6 +623,13 @@ footer .base a:hover{color:var(--gold)}
       work_eyebrow:"Ausgewählte Arbeiten",work_sub:"Ein paar der Welten, die wir gebaut haben.<br>Jede maßgeschneidert, an der man nicht einfach vorbeiscrollt.",card_view:"Ansehen &rarr;",
       card_solera:"Luxusimmobilien",card_gefen:"Design- und Baustudio",card_kedem:"Gastfreundschaft in der Wüste",card_meik:"Immobilien in Deutschland",card_sharatone:"Mehrsprachig, 4 Sprachen",card_thisismei:"Personenmarke",card_lilimei:"Innenarchitektur",
       scan_cta:"Gratis-Check: liest AI deine Website?",
+      faq_eyebrow:"Was man uns fragt",faq_h2:"Die Website, die <i>beide Besucher</i> gewinnt: den Menschen, der schaut, und die AI, die liest.",
+      faq_q1:"Kann ich das nicht einfach selbst mit Lovable, Base44 oder Wix AI bauen?",faq_a1:"Mit denen baust du an einem Nachmittag eine Website. Aber das Schwere war nie das Tippen, es ist der Geschmack und die AI-Ebene. Diese Tools liefern ein generisches Ergebnis, außer du weißt schon genau, wie großartig aussieht, und sie bauen JavaScript-lastige Seiten, die ChatGPT und Claude gar nicht lesen können. Du würdest deine Zeit darauf verwenden, genau das zu bauen, was dich vor der AI versteckt, für die wir dich sichtbar machen. Wir machen das Gegenteil, mit Absicht.",
+      faq_q2:"Ist AI-Lesbarkeit für mein Geschäft wirklich wichtig?",faq_a2:"Es passiert schon. Wenn jemand ChatGPT nach einem guten Betrieb wie deinem in der Nähe fragt, kommen Namen zurück. Ist deine Seite für sie unsichtbar, bist du keiner davon, und du erfährst nie, dass der Kunde da war. Willst du Beweise? Wir scannen deine aktuelle Seite kostenlos und zeigen dir genau, was die AI sieht und was nicht.",
+      faq_q3:"Ich habe schon eine Website.",faq_a3:"Gut, schauen wir, wie sie gelesen wird. Die meisten Seiten der letzten Jahre sehen für Menschen gut aus und sind für Maschinen stumm. In wenigen Minuten sagen wir dir, ob deine dazugehört, und ob sie einen Besucher wirklich stoppt oder ihn still verliert.",
+      faq_q4:"Ist das nicht einfach SEO?",faq_a4:"SEO hat dich bei Google auffindbar gemacht. Das ist die nächste Ebene: von AI-Agenten verstanden und empfohlen zu werden, und die ranken keine Links, sie wählen Antworten. Die meisten deiner Wettbewerber haben noch nicht gemerkt, dass sich das Spiel geändert hat. Diese Lücke ist deine Chance.",
+      faq_q5:"Kann das nicht mein jetziger Webmensch machen?",faq_a5:"Stell ihm zwei Fragen. Kannst du mir zeigen, was ein AI-Agent sieht, wenn er meine Seite liest? Und kannst du sie schön genug machen, um jemanden in drei Sekunden zu stoppen? Sind beide Antworten ja, bleib bei ihm. Wir haben ameizing gebaut, weil sie es bei den meisten Betrieben nicht sind.",
+      faq_q6:"Warum kostet das mehr als eine Vorlage?",faq_a6:"Weil du keine Vorlage kaufst. Du kaufst Urteilsvermögen, die technische Ebene, die dich für AI sichtbar macht, und das Ganze fertig, gehostet und gepflegt, in deinen Sprachen, ohne dass du einen Finger rührst. Eine billige Seite, die niemand sieht und keine AI empfiehlt, ist die teure.",
       footer_big:"machen wir deine Website<br>auch <i>ameizing</i>",footer_write:"Schreib uns",footer_base:'<a href="scan/">AI Scan</a> &middot; <a href="portal/">Kunden-Login</a>',
       meta:"Websites, die Menschen innehalten lassen und fließend mit den AI-Agenten sprechen, die zu deinen Kunden werden. Gebaut von ameizing."}
   };
