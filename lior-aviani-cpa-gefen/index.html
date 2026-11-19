@@ -167,9 +167,10 @@ footer{background:var(--black);color:var(--cream);padding:14vh 0 0;margin-top:4v
   .clock{display:none}
   .nav{grid-template-columns:auto 1fr;padding:12px 16px 20px}
   .logo{justify-self:start;max-width:54vw}
-  .photo-strip{grid-template-columns:1fr;padding-block:9vh}
+  .hero{height:62svh;min-height:460px}
+  .photo-strip{grid-template-columns:repeat(3,1fr);gap:8px;padding-block:7vh}
+  .photo-strip img,.photo-strip img:nth-child(3){aspect-ratio:3/4;grid-column:auto}
   .photo-strip img:nth-child(2){margin-top:0}
-  .photo-strip img:nth-child(3){aspect-ratio:16/10}
   .foot-grid{grid-template-columns:1fr;align-items:start;gap:40px}
   .stats{grid-template-columns:1fr}
   .stat{border-inline-start:none;border-top:1px solid var(--line)}
@@ -206,7 +207,7 @@ footer{background:var(--black);color:var(--cream);padding:14vh 0 0;margin-top:4v
   <section class="hero">
     <div class="hero-bg" style="background-image:linear-gradient(160deg,rgba(10,12,24,.2),rgba(10,12,24,.42)),url('img/04-over-the-shoulder-view-of-a.webp');background-size:cover;background-position:center;"></div>
     <div class="hero-text">
-      <h1><span class="t-he"><span class="hn">ליאור אביאני, רו&quot;ח<em>.</em></span></span><span class="t-en"><span class="hn"><span class="ltr nw" dir="ltr">Lior Aviani</span><em>.</em></span><span class="hn"><span class="ltr nw" dir="ltr">CPA</span></span></span></h1>
+      <h1><span class="t-he"><span class="hn keep" style="--len:12">ליאור אביאני<em>.</em></span><span class="hn">רו&quot;ח</span></span><span class="t-en"><span class="hn keep" style="--len:11"><span class="ltr nw" dir="ltr">Lior Aviani</span><em>.</em></span><span class="hn"><span class="ltr nw" dir="ltr">CPA</span></span></span></h1>
       <p class="tagline"><span class="t-he">שירות אישי, תוצאות מקצועיות</span><span class="t-en">Personal service, professional results</span></p>
       
     </div>
@@ -224,7 +225,7 @@ footer{background:var(--black);color:var(--cream);padding:14vh 0 0;margin-top:4v
 
   <section class="fill-sec wrap">
     <span class="label"><span class="t-he">מי אנחנו</span><span class="t-en">Who we are</span></span>
-    <div class="fill" id="fill"><p class="t-he">משרתים את תושבי תל אביב-יפו עם יחס אישי, מקצועיות ואמינות. המוניטין שלנו נבנה לקוח מרוצה אחרי לקוח מרוצה.</p><p class="t-en">We serve Tel Aviv-Jaffa with personal attention, professionalism and reliability. Our reputation is built one happy customer at a time.</p></div>
+    <div class="fill" id="fill"><p class="about-name t-he">ליאור אביאני</p><p class="about-name about-sub t-he">רו&quot;ח.</p><p class="about-name t-en">Lior Aviani</p><p class="about-name about-sub t-en">CPA.</p><p class="about-body t-he">משרתים את תושבי תל אביב-יפו עם יחס אישי, מקצועיות ואמינות. המוניטין שלנו נבנה לקוח מרוצה אחרי לקוח מרוצה.</p><p class="about-body t-en">We serve Tel Aviv-Jaffa with personal attention, professionalism and reliability. Our reputation is built one happy customer at a time.</p></div>
   </section>
 
   <div class="photo-strip" style=""><img src="img/05-tight-close-up-of-fingers.webp" alt="ליאור אביאני, רו&quot;ח" loading="lazy"><img src="img/06-overhead-flat-lay-of.webp" alt="ליאור אביאני, רו&quot;ח" loading="lazy"><img src="img/07-a-row-of-neat.webp" alt="ליאור אביאני, רו&quot;ח" loading="lazy"></div>
