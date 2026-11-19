@@ -9,6 +9,7 @@
 - [Studio Gefen](https://demos.ameiz.ing/04-gefen-studio-demo/): https://demos.ameiz.ing/04-gefen-studio-demo/llms.txt
 - [Kedem Desert Retreat](https://demos.ameiz.ing/05-kedem-retreat-demo/): https://demos.ameiz.ing/05-kedem-retreat-demo/llms.txt
 - [א.שרון ושות' רואי חשבון | שירות אישי, תוצאות מקצועיות](https://demos.ameiz.ing/a-sharon-partners-cpa-gefen/): https://demos.ameiz.ing/a-sharon-partners-cpa-gefen/llms.txt
+- [רואה חשבון אמיר - רואה חשבון בתל אביב | שירות אישי, תוצאות מקצועיות](https://demos.ameiz.ing/amir-cpa-solera/): https://demos.ameiz.ing/amir-cpa-solera/llms.txt
 - [ליאור אביאני, רו"ח | שירות אישי, תוצאות מקצועיות](https://demos.ameiz.ing/lior-aviani-cpa-gefen/): https://demos.ameiz.ing/lior-aviani-cpa-gefen/llms.txt
 - [מירי כהן פרץ רואת חשבון | שירות אישי, תוצאות מקצועיות](https://demos.ameiz.ing/miri-cohen-peretz-cpa-gefen/): https://demos.ameiz.ing/miri-cohen-peretz-cpa-gefen/llms.txt
 - [סטודיו חפיף עיצוב שיער | כי מגיע לך להרגיש נפלא](https://demos.ameiz.ing/stvdyv-chpyf-aytzvb-shyar-chijjs-elegant/): https://demos.ameiz.ing/stvdyv-chpyf-aytzvb-shyar-chijjs-elegant/llms.txt

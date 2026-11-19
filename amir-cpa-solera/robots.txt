@@ -1,0 +1,5 @@
+# All crawlers welcome, AI agents included.
+User-agent: *
+Allow: /
+
+Sitemap: https://demos.ameiz.ing/amir-cpa-solera/sitemap.xml
