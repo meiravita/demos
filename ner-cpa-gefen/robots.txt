@@ -1,0 +1,5 @@
+# All crawlers welcome, AI agents included.
+User-agent: *
+Allow: /
+
+Sitemap: https://demos.ameiz.ing/ner-cpa-gefen/sitemap.xml
