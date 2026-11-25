@@ -34,7 +34,7 @@ a{color:inherit}
 .wrap{padding-left:clamp(20px,5vw,72px);padding-right:clamp(20px,5vw,72px)}
 .label{font-family:var(--sans);font-size:12px;font-weight:600;letter-spacing:.2em;text-transform:uppercase;color:var(--ink-soft)}
 .disp{font-family:var(--disp);font-weight:400;text-transform:uppercase;line-height:.98}
-.script{font-family:var(--script);text-transform:none;font-weight:400;color:#C47E93;font-size:1.08em}
+.script{font-family:var(--script);text-transform:none;font-weight:400;color:#A85F76;font-size:1.08em}
 
 /* ---------- nav ---------- */
 header{position:fixed;top:0;left:0;right:0;z-index:50;display:flex;justify-content:space-between;align-items:center;
@@ -81,7 +81,7 @@ section.alt{background:var(--cream-alt)}
 .fill .w.on{color:var(--ink)}
 .fill .script{display:inline}
 .fill .script .w{color:rgba(196,126,147,.4)}
-.fill .script .w.on{color:#C47E93}
+.fill .script .w.on{color:#A85F76}
 .fill-side{margin-top:5vh;display:flex;gap:clamp(24px,5vw,80px);flex-wrap:wrap}
 .fill-side p{color:var(--ink-soft);max-width:42ch}
 
@@ -112,6 +112,8 @@ section.alt{background:var(--cream-alt)}
 .location .loc-img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
 .location::after{content:'';position:absolute;inset:0;
   background:linear-gradient(to top,rgba(31,10,28,.82),rgba(31,10,28,.18) 50%,rgba(31,10,28,.1) 74%,transparent)}
+/* phones: the text column reaches the bright sky, so keep the shade dark all the way up (25.11.26) */
+@media (max-width:700px){.location::after{background:linear-gradient(to top,rgba(31,10,28,.86) 0%,rgba(31,10,28,.72) 55%,rgba(31,10,28,.62) 100%)}.loc-eyebrow{text-shadow:0 1px 10px rgba(31,10,28,.6)}}
 .loc-inner{position:relative;z-index:2;width:100%;padding:0 clamp(20px,5vw,72px) 9vh}
 .loc-eyebrow{font-size:12px;font-weight:600;letter-spacing:.3em;text-transform:uppercase;color:rgba(243,241,234,.85);margin-bottom:16px}
 .loc-big{font-family:var(--disp);text-transform:uppercase;line-height:.9;font-size:clamp(54px,12vw,180px);letter-spacing:.02em;
@@ -193,8 +195,23 @@ section.alt{background:var(--cream-alt)}
   *{animation:none!important;transition:none!important}
   .rv{opacity:1;transform:none}
   .fill .w{color:var(--ink)}
-  .fill .script .w{color:#C47E93}
+  .fill .script .w{color:#A85F76}
   html{scroll-behavior:auto}
+}
+
+/* very narrow screens only (an iPhone at 200% zoom is ~200px wide): nothing
+   spills sideways or overlaps. Normal phones and desktops are unchanged. 25.11.26 */
+@media (max-width:360px){
+  body *{letter-spacing:.03em!important;overflow-wrap:anywhere}
+  header,header *,nav,nav *{flex-wrap:wrap!important}
+  h1{font-size:min(13vw,3rem)!important;line-height:1.05!important}
+  h2{font-size:min(9.5vw,2.2rem)!important;line-height:1.1!important}
+  h3{font-size:min(7vw,1.6rem)!important}
+  img,video,iframe{max-width:100%}
+  header a,header button,header .nav-link{overflow-wrap:normal!important;word-break:keep-all!important;white-space:nowrap;font-size:12px!important}
+  header{flex-wrap:wrap!important;justify-content:center!important;gap:8px 14px}
+  header .nav-sec{display:none!important}
+  .fill{line-height:1.25!important}
 }
 </style>
 </head>
@@ -204,7 +221,7 @@ section.alt{background:var(--cream-alt)}
   <a class="brand" href="#top">Solera</a>
   <nav class="nav-right">
     <a class="nav-sec" href="#residences">Residences</a>
-    <a href="he.html">עברית</a>
+    <a href="he.html" lang="he">עברית</a>
     <a class="enq" href="#contact">Enquire</a>
   </nav>
 </header>
@@ -439,7 +456,7 @@ section.alt{background:var(--cream-alt)}
     <div class="foot-base">
       <span>&copy; 2026 Solera Residence &middot; Fictional demo project</span>
       <span>Privacy &middot; Terms</span>
-      <a href="#top">Made by ameizing</a>
+      <a href="#top">Made by <span lang="en">ameizing</span></a>
     </div>
   </footer>
 
@@ -499,5 +516,9 @@ section.alt{background:var(--cream-alt)}
   });}
 })();
 </script>
+<script>/* screen readers: read each title as one sentence, not "heading, 2 items" (25.11.26) */
+document.querySelectorAll('h1,h2,h3').forEach(function(h){if(!h.children.length)return;
+var t=[].map.call(h.childNodes,function(n){return n.textContent}).join(' ').replace(/\s+/g,' ').replace(/\s+([.,!?:])/g,'$1').trim();
+if(t)h.setAttribute('aria-label',t)});</script>
 </body>
 </html>

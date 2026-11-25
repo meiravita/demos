@@ -26,7 +26,7 @@ body{background:var(--cream);color:var(--black);font-family:var(--sans);font-siz
 ::selection{background:var(--black);color:var(--cream)}
 img{max-width:100%;display:block}
 a{color:inherit}
-.label{font-size:11px;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:rgba(28,26,23,.55)}
+.label{font-size:12px;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:rgba(28,26,23,.75)}
 .wrap{padding-left:clamp(20px,4.5vw,64px);padding-right:clamp(20px,4.5vw,64px)}
 
 /* ---------- nav ---------- */
@@ -70,7 +70,7 @@ section.alt{background:var(--cream-alt)}
 .team{padding:14vh 0;background:var(--cream-deep)}
 .team-head{display:flex;justify-content:space-between;align-items:flex-end;gap:20px;margin-bottom:6vh;flex-wrap:wrap}
 .team-head h2{font-size:clamp(34px,5vw,64px);font-weight:500;letter-spacing:-.02em;line-height:1.05}
-.team-head h2 small{display:block;font-size:.6em;color:var(--grey)}
+.team-head h2 small{display:block;font-size:.6em;color:#7a7468}
 .team-nav{display:flex;gap:10px}
 .team-nav button{width:44px;height:44px;border-radius:50%;border:1px solid var(--black);background:transparent;cursor:pointer;font-size:16px}
 .team-nav button:hover{background:var(--black);color:var(--cream)}
@@ -93,7 +93,7 @@ section.alt{background:var(--cream-alt)}
 .pcard:hover img{transform:scale(1.04)}
 .pcard .pmeta{display:flex;justify-content:space-between;gap:12px;padding:14px 2px 0;font-size:14px}
 .pcard .pmeta b{font-weight:700}
-.pcard .pmeta span{color:rgba(28,26,23,.55)}
+.pcard .pmeta span{color:rgba(28,26,23,.75)}
 .pcard.offset{margin-top:9vh}
 
 /* ---------- stats ---------- */
@@ -102,7 +102,7 @@ section.alt{background:var(--cream-alt)}
 .stat:first-child{border-left:none}
 .stat b{display:block;font-size:clamp(34px,5vw,58px);font-weight:500;letter-spacing:-.02em;font-variant-numeric:tabular-nums}
 .stat b i{font-style:normal;color:var(--sienna)}
-.stat span{font-size:12px;letter-spacing:.16em;text-transform:uppercase;color:rgba(28,26,23,.55);font-weight:700}
+.stat span{font-size:12px;letter-spacing:.16em;text-transform:uppercase;color:rgba(28,26,23,.75);font-weight:700}
 
 /* ---------- footer ---------- */
 footer{background:var(--black);color:var(--cream);padding:14vh 0 0;margin-top:14vh}
@@ -113,7 +113,7 @@ footer{background:var(--black);color:var(--cream);padding:14vh 0 0;margin-top:14
 .foot-contact a{text-decoration:none;border-bottom:1px solid rgba(239,235,227,.3);width:fit-content;padding-bottom:2px}
 .foot-contact a:hover{border-color:var(--cream)}
 .foot-base{display:flex;justify-content:space-between;gap:14px;flex-wrap:wrap;margin-top:10vh;border-top:1px solid rgba(239,235,227,.18);
-  padding:20px clamp(20px,4.5vw,64px);font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:rgba(239,235,227,.5)}
+  padding:20px clamp(20px,4.5vw,64px);font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:rgba(239,235,227,.72)}
 .foot-base a{text-decoration:none;color:rgba(239,235,227,.75)}
 
 .rv{opacity:0;transform:translateY(28px);transition:opacity .8s ease,transform .8s cubic-bezier(.22,1,.36,1)}
@@ -141,14 +141,29 @@ footer{background:var(--black);color:var(--cream);padding:14vh 0 0;margin-top:14
 [dir="rtl"] .label{letter-spacing:.1em}
 [dir="rtl"] .talk .arr{transform:scaleX(1)}
 [dir="rtl"] .hero .scroll-pill{right:auto;left:clamp(20px,4.5vw,64px);bottom:7vh}
+
+/* very narrow screens only (an iPhone at 200% zoom is ~200px wide): nothing
+   spills sideways or overlaps. Normal phones and desktops are unchanged. 25.11.26 */
+@media (max-width:360px){
+  body *{letter-spacing:.03em!important;overflow-wrap:anywhere}
+  header,header *,nav,nav *{flex-wrap:wrap!important}
+  h1{font-size:min(13vw,3rem)!important;line-height:1.05!important}
+  h2{font-size:min(9.5vw,2.2rem)!important;line-height:1.1!important}
+  h3{font-size:min(7vw,1.6rem)!important}
+  img,video,iframe{max-width:100%}
+  header a,header button,header .nav-link{overflow-wrap:normal!important;word-break:keep-all!important;white-space:nowrap;font-size:12px!important}
+  header{display:flex!important;flex-wrap:wrap!important;justify-content:space-between!important;align-items:center;gap:8px 10px}
+  header .logo{order:-1;flex-basis:100%;text-align:center;font-size:15px!important;white-space:normal!important}
+  .tcard{flex-basis:78vw!important}
+}
 </style>
 </head>
 <body>
 
 <header>
-  <div class="clock" aria-label="שעה מקומית, תל אביב"><span id="clock">00:00</span> <span>ת"א</span></div>
+  <div class="clock" aria-hidden="true" aria-label="שעה מקומית, תל אביב"><span id="clock">00:00</span> <span>ת"א</span></div>
   <a class="logo" href="#top">סטודיו גפן</a>
-  <div style="justify-self:end;display:flex;align-items:center;gap:18px"><a href="index.html" style="text-decoration:none;font-weight:700;font-size:13px">EN</a><a class="talk" href="#contact">בואו נדבר <span class="arr">&larr;</span></a></div>
+  <div style="justify-self:end;display:flex;align-items:center;gap:18px"><a href="index.html" style="text-decoration:none;font-weight:700;font-size:13px" lang="en" aria-label="English">EN</a><a class="talk" href="#contact">בואו נדבר <span class="arr">&larr;</span></a></div>
 </header>
 
 <main id="top">
@@ -169,17 +184,17 @@ footer{background:var(--black);color:var(--cream);padding:14vh 0 0;margin-top:14
   <!-- SERVICES -->
   <section class="wrap svc alt" style="padding:8vh 0 10vh;padding-left:clamp(20px,4.5vw,64px);padding-right:clamp(20px,4.5vw,64px)">
     <div class="svc-row rv">
-      <span class="num">01</span>
+      <span class="num" aria-hidden="true">01</span>
       <h3>תכנון</h3>
       <p>תכנון חלל, אדריכלות פנים וריהוט, סביב איך שהצוות שלכם באמת עובד, לא סביב קטלוג.</p>
     </div>
     <div class="svc-row rv">
-      <span class="num">02</span>
+      <span class="num" aria-hidden="true">02</span>
       <h3>בנייה</h3>
       <p>צוות ביצוע משלנו ובעלי מקצוע שאנחנו סומכים עליהם. לוח זמנים אחד, תקציב אחד, מספר טלפון אחד. אנחנו מוסרים מפתחות, לא תירוצים.</p>
     </div>
     <div class="svc-row rv">
-      <span class="num">03</span>
+      <span class="num" aria-hidden="true">03</span>
       <h3>ליווי</h3>
       <p>אחרי המסירה אנחנו נשארים: כוונונים עונתיים, עבודות קטנות ושינויים כשהעסק גדל לתוך החלל.</p>
     </div>
@@ -198,19 +213,19 @@ footer{background:var(--black);color:var(--cream);padding:14vh 0 0;margin-top:14
       <div class="team-strip" id="tStrip">
         <article class="tcard rv">
           <img src="assets/team-noa.jpg" alt="פורטרט של נועה גפן, מייסדת ומנהלת קריאייטיב">
-          <div class="tmeta"><b>נועה גפן</b><span>מייסדת · מנהלת קריאייטיב</span><div class="sig">Noa</div></div>
+          <div class="tmeta"><b>נועה גפן</b><span>מייסדת · מנהלת קריאייטיב</span><div class="sig" aria-hidden="true">Noa</div></div>
         </article>
         <article class="tcard rv">
           <img src="assets/team-daniel.jpg" alt="פורטרט של דניאל פרץ, אדריכל בכיר">
-          <div class="tmeta"><b>דניאל פרץ</b><span>אדריכל בכיר</span><div class="sig">Daniel</div></div>
+          <div class="tmeta"><b>דניאל פרץ</b><span>אדריכל בכיר</span><div class="sig" aria-hidden="true">Daniel</div></div>
         </article>
         <article class="tcard rv">
           <img src="assets/team-maya.jpg" alt="פורטרט של מאיה שלו, מובילת פרויקטים">
-          <div class="tmeta"><b>מאיה שלו</b><span>מובילת פרויקטים</span><div class="sig">Maya</div></div>
+          <div class="tmeta"><b>מאיה שלו</b><span>מובילת פרויקטים</span><div class="sig" aria-hidden="true">Maya</div></div>
         </article>
         <article class="tcard rv">
           <img src="assets/team-avi.jpg" alt="פורטרט של אבי מור, בנאי ראשי">
-          <div class="tmeta"><b>אבי מור</b><span>בנאי ראשי</span><div class="sig">Avi</div></div>
+          <div class="tmeta"><b>אבי מור</b><span>בנאי ראשי</span><div class="sig" aria-hidden="true">Avi</div></div>
         </article>
       </div>
     </div>
@@ -249,14 +264,14 @@ footer{background:var(--black);color:var(--cream);padding:14vh 0 0;margin-top:14
       <h2 class="rv">בואו נבנה את הבא<em>.</em></h2>
       <div class="foot-contact rv">
         <span class="label" style="color:rgba(239,235,227,.5)">להתחיל שיחה</span>
-        <a href="mailto:hello@studiogefen-demo.example">hello@studiogefen-demo.example</a>
-        <a href="tel:+97230000000">+972 (0) 3 000 0000</a>
+        <a href="mailto:hello@studiogefen-demo.example" dir="ltr" lang="en">hello@studiogefen-demo.example</a>
+        <a href="tel:+97230000000" dir="ltr">+972 (0) 3 000 0000</a>
         <span>קרית המלאכה, תל אביב</span>
       </div>
     </div>
     <div class="foot-base">
       <span>&copy; 2026 סטודיו גפן · סטודיו דמו פיקטיבי</span>
-      <a href="#top">נבנה על ידי ameizing</a>
+      <a href="#top">נבנה על ידי <span lang="en">ameizing</span></a>
     </div>
   </footer>
 
@@ -284,6 +299,10 @@ footer{background:var(--black);color:var(--cream);padding:14vh 0 0;margin-top:14
   var fill=document.getElementById('fill');
   var words=fill.textContent.trim().split(/\s+/);
   fill.innerHTML=words.map(function(w){return '<span class="w">'+w+'</span>'}).join(' ');
+  fill.setAttribute('aria-hidden','true');
+  var srf=document.createElement('p');srf.textContent=words.join(' ');
+  srf.style.cssText='position:absolute;width:1px;height:1px;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0';
+  fill.parentNode.insertBefore(srf,fill);
   var spans=fill.querySelectorAll('.w');
   function fillTick(){
     var r=fill.getBoundingClientRect(),vh=window.innerHeight;
@@ -304,5 +323,9 @@ footer{background:var(--black);color:var(--cream);padding:14vh 0 0;margin-top:14
   document.getElementById('tNext').addEventListener('click',function(){strip.scrollBy({left:step(),behavior:'smooth'})});
 })();
 </script>
+<script>/* screen readers: read each title as one sentence, not "heading, 2 items" (25.11.26) */
+document.querySelectorAll('h1,h2,h3').forEach(function(h){if(!h.children.length)return;
+var t=[].map.call(h.childNodes,function(n){return n.textContent}).join(' ').replace(/\s+/g,' ').replace(/\s+([.,!?:])/g,'$1').trim();
+if(t)h.setAttribute('aria-label',t)});</script>
 </body>
 </html>
