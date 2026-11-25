@@ -65,7 +65,7 @@ header{position:fixed;top:0;left:0;right:0;z-index:50;display:flex;justify-conte
   background:linear-gradient(to bottom,color-mix(in srgb,var(--cream) 96%,transparent) 0%,color-mix(in srgb,var(--cream) 72%,transparent) 58%,transparent 100%)}
 header.on-dark{color:var(--cream);
   background:linear-gradient(to bottom,rgba(16,10,14,.6) 0%,rgba(16,10,14,.3) 60%,transparent 100%)}
-.brand{font-family:var(--disp);font-size:24px;letter-spacing:.12em;text-transform:uppercase;line-height:1;max-width:46vw;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.brand{font-family:var(--disp);font-size:24px;letter-spacing:.12em;text-transform:uppercase;line-height:1;max-width:56vw;min-width:0;overflow-wrap:anywhere}
 .nav-right{display:flex;align-items:center;gap:clamp(14px,2.4vw,26px)}
 .nav-right a,.nav-right button{text-decoration:none;font-size:15px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:inherit;opacity:.85;background:none;border:none;cursor:pointer;font-family:var(--sans)}
 .nav-right a:hover,.nav-right button:hover{opacity:1}
@@ -232,13 +232,28 @@ header button,header a{min-width:24px;min-height:24px}
 .skip-link:focus{top:12px}
 .a11y-link{color:inherit;text-decoration:underline;text-underline-offset:3px;display:inline-flex;align-items:center;min-height:24px}
 .a11y-link:focus-visible{outline:2px solid currentColor;outline-offset:3px}
+
+/* very narrow screens only (an iPhone at 200% zoom is ~200px wide): nothing
+   spills sideways or overlaps. Normal phones and desktops are unchanged. 25.11.26 */
+@media (max-width:360px){
+  body *{letter-spacing:.02em!important;overflow-wrap:break-word;min-width:0}
+  .info-grid,.reviews-grid,.grid{grid-template-columns:minmax(0,1fr)!important}
+  h1{font-size:min(13vw,3rem)!important;line-height:1.08!important}
+  h2{font-size:min(9.5vw,2.2rem)!important;line-height:1.12!important}
+  h3{font-size:min(7vw,1.6rem)!important}
+  header a,header button{white-space:nowrap;word-break:keep-all}
+  header{flex-wrap:wrap!important;justify-content:center!important;gap:8px 14px}
+  header .brand{flex-basis:100%;max-width:none!important;text-align:center}
+  header .brand{white-space:normal!important}
+  img,video,iframe{max-width:100%}
+}
 </style>
 </head>
 <body>
 <a class="skip-link" href="#top"><span class="t-he">דלגו לתוכן</span><span class="t-en">Skip to content</span></a>
 
 <header id="hdr" class="on-dark">
-  <a class="brand" href="#top"><span class="t-he">רואה חשבון אמיר - רואה חשבון בתל אביב</span><span class="t-en">Amir - CPA</span></a>
+  <a class="brand" href="#top"><span class="t-he">רואה חשבון אמיר</span><span class="t-en">Amir</span></a>
   <nav class="nav-right">
     <button class="lang-btn" onclick="toggleLang()"><span class="t-he">EN</span><span class="t-en">עברית</span></button>
     <a class="enq" href="tel:0584028073"><span class="t-he">התקשרו</span><span class="t-en">Call</span></a>
@@ -251,7 +266,7 @@ header button,header a{min-width:24px;min-height:24px}
     <div class="hero-bg" style="background-image:linear-gradient(160deg,rgba(10,12,24,.2),rgba(10,12,24,.42)),url('img/09-a-cup-of-coffee.webp');background-size:cover;background-position:center;"></div>
     <div class="hero-text">
       <p class="hero-eyebrow"><span class="t-he">שירות אישי, תוצאות מקצועיות</span><span class="t-en">Personal service, professional results</span></p>
-      <h1><span class="t-he"><span class="hn keep" style="--len:15">רואה חשבון אמיר</span><span class="hn">רואה חשבון בתל אביב</span></span><span class="t-en"><span class="hn keep" style="--len:4"><span class="ltr nw" dir="ltr">Amir</span></span><span class="hn"><span class="ltr nw" dir="ltr">CPA</span></span></span></h1>
+      <h1><span class="t-he"><span class="hn keep" style="--len:15">רואה חשבון אמיר</span><span class="hn">רואה חשבון בתל אביב</span></span><span class="t-en"><span class="hn keep" style="--len:4"><span class="ltr nw" dir="ltr" lang="en">Amir</span></span><span class="hn"><span class="ltr nw" dir="ltr" lang="en">CPA</span></span></span></h1>
       <div class="hero-sub"><span class="stars">★★★★★</span><span>5.0 &middot; 10 <span class="t-he">ביקורות בגוגל</span><span class="t-en">Google reviews</span></span></div>
       <div class="hero-ctas">
         <a class="btn btn-accent" href="tel:0584028073" dir="ltr">058-402-8073</a>
@@ -360,12 +375,36 @@ header button,header a{min-width:24px;min-height:24px}
 <a class="floating-wa" href="https://wa.me/972584028073" target="_blank" aria-label="WhatsApp"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/></svg></a>
 
 <script>
+/* screen readers: a title built from pieces (Hebrew/English halves, highlighted
+   words) is announced as "heading, 2 items". Name each title with the text
+   that is visible right now, so it is read as one sentence (Meirav, 25.11.26). */
+function visText(n){
+  /* the words as written (not CSS capitals), skipping the hidden language */
+  var out='';
+  n.childNodes.forEach(function(c){
+    if(c.nodeType===3){out+=c.textContent;return}
+    if(c.nodeType!==1)return;
+    if(c.tagName==='BR'){out+=' ';return}
+    if(getComputedStyle(c).display==='none'||c.getAttribute('aria-hidden')==='true')return;
+    out+=visText(c);
+  });
+  return out;
+}
+function nameTitles(){
+  document.querySelectorAll('h1,h2,h3').forEach(function(h){
+    if(!h.children.length){h.removeAttribute('aria-label');return}
+    var t=visText(h).replace(/\s+/g,' ').trim();
+    if(t)h.setAttribute('aria-label',t);else h.removeAttribute('aria-label');
+  });
+}
+document.addEventListener('DOMContentLoaded',function(){nameTitles();setTimeout(nameTitles,600)});
 function toggleLang(){
   const b=document.body;
   b.classList.toggle('en');
   const en=b.classList.contains('en');
   document.documentElement.lang=en?'en':'he';
   document.documentElement.dir=en?'ltr':'rtl';
+  nameTitles();
   if(window.fillTick)window.fillTick();
 }
 (function(){
