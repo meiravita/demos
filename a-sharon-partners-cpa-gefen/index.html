@@ -41,7 +41,7 @@ body{background:var(--cream);color:var(--black);font-family:var(--sans);font-siz
 img{max-width:100%;display:block}
 a{color:inherit;text-decoration:none}
 .wrap{padding-inline:clamp(20px,4.5vw,64px);max-width:1360px;margin:0 auto}
-.label{font-size:12px;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:color-mix(in srgb,var(--black) 55%,transparent)}
+.label{font-size:12px;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:color-mix(in srgb,var(--black) 80%,transparent)}
 .t-en{display:none}
 body.en .t-en{display:inline}
 body.en .t-he{display:none}
@@ -99,7 +99,7 @@ body:not(.en) .talk:hover .arr{transform:translateX(-4px)}
 .card::before{content:"0" counter(svc);font-size:13px;font-weight:700;color:var(--pop);font-variant-numeric:tabular-nums}
 .card-icon{display:none}
 .card h3{font-size:clamp(21px,2.2vw,30px);font-weight:500;letter-spacing:-.01em;line-height:1.2}
-.card p{color:color-mix(in srgb,var(--black) 65%,transparent);font-size:16px;line-height:1.55;max-width:34ch}
+.card p{color:color-mix(in srgb,var(--black) 80%,transparent);font-size:16px;line-height:1.55;max-width:34ch}
 @media(max-width:960px){.grid{grid-template-columns:repeat(2,1fr)}}
 
 /* ---------- photo grids ---------- */
@@ -118,7 +118,7 @@ body:not(.en) .talk:hover .arr{transform:translateX(-4px)}
 .stat b{display:block;font-size:clamp(24px,3.4vw,42px);font-weight:500;letter-spacing:-.02em;font-variant-numeric:tabular-nums;line-height:1.15}
 .stat b i{font-style:normal;color:var(--pop)}
 .stat b.small{font-size:clamp(15px,1.5vw,19px);letter-spacing:0;font-weight:500}
-.stat span{font-size:12px;letter-spacing:.16em;text-transform:uppercase;color:color-mix(in srgb,var(--black) 55%,transparent);font-weight:700}
+.stat span{font-size:12px;letter-spacing:.16em;text-transform:uppercase;color:color-mix(in srgb,var(--black) 80%,transparent);font-weight:700}
 .stat a{border-bottom:1px solid color-mix(in srgb,var(--black) 30%,transparent);width:fit-content;margin:0 auto;padding-bottom:1px}
 .stat a:hover{border-color:var(--black)}
 
@@ -128,12 +128,12 @@ body:not(.en) .talk:hover .arr{transform:translateX(-4px)}
 .reviews-wrap h2{font-size:clamp(30px,4.6vw,56px);font-weight:500;letter-spacing:-.02em;margin-bottom:6vh}
 .reviews-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(270px,1fr));gap:clamp(20px,3vw,44px)}
 .review{border-top:1px solid var(--line);padding-top:24px}
-.review-stars{color:var(--pop);letter-spacing:4px;font-size:13px;margin-bottom:14px}
+.review-stars{color:color-mix(in srgb,var(--pop) 80%,#000);letter-spacing:4px;font-size:13px;margin-bottom:14px}
 .review p{font-size:17px;line-height:1.7}
 .review-who{display:flex;align-items:center;gap:10px;margin-top:18px}
 .review-avatar{width:34px;height:34px;border-radius:50%;border:1px solid var(--black);display:flex;align-items:center;justify-content:center;font-weight:700;font-size:14px}
-.review-author{font-size:12px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:color-mix(in srgb,var(--black) 60%,transparent)}
-.google-note{margin-top:6vh;font-size:12px;letter-spacing:.2em;text-transform:uppercase;color:color-mix(in srgb,var(--black) 50%,transparent)}
+.review-author{font-size:12px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:color-mix(in srgb,var(--black) 80%,transparent)}
+.google-note{margin-top:6vh;font-size:12px;letter-spacing:.2em;text-transform:uppercase;color:color-mix(in srgb,var(--black) 80%,transparent)}
 
 /* ---------- faq ---------- */
 #faq{padding:12vh 0}
@@ -145,7 +145,7 @@ body:not(.en) .talk:hover .arr{transform:translateX(-4px)}
 .faq-list summary::-webkit-details-marker{display:none}
 .faq-list summary::after{content:"+";position:absolute;inset-inline-end:8px;top:20px;color:var(--pop);font-size:24px;font-weight:400;transition:transform .3s}
 .faq-list details[open] summary::after{transform:rotate(45deg)}
-.faq-list .faq-a{padding:0 2px 26px;color:color-mix(in srgb,var(--black) 65%,transparent);max-width:60ch;font-size:15px}
+.faq-list .faq-a{padding:0 2px 26px;color:color-mix(in srgb,var(--black) 80%,transparent);max-width:60ch;font-size:15px}
 
 /* ---------- footer / contact ---------- */
 footer{background:var(--black);color:var(--cream);padding:14vh 0 0;margin-top:4vh}
@@ -153,10 +153,10 @@ footer{background:var(--black);color:var(--cream);padding:14vh 0 0;margin-top:4v
 .foot-grid h2{font-size:clamp(40px,6.5vw,88px);font-weight:500;letter-spacing:-.02em;line-height:1.02;text-wrap:balance}
 .foot-grid h2 em{font-style:normal;color:var(--accent)}
 .foot-contact{display:flex;flex-direction:column;gap:12px;font-size:15px}
-.foot-contact .label{color:color-mix(in srgb,var(--cream) 50%,transparent)}
+.foot-contact .label{color:color-mix(in srgb,var(--cream) 82%,transparent)}
 .foot-contact a{border-bottom:1px solid color-mix(in srgb,var(--cream) 30%,transparent);width:fit-content;padding-bottom:2px}
 .foot-contact a:hover{border-color:var(--cream)}
-.hours{list-style:none;font-size:13.5px;color:color-mix(in srgb,var(--cream) 72%,transparent);margin-top:6px}
+.hours{list-style:none;font-size:13.5px;color:color-mix(in srgb,var(--cream) 82%,transparent);margin-top:6px}
 .hours li{padding:2px 0}
 .foot-base{display:flex;justify-content:space-between;gap:14px;flex-wrap:wrap;margin-top:10vh;border-top:1px solid color-mix(in srgb,var(--cream) 18%,transparent);
   padding:20px clamp(20px,4.5vw,64px);font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--cream)}
