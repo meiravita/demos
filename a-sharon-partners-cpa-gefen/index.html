@@ -2,6 +2,7 @@
 <html lang="he" dir="rtl">
 <head>
 <meta name="robots" content="noindex, nofollow">
+<script>document.documentElement.classList.add('js')</script>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>א.שרון ושות' רואי חשבון | שירות אישי, תוצאות מקצועיות</title>
@@ -48,7 +49,7 @@ body.en p.t-en{display:block}
 body.en p.t-he{display:none}
 body.en{direction:ltr}
 
-.rv{opacity:0;transform:translateY(28px);transition:opacity .8s ease,transform .8s cubic-bezier(.22,1,.36,1)}
+.js .rv{opacity:0;transform:translateY(28px);transition:opacity .8s ease,transform .8s cubic-bezier(.22,1,.36,1)}
 .rv.in{opacity:1;transform:none}
 
 /* ---------- nav ---------- */
@@ -158,7 +159,7 @@ footer{background:var(--black);color:var(--cream);padding:14vh 0 0;margin-top:4v
 .hours{list-style:none;font-size:13.5px;color:color-mix(in srgb,var(--cream) 72%,transparent);margin-top:6px}
 .hours li{padding:2px 0}
 .foot-base{display:flex;justify-content:space-between;gap:14px;flex-wrap:wrap;margin-top:10vh;border-top:1px solid color-mix(in srgb,var(--cream) 18%,transparent);
-  padding:20px clamp(20px,4.5vw,64px);font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:color-mix(in srgb,var(--cream) 50%,transparent)}
+  padding:20px clamp(20px,4.5vw,64px);font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--cream)}
 
 .floating-wa{position:fixed;bottom:22px;inset-inline-start:22px;background:#25d366;color:#fff;width:56px;height:56px;border-radius:50%;display:flex;align-items:center;justify-content:center;box-shadow:0 8px 26px rgba(0,0,0,.3);z-index:60;transition:transform .2s}
 .floating-wa:hover{transform:scale(1.08)}
@@ -179,7 +180,23 @@ footer{background:var(--black);color:var(--cream);padding:14vh 0 0;margin-top:4v
   .grid{grid-template-columns:1fr}
   .fill-sec,#faq{padding-top:10vh;padding-bottom:10vh}
 }
+/* ---------- motion (web-motion-skill, 20.11.26): one entrance, plays once, opacity+transform only ---------- */
+.hero-bg{animation:mo-settle 1.4s cubic-bezier(.22,1,.36,1) both}
+.hero h1,.hero .hero-title,.hero .hero-eyebrow,.hero .tagline,.hero .rating-row{animation:mo-rise .6s cubic-bezier(.22,1,.36,1) both}
+.hero .hero-eyebrow{animation-delay:0s}
+.hero h1,.hero .hero-title{animation-delay:.08s}
+.hero .tagline,.hero .rating-row{animation-delay:.2s}
+@keyframes mo-settle{from{opacity:0;transform:scale(1.04)}to{opacity:1;transform:none}}
+@keyframes mo-rise{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:none}}
+.js .photo-strip img.rv{transform:translateY(16px)}
+.js .photo-strip img.rv.in{transform:none}
+a:focus-visible,button:focus-visible{outline:2px solid currentColor;outline-offset:3px}
+.floating-wa:focus-visible{transform:scale(1.08)}
+@media (max-width:640px){
+  .hero h1,.hero .hero-title,.hero .hero-eyebrow,.hero .tagline,.hero .rating-row{animation-duration:.45s;animation-delay:.05s}
+}
 @media (prefers-reduced-motion:reduce){
+  .js .rv{opacity:1;transform:none}
   *{transition:none!important;animation:none!important}
   .rv{opacity:1;transform:none}
   .fill .w{color:var(--black)}
@@ -188,9 +205,15 @@ footer{background:var(--black);color:var(--cream);padding:14vh 0 0;margin-top:4v
 /* banner title: whole phrases only, never cut in half (13.11.26) */
 .hn{display:block;unicode-bidi:isolate;text-wrap:balance}.hn+.hn{font-size:.5em;margin-top:.4em;opacity:.92}.hn .ltr{unicode-bidi:isolate}.hn .nw{white-space:nowrap}
 .no-rating .stats,.no-rating .info-grid{grid-template-columns:repeat(auto-fit,minmax(min(100%,280px),1fr))}
+header button,header a{min-width:24px;min-height:24px}
+.skip-link{position:absolute;inset-inline-start:12px;top:-60px;z-index:9999;background:#111;color:#fff;padding:10px 16px;border-radius:8px;font-size:15px;text-decoration:none}
+.skip-link:focus{top:12px}
+.a11y-link{color:inherit;text-decoration:underline;text-underline-offset:3px;display:inline-flex;align-items:center;min-height:24px}
+.a11y-link:focus-visible{outline:2px solid currentColor;outline-offset:3px}
 </style>
 </head>
 <body>
+<a class="skip-link" href="#top"><span class="t-he">דלגו לתוכן</span><span class="t-en">Skip to content</span></a>
 
 <header>
   <div class="nav">
@@ -203,7 +226,7 @@ footer{background:var(--black);color:var(--cream);padding:14vh 0 0;margin-top:4v
   </div>
 </header>
 
-<main id="top">
+<main id="top" tabindex="-1">
 
   <section class="hero">
     <div class="hero-bg" style="background-image:linear-gradient(160deg,rgba(10,12,24,.2),rgba(10,12,24,.42)),url('img/09-a-cup-of-coffee.webp');background-size:cover;background-position:center;"></div>
@@ -290,7 +313,7 @@ footer{background:var(--black);color:var(--cream);padding:14vh 0 0;margin-top:4v
       </div>
     </div>
     <div class="foot-base">
-      <span>&copy; 2026 <span class="t-he">א.שרון ושות' רואי חשבון</span><span class="t-en">A. Sharon &amp; Partners - CPA</span> &middot; <span class="t-he">כל הזכויות שמורות</span><span class="t-en">All rights reserved</span></span>
+      <span>&copy; 2026 <span class="t-he">א.שרון ושות' רואי חשבון</span><span class="t-en">A. Sharon &amp; Partners - CPA</span> &middot; <span class="t-he">כל הזכויות שמורות</span><span class="t-en">All rights reserved</span> &middot; <a class="a11y-link" href="accessibility/"><span class="t-he">הצהרת נגישות</span><span class="t-en">Accessibility statement</span></a></span>
       <span><span class="t-he">א.שרון ושות' רואי חשבון</span><span class="t-en">A. Sharon &amp; Partners - CPA</span></span>
     </div>
   </footer>
@@ -324,6 +347,13 @@ function toggleLang(){
     var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}})},{threshold:.15});
     items.forEach(function(el){el.classList.add('rv');io.observe(el)});
   }else{items.forEach(function(el){el.classList.add('rv','in')})}
+  /* stagger: items revealed together come in one after another (web-motion-skill) */
+  var step=window.matchMedia('(max-width:640px)').matches?50:90;
+  document.querySelectorAll('.photo-strip img').forEach(function(img){if(!reduced&&'IntersectionObserver' in window){img.classList.add('rv');io.observe(img)}});
+  [].forEach.call(document.querySelectorAll('.grid,.reviews-grid,.photo-strip'),function(par){
+    var kids=par.querySelectorAll('.card,.review,img');
+    [].forEach.call(kids,function(k,i){k.style.transitionDelay=Math.min(i,5)*step+'ms'});
+  });
 
   /* counters */
   var counts=[].slice.call(document.querySelectorAll('[data-count]'));
