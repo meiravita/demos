@@ -28,7 +28,7 @@
   --cream-alt:color-mix(in srgb,var(--cream) 91%,#2e5a77);
   --card:color-mix(in srgb,var(--cream) 95%,#1a3345);
   --ink:color-mix(in srgb,#1a3345 90%,#000);
-  --ink-soft:color-mix(in srgb,var(--ink) 62%,var(--cream));
+  --ink-soft:color-mix(in srgb,var(--ink) 78%,var(--cream));
   --line:color-mix(in srgb,var(--ink) 16%,var(--cream));
   --disp:'Frank Ruhl Libre',Georgia,serif;
   --script:'Frank Ruhl Libre',Georgia,serif;
@@ -110,7 +110,7 @@ body.en .marquee-track{animation-name:slide-ltr}
 .fact span{font-size:15px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-soft)}
 .fact a{border-bottom:1px solid var(--ink-soft);width:fit-content;margin:0 auto;padding-bottom:1px}
 .fact a:hover{border-color:var(--ink)}
-.fact .stars{color:var(--primary);letter-spacing:3px;font-size:16px}
+.fact .stars{color:color-mix(in srgb,var(--primary) 80%,#000);letter-spacing:3px;font-size:16px}
 
 /* ---------- sections ---------- */
 section{padding:13vh 0}
@@ -138,7 +138,7 @@ h2.label{margin:0;line-height:inherit}
 .card p{color:var(--ink-soft);max-width:36ch;font-size:17px}
 /* plum value band (services) */
 section.alt.plum{background:var(--plum);color:var(--cream)}
-section.alt.plum .label,section.alt.plum .sec-num,section.alt.plum .card::before{color:color-mix(in srgb,var(--cream) 70%,transparent)}
+section.alt.plum .label,section.alt.plum .sec-num,section.alt.plum .card::before{color:color-mix(in srgb,var(--cream) 84%,transparent)}
 section.alt.plum .card{border-top-color:color-mix(in srgb,var(--cream) 26%,transparent)}
 section.alt.plum .card h3{color:var(--cream)}
 section.alt.plum .card p{color:color-mix(in srgb,var(--cream) 82%,transparent)}
@@ -149,15 +149,15 @@ section.alt.plum .card p{color:color-mix(in srgb,var(--cream) 82%,transparent)}
 
 /* ---------- reviews on plum ---------- */
 .reviews-wrap{background:var(--plum);color:var(--cream)}
-.reviews-wrap .label,.reviews-wrap .sec-num{color:color-mix(in srgb,var(--cream) 70%,transparent)}
+.reviews-wrap .label,.reviews-wrap .sec-num{color:color-mix(in srgb,var(--cream) 84%,transparent)}
 .reviews-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:clamp(20px,3vw,40px)}
 .review{background:var(--card);color:var(--ink);border-radius:5px;padding:28px 26px}
-.review-stars{color:var(--primary);letter-spacing:4px;font-size:15px;margin-bottom:14px}
+.review-stars{color:color-mix(in srgb,var(--primary) 80%,#000);letter-spacing:4px;font-size:15px;margin-bottom:14px}
 .review p{font-family:var(--disp);font-size:17.5px;line-height:1.6}
 .review-who{display:flex;align-items:center;gap:10px;margin-top:20px;border-top:1px solid var(--line);padding-top:16px}
 .review-avatar{width:34px;height:34px;border-radius:50%;border:1px solid var(--ink-soft);display:flex;align-items:center;justify-content:center;font-family:var(--disp);font-size:16px}
 .review-author{font-size:15px;font-weight:600;letter-spacing:.16em;text-transform:uppercase;color:var(--ink-soft)}
-.google-note{margin-top:6vh;font-size:15px;letter-spacing:.1em;text-transform:uppercase;color:color-mix(in srgb,var(--cream) 60%,transparent);text-align:center}
+.google-note{margin-top:6vh;font-size:15px;letter-spacing:.1em;text-transform:uppercase;color:color-mix(in srgb,var(--cream) 84%,transparent);text-align:center}
 
 /* ---------- faq ---------- */
 #faq .faq-list{max-width:860px;border-top:1px solid var(--line)}
@@ -170,16 +170,16 @@ section.alt.plum .card p{color:color-mix(in srgb,var(--cream) 82%,transparent)}
 
 /* ---------- cta / footer ---------- */
 .cta{background:var(--plum-deep);color:var(--cream);padding:15vh 0 0;overflow:hidden}
-.cta .label{color:color-mix(in srgb,var(--cream) 52%,transparent)}
+.cta .label{color:color-mix(in srgb,var(--cream) 84%,transparent)}
 .cta-big{font-family:var(--disp);font-size:clamp(34px,5.5vw,80px);text-transform:uppercase;line-height:1.05;margin:3vh 0;font-weight:400}
 .cta-big .script{color:var(--accent)}
 .cta-ctas{display:flex;gap:14px;flex-wrap:wrap;margin:5vh 0 2vh}
 .cta .btn-accent{background:var(--accent);color:var(--plum-deep)}
 .cta .btn-ghost{border-color:color-mix(in srgb,var(--cream) 60%,transparent);color:var(--cream)}
-.cta-meta{display:flex;justify-content:space-between;gap:28px;flex-wrap:wrap;margin:8vh 0 6vh;color:color-mix(in srgb,var(--cream) 62%,transparent);
+.cta-meta{display:flex;justify-content:space-between;gap:28px;flex-wrap:wrap;margin:8vh 0 6vh;color:color-mix(in srgb,var(--cream) 84%,transparent);
   font-size:15px;letter-spacing:.08em;text-transform:uppercase}
 .cta-meta a{border-bottom:1px solid color-mix(in srgb,var(--cream) 35%,transparent);padding-bottom:2px}
-.hours{list-style:none;font-size:15px;letter-spacing:.06em;text-transform:none;margin-top:8px;color:color-mix(in srgb,var(--cream) 62%,transparent)}
+.hours{list-style:none;font-size:15px;letter-spacing:.06em;text-transform:none;margin-top:8px;color:color-mix(in srgb,var(--cream) 84%,transparent)}
 .hours li{padding:2px 0}
 .foot-word{font-family:var(--disp);font-size:clamp(52px,13vw,210px);text-transform:uppercase;line-height:.85;text-align:center;
   color:color-mix(in srgb,var(--cream) 13%,transparent);white-space:nowrap;overflow:hidden}
