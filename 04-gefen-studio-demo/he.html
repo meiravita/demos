@@ -156,9 +156,14 @@ footer{background:var(--black);color:var(--cream);padding:14vh 0 0;margin-top:14
   header .logo{order:-1;flex-basis:100%;text-align:center;font-size:15px!important;white-space:normal!important}
   .tcard{flex-basis:78vw!important}
 }
+.sr-only{position:absolute!important;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
+.a11y-skip{position:absolute;top:-90px;inset-inline-start:12px;z-index:100000;background:#111;color:#fff;padding:10px 16px;border-radius:8px;font:600 15px/1.2 -apple-system,Arial,sans-serif;text-decoration:none}
+.a11y-skip:focus{top:12px}
+.a11y-foot{margin-top:18px;font-size:13px;opacity:.9}.a11y-foot a{color:inherit}
 </style>
 </head>
 <body>
+<a class="a11y-skip" href="#top">דלגו לתוכן</a>
 
 <header>
   <div class="clock" aria-hidden="true" aria-label="שעה מקומית, תל אביב"><span id="clock">00:00</span> <span>ת"א</span></div>
@@ -185,7 +190,8 @@ footer{background:var(--black);color:var(--cream);padding:14vh 0 0;margin-top:14
   <section class="wrap svc alt" style="padding:8vh 0 10vh;padding-left:clamp(20px,4.5vw,64px);padding-right:clamp(20px,4.5vw,64px)">
     <div class="svc-row rv">
       <span class="num" aria-hidden="true">01</span>
-      <h3>תכנון</h3>
+      <h2 class="sr-only">מה אנחנו עושים</h2>
+<h3>תכנון</h3>
       <p>תכנון חלל, אדריכלות פנים וריהוט, סביב איך שהצוות שלכם באמת עובד, לא סביב קטלוג.</p>
     </div>
     <div class="svc-row rv">
@@ -273,7 +279,8 @@ footer{background:var(--black);color:var(--cream);padding:14vh 0 0;margin-top:14
       <span>&copy; 2026 סטודיו גפן · סטודיו דמו פיקטיבי</span>
       <a href="#top">נבנה על ידי <span lang="en">ameizing</span></a>
     </div>
-  </footer>
+  <p class="a11y-foot"><a href="https://ameiz.ing/accessibility/">הצהרת נגישות</a></p>
+</footer>
 
 </main>
 

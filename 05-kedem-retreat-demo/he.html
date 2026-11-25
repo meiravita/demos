@@ -103,8 +103,8 @@ footer .label{color:rgba(241,236,227,.72)}
   font-size:12px;font-weight:600;letter-spacing:.3em;text-transform:uppercase;transition:background .4s,color .4s}
 .foot-cta:hover{background:var(--ivory);color:var(--ink)}
 .foot-base{display:flex;justify-content:space-between;gap:14px;flex-wrap:wrap;margin-top:12vh;border-top:1px solid rgba(241,236,227,.15);
-  padding:20px clamp(20px,5vw,72px);font-size:11.5px;letter-spacing:.2em;text-transform:uppercase;color:rgba(241,236,227,.45)}
-.foot-base a{text-decoration:none;color:rgba(241,236,227,.7)}
+  padding:20px clamp(20px,5vw,72px);font-size:12px;letter-spacing:.2em;text-transform:uppercase;color:rgba(241,236,227,.78)}
+.foot-base a{text-decoration:none;color:rgba(241,236,227,.85)}
 
 .rv{opacity:0;transform:translateY(26px);transition:opacity 1.1s ease,transform 1.1s cubic-bezier(.22,1,.36,1)}
 .rv.in{opacity:1;transform:none}
@@ -122,9 +122,9 @@ footer .label{color:rgba(241,236,227,.72)}
 }
 @media (max-width:600px){
   header{padding:14px 16px 20px}
-  .nav-link,.menu-btn{font-size:11px;letter-spacing:.12em}
+  .nav-link,.menu-btn{font-size:12px;letter-spacing:.12em}
   .wordmark b{font-size:18px;letter-spacing:.2em}
-  .wordmark span{font-size:9px;letter-spacing:.28em}
+  .wordmark span{font-size:12px;letter-spacing:.28em}
   header>div{gap:10px!important}
 }
 @media (prefers-reduced-motion:reduce){
@@ -156,9 +156,14 @@ footer .label{color:rgba(241,236,227,.72)}
   header .wordmark span{white-space:normal!important}
   .trio{grid-template-columns:minmax(0,1fr)!important}.trio>*{min-width:0}
 }
+.sr-only{position:absolute!important;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
+.a11y-skip{position:absolute;top:-90px;inset-inline-start:12px;z-index:100000;background:#111;color:#fff;padding:10px 16px;border-radius:8px;font:600 15px/1.2 -apple-system,Arial,sans-serif;text-decoration:none}
+.a11y-skip:focus{top:12px}
+.a11y-foot{margin-top:18px;font-size:13px;opacity:.9}.a11y-foot a{color:inherit}
 </style>
 </head>
 <body>
+<a class="a11y-skip" href="#top">דלגו לתוכן</a>
 
 <header id="hdr" class="on-dark">
   <a class="nav-link" href="#enquire">לפנייה</a>
@@ -192,7 +197,8 @@ footer .label{color:rgba(241,236,227,.72)}
   <section class="ed wrap alt">
     <div class="ed-text rv">
       <span class="label">המדבר</span>
-      <h3>אנחנו מאמינים באיזון, שבו אנשים ומדבר משגשגים יחד</h3>
+      <h2 class="sr-only">על המקום</h2>
+<h3>אנחנו מאמינים באיזון, שבו אנשים ומדבר משגשגים יחד</h3>
       <p>מתוך שותפות עם הקהילה הבדואית המקומית, אנחנו דואגים שכשהשכנים שלנו משגשגים, גם המדבר משגשג. יעלים רועים על הרכס עם שחר; אנחנו מתזמנים את עצמנו סביבם, לא להפך.</p>
     </div>
     <div>
@@ -252,7 +258,8 @@ footer .label{color:rgba(241,236,227,.72)}
       <span>&copy; 2026 קדם קולקציית המדבר · ריטריט דמו פיקטיבי</span>
       <a href="#top">נבנה על ידי <span lang="en">ameizing</span></a>
     </div>
-  </footer>
+  <p class="a11y-foot"><a href="https://ameiz.ing/accessibility/">הצהרת נגישות</a></p>
+</footer>
 
 </main>
 

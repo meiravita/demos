@@ -136,7 +136,7 @@ section.alt{background:var(--cream-alt)}
 .rcard h3{font-family:var(--disp);font-size:clamp(23px,2vw,29px);letter-spacing:0;margin-bottom:16px;font-weight:500}
 .rstats{display:grid;grid-template-columns:1fr 1fr;border-top:1px solid var(--line)}
 .rstat{padding:13px 0;border-bottom:1px solid var(--line)}
-.rstat span{font-size:11px;font-weight:600;letter-spacing:.06em;color:var(--ink-soft);display:block;margin-bottom:4px}
+.rstat span{font-size:12px;font-weight:600;letter-spacing:.06em;color:var(--ink-soft);display:block;margin-bottom:4px}
 .rstat b{font-family:var(--disp);font-size:21px;font-weight:400;font-variant-numeric:tabular-nums}
 .rcard .rbody>p{color:var(--ink-soft);margin-top:16px;font-size:14px}
 
@@ -175,8 +175,8 @@ section.alt{background:var(--cream-alt)}
 .foot-word{font-family:var(--disp);font-size:clamp(60px,13vw,220px);line-height:.8;text-align:center;
   color:rgba(243,241,234,.13);white-space:nowrap;letter-spacing:0}
 .foot-base{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;padding:22px clamp(20px,5vw,72px);
-  border-top:1px solid rgba(243,241,234,.14);font-size:11px;letter-spacing:.06em;color:rgba(243,241,234,.45)}
-.foot-base a{color:rgba(243,241,234,.65);text-decoration:none}
+  border-top:1px solid rgba(243,241,234,.14);font-size:12px;letter-spacing:.06em;color:rgba(243,241,234,.78)}
+.foot-base a{color:rgba(243,241,234,.85);text-decoration:none}
 
 /* ---------- reveals ---------- */
 .rv{opacity:0;transform:translateY(30px);transition:opacity .9s ease,transform .9s cubic-bezier(.22,1,.36,1)}
@@ -214,9 +214,14 @@ section.alt{background:var(--cream-alt)}
   header .nav-sec{display:none!important}
   .fill{line-height:1.25!important}
 }
+.sr-only{position:absolute!important;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
+.a11y-skip{position:absolute;top:-90px;inset-inline-start:12px;z-index:100000;background:#111;color:#fff;padding:10px 16px;border-radius:8px;font:600 15px/1.2 -apple-system,Arial,sans-serif;text-decoration:none}
+.a11y-skip:focus{top:12px}
+.a11y-foot{margin-top:18px;font-size:13px;opacity:.9}.a11y-foot a{color:inherit}
 </style>
 </head>
 <body>
+<a class="a11y-skip" href="#top">דלגו לתוכן</a>
 
 <header id="hdr" class="on-dark">
   <a class="brand" href="#top">סולרה</a>
@@ -272,7 +277,8 @@ section.alt{background:var(--cream-alt)}
     <div class="reasons">
       <article class="reason rv">
         <span class="sec-num">(1)</span>
-        <h3>מיקום אמיתי לחיים</h3>
+        <h2 class="sr-only">למה סולרה</h2>
+<h3>מיקום אמיתי לחיים</h3>
         <p>בין חופים שקטים, שבילי רכס הכרמל והרכבת החופית. חצי שעה לחיפה, ארבעים דקות לתל אביב, ושתי דקות יחפים לים.</p>
       </article>
       <article class="reason rv">
@@ -459,7 +465,8 @@ section.alt{background:var(--cream-alt)}
       <span>פרטיות &middot; תנאים</span>
       <a href="#top">נבנה על ידי <span lang="en">ameizing</span></a>
     </div>
-  </footer>
+  <p class="a11y-foot"><a href="https://ameiz.ing/accessibility/">הצהרת נגישות</a></p>
+</footer>
 
 </main>
 
